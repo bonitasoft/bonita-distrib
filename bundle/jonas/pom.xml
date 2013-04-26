@@ -1,0 +1,313 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>bundle-parent</artifactId>
+		<groupId>org.bonitasoft.distrib</groupId>
+		<version>6.0.0-beta-009-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.bonitasoft.distrib</groupId>
+	<artifactId>bundle-jonas</artifactId>
+	<name>jonas bundle</name>
+	<packaging>pom</packaging>
+
+	<properties>
+		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
+		<bonita.home.client.dir>${bonita.home.dir}/client/</bonita.home.client.dir>
+		<jonas.conf.dir>${jonas.home.dir}/conf</jonas.conf.dir>
+		<jonas.home.dir>${jonas.bos.home.dir}/${jonas.folder.name}</jonas.home.dir>
+		<bonita.home.dir>${jonas.home.dir}/bonita</bonita.home.dir>
+		<jonas.lib.dir>${jonas.home.dir}/lib/ext</jonas.lib.dir>
+		<jonas.bos.zip.name>BOS-${project.version}-JOnAS-${jonas.version}</jonas.bos.zip.name>
+		<jonas.bos.home.dir>${project.build.directory}/${jonas.bos.zip.name}</jonas.bos.home.dir>
+		<jonas.version>5.2.3</jonas.version>
+		<jonas.folder.name>jonas-full-${jonas.version}</jonas.folder.name>
+		<jonas.zip.name>${jonas.folder.name}-bin.zip</jonas.zip.name>
+		<jonas.download.url>http://download.forge.objectweb.org/jonas/${jonas.zip.name}</jonas.download.url>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>ant-contrib</groupId>
+			<artifactId>ant-contrib</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<dependencies>
+					<!-- Maven ant plugin dependencies must be shared by all plugin executions: see http://jira.codehaus.org/browse/MANTRUN-51 -->
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-junit</artifactId>
+						<version>1.7.1</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-nodeps</artifactId>
+						<version>1.7.1</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-trax</artifactId>
+						<version>1.7.1</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>check-jonas-availabality</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<taskdef name="if" classname="${if.task}" classpathref="maven.runtime.classpath" />
+								<available property="jonas.present" file="${jonas.zip.parent.folder}/${jonas.zip.name}" />
+								<if>
+									<not>
+										<isset property="jonas.present" />
+									</not>
+									<then>
+										<get src="${jonas.download.url}" dest="${jonas.zip.parent.folder}/${jonas.zip.name}" />
+									</then>
+								</if>
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>unpack-jonas</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<unzip src="${jonas.zip.parent.folder}/${jonas.zip.name}" dest="${jonas.bos.home.dir}">
+									<patternset>
+										<include name="**/*" />
+									</patternset>
+								</unzip>
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>update-setenv</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<concat destfile="${jonas.home.dir}/bin/setenv" append="true" fixlastline="true">
+BONITA_OPTS="-Dbonita.home=$JONAS_BASE/bonita"
+JAVA_OPTS="$JAVA_OPTS $BONITA_OPTS -Dfile.encoding=UTF-8 -Xshare:auto -Xms512m -Xmx1024m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError"
+export  JAVA_OPTS
+</concat>
+
+								<concat destfile="${jonas.home.dir}/bin/setenv.bat" append="true" fixlastline="true">
+									set "BONITA_OPTS=-Dbonita.home=%JONAS_BASE%bonita"
+									set
+									"JAVA_OPTS=%JAVA_OPTS% %BONITA_OPTS% -Dfile.encoding=UTF-8
+									-Xshare:auto -Xms512m -Xmx1024m -XX:MaxPermSize=256m
+									-XX:+HeapDumpOnOutOfMemoryError"
+									goto :eof
+								</concat>
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-resources-for-jonas</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<!-- <copy overwrite="true" todir="${jonas.home.dir}/glassfish"> -->
+								<!-- <fileset dir="${project.basedir}/src/main/resources/glassfish" /> -->
+								<!-- </copy> -->
+								<chmod perm="ugo+x">
+									<fileset dir="${jonas.home.dir}/bin">
+										<include name="*.sh" />
+									</fileset>
+									<fileset dir="${bonita.home.dir}/client/platform/scripts">
+										<include name="*.sh" />
+									</fileset>
+								</chmod>
+							</target>
+						</configuration>
+					</execution>
+					<!-- Unpack Bonita distrib in order to generate bonita.ear -->
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-bonita-distrib</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.distrib</groupId>
+									<artifactId>deploy-ear-all-in-one</artifactId>
+									<version>${project.version}</version>
+									<type>ear</type>
+									<overWrite>true</overWrite>
+									<destFileName>bonita-all-in-one-${bonita.version}.ear</destFileName>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${jonas.home.dir}/deploy</outputDirectory>
+						</configuration>
+					</execution>
+
+					<!-- Unpack Bonita_home and external files for configuration -->
+					<execution>
+						<id>unpack-bonita_home</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.console</groupId>
+									<artifactId>bonita-home</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${jonas.home.dir}
+							</outputDirectory>
+						</configuration>
+					</execution>
+
+					<!-- Add h2 and platform libs -->
+					<execution>
+						<id>copy-external-lib</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.h2database</groupId>
+									<artifactId>h2</artifactId>
+									<version>${h2.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.platform</groupId>
+									<artifactId>platform-model</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.platform</groupId>
+									<artifactId>platform-server-api</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.platform</groupId>
+									<artifactId>platform-server-impl</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${jonas.lib.dir}
+							</outputDirectory>
+						</configuration>
+					</execution>
+
+					<!-- Copy xercesImpl to endorsed -->
+					<execution>
+						<id>copy-xercesImpl-to-endorsed</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<artifactId>xercesImpl</artifactId>
+									<groupId>xerces</groupId>
+									<version>2.9.1</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${jonas.home.dir}/lib/endorsed
+							</outputDirectory>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+							<finalName>${jonas.bos.zip.name}</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>offline</id>
+			<activation>
+				<property>
+					<name>offline</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<jonas.zip.parent.folder>${jonas.zip.parent.folder}</jonas.zip.parent.folder>
+			</properties>
+		</profile>
+		<profile>
+			<id>common</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<jonas.zip.parent.folder>${user.home}</jonas.zip.parent.folder>
+			</properties>
+		</profile>
+	</profiles>
+</project>

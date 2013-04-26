@@ -1,0 +1,202 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>org.bonitasoft.distrib</groupId>
+		<artifactId>deploy-parent</artifactId>
+		<version>6.0.0-beta-010-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.bonitasoft.distrib</groupId>
+	<artifactId>deploy-distrib</artifactId>
+	<name>deploy distrib</name>
+
+	<packaging>jar</packaging>
+
+	<properties>
+		<zipName>BOS-${project.version}-deploy</zipName>
+		<folderToZip>${project.build.directory}/${zipName}</folderToZip>
+		<bonita_home_folder>${folderToZip}/bonita_home-${bonita.version}</bonita_home_folder>
+		<tomcat_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_folder>
+		<jboss_folder>${folderToZip}/Jboss-${jboss.version}</jboss_folder>
+		<migration_folder>${folderToZip}/migration</migration_folder>
+	</properties>
+   
+  	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<!-- Unpack all in one webapps -->
+					<execution>
+						<id>unpack-all-in-one-with-server</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.distrib</groupId>
+									<artifactId>all-in-one-with-server</artifactId>
+									<version>${project.version}</version>
+									<type>war</type>
+									<overWrite>true</overWrite>
+									<outputDirectory>${project.build.directory}/war-with-server</outputDirectory>
+                  					<destFileName>bonita.war</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.distrib</groupId>
+									<artifactId>deploy-ear-all-in-one</artifactId>
+									<version>${project.version}</version>
+									<type>ear</type>
+									<overWrite>true</overWrite>
+									<outputDirectory>${project.build.directory}/ear-with-server</outputDirectory>
+                  					<destFileName>bonita-all-in-one-${bonita.version}.ear</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+					<!-- retrieve common libs -->
+					<execution>
+						<id>copy-common-libs</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.h2database</groupId>
+									<artifactId>h2</artifactId>
+									<version>${h2.version}</version>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.distrib</groupId>
+									<artifactId>bonita-valve</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${project.build.directory}/common-libs
+							</outputDirectory>
+						</configuration>
+					</execution>
+					<!-- Unpack Bonita_home and external files for configuration-->
+					<execution>
+						<id>unpack-bonita_home</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.console</groupId>
+									<artifactId>bonita-home</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${project.build.directory}/bonita-home
+							</outputDirectory>
+						</configuration>
+					</execution>
+					<!-- Unpack forms migration script configuration files and doc-->
+					<!-- execution>
+						<id>unpack-forms-migration</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.forms</groupId>
+									<artifactId>forms-migration</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${migration_folder}/process_migration/forms
+							</outputDirectory>
+						</configuration>
+					</execution-->
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>use-bonita-engine-deploy</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>						
+						<configuration>
+							<tasks>
+							<!-- bonita home -->
+								<copy todir="${bonita_home_folder}">
+									<fileset dir="${project.build.directory}/bonita-home/bonita" />
+								</copy>
+							<!-- Tomcat -->
+								<!-- Copy all resources from project to Tomcat -->
+								<copy overwrite="true" todir="${tomcat_folder}">
+									<fileset dir="${project.basedir}/src/main/resources/tomcat" />
+								</copy>
+								<!-- Copy webapps-->
+								<copy todir="${tomcat_folder}/webapps" file="${project.build.directory}/war-with-server/bonita.war" />
+								<!-- lib common libs -->
+								<copy todir="${tomcat_folder}/lib">
+									<fileset dir="${project.build.directory}/common-libs" />
+								</copy>
+							<!-- Jboss -->
+								<!-- Copy all resources from project to Jboss -->
+								<copy overwrite="true" todir="${jboss_folder}">
+									<fileset dir="${project.basedir}/src/main/resources/jboss" />
+								</copy>
+								<!-- Copy ear-->
+								<copy todir="${jboss_folder}/server/default/deploy" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.version}.ear" />
+								<!-- lib common libs -->
+								<copy todir="${jboss_folder}/server/default/lib">
+									<fileset dir="${project.build.directory}/common-libs" />
+								</copy>
+							<!-- Copy resources -->
+								<copy todir="${folderToZip}/license">
+									<fileset dir="${project.basedir}/src/main/resources/license" />
+								</copy>
+								<copy todir="${folderToZip}" file="${project.basedir}/src/main/resources/README.TXT" />
+								<replace file="${folderToZip}/README.TXT" token="XXX_VERSION_XXX" value="${project.version}" />
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+							<finalName>${zipName}</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

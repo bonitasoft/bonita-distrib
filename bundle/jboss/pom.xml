@@ -1,0 +1,244 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>bundle-parent</artifactId>
+		<groupId>org.bonitasoft.distrib</groupId>
+		<version>6.0.0-beta-010-SNAPSHOT</version>
+	</parent>
+	<groupId>org.bonitasoft.distrib</groupId>
+	<artifactId>bundle-jboss</artifactId>
+	<name>jboss bundle</name>
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>ant-contrib</groupId>
+			<artifactId>ant-contrib</artifactId>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
+		<jboss.zip.name>jboss-${jboss.version}</jboss.zip.name>
+		<bos.jboss.name>BOS-${project.version}-JBoss-${jboss.version}</bos.jboss.name>
+		<jboss.bos.home.dir>${project.build.directory}/${bos.jboss.name}</jboss.bos.home.dir>
+		<jboss.home>${jboss.bos.home.dir}/jboss-${jboss.version}</jboss.home>
+		<bonita.home.dir>${jboss.home}/bonita</bonita.home.dir>
+		<jboss.deploy.dir>${jboss.home}/server/default/deploy</jboss.deploy.dir>
+		<jboss.conf.dir>${jboss.home}/server/default/conf</jboss.conf.dir>
+		<jboss.lib.dir>${jboss.home}/server/default/lib</jboss.lib.dir>
+		<jboss.download.url>http://heanet.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</jboss.download.url>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>check-jboss-availabality</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<taskdef name="if" classname="${if.task}" classpathref="maven.runtime.classpath" />
+								<available property="jboss.present" file="${jboss.zip.parent.folder}/${jboss.zip.name}.zip" />
+								<if>
+									<not>
+										<isset property="jboss.present" />
+									</not>
+									<then>
+										<get src="${jboss.download.url}" dest="${jboss.zip.parent.folder}/${jboss.zip.name}.zip" />
+									</then>
+								</if>
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>unpack-jboss</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<unzip src="${jboss.zip.parent.folder}/${jboss.zip.name}.zip" dest="${jboss.bos.home.dir}">
+									<patternset>
+										<include name="**/*" />
+									</patternset>
+								</unzip>
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>rename-environment</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<!-- Isolate classloader -->
+								<echo message="Modify properties in ${jboss.deploy.dir}ers/ear-deployer-jboss-beans.xml to isolate classloader" />
+								<replace file="${jboss.deploy.dir}ers/ear-deployer-jboss-beans.xml" token="&lt;property name=&quot;isolated&quot;&gt;false&lt;/property&gt;" value="&lt;property name=&quot;isolated&quot;&gt;true&lt;/property&gt;" />
+								<replace file="${jboss.deploy.dir}ers/ear-deployer-jboss-beans.xml" token="&lt;property name=&quot;callByValue&quot;&gt;false&lt;/property&gt;" value="&lt;property name=&quot;callByValue&quot;&gt;true&lt;/property&gt;" />
+								<replace file="${jboss.conf.dir}/jboss-service.xml" token="&lt;attribute name=&quot;CallByValue&quot;&gt;false&lt;/attribute&gt;" value="&lt;attribute name=&quot;CallByValue&quot;&gt;true&lt;/attribute&gt;" />
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-libs-and-home</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<copy overwrite="true" todir="${bonita.home.dir}">
+									<fileset dir="${project.build.directory}/deploy-distrib/bonita_home-${bonita.version}" />
+								</copy>
+								<copy overwrite="true" todir="${jboss.home}">
+									<fileset dir="${project.build.directory}/deploy-distrib/Jboss-${jboss.version}" />&gt;
+								</copy>
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-jboss-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<copy overwrite="true" todir="${jboss.home}" verbose="true">
+									<fileset dir="${project.basedir}/src/main/resources" />
+								</copy>
+								<chmod perm="ugo+x">
+									<fileset dir="${jboss.home}/bin">
+										<include name="*.sh" />
+									</fileset>
+								</chmod>
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>move-libs-for-java-6</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<move todir="${jboss.home}/lib/endorsed">
+									<filelist dir="${jboss.home}/client">
+										<file name="jbossws-native-saaj.jar" />
+										<file name="jbossws-native-jaxrpc.jar" />
+										<file name="jbossws-native-jaxws.jar" />
+										<file name="jbossws-native-jaxws-ext.jar" />
+									</filelist>
+								</move>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<!-- Unpack Bonita distrib -->
+					<execution>
+						<id>copy-external-lib</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.distrib</groupId>
+									<artifactId>deploy-distrib</artifactId>
+									<version>${project.version}</version>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+									<outputDirectory>${project.build.directory}/deploy-distrib/</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+					<!-- Copy xercesImpl to endorsed -->
+					<execution>
+						<id>copy-xercesImpl-to-endorsed</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<artifactId>xercesImpl</artifactId>
+									<groupId>xerces</groupId>
+									<version>2.9.1</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${jboss.home}/lib/endorsed
+							</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+							<finalName>${bos.jboss.name}</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>offline</id>
+			<activation>
+				<property>
+					<name>offline</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<jboss.zip.parent.folder>${jboss.zip.parent.folder}</jboss.zip.parent.folder>
+			</properties>
+		</profile>
+		<profile>
+			<id>common</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<jboss.zip.parent.folder>${user.home}</jboss.zip.parent.folder>
+			</properties>
+		</profile>
+	</profiles>
+</project>

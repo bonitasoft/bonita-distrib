@@ -1,0 +1,313 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>bundle-parent</artifactId>
+		<groupId>org.bonitasoft.distrib</groupId>
+		<version>6.0.0-beta-009-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.bonitasoft.distrib</groupId>
+	<artifactId>bundle-glassfish</artifactId>
+	<name>glassfish bundle</name>
+	<packaging>pom</packaging>
+
+	<properties>
+		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
+		<glassfish.default.domain>domain1</glassfish.default.domain>
+		<bonita.home.client.dir>${bonita.home.dir}/client/</bonita.home.client.dir>
+		<glassfish.conf.dir>${glassfish.home.dir}/glassfish/config</glassfish.conf.dir>
+		<glassfish.home.dir>${glassfish.bos.home.dir}/glassfish3</glassfish.home.dir>
+		<bonita.home.dir>${glassfish.home.dir}/glassfish/domains/${glassfish.default.domain}/bonita</bonita.home.dir>
+		<glassfish.lib.dir>${glassfish.home.dir}/glassfish/domains/${glassfish.default.domain}/lib</glassfish.lib.dir>
+		<glassfish.bos.home.dir>${project.build.directory}/BOS-${project.version}-Glassfish-${glassfish.version}</glassfish.bos.home.dir>
+		<glassfish.download.url>http://download.java.net/glassfish/${glassfish.version}/release/glassfish-${glassfish.version}.zip</glassfish.download.url>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>ant-contrib</groupId>
+			<artifactId>ant-contrib</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<dependencies>
+					<!-- Maven ant plugin dependencies must be shared by all plugin executions: 
+						see http://jira.codehaus.org/browse/MANTRUN-51 -->
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-junit</artifactId>
+						<version>1.7.1</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-nodeps</artifactId>
+						<version>1.7.1</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-trax</artifactId>
+						<version>1.7.1</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>check-glassfish-availabality</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<taskdef name="if" classname="${if.task}" classpathref="maven.runtime.classpath" />
+								<available property="glassfish.present"
+									file="${glassfish.zip.parent.folder}/glassfish-${glassfish.version}.zip" />
+								<if>
+									<not>
+										<isset property="glassfish.present" />
+									</not>
+									<then>
+										<get src="${glassfish.download.url}"
+											dest="${glassfish.zip.parent.folder}/glassfish-${glassfish.version}.zip" />
+									</then>
+								</if>
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>unpack-glassfish</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<unzip
+									src="${glassfish.zip.parent.folder}/glassfish-${glassfish.version}.zip"
+									dest="${glassfish.bos.home.dir}">
+									<patternset>
+										<include name="**/*" />
+									</patternset>
+								</unzip>
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-libs</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<copy overwrite="true" todir="${glassfish.lib.dir}">
+									<fileset dir="${project.build.directory}/all-in-one/WEB-INF/lib">
+										<exclude name="xercesImpl*.jar" />
+									</fileset>
+								</copy>
+								<copy overwrite="true" todir="${glassfish.lib.dir}">
+									<fileset dir="${project.build.directory}/external-libs">
+										<exclude name="xercesImpl*.jar" />
+									</fileset>
+								</copy>
+								<copy overwrite="true" todir="${glassfish.home.dir}/glassfish/lib/endorsed">
+									<fileset dir="${project.build.directory}/all-in-one/WEB-INF/lib">
+										<include name="xercesImpl*.jar" />
+									</fileset>
+								</copy>
+								
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-resources-for-glassfish</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<copy overwrite="true" todir="${glassfish.home.dir}/glassfish">
+									<fileset dir="${project.basedir}/src/main/resources/glassfish" />
+								</copy>
+								<chmod perm="ugo+x">
+									<fileset dir="${glassfish.home.dir}/glassfish/bin">
+										<include name="*.sh" />
+									</fileset>
+									<fileset dir="${bonita.home.dir}/client/platform/scripts">
+										<include name="*.sh" />
+									</fileset>
+								</chmod>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-webapps</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.console</groupId>
+									<artifactId>all-in-one</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>war</type>
+									<overWrite>true</overWrite>
+									<outputDirectory>${project.build.directory}/all-in-one/</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+					<!-- Unpack Bonita Home to get bonita_home and external files -->
+					<execution>
+						<id>unpack-bonita_home</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.console</groupId>
+									<artifactId>bonita-home</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${glassfish.home.dir}/glassfish/domains/${glassfish.default.domain}
+							</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>retrieve-external-dependencies</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.h2database</groupId>
+									<artifactId>h2</artifactId>
+									<version>${h2.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.platform</groupId>
+									<artifactId>platform-model</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.platform</groupId>
+									<artifactId>platform-server-api</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.platform</groupId>
+									<artifactId>platform-server-impl</artifactId>
+									<version>${bonita.web.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+								<!-- Add SLF4J impl -->
+								<artifactItem>
+									<groupId>org.slf4j</groupId>
+    								<artifactId>slf4j-jdk14</artifactId>
+    								<version>${slf4j.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.build.directory}/external-libs/</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-console-war</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+							<finalName>bonita</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly-console-light.xml
+								</descriptor>
+							</descriptors>
+							<outputDirectory>
+								${glassfish.home.dir}/glassfish/domains/domain1/autodeploy/
+							</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+							<finalName>BOS-${project.version}-Glassfish-${glassfish.version}</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>offline</id>
+			<activation>
+				<property>
+					<name>offline</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<glassfish.zip.parent.folder>${glassfish.zip.parent.folder}</glassfish.zip.parent.folder>
+			</properties>
+		</profile>
+		<profile>
+			<id>common</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<glassfish.zip.parent.folder>${user.home}</glassfish.zip.parent.folder>
+			</properties>
+		</profile>
+	</profiles>
+</project>

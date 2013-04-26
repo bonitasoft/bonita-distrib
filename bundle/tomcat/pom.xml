@@ -1,0 +1,215 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>bundle-parent</artifactId>
+		<groupId>org.bonitasoft.distrib</groupId>
+		<version>6.0.0-beta-010-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.bonitasoft.distrib</groupId>
+	<artifactId>bundle-tomcat</artifactId>
+	<name>tomcat bundle</name>
+	<packaging>pom</packaging>
+
+	<properties>
+		<tomcat.zip.parent.folder>${user.home}</tomcat.zip.parent.folder>
+		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
+		<tomcat.bos.home.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</tomcat.bos.home.dir>
+		<tomcat.home.dir>${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}</tomcat.home.dir>
+		<bonita.home.dir>${tomcat.home.dir}/bonita</bonita.home.dir>
+		<bonita.home.server.default.conf.dir>${bonita.home.dir}/server/default/conf</bonita.home.server.default.conf.dir>
+		<bonita.home.client.dir>${bonita.home.dir}/client/</bonita.home.client.dir>
+		<tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
+		<tomcat.webapps.dir>${tomcat.home.dir}/webapps</tomcat.webapps.dir>
+		<tomcat.conf.dir>${tomcat.home.dir}/conf</tomcat.conf.dir>
+		<tomcat.download.url>http://archive.apache.org/dist/tomcat/tomcat-6/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</tomcat.download.url>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>ant-contrib</groupId>
+			<artifactId>ant-contrib</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>check-tomcat-availability</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<taskdef name="if" classname="${if.task}" classpathref="maven.runtime.classpath" />
+								<available property="tomcat.present" file="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" />
+								<if>
+									<not>
+										<isset property="tomcat.present" />
+									</not>
+									<then>
+										<get src="${tomcat.download.url}" dest="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" />
+									</then>
+								</if>
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>unpack-tomcat</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<unzip src="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" dest="${tomcat.bos.home.dir}">
+									<patternset>
+										<include name="**/*" />
+									</patternset>
+								</unzip>
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-libs-and-home</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<copy overwrite="true" todir="${tomcat.lib.dir}/bonita">
+									<fileset dir="${project.build.directory}/deploy-distrib/Tomcat-${tomcat.version}/lib">
+										<include name="*.jar" />
+									</fileset>
+								</copy>
+								<copy overwrite="true" todir="${bonita.home.dir}">
+									<fileset dir="${project.build.directory}/deploy-distrib/bonita_home-${bonita.version}">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+								<copy overwrite="true" todir="${tomcat.home.dir}">
+									<fileset dir="${project.build.directory}/deploy-distrib/Tomcat-${tomcat.version}">
+										<exclude name="lib/*" />
+									</fileset>
+								</copy>
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>rename-environment</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<!--Add bonita-libs to the common classpath entry -->
+								<replace file="${tomcat.conf.dir}/catalina.properties" token="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar" value="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar,$${catalina.home}/lib/bonita,$${catalina.home}/lib/bonita/*.jar" />
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-resources-for-tomcat</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<!-- copy tomcat resources -->
+								<copy overwrite="true" todir="${tomcat.home.dir}" verbose="true">
+									<fileset dir="${project.basedir}/src/main/resources" />
+								</copy>
+								<!-- remove logging.properties of tomcat in order to be able to use our own -->
+								<delete file="${tomcat.home.dir}/conf/logging.properties" />
+								<!-- set permission  on scripts -->
+								<chmod perm="ugo+x">
+									<fileset dir="${tomcat.home.dir}/bin">
+										<include name="*.sh" />
+									</fileset>
+								</chmod>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-webapps</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+							<!-- goal>copy</goal -->
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.distrib</groupId>
+									<artifactId>deploy-distrib</artifactId>
+									<version>${project.version}</version>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+									<outputDirectory>${project.build.directory}/deploy-distrib/</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+							<finalName>BOS-${project.version}-Tomcat-${tomcat.version}</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>common</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<tomcat.zip.parent.folder>${user.home}</tomcat.zip.parent.folder>
+			</properties>
+		</profile>
+		<profile>
+			<id>offline</id>
+			<activation>
+				<property>
+					<name>offline</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<tomcat.zip.parent.folder>${tomcat.zip.parent.folder}</tomcat.zip.parent.folder>
+			</properties>
+		</profile>
+	</profiles>
+</project>
