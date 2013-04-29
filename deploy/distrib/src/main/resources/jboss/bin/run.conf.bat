@@ -40,7 +40,7 @@ rem # options that are always passed by run.bat.
 rem #
 
 rem # JVM memory allocation pool parameters - modify as appropriate.
-set "JAVA_OPTS=-Xms128M -Xmx512M -XX:MaxPermSize=256M"
+set "JAVA_OPTS=-Xms1024M -Xmx1024M -XX:MaxPermSize=256M -XX:+HeapDumpOnOutOfMemoryError"
 
 rem # Reduce the RMI GCs to once per hour for Sun JVMs.
 set "JAVA_OPTS=%JAVA_OPTS% -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
@@ -61,8 +61,7 @@ set tmp_script_home=%CD%
 call :setJbossHome %CD%
 
 set "BONITA_OPTS=-Dbonita.home=%tmp_jboss_home%bonita"
-set "DB_OPTS=-Dsysprop.bonita.db.vendor=h2"
-set "JAVA_OPTS=%JAVA_OPTS% %BONITA_OPTS% %DB_OPTS% -Dfile.encoding=UTF-8 -Xshare:auto -Xms512m -Xmx1024m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError"
+set "JAVA_OPTS=%JAVA_OPTS% %BONITA_OPTS%"
 goto :eof
 
 :setJbossHome
