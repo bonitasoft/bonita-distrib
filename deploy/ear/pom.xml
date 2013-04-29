@@ -34,20 +34,10 @@
 								<artifactItem>
 									<groupId>org.bonitasoft.console</groupId>
 									<artifactId>all-in-one</artifactId>
-									<classifier>${rest}</classifier>
 									<version>${bonita.web.version}</version>
 									<type>war</type>
 									<overWrite>true</overWrite>
 									<outputDirectory>${project.build.directory}/all-in-one/</outputDirectory>
-								</artifactItem>
-								<!-- Add SLF4J impl -->
-								<artifactItem>
-									<groupId>org.slf4j</groupId>
-    								<artifactId>slf4j-jdk14</artifactId>
-    								<version>${slf4j.version}</version>
-									<type>jar</type>
-									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}/ear-all-in-one/lib</outputDirectory>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
