@@ -19,8 +19,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<ant-contrib.version>1.0b3</ant-contrib.version>
-		<bonita.version>6.0.0-beta-020</bonita.version>
-		<bonita.web.version>6.0.0-beta-010-SNAPSHOT</bonita.web.version>
+		<bonita.version>6.0.0-beta-021</bonita.version>
+		<bonita.web.version>6.0.0-beta-010</bonita.web.version>
 		<tomcat.version>6.0.35</tomcat.version>
 		<jboss.version>5.1.0.GA</jboss.version>
 		<glassfish.version>3.1.1</glassfish.version>
