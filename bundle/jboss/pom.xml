@@ -101,7 +101,7 @@
 									<fileset dir="${project.build.directory}/deploy-distrib/bonita_home-${bonita.version}" />
 								</copy>
 								<copy overwrite="true" todir="${jboss.home}">
-									<fileset dir="${project.build.directory}/deploy-distrib/Jboss-${jboss.version}" />&gt;
+									<fileset dir="${project.build.directory}/deploy-distrib/Jboss-${jboss.version}" />
 								</copy>
 							</tasks>
 						</configuration>

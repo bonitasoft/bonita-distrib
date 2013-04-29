@@ -16,7 +16,6 @@
 			</includes>
 			<excludes>
 				<exclude>bin/*.sh</exclude>
-				<exclude>bonita/client/platform/scripts/*.sh</exclude>
 			</excludes>
 		</fileSet>
 		<fileSet>
@@ -24,7 +23,6 @@
 			<directory>${project.build.directory}/${bos.jboss.name}/${jboss.zip.name}</directory>
 			<includes>
 				<include>bin/*.sh</include>
-				<include>bonita/client/platform/scripts/*.sh</include>
 			</includes>
 			<fileMode>755</fileMode>
 		</fileSet>
