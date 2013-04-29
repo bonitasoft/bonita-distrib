@@ -7,7 +7,7 @@
 	<description>Bonita Application</description>
 
 	<module>
-		<ejb>bonita-deploy-ejb3-6.0-SNAPSHOT.jar</ejb>
+		<ejb>bonita-deploy-ejb3-6.0.0-beta-020.jar</ejb>
 	</module>
 	
 	<module>

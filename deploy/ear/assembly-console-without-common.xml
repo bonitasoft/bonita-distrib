@@ -19,6 +19,14 @@
 				<exclude>WEB-INF/lib/el-api*.jar</exclude>
 				<exclude>WEB-INF/lib/slf4j-api*.jar</exclude>
 				<exclude>WEB-INF/lib/stax-api*.jar</exclude>
+				
+				<exclude>WEB-INF/lib/xmlpull-*.jar</exclude>
+				<exclude>WEB-INF/lib/xpp3_min-*.jar</exclude>
+				<exclude>WEB-INF/lib/xstream-*.jar</exclude>
+				<exclude>WEB-INF/lib/ehcache*.jar</exclude>
+				<exclude>WEB-INF/lib/commons-codec*.jar</exclude>
+				<exclude>WEB-INF/lib/commons-io*.jar</exclude>
+				<exclude>WEB-INF/lib/commons-logging*.jar</exclude>
 			</excludes>
 		</fileSet>
 	</fileSets>

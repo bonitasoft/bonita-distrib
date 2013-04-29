@@ -1,13 +1,49 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<artifactId>deploy-parent</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
 		<version>6.0.0-beta-010-SNAPSHOT</version>
 	</parent>
+
 	<artifactId>deploy-ear-all-in-one</artifactId>
 	<packaging>ear</packaging>
-	
+
+	<dependencies>
+		<dependency>
+			<groupId>org.bonitasoft.engine</groupId>
+			<artifactId>bonita-deploy-ejb3</artifactId>
+			<version>${bonita.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>org.bonitasoft.engine</groupId>
+			<artifactId>bonita-common</artifactId>
+			<version>${bonita.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bonitasoft.engine</groupId>
+			<artifactId>bonita-server</artifactId>
+			<version>${bonita.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-pool</groupId>
+			<artifactId>commons-pool</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -23,41 +59,12 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-									<groupId>org.bonitasoft.engine</groupId>
-									<artifactId>bonita-deploy-ear3</artifactId>
-									<version>${bonita.version}</version>
-									<type>ear</type>
-									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}/ear-all-in-one/</outputDirectory>
-									<excludes>**/stax-api*.jar</excludes>
-								</artifactItem>
-								<artifactItem>
 									<groupId>org.bonitasoft.console</groupId>
 									<artifactId>all-in-one</artifactId>
 									<version>${bonita.web.version}</version>
 									<type>war</type>
 									<overWrite>true</overWrite>
 									<outputDirectory>${project.build.directory}/all-in-one/</outputDirectory>
-								</artifactItem>
-							</artifactItems>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-libs</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<!-- Add SLF4J impl -->
-								<artifactItem>
-									<groupId>org.slf4j</groupId>
-    								<artifactId>slf4j-jdk14</artifactId>
-    								<version>${slf4j.version}</version>
-									<type>jar</type>
-									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}/ear-all-in-one/lib/</outputDirectory>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
@@ -79,12 +86,9 @@
 							<finalName>bonita</finalName>
 							<appendAssemblyId>false</appendAssemblyId>
 							<descriptors>
-								<descriptor>assembly-console-without-common.xml
-								</descriptor>
+								<descriptor>assembly-console-without-common.xml</descriptor>
 							</descriptors>
-							<outputDirectory>
-								${project.build.directory}/ear-all-in-one/
-							</outputDirectory>
+							<outputDirectory>${project.build.directory}/ear-all-in-one/</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
@@ -93,6 +97,45 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
 				<configuration>
+					<defaultJavaBundleDir>lib</defaultJavaBundleDir>
+					<modules>
+						<ejbModule>
+							<groupId>org.bonitasoft.engine</groupId>
+							<artifactId>bonita-deploy-ejb3</artifactId>
+							<bundleDir>/</bundleDir>
+						</ejbModule>
+						<jarModule>
+							<groupId>org.bonitasoft.engine</groupId>
+							<artifactId>bonita-common</artifactId>
+						</jarModule>
+						<jarModule>
+							<groupId>org.bonitasoft.engine</groupId>
+							<artifactId>bonita-server</artifactId>
+						</jarModule>
+						<jarModule>
+							<groupId>ch.qos.logback</groupId>
+							<artifactId>logback-classic</artifactId>
+						</jarModule>
+						<jarModule>
+							<groupId>commons-dbcp</groupId>
+							<artifactId>commons-dbcp</artifactId>
+						</jarModule>
+						<jarModule>
+							<groupId>commons-pool</groupId>
+							<artifactId>commons-pool</artifactId>
+						</jarModule>
+					</modules>
+
+					<!-- <generateApplicationXml>true</generateApplicationXml> -->
+					<!-- <version>1.4</version> -->
+					<!-- <displayName>Bonita Application</displayName> -->
+					<!-- <description>Bonita Application</description> -->
+
+					<jboss>
+						<version>5</version>
+						<loader-repository>org.bonitasoft.engine:loader=${project.artifactId}-${project.version}.ear</loader-repository>
+					</jboss>
+
 					<applicationXml>${basedir}/src/main/application/META-INF/application.xml</applicationXml>
 					<earSourceDirectory>${project.build.directory}/ear-all-in-one/</earSourceDirectory>
 				</configuration>

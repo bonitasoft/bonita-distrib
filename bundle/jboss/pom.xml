@@ -73,22 +73,22 @@
 							</tasks>
 						</configuration>
 					</execution>
-					<execution>
-						<id>rename-environment</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<!-- Isolate classloader -->
-								<echo message="Modify properties in ${jboss.deploy.dir}ers/ear-deployer-jboss-beans.xml to isolate classloader" />
-								<replace file="${jboss.deploy.dir}ers/ear-deployer-jboss-beans.xml" token="&lt;property name=&quot;isolated&quot;&gt;false&lt;/property&gt;" value="&lt;property name=&quot;isolated&quot;&gt;true&lt;/property&gt;" />
-								<replace file="${jboss.deploy.dir}ers/ear-deployer-jboss-beans.xml" token="&lt;property name=&quot;callByValue&quot;&gt;false&lt;/property&gt;" value="&lt;property name=&quot;callByValue&quot;&gt;true&lt;/property&gt;" />
-								<replace file="${jboss.conf.dir}/jboss-service.xml" token="&lt;attribute name=&quot;CallByValue&quot;&gt;false&lt;/attribute&gt;" value="&lt;attribute name=&quot;CallByValue&quot;&gt;true&lt;/attribute&gt;" />
-							</tasks>
-						</configuration>
-					</execution>
+<!-- 					<execution> -->
+<!-- 						<id>rename-environment</id> -->
+<!-- 						<phase>process-resources</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>run</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<tasks> -->
+<!-- 								Isolate classloader -->
+<!-- 								<echo message="Modify properties in ${jboss.deploy.dir}ers/ear-deployer-jboss-beans.xml to isolate classloader" /> -->
+<!-- 								<replace file="${jboss.deploy.dir}ers/ear-deployer-jboss-beans.xml" token="&lt;property name=&quot;isolated&quot;&gt;false&lt;/property&gt;" value="&lt;property name=&quot;isolated&quot;&gt;true&lt;/property&gt;" /> -->
+<!-- 								<replace file="${jboss.deploy.dir}ers/ear-deployer-jboss-beans.xml" token="&lt;property name=&quot;callByValue&quot;&gt;false&lt;/property&gt;" value="&lt;property name=&quot;callByValue&quot;&gt;true&lt;/property&gt;" /> -->
+<!-- 								<replace file="${jboss.conf.dir}/jboss-service.xml" token="&lt;attribute name=&quot;CallByValue&quot;&gt;false&lt;/attribute&gt;" value="&lt;attribute name=&quot;CallByValue&quot;&gt;true&lt;/attribute&gt;" /> -->
+<!-- 							</tasks> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
 					<execution>
 						<id>copy-libs-and-home</id>
 						<phase>package</phase>
@@ -100,6 +100,7 @@
 								<copy overwrite="true" todir="${bonita.home.dir}">
 									<fileset dir="${project.build.directory}/deploy-distrib/bonita_home-${bonita.version}" />
 								</copy>
+								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.xml" token="java:comp/env/" value="" />
 								<copy overwrite="true" todir="${jboss.home}">
 									<fileset dir="${project.build.directory}/deploy-distrib/Jboss-${jboss.version}" />
 								</copy>
