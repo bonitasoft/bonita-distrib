@@ -12,7 +12,7 @@
 
 	<modules>
 		<module>valve</module>
-		<module>war-ear</module>
+		<module>war-server</module>
 		<module>ear</module>
 		<module>distrib</module>
 		<module>tests</module>
