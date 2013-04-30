@@ -19,7 +19,7 @@
 
 	<properties>
 		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
-		<jboss.zip.name>jboss-${jboss.version}</jboss.zip.name>
+		<jboss.zip.name>jboss-${jboss.version}-jdk6</jboss.zip.name>
 		<bos.jboss.name>BOS-${project.version}-JBoss-${jboss.version}</bos.jboss.name>
 		<jboss.bos.home.dir>${project.build.directory}/${bos.jboss.name}</jboss.bos.home.dir>
 		<jboss.home>${jboss.bos.home.dir}/jboss-${jboss.version}</jboss.home>
