@@ -104,28 +104,6 @@
 							</outputDirectory>
 						</configuration>
 					</execution>
-					<!-- Unpack forms migration script configuration files and doc-->
-					<!-- execution>
-						<id>unpack-forms-migration</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>unpack</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.bonitasoft.forms</groupId>
-									<artifactId>forms-migration</artifactId>
-									<version>${bonita.web.version}</version>
-									<type>zip</type>
-									<overWrite>true</overWrite>
-								</artifactItem>
-							</artifactItems>
-							<outputDirectory>
-								${migration_folder}/process_migration/forms
-							</outputDirectory>
-						</configuration>
-					</execution-->
 				</executions>
 			</plugin>
 			<plugin>
