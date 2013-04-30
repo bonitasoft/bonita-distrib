@@ -94,7 +94,6 @@
 								<artifactItem>
 									<groupId>org.bonitasoft.console</groupId>
 									<artifactId>bonita-home</artifactId>
-									<version>${bonita.web.version}</version>
 									<type>zip</type>
 									<overWrite>true</overWrite>
 								</artifactItem>

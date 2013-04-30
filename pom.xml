@@ -30,6 +30,20 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- bonita web -->
+			<dependency>
+				<groupId>org.bonitasoft.console</groupId>
+				<artifactId>bonita-home</artifactId>
+				<version>${bonita.web.version}</version>
+				<type>zip</type>
+			</dependency>
+			<dependency>
+				<groupId>org.bonitasoft.console</groupId>
+				<artifactId>all-in-one</artifactId>
+				<version>${bonita.web.version}</version>
+				<type>war</type>
+			</dependency>
+
 			<!-- build -->
 			<dependency>
 				<groupId>ant-contrib</groupId>

@@ -61,7 +61,6 @@
 								<artifactItem>
 									<groupId>org.bonitasoft.console</groupId>
 									<artifactId>all-in-one</artifactId>
-									<version>${bonita.web.version}</version>
 									<type>war</type>
 									<overWrite>true</overWrite>
 									<outputDirectory>${project.build.directory}/all-in-one/</outputDirectory>
