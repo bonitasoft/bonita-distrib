@@ -125,8 +125,6 @@
 								<copy overwrite="true" todir="${tomcat.home.dir}" verbose="true">
 									<fileset dir="${project.basedir}/src/main/resources" />
 								</copy>
-								<!-- remove logging.properties of tomcat in order to be able to use our own -->
-								<delete file="${tomcat.home.dir}/conf/logging.properties" />
 								<!-- set permission  on scripts -->
 								<chmod perm="ugo+x">
 									<fileset dir="${tomcat.home.dir}/bin">
