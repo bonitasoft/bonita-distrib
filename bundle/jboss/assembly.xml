@@ -10,7 +10,7 @@
 	<fileSets>
 		<fileSet>
 			<outputDirectory>/</outputDirectory>
-			<directory>${project.build.directory}/${bos.jboss.name}/${jboss.zip.name}</directory>
+			<directory>${project.build.directory}/${bos.jboss.name}/jboss-${jboss.version}</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
@@ -20,7 +20,7 @@
 		</fileSet>
 		<fileSet>
 			<outputDirectory>/</outputDirectory>
-			<directory>${project.build.directory}/${bos.jboss.name}/${jboss.zip.name}</directory>
+			<directory>${project.build.directory}/${bos.jboss.name}/jboss-${jboss.version}</directory>
 			<includes>
 				<include>bin/*.sh</include>
 			</includes>
