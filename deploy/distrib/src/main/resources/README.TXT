@@ -42,3 +42,4 @@ In order to install bonita you need to copy into the root folder of your applica
 - the content of the directory matching it
 - create a directory named "bonita"
 - copy the content of bonita_home-<engine.version> in it
+- for Jboss update the file bonita/server/platform/conf/bonita-platform.xml to remove every occurrence of "java:comp/env/"
