@@ -8,6 +8,7 @@
 	</parent>
 
 	<artifactId>deploy-ear-all-in-one</artifactId>
+	<name>ear</name>
 	<packaging>ear</packaging>
 
 	<dependencies>
