@@ -42,67 +42,26 @@
 			<artifactId>commons-pool</artifactId>
 			<version>1.5.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.bonitasoft.distrib</groupId>
+			<artifactId>war-ear</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>unpack-webapps</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>unpack</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.bonitasoft.distrib</groupId>
-									<artifactId>all-in-one</artifactId>
-									<version>${project.version}</version>
-									<type>war</type>
-									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}/all-in-one/</outputDirectory>
-								</artifactItem>
-							</artifactItems>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>generate-console-war</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-							<finalName>bonita</finalName>
-							<appendAssemblyId>false</appendAssemblyId>
-							<descriptors>
-								<descriptor>assembly-console-without-common.xml</descriptor>
-							</descriptors>
-							<outputDirectory>${project.build.directory}/ear-all-in-one/</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
 				<configuration>
-					<defaultJavaBundleDir>lib</defaultJavaBundleDir>
 					<modules>
 						<ejbModule>
 							<groupId>org.bonitasoft.engine</groupId>
 							<artifactId>bonita-deploy-ejb3</artifactId>
 							<bundleDir>/</bundleDir>
+							<bundleFileName>bonita-engine-ejb.jar</bundleFileName>
 						</ejbModule>
 						<jarModule>
 							<groupId>org.bonitasoft.engine</groupId>
@@ -124,20 +83,24 @@
 							<groupId>commons-pool</groupId>
 							<artifactId>commons-pool</artifactId>
 						</jarModule>
+						<webModule>
+							<groupId>org.bonitasoft.distrib</groupId>
+							<artifactId>war-ear</artifactId>
+							<uri>bonita.war</uri>
+							<contextRoot>/bonita</contextRoot>
+						</webModule>
 					</modules>
 
-					<!-- <generateApplicationXml>true</generateApplicationXml> -->
-					<!-- <version>1.4</version> -->
-					<!-- <displayName>Bonita Application</displayName> -->
-					<!-- <description>Bonita Application</description> -->
+					<generateApplicationXml>true</generateApplicationXml>
+					<version>5</version>
+					<displayName>Bonita Application</displayName>
+					<description>Bonita Application</description>
+					<defaultJavaBundleDir>lib</defaultJavaBundleDir>
 
 					<jboss>
 						<version>5</version>
 						<loader-repository>org.bonitasoft.engine:loader=${project.artifactId}-${project.version}.ear</loader-repository>
 					</jboss>
-
-					<applicationXml>${basedir}/src/main/application/META-INF/application.xml</applicationXml>
-					<earSourceDirectory>${project.build.directory}/ear-all-in-one/</earSourceDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
