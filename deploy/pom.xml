@@ -11,6 +11,7 @@
 	<name>deploy parent</name>
 
 	<modules>
+		<module>all-in-one</module>
 		<module>war-server</module>
 		<module>ear</module>
 		<module>distrib</module>
