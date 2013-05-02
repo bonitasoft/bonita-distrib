@@ -14,7 +14,7 @@
 		<dependency>
 			<groupId>org.bonitasoft.platform</groupId>
 			<artifactId>platform-server-impl</artifactId>
-			<version>${project.version}</version>
+			<version>${bonita.web.version}</version>
 		</dependency>
 	</dependencies>
 
