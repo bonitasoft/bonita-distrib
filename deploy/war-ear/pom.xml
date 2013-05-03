@@ -61,12 +61,19 @@
 									<type>war</type>
 									<overWrite>true</overWrite>
 									<outputDirectory>${project.build.directory}/portal/</outputDirectory>
-									<excludes>WEB-INF/lib/bonita-common*.jar,
-										WEB-INF/lib/slf4j-api*.jar, WEB-INF/lib/stax-api*.jar,
-										WEB-INF/lib/xmlpull-*.jar, WEB-INF/lib/xpp3_min-*.jar,
-										WEB-INF/lib/xstream-*.jar, WEB-INF/lib/ehcache*.jar,
-										WEB-INF/lib/commons-codec*.jar, WEB-INF/lib/commons-io*.jar,
-										WEB-INF/lib/commons-logging*.jar</excludes>
+									<excludes>
+									    WEB-INF/lib/bonita-common*.jar,
+										WEB-INF/lib/slf4j-api*.jar,
+										WEB-INF/lib/xml-apis*.jar,
+										WEB-INF/lib/stax-api*.jar,
+										WEB-INF/lib/xmlpull-*.jar,
+										WEB-INF/lib/xpp3_min-*.jar,
+										WEB-INF/lib/xstream-*.jar,
+										WEB-INF/lib/ehcache*.jar,
+										WEB-INF/lib/commons-codec*.jar,
+										WEB-INF/lib/commons-io*.jar,
+										WEB-INF/lib/commons-logging*.jar
+									</excludes>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
