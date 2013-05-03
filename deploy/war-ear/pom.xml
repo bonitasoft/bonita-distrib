@@ -64,7 +64,6 @@
 									<excludes>
 									    WEB-INF/lib/bonita-common*.jar,
 										WEB-INF/lib/slf4j-api*.jar,
-										WEB-INF/lib/xml-apis*.jar,
 										WEB-INF/lib/stax-api*.jar,
 										WEB-INF/lib/xmlpull-*.jar,
 										WEB-INF/lib/xpp3_min-*.jar,
