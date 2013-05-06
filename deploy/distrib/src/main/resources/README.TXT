@@ -8,9 +8,11 @@ Contents of this package:
 |   |   |-- setenv.sh                       Script setting system variables for linux
 |   |   `-- setenv.bat                      Script setting system variable for windows
 |   |-- conf
+|   |   |-- Catalina
+|   |   |   `-- localhost
+|   |   |       `-- bonita.xml              Datasources configuration
 |   |   |-- server.xml                      Default tomcat conf file including valve configuration
-|   |   |-- context.xml                     datasources configuration
-|   |   `-- logging.properties              logs configuration
+|   |   `-- logging.properties              Logs configuration
 |   |-- lib
 |   |   `-- *.jar                           Common libs that can be shared by several webapps (JDBC driver, valve preventing session fixation issue)
 |   `-- webapps
