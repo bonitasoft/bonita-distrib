@@ -258,7 +258,25 @@
 		<servlet-name>org.bonitasoft.forms.server.HomepageServletconsole/homepage</servlet-name>
 		<servlet-class>org.bonitasoft.forms.server.HomepageServlet</servlet-class>
 	</servlet>
-	<!-- End theme -->
+    <!-- End theme -->
+    <!-- Reports -->
+    <servlet>
+        <servlet-name>RunReport</servlet-name>
+        <servlet-class>org.bonitasoft.reporting.servlet.RunReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImageServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PdfServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.PdfServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JExcelApiServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.JExcelApiServlet</servlet-class>
+    </servlet>
+    <!-- End Reports -->
 	<servlet>
 		<servlet-name>HttpAPIServlet</servlet-name>
 		<servlet-class>org.bonitasoft.engine.api.internal.servlet.HttpAPIServlet</servlet-class>
@@ -355,6 +373,22 @@
 		<servlet-name>HttpAPIServlet</servlet-name>
 		<url-pattern>/serverAPI/*</url-pattern>
 	</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RunReport</servlet-name>
+        <url-pattern>/console/runreport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageServlet</servlet-name>
+        <url-pattern>/console/images</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PdfServlet</servlet-name>
+        <url-pattern>/console/runreport/pdf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JExcelApiServlet</servlet-name>
+        <url-pattern>/console/runreport/xls</url-pattern>
+    </servlet-mapping>
 
 	<!-- Default page to serve -->
 	<welcome-file-list>
