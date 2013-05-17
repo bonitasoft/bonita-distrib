@@ -20,7 +20,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<bonita.version>6.0.0-beta-025</bonita.version>
-		<bonita.web.version>6.0.0-beta-015</bonita.web.version>
+		<bonita.web.version>6.0.0-beta-016-SNAPSHOT</bonita.web.version>
 
 		<ant-contrib.version>1.0b3</ant-contrib.version>
 		<tomcat.version>6.0.35</tomcat.version>
