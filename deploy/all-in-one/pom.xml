@@ -48,7 +48,7 @@
 								<artifactItem>
 									<groupId>org.bonitasoft.console</groupId>
 									<artifactId>console-war</artifactId>
-									<version>${project.version}</version>
+									<version>${bonita.web.version}</version>
 									<type>war</type>
 									<overWrite>false</overWrite>
 									<outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
