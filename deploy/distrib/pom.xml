@@ -18,7 +18,38 @@
 		<tomcat_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_folder>
 		<jboss_folder>${folderToZip}/Jboss-${jboss.version}</jboss_folder>
 		<migration_folder>${folderToZip}/migration</migration_folder>
+		<bitronix.version>2.1.3</bitronix.version>
+
 	</properties>
+
+	<dependencies>
+        <!-- Transaction manager dependencies -->
+        <dependency>
+            <groupId>org.codehaus.btm</groupId>
+            <artifactId>btm</artifactId>
+            <version>${bitronix.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.btm</groupId>
+            <artifactId>btm-tomcat55-lifecycle</artifactId>
+            <version>${bitronix.version}</version>
+        </dependency>
+	</dependencies>
    
   	<build>
 		<plugins>
@@ -82,6 +113,42 @@
 							</outputDirectory>
 						</configuration>
 					</execution>
+					<!-- retrieve Tomcat transaction libs -->
+					<execution>
+						<id>copy-tomcat-transaction-libs</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+                                <!-- http://docs.codehaus.org/display/BTM/Tomcat2x#Tomcat2x-Step1CopytheBTMjars -->   
+                                <artifactItem>
+                                    <groupId>org.codehaus.btm</groupId>
+                                    <artifactId>btm</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>javax.transaction</groupId>
+                                    <artifactId>jta</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.slf4j</groupId>
+                                    <artifactId>slf4j-api</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.slf4j</groupId>
+                                    <artifactId>slf4j-jdk14</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.codehaus.btm</groupId>
+                                    <artifactId>btm-tomcat55-lifecycle</artifactId>
+                                </artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${project.build.directory}/tomcat-transaction-libs
+							</outputDirectory>
+						</configuration>
+					</execution>
 					<!-- Unpack Bonita_home and external files for configuration-->
 					<execution>
 						<id>unpack-bonita_home</id>
@@ -132,6 +199,11 @@
 								<copy todir="${tomcat_folder}/lib">
 									<fileset dir="${project.build.directory}/common-libs" />
 								</copy>
+								<!-- Tomcat transaction libs -->
+								<copy todir="${tomcat_folder}/lib">
+									<fileset dir="${project.build.directory}/tomcat-transaction-libs" />
+								</copy>
+
 							<!-- Jboss -->
 								<!-- Copy all resources from project to Jboss -->
 								<copy overwrite="true" todir="${jboss_folder}">
@@ -143,6 +215,7 @@
 								<copy todir="${jboss_folder}/server/default/lib">
 									<fileset dir="${project.build.directory}/common-libs" />
 								</copy>
+
 							<!-- Copy resources -->
 								<copy todir="${folderToZip}/license">
 									<fileset dir="${project.basedir}/src/main/resources/license" />

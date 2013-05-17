@@ -31,22 +31,9 @@
     -->
 
     <!-- Configure Datasource -->       
-    <Resource name="bonitaDS"  
-              auth="Container"  
-              type="javax.sql.DataSource" 
-              maxActive="100"  
-              minIdle="10"  
-              maxWait="10000"  
-              initialSize="1" 
-              validationQuery="SELECT 1"
-              validationInterval="30000"
-              removeAbandoned="true" 
-              logAbandoned="true" 
-              username="sa" 
-              password=""
-              driverClassName="org.h2.Driver" 
-              url="jdbc:h2:${bonita.home}/server/platform/work/databases/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER_PORT=9091;AUTO_SERVER=TRUE;IGNORECASE=TRUE;"/>
-
+	<Resource name="bonitaDS" auth="Container" type="javax.sql.DataSource"
+        factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/bonitaDSXA" />
+<!--
       <Resource name="bonitaSequenceManagerDS"  
               auth="Container"  
               type="javax.sql.DataSource" 
@@ -62,11 +49,12 @@
               password=""
               driverClassName="org.h2.Driver" 
               url="jdbc:h2:${bonita.home}/server/platform/work/databases/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER_PORT=9091;AUTO_SERVER=TRUE;IGNORECASE=TRUE;"/>
+-->
 
 
     <!-- MySQL Example -->
 
-    <!--<Resource name="bonitaDS"  
+      <Resource name="bonitaSequenceManagerDS"  
               auth="Container"  
               type="javax.sql.DataSource" 
               maxActive="100"  
@@ -89,30 +77,6 @@
               password="bpm"
               driverClassName="com.mysql.jdbc.Driver" 
               url="jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
-
-      <Resource name="bonitaSequenceManagerDS"  
-              auth="Container"  
-              type="javax.sql.DataSource" 
-              maxActive="100"  
-              minIdle="10"  
-              maxWait="10000"  
-              initialSize="1" 
-              maxPoolSize="15" 
-              minPoolSize="3"
-              maxConnectionAge="0"
-              maxIdleTime="1800"
-              maxIdleTimeExcessConnections="120"
-              idleConnectionTestPeriod="30"
-              acquireIncrement="3"
-              validationQuery="SELECT 1"
-              validationInterval="30000"
-              testConnectionOnCheckout="true"
-              removeAbandoned="true" 
-              logAbandoned="true" 
-              username="bonita" 
-              password="bpm"
-              driverClassName="com.mysql.jdbc.Driver" 
-              url="jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>-->
 
 
         <!-- Oracle Example -->

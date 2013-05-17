@@ -31,6 +31,9 @@
   <Listener className="org.apache.catalina.mbeans.ServerLifecycleListener" />
   <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
 
+  <!-- Bitronix listener -->
+  <Listener className="bitronix.tm.integration.tomcat55.BTMLifecycleListener" />
+
   <!-- Global JNDI resources
        Documentation at /docs/jndi-resources-howto.html
   -->
