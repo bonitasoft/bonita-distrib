@@ -33,6 +33,8 @@
     <!-- Configure Datasource -->       
 	<Resource name="bonitaDS" auth="Container" type="javax.sql.DataSource"
         factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/bonitaDSXA" />
+
+    <!-- H2 Example -->
 <!--
       <Resource name="bonitaSequenceManagerDS"  
               auth="Container"  
