@@ -71,6 +71,7 @@
 									<version>${project.version}</version>
 									<type>war</type>
 									<overWrite>true</overWrite>
+									<excludes>WEB-INF/lib/commons-collections-*.jar<excludes>
 									<outputDirectory>${project.build.directory}/portal/</outputDirectory>
 								</artifactItem>
 							</artifactItems>
