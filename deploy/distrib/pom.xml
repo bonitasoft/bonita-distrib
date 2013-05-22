@@ -23,6 +23,11 @@
 	</properties>
 
 	<dependencies>
+        <dependency>
+			<groupId>org.bonitasoft.tomcat</groupId>
+			<artifactId>bonita-h2-listener</artifactId>                                                        
+			<version>1.0.0</version>
+        </dependency>
         <!-- Transaction manager dependencies -->
         <dependency>
             <groupId>org.codehaus.btm</groupId>
@@ -96,6 +101,10 @@
 						</goals>
 						<configuration>
 							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.tomcat</groupId>
+									<artifactId>bonita-h2-listener</artifactId>                                                        
+								</artifactItem>
 								<artifactItem>
 									<groupId>com.h2database</groupId>
 									<artifactId>h2</artifactId>
