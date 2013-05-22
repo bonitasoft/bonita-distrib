@@ -31,7 +31,7 @@
   <Listener className="org.apache.catalina.mbeans.ServerLifecycleListener" />
   <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
 
-  <Listener className="org.bonitasoft.tomcat.H2Listener" tcpPort="9091" />
+  <Listener className="org.bonitasoft.tomcat.H2Listener" tcpPort="9091" baseDir="${catalina.home}/bonita" />
 
   <!-- Bitronix listener -->
   <Listener className="bitronix.tm.integration.tomcat55.BTMLifecycleListener" />
