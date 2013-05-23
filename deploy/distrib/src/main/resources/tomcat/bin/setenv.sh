@@ -3,7 +3,7 @@
 # Sets some variables
 BONITA_HOME="-Dbonita.home=${CATALINA_HOME}/bonita"
 DB_OPTS="-Dsysprop.bonita.db.vendor=h2"
-BTM_OPTS="-Dbtm.root=${CATALINA_HOME} -Dbitronix.tm.configuration=${CATALINA_HOME}/conf/btm-config.properties"
+BTM_OPTS="-Dbtm.root=${CATALINA_HOME} -Dbitronix.tm.configuration=${CATALINA_HOME}/conf/bitronix-config.properties"
 #SECURITY_OPTS="-Djava.security.auth.login.config=$CATALINA_HOME/bonita/client/platform/conf/jaas-standard.cfg"
 
 
