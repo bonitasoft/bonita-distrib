@@ -24,9 +24,9 @@
 
 	<dependencies>
         <dependency>
-			<groupId>org.bonitasoft.tomcat</groupId>
-			<artifactId>bonita-tomcat-h2-listener</artifactId>                                                        
-			<version>1.0.1</version>
+            <groupId>org.bonitasoft.tomcat</groupId>
+            <artifactId>bonita-tomcat-h2-listener</artifactId>
+            <version>1.0.1</version>
         </dependency>
         <!-- Transaction manager dependencies -->
         <dependency>
@@ -103,7 +103,7 @@
 							<artifactItems>
 								<artifactItem>
 									<groupId>org.bonitasoft.tomcat</groupId>
-									<artifactId>bonita-tomcat-h2-listener</artifactId>                                                        
+									<artifactId>bonita-tomcat-h2-listener</artifactId>
 								</artifactItem>
 								<artifactItem>
 									<groupId>com.h2database</groupId>

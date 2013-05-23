@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="all-in-one" version="2.5">
 	<display-name>Bonita</display-name>
 
-	<!--Bonita home filter -->
+	<!-- Bonita home Filter -->
 	<filter>
 		<filter-name>BonitaHomeFilter</filter-name>
 		<filter-class>org.bonitasoft.console.common.server.login.filter.BonitaHomeFilter</filter-class>
@@ -66,6 +66,7 @@
 			<param-value>3600</param-value>
 		</init-param>
 	</filter>
+
 	<!-- Authorization filter -->
 	<filter>
 		<filter-name>AuthorizationFilter</filter-name>
@@ -85,6 +86,8 @@
 		<filter-name>RestFilter</filter-name>
 		<url-pattern>/API/*</url-pattern>
 	</filter-mapping>
+	<!-- End Rest filter -->
+
 	<filter-mapping>
 		<filter-name>SSOFilter</filter-name>
 		<url-pattern>/console/BonitaConsole.html</url-pattern>
@@ -219,6 +222,8 @@
 		<servlet-name>org.bonitasoft.forms.server.ApplicationResourceServletconsole/applicationResource</servlet-name>
 		<servlet-class>org.bonitasoft.forms.server.ApplicationResourceServlet</servlet-class>
 	</servlet>
+
+	<!-- download -->
 	<servlet>
 		<servlet-name>documentDownload</servlet-name>
 		<servlet-class>org.bonitasoft.console.common.server.document.servlet.DocumentDownloadServlet</servlet-class>
@@ -259,6 +264,7 @@
 		<servlet-class>org.bonitasoft.forms.server.HomepageServlet</servlet-class>
 	</servlet>
     <!-- End theme -->
+
     <!-- Reports -->
     <servlet>
         <servlet-name>RunReport</servlet-name>
