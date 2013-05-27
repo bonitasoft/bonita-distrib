@@ -9,10 +9,10 @@
       <Resource name="bonitaSequenceManagerDS"  
               auth="Container"  
               type="javax.sql.DataSource" 
-              maxActive="100"  
-              minIdle="10"  
+              maxActive="17"  
+              minIdle="5"  
               maxWait="10000"  
-              initialSize="1" 
+              initialSize="3" 
               validationQuery="SELECT 1"
               validationInterval="30000"
               removeAbandoned="true" 
@@ -28,10 +28,10 @@
       <Resource name="bonitaSequenceManagerDS"  
               auth="Container"  
               type="javax.sql.DataSource" 
-              maxActive="100"  
-              minIdle="10"  
+              maxActive="17"  
+              minIdle="5"  
               maxWait="10000"  
-              initialSize="1" 
+              initialSize="3" 
               maxPoolSize="15" 
               minPoolSize="3"
               maxConnectionAge="0"
@@ -56,10 +56,10 @@
       <Resource name="bonitaSequenceManagerDS"  
               auth="Container"  
               type="javax.sql.DataSource" 
-              maxActive="100"  
-              minIdle="10"  
+              maxActive="17"  
+              minIdle="5"  
               maxWait="10000"  
-              initialSize="1" 
+              initialSize="3" 
               validationQuery="SELECT 1 FROM dual"
               validationInterval="30000"
               removeAbandoned="true" 
@@ -68,6 +68,25 @@
               password="bpm"
               driverClassName="oracle.jdbc.OracleDriver" 
               url="jdbc:oracle:thin:@localhost:1521:XE"/>
+-->
+
+        <!-- Postgresql Example -->
+<!--
+      <Resource name="bonitaSequenceManagerDS"  
+              auth="Container"  
+              type="javax.sql.DataSource" 
+              maxActive="17"  
+              minIdle="5"  
+              maxWait="10000"  
+              initialSize="3" 
+              validationQuery="SELECT 1"
+              validationInterval="30000"
+              removeAbandoned="true" 
+              logAbandoned="true" 
+              username="bonita" 
+              password="bpm"
+              driverClassName="org.postgresql.Driver" 
+              url="jdbc:postgresql://localhost:5432/bonita"/>
 -->
 
 </Context>
