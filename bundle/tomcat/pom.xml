@@ -11,6 +11,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
+		<zipName>BonitaBPMCommunity-${project.version}-Tomcat-${tomcat.version}</zipName>
 		<tomcat.zip.parent.folder>${user.home}</tomcat.zip.parent.folder>
 		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
 		<tomcat.bos.home.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</tomcat.bos.home.dir>
@@ -175,7 +176,7 @@
 						</goals>
 						<configuration>
 							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-							<finalName>BOS-${project.version}-Tomcat-${tomcat.version}</finalName>
+							<finalName>${zipName}</finalName>
 							<appendAssemblyId>false</appendAssemblyId>
 							<descriptors>
 								<descriptor>assembly.xml</descriptor>

@@ -18,10 +18,10 @@
 	</dependencies>
 
 	<properties>
+		<zipName>BonitaBPMCommunity-${project.version}-JBoss-${jboss.version}</zipName>
 		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
 		<jboss.zip.name>jboss-${jboss.version}-jdk6</jboss.zip.name>
-		<bos.jboss.name>BOS-${project.version}-JBoss-${jboss.version}</bos.jboss.name>
-		<jboss.bos.home.dir>${project.build.directory}/${bos.jboss.name}</jboss.bos.home.dir>
+		<jboss.bos.home.dir>${project.build.directory}/${zipName}</jboss.bos.home.dir>
 		<jboss.home>${jboss.bos.home.dir}/jboss-${jboss.version}</jboss.home>
 		<bonita.home.dir>${jboss.home}/bonita</bonita.home.dir>
 		<jboss.deploy.dir>${jboss.home}/server/default/deploy</jboss.deploy.dir>
@@ -150,7 +150,7 @@
 						</goals>
 						<configuration>
 							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-							<finalName>${bos.jboss.name}</finalName>
+							<finalName>${zipName}</finalName>
 							<appendAssemblyId>false</appendAssemblyId>
 							<descriptors>
 								<descriptor>assembly.xml</descriptor>
