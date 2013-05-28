@@ -237,10 +237,6 @@
 		<servlet-class>org.bonitasoft.forms.server.DocumentImageServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>exportOrganizationServlet</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.servlet.OrganizationExportServlet</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>exportProcessActorsServlet</servlet-name>
 		<servlet-class>org.bonitasoft.console.server.servlet.ProcessActorsExportServlet</servlet-class>
 	</servlet>
@@ -303,10 +299,6 @@
 	<servlet-mapping>
 		<servlet-name>fileUploadServlet</servlet-name>
 		<url-pattern>/console/fileUpload</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>exportOrganizationServlet</servlet-name>
-		<url-pattern>/console/exportOrganization</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>exportProcessActorsServlet</servlet-name>
