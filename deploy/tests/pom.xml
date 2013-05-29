@@ -12,7 +12,7 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<zipName>BOS-${project.version}-tests</zipName>
+		<zipName>BonitaBPMCommunity-${project.version}-tests</zipName>
 		<folderToZip>${project.build.directory}/${zipName}</folderToZip>
 	</properties>
 
