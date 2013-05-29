@@ -85,6 +85,8 @@
 									<fileset dir="${project.build.directory}/deploy-distrib/bonita_home-${bonita.version}" />
 								</copy>
 								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="java:comp/env/" value="" />
+								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="comp/UserTransaction" value="/TransactionManager" />
+								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="org.bonitasoft.engine.persistence.BTMJNDITransactionManagerLookup" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
 								<copy overwrite="true" todir="${jboss.home}">
 									<fileset dir="${project.build.directory}/deploy-distrib/Jboss-${jboss.version}" />
 								</copy>
