@@ -11,6 +11,7 @@
 	<packaging>war</packaging>
 
 	<dependencies>
+		<!-- needed for PlatformContextListener -->
 		<dependency>
 			<groupId>org.bonitasoft.platform</groupId>
 			<artifactId>platform-server-impl</artifactId>
