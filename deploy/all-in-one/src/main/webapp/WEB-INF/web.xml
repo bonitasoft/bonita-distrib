@@ -86,8 +86,6 @@
 		<filter-name>RestFilter</filter-name>
 		<url-pattern>/API/*</url-pattern>
 	</filter-mapping>
-	<!-- End Rest filter -->
-
 	<filter-mapping>
 		<filter-name>SSOFilter</filter-name>
 		<url-pattern>/console/BonitaConsole.html</url-pattern>
@@ -96,7 +94,6 @@
 		<filter-name>SSOFilter</filter-name>
 		<url-pattern>/console/homepage</url-pattern>
 	</filter-mapping>
-	<!-- End SSO filter -->
 	<filter-mapping>
 		<filter-name>AuthorizationFilter</filter-name>
 		<url-pattern>/console/BonitaConsole.html</url-pattern>
