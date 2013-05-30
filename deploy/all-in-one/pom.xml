@@ -53,7 +53,7 @@
 									<type>war</type>
 									<overWrite>false</overWrite>
 									<outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
-									<excludes>WEB-INF/web.xml,WEB-INF/jetty-web.xml</excludes>
+									<excludes>WEB-INF/web.xml,WEB-INF/jetty-env.xml,WEB-INF/jetty.xml</excludes>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
