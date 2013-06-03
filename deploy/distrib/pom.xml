@@ -28,6 +28,11 @@
             <artifactId>bonita-tomcat-h2-listener</artifactId>
             <version>1.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.bonitasoft.jboss</groupId>
+            <artifactId>bonita-jboss-h2-mbean</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <!-- Transaction manager dependencies -->
         <dependency>
             <groupId>org.codehaus.btm</groupId>
@@ -115,6 +120,10 @@
 									<artifactId>bonita-tomcat-valve</artifactId>
 									<!-- valve version is the same as tomcat.version to assure that valve corresponding to tomcat -->
 									<version>${tomcat.version}</version>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.jboss</groupId>
+									<artifactId>bonita-jboss-h2-mbean</artifactId>
 								</artifactItem>
 							</artifactItems>
 							<outputDirectory>

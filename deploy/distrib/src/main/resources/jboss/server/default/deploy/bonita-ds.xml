@@ -30,4 +30,10 @@
 		<idle-timeout-minutes>0</idle-timeout-minutes>
 	</no-tx-datasource>
 
+    <!-- Start the H2 server in tcp mode -->
+    <mbean code="org.bonitasoft.jboss.jdbc.H2Database" name="jboss:service=H2">
+        <attribute name="Args">-tcp -tcpAllowOthers -tcpPort ${bonita.h2.port} -baseDir ${bonita.h2.base.dir}</attribute>
+    </mbean>
+
+
 </datasources>
