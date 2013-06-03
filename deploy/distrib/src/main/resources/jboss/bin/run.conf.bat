@@ -60,7 +60,7 @@ rem Sets some variables
 set tmp_script_home=%CD%
 call :setJbossHome %CD%
 
-set "BONITA_OPTS=-Dbonita.home=%tmp_jboss_home%bonita"
+set "BONITA_OPTS=-Dbonita.home=%tmp_jboss_home%bonita -Dbonita.h2.port=1234 -Dbonita.h2.base.dir=%tmp_jboss_home%bonita\server\platform\work"
 set "JAVA_OPTS=%JAVA_OPTS% %BONITA_OPTS%"
 goto :eof
 
