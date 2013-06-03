@@ -19,7 +19,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<bonita.version>6.0.0-rc-03</bonita.version>
+		<bonita.version>6.0.0-rc-04</bonita.version>
 		<bonita.web.version>6.0.0-rc-04-SNAPSHOT</bonita.web.version>
 
 		<ant-contrib.version>1.0b3</ant-contrib.version>
