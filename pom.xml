@@ -22,6 +22,8 @@
 		<bonita.version>6.0.1-rc-01</bonita.version>
 		<bonita.web.version>6.0.1-rc-03-SNAPSHOT</bonita.web.version>
 
+		<distrib.zipname>BonitaBPMCommunity-${project.version}-deploy</distrib.zipname>
+		
 		<ant-contrib.version>1.0b3</ant-contrib.version>
 		<tomcat.version>6.0.35</tomcat.version>
 		<jboss.version>5.1.0.GA</jboss.version>

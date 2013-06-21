@@ -84,17 +84,17 @@
 						<configuration>
 							<tasks>
 								<copy overwrite="true" todir="${tomcat.lib.dir}/bonita">
-									<fileset dir="${project.build.directory}/deploy-distrib/Tomcat-${tomcat.version}/lib">
+									<fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}/lib">
 										<include name="*.jar" />
 									</fileset>
 								</copy>
 								<copy overwrite="true" todir="${bonita.home.dir}">
-									<fileset dir="${project.build.directory}/deploy-distrib/bonita_home-${bonita.version}">
+									<fileset dir="${project.build.directory}/${distrib.zipname}/bonita_home-${bonita.version}">
 										<include name="**/*" />
 									</fileset>
 								</copy>
 								<copy overwrite="true" todir="${tomcat.home.dir}">
-									<fileset dir="${project.build.directory}/deploy-distrib/Tomcat-${tomcat.version}">
+									<fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}">
 										<exclude name="lib/*" />
 									</fileset>
 								</copy>
@@ -157,7 +157,7 @@
 									<version>${project.version}</version>
 									<type>zip</type>
 									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}/deploy-distrib/</outputDirectory>
+									<outputDirectory>${project.build.directory}/</outputDirectory>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
