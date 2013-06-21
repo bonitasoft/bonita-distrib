@@ -9,7 +9,7 @@
         factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/bonitaDSXA" />
 
     <!-- H2 Example -->
-      <Resource name="bonitaSequenceManagerDS"  
+	<Resource name="bonitaSequenceManagerDS"  
               auth="Container"  
               type="javax.sql.DataSource" 
               maxActive="17"  
@@ -53,7 +53,6 @@
               url="jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
 -->
 
-
         <!-- Oracle Example -->
 <!--
       <Resource name="bonitaSequenceManagerDS"  
@@ -90,6 +89,25 @@
               password="bpm"
               driverClassName="org.postgresql.Driver" 
               url="jdbc:postgresql://localhost:5432/bonita"/>
+-->
+
+        <!-- SQL Server Example -->
+<!--
+      <Resource name="bonitaSequenceManagerDS"  
+              auth="Container"  
+              type="javax.sql.DataSource" 
+              maxActive="17"  
+              minIdle="5"  
+              maxWait="10000"  
+              initialSize="3" 
+              validationQuery="SELECT 1"
+              validationInterval="30000"
+              removeAbandoned="true" 
+              logAbandoned="true" 
+              username="bonita" 
+              password="bpm"
+              driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+              url="jdbc:sqlserver://localhost:1433;database=journal"/>
 -->
 
 </Context>
