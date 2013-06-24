@@ -10,15 +10,6 @@
 	<name>all-in-one</name>
 	<packaging>war</packaging>
 
-	<dependencies>
-		<!-- needed for PlatformContextListener -->
-		<dependency>
-			<groupId>org.bonitasoft.platform</groupId>
-			<artifactId>platform-server-impl</artifactId>
-			<version>${bonita.web.version}</version>
-		</dependency>
-	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
