@@ -73,7 +73,7 @@
               url="jdbc:oracle:thin:@localhost:1521:XE"/>
 -->
 
-        <!-- Postgresql Example -->
+        <!-- PostgreSQL Example -->
 <!--
       <Resource name="bonitaSequenceManagerDS"  
               auth="Container"  
@@ -92,4 +92,22 @@
               url="jdbc:postgresql://localhost:5432/bonita"/>
 -->
 
+        <!-- SQL Server Example -->
+<!--
+      <Resource name="bonitaSequenceManagerDS"  
+              auth="Container"  
+              type="javax.sql.DataSource" 
+              maxActive="17"  
+              minIdle="5"  
+              maxWait="10000"  
+              initialSize="3" 
+              validationQuery="SELECT 1"
+              validationInterval="30000"
+              removeAbandoned="true" 
+              logAbandoned="true" 
+              username="bonita" 
+              password="bpm"
+              driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+              url="jdbc:sqlserver://localhost:1433;database=journal"/>
+-->
 </Context>

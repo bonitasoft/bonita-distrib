@@ -30,10 +30,106 @@
 		<idle-timeout-minutes>0</idle-timeout-minutes>
 	</no-tx-datasource>
 
-    <!-- Start the H2 server in tcp mode -->
+    <!-- Start the H2 server in tcp mode (useless if using another database vendor than H2)-->
     <mbean code="org.bonitasoft.jboss.jdbc.H2Database" name="jboss:service=BonitaH2">
         <attribute name="Args">-tcp -tcpAllowOthers -tcpPort ${bonita.h2.port} -baseDir ${bonita.h2.base.dir}</attribute>
     </mbean>
 
+<!-- PostgreSQL Example -->
+<!-- <xa-datasource>
+		<jndi-name>bonitaDS</jndi-name>
+		<use-java-context>false</use-java-context>
+		<xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+		<xa-datasource-property name="ServerName">localhost</xa-datasource-property>
+		<xa-datasource-property name="portNumber">5432</xa-datasource-property>
+		<xa-datasource-property name="DatabaseName">bonita</xa-datasource-property>
+		<xa-datasource-property name="User">bonita</xa-datasource-property>
+		<xa-datasource-property name="Password">bpm</xa-datasource-property>
+		<track-connection-by-tx/>
+	</xa-datasource>
 
+	<no-tx-datasource>
+		<jndi-name>bonitaSequenceManagerDS</jndi-name>
+		<connection-url>jdbc:postgresql://localhost:5432/bonita</connection-url>
+		<driver-class>org.postgresql.Driver</driver-class>
+		<use-java-context>false</use-java-context>
+		<user-name>bonita</user-name>
+		<password>bpm</password>
+		<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+		<background-validation-millis>30000</background-validation-millis>
+		<idle-timeout-minutes>0</idle-timeout-minutes>
+	</no-tx-datasource>
+ -->
+
+<!-- Oracle Example -->
+<!-- <xa-datasource>
+		<jndi-name>bonitaDS</jndi-name>
+		<use-java-context>false</use-java-context>
+		<xa-datasource-class>oracle.jdbc.xa.client.OracleXADataSource</xa-datasource-class>
+		<xa-datasource-property name="URL">jdbc:oracle:thin:@localhost:1521:XE</xa-datasource-property>
+		<xa-datasource-property name="User">bonita</xa-datasource-property>
+		<xa-datasource-property name="Password">bpm</xa-datasource-property>
+		<track-connection-by-tx/>
+	</xa-datasource>
+
+	<no-tx-datasource>
+		<jndi-name>bonitaSequenceManagerDS</jndi-name>
+		<connection-url>jdbc:oracle:thin:@localhost:1521:XE</connection-url>
+		<driver-class>oracle.jdbc.OracleDriver</driver-class>
+		<use-java-context>false</use-java-context>
+		<user-name>bonita</user-name>
+		<password>bpm</password>
+		<check-valid-connection-sql>SELECT 1 FROM dual</check-valid-connection-sql>
+		<background-validation-millis>30000</background-validation-millis>
+		<idle-timeout-minutes>0</idle-timeout-minutes>
+	</no-tx-datasource>
+ -->
+ 
+<!-- MySQL Example -->
+<!-- <xa-datasource>
+		<jndi-name>bonitaDS</jndi-name>
+		<use-java-context>false</use-java-context>
+		<xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+		<xa-datasource-property name="URL">jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</xa-datasource-property>
+		<xa-datasource-property name="User">bonita</xa-datasource-property>
+		<xa-datasource-property name="Password">bpm</xa-datasource-property>
+		<track-connection-by-tx/>
+	</xa-datasource>
+
+	<no-tx-datasource>
+		<jndi-name>bonitaSequenceManagerDS</jndi-name>
+		<connection-url>jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</connection-url>
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<use-java-context>false</use-java-context>
+		<user-name>bonita</user-name>
+		<password>bpm</password>
+		<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+		<background-validation-millis>30000</background-validation-millis>
+		<idle-timeout-minutes>0</idle-timeout-minutes>
+	</no-tx-datasource>
+ -->
+ 
+<!-- SQL Server Example -->
+<!-- <xa-datasource>
+		<jndi-name>bonitaDS</jndi-name>
+		<use-java-context>false</use-java-context>
+		<xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class>
+		<xa-datasource-property name="URL">jdbc:sqlserver://localhost:1433;database=journaljdbc:sqlserver://localhost:1433;database=journal</xa-datasource-property>
+		<xa-datasource-property name="User">bonita</xa-datasource-property>
+		<xa-datasource-property name="Password">bpm</xa-datasource-property>
+		<track-connection-by-tx/>
+	</xa-datasource>
+
+	<no-tx-datasource>
+		<jndi-name>bonitaSequenceManagerDS</jndi-name>
+		<connection-url>jdbc:sqlserver://localhost:1433;database=journal</connection-url>
+		<driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+		<use-java-context>false</use-java-context>
+		<user-name>bonita</user-name>
+		<password>bpm</password>
+		<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+		<background-validation-millis>30000</background-validation-millis>
+		<idle-timeout-minutes>0</idle-timeout-minutes>
+	</no-tx-datasource>
+ -->
 </datasources>
