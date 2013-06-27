@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>deploy-parent</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
-		<version>6.0.1-rc-03-SNAPSHOT</version>
+		<version>6.0.1-rc-03</version>
 	</parent>
 	<artifactId>all-in-one-with-server</artifactId>
 	<name>all-in-one-with-server</name>
