@@ -4,7 +4,7 @@
 	<artifactId>bonita-distrib</artifactId>
 	<name>bonita distrib</name>
 	<packaging>pom</packaging>
-	<version>6.0.1-rc-04</version>
+	<version>6.0.1-rc-05-SNAPSHOT</version>
 
 	<modules>
 		<module>deploy</module>
@@ -12,8 +12,8 @@
 	</modules>
 
 	<scm>
-		<connection>scm:svn:https://rd.svn.bonitasoft.org/bos-distrib/tags/bonita-distrib-6.0.1-rc-04</connection>
-		<url>https://privatesvn.bonitasoft.org/bos-distrib/tags/bonita-distrib-6.0.1-rc-04</url>
+		<connection>scm:svn:https://rd.svn.bonitasoft.org/bos-distrib/branches/bos-distrib-6.0.x</connection>
+		<url>https://privatesvn.bonitasoft.org/bos-distrib/branches/bos-distrib-6.0.x</url>
 	</scm>
 
 	<properties>
