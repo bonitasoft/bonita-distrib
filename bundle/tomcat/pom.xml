@@ -12,7 +12,7 @@
 
 	<properties>
 		<zipName>BonitaBPMCommunity-${project.version}-Tomcat-${tomcat.version}</zipName>
-		<tomcat.zip.parent.folder>${user.home}</tomcat.zip.parent.folder>
+		<zipFolder>${user.home}</zipFolder>
 		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
 		<tomcat.bos.home.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</tomcat.bos.home.dir>
 		<tomcat.home.dir>${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}</tomcat.home.dir>
@@ -207,7 +207,7 @@
 				</property>
 			</activation>
 			<properties>
-				<tomcat.zip.parent.folder>${tomcat.zip.parent.folder}</tomcat.zip.parent.folder>
+				<tomcat.zip.parent.folder>${zipFolder}</tomcat.zip.parent.folder>
 			</properties>
 		</profile>
 	</profiles>

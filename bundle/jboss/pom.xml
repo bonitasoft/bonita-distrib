@@ -19,6 +19,7 @@
 
 	<properties>
 		<zipName>BonitaBPMCommunity-${project.version}-JBoss-${jboss.version}</zipName>
+		<zipFolder>${user.home}</zipFolder>
 		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
 		<jboss.zip.name>jboss-${jboss.version}-jdk6</jboss.zip.name>
 		<jboss.bos.home.dir>${project.build.directory}/${zipName}</jboss.bos.home.dir>
@@ -173,7 +174,7 @@
 				</property>
 			</activation>
 			<properties>
-				<jboss.zip.parent.folder>${jboss.zip.parent.folder}</jboss.zip.parent.folder>
+				<jboss.zip.parent.folder>${zipFolder}</jboss.zip.parent.folder>
 			</properties>
 		</profile>
 		<profile>
