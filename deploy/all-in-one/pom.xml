@@ -10,6 +10,11 @@
 	<name>all-in-one</name>
 	<packaging>war</packaging>
 
+    <properties>
+        <enable.engine.http.api.start></enable.engine.http.api.start>
+        <enable.engine.http.api.end></enable.engine.http.api.end>
+    </properties>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -17,12 +22,16 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<packagingExcludes>.gwt-tmp/**,WEB-INF/deploy/**</packagingExcludes>
-					<webResources>	
-						<resource>	
-							<directory>src/main/webapp</directory>
-							<filtering>true</filtering>
-						</resource>
-					</webResources>
+                    <webResources>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>${project.build.directory}/${project.artifactId}-${project.version}-sources</directory>
+                            <includes>
+                                <include>web.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                    <webXml>${project.build.directory}/${project.artifactId}-${project.version}-sources/web.xml</webXml>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -46,6 +55,15 @@
 									<outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
 									<excludes>WEB-INF/web.xml,WEB-INF/jetty-env.xml,WEB-INF/jetty.xml</excludes>
 								</artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>console-war</artifactId>
+                                    <version>${bonita.web.version}</version>
+                                    <type>jar</type>
+                                    <classifier>sources</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}-sources</outputDirectory>
+                                </artifactItem>
 							</artifactItems>
 						</configuration>
 					</execution>
