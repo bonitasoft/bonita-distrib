@@ -11,6 +11,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
+        <zipFolder>${user.home}</zipFolder>
 		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
 		<bonita.home.client.dir>${bonita.home.dir}/client/</bonita.home.client.dir>
 		<jonas.conf.dir>${jonas.home.dir}/conf</jonas.conf.dir>
@@ -297,7 +298,7 @@ export  JAVA_OPTS
 				</property>
 			</activation>
 			<properties>
-				<jonas.zip.parent.folder>${jonas.zip.parent.folder}</jonas.zip.parent.folder>
+				<jonas.zip.parent.folder>${zipFolder}</jonas.zip.parent.folder>
 			</properties>
 		</profile>
 		<profile>

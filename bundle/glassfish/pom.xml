@@ -12,6 +12,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
+        <zipFolder>${user.home}</zipFolder>
 		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
 		<glassfish.default.domain>domain1</glassfish.default.domain>
 		<bonita.home.client.dir>${bonita.home.dir}/client/</bonita.home.client.dir>
@@ -297,7 +298,7 @@
 				</property>
 			</activation>
 			<properties>
-				<glassfish.zip.parent.folder>${glassfish.zip.parent.folder}</glassfish.zip.parent.folder>
+				<glassfish.zip.parent.folder>${zipFolder}</glassfish.zip.parent.folder>
 			</properties>
 		</profile>
 		<profile>
