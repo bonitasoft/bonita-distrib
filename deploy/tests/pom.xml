@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>org.bonitasoft.engine</groupId>
 			<artifactId>bonita-server</artifactId>
-			<version>${bonita.version}</version>
+			<version>${bonita.engine.version}</version>
 		</dependency>
 	</dependencies>
    

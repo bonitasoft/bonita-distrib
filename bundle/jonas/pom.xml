@@ -162,7 +162,7 @@ export  JAVA_OPTS
 									<version>${project.version}</version>
 									<type>ear</type>
 									<overWrite>true</overWrite>
-									<destFileName>bonita-all-in-one-${bonita.version}.ear</destFileName>
+									<destFileName>bonita-all-in-one-${bonita.engine.version}.ear</destFileName>
 								</artifactItem>
 							</artifactItems>
 							<outputDirectory>${jonas.home.dir}/deploy</outputDirectory>

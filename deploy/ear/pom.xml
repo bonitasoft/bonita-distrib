@@ -15,18 +15,18 @@
 		<dependency>
 			<groupId>org.bonitasoft.engine</groupId>
 			<artifactId>bonita-deploy-ejb3</artifactId>
-			<version>${bonita.version}</version>
+			<version>${bonita.engine.version}</version>
 			<type>ejb</type>
 		</dependency>
 		<dependency>
 			<groupId>org.bonitasoft.engine</groupId>
 			<artifactId>bonita-common</artifactId>
-			<version>${bonita.version}</version>
+			<version>${bonita.engine.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.bonitasoft.engine</groupId>
 			<artifactId>bonita-server</artifactId>
-			<version>${bonita.version}</version>
+			<version>${bonita.engine.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

@@ -83,7 +83,7 @@
 						<configuration>
 							<tasks>
 								<copy overwrite="true" todir="${bonita.home.dir}">
-									<fileset dir="${project.build.directory}/${distrib.zipname}/bonita_home-${bonita.version}" />
+									<fileset dir="${project.build.directory}/${distrib.zipname}/bonita_home-${bonita.engine.version}" />
 								</copy>
 								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="java:comp/env/" value="" />
 								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="comp/UserTransaction" value="/TransactionManager" />

@@ -89,7 +89,7 @@
 									</fileset>
 								</copy>
 								<copy overwrite="true" todir="${bonita.home.dir}">
-									<fileset dir="${project.build.directory}/${distrib.zipname}/bonita_home-${bonita.version}">
+									<fileset dir="${project.build.directory}/${distrib.zipname}/bonita_home-${bonita.engine.version}">
 										<include name="**/*" />
 									</fileset>
 								</copy>

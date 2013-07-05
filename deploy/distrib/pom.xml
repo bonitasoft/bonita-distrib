@@ -13,7 +13,7 @@
 
 	<properties>
 		<folderToZip>${project.build.directory}/${distrib.zipname}</folderToZip>
-		<bonita_home_folder>${folderToZip}/bonita_home-${bonita.version}</bonita_home_folder>
+		<bonita_home_folder>${folderToZip}/bonita_home-${bonita.engine.version}</bonita_home_folder>
 		<tomcat_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_folder>
 		<jboss_folder>${folderToZip}/Jboss-${jboss.version}</jboss_folder>
 		<migration_folder>${folderToZip}/migration</migration_folder>
@@ -91,7 +91,7 @@
 									<type>ear</type>
 									<overWrite>true</overWrite>
 									<outputDirectory>${project.build.directory}/ear-with-server</outputDirectory>
-                  					<destFileName>bonita-all-in-one-${bonita.version}.ear</destFileName>
+                  					<destFileName>bonita-all-in-one-${bonita.engine.version}.ear</destFileName>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
@@ -227,7 +227,7 @@
 									<fileset dir="${project.basedir}/src/main/resources/jboss" />
 								</copy>
 								<!-- Copy ear-->
-								<copy todir="${jboss_folder}/server/default/deploy" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.version}.ear" />
+								<copy todir="${jboss_folder}/server/default/deploy" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
 								<!-- lib common libs -->
 								<copy todir="${jboss_folder}/server/default/lib">
 									<fileset dir="${project.build.directory}/common-libs" />
