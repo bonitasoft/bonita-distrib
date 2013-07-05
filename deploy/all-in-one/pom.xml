@@ -32,7 +32,6 @@
                             </includes>
                         </resource>
                     </webResources>
-                    <webXml>${project.build.directory}/${project.artifactId}-${project.version}-sources/web.xml</webXml>
 				</configuration>
 			</plugin>
 			<plugin>
