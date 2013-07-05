@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>deploy-parent</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
-		<version>6.1.0-rc-04-SNAPSHOT</version>
+		<version>6.1.0-rc-04</version>
 	</parent>
 	
 	<artifactId>all-in-one</artifactId>
@@ -11,8 +11,8 @@
 	<packaging>war</packaging>
 
     <properties>
-        <enable.engine.http.api.start></enable.engine.http.api.start>
-        <enable.engine.http.api.end></enable.engine.http.api.end>
+        <enable.engine.http.api.start />
+        <enable.engine.http.api.end />
     </properties>
 
 	<build>
