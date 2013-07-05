@@ -19,8 +19,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<bonita.engine.version>6.1.0-rc-02</bonita.engine.version>
-		<bonita.web.version>6.1.0-rc-04-SNAPSHOT</bonita.web.version>
+		<bonita.engine.version>6.1.0-rc-04</bonita.engine.version>
+		<bonita.web.version>6.1.0-rc-04</bonita.web.version>
 		
 		<distrib.zipname>BonitaBPMCommunity-${project.version}-deploy</distrib.zipname>
 		
