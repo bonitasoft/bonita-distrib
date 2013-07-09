@@ -1,10 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.bonitasoft.console</groupId>
+		<artifactId>bonita-console</artifactId>
+		<version>6.1.0-rc-06-SNAPSHOT</version>
+	</parent>
+	
 	<groupId>org.bonitasoft.distrib</groupId>
 	<artifactId>bonita-distrib</artifactId>
+	
 	<name>bonita distrib</name>
 	<packaging>pom</packaging>
-	<version>6.1.0-rc-05-SNAPSHOT</version>
 
 	<modules>
 		<module>deploy</module>
@@ -17,10 +24,8 @@
 	</scm>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<bonita.engine.version>6.1.0-rc-04</bonita.engine.version>
-		<bonita.web.version>6.1.0-rc-05-SNAPSHOT</bonita.web.version>
+		<bonita.web.version>${project.version}</bonita.web.version>
 		
 		<distrib.zipname>BonitaBPMCommunity-${project.version}-deploy</distrib.zipname>
 		
