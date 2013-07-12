@@ -124,7 +124,7 @@
 							<tasks>
 								<!-- copy tomcat resources -->
 								<copy overwrite="true" todir="${tomcat.home.dir}" verbose="true">
-									<fileset dir="${project.basedir}/src/main/resources" />
+									<fileset dir="${project.basedir}/src/main/resources" erroronmissingdir="false"/>
 								</copy>
 								<!-- set permission  on scripts -->
 								<chmod perm="ugo+x">

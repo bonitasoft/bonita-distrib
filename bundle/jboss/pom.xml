@@ -103,7 +103,7 @@
 						<configuration>
 							<tasks>
 								<copy overwrite="true" todir="${jboss.home}" verbose="true">
-									<fileset dir="${project.basedir}/src/main/resources" />
+									<fileset dir="${project.basedir}/src/main/resources" erroronmissingdir="false"/>
 								</copy>
 								<chmod perm="ugo+x">
 									<fileset dir="${jboss.home}/bin">
