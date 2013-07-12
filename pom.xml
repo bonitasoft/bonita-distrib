@@ -12,8 +12,8 @@
 	</modules>
 
 	<scm>
-		<connection>scm:svn:https://rd.svn.bonitasoft.org/bos-distrib/branches/bos-distrib-6.0.x</connection>
-		<url>https://privatesvn.bonitasoft.org/bos-distrib/branches/bos-distrib-6.0.x</url>
+		<connection>scm:git:git@github.com:bonitasoft/bonita-distrib.git</connection>
+		<url>scm:git:git@github.com:bonitasoft/bonita-distrib.git</url>
 	</scm>
 
 	<properties>
