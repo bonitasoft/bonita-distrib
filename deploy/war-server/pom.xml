@@ -71,7 +71,7 @@
 									<version>${project.version}</version>
 									<type>war</type>
 									<overWrite>true</overWrite>
-									<excludes>WEB-INF/lib/commons-collections-*.jar</excludes>
+									<excludes>WEB-INF/lib/commons-collections-*.jar,WEB-INF/lib/slf4j-api-*.jar</excludes>
 									<outputDirectory>${project.build.directory}/portal/</outputDirectory>
 								</artifactItem>
 							</artifactItems>
