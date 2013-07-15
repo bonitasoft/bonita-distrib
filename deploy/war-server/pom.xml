@@ -15,11 +15,6 @@
 			<artifactId>bonita-server</artifactId>
 			<version>${bonita.engine.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-jdk14</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -71,7 +66,7 @@
 									<version>${project.version}</version>
 									<type>war</type>
 									<overWrite>true</overWrite>
-									<excludes>WEB-INF/lib/commons-collections-*.jar</excludes>
+									<excludes>WEB-INF/lib/commons-collections-*.jar,WEB-INF/lib/slf4j-api-*.jar</excludes>
 									<outputDirectory>${project.build.directory}/portal/</outputDirectory>
 								</artifactItem>
 							</artifactItems>
