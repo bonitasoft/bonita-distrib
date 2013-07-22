@@ -29,7 +29,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.bonitasoft.console</groupId>
-			<artifactId>console-server-impl</artifactId>
+			<artifactId>console-server</artifactId>
 			<version>${bonita.web.version}</version>
 		</dependency>
 		<dependency>
@@ -81,7 +81,7 @@
 								</artifactItem>
 								<artifactItem>
 									<groupId>org.bonitasoft.console</groupId>
-									<artifactId>console-server-impl</artifactId>
+									<artifactId>console-server</artifactId>
 									<version>${bonita.web.version}</version>
 									<type>test-jar</type>
 									<overWrite>true</overWrite>
