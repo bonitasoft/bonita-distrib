@@ -4,7 +4,7 @@
 	<artifactId>bonita-distrib</artifactId>
 	<name>bonita distrib</name>
 	<packaging>pom</packaging>
-	<version>6.0.3-rc-02</version>
+	<version>6.0.3-rc-03</version>
 
 	<modules>
 		<module>deploy</module>
@@ -20,7 +20,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<bonita.version>6.0.3-rc-02</bonita.version>
-		<bonita.web.version>6.0.3-rc-02</bonita.web.version>
+		<bonita.web.version>6.0.3-rc-03</bonita.web.version>
 
 		<distrib.zipname>BonitaBPMCommunity-${project.version}-deploy</distrib.zipname>
 		
