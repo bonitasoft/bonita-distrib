@@ -117,8 +117,9 @@
 								<artifactItem>
 									<groupId>org.bonitasoft.web.tooling</groupId>
 									<artifactId>bonita-tomcat-valve</artifactId>
-									<!-- valve version is the same as tomcat.version to assure that valve corresponding to tomcat -->
-									<version>${tomcat.version}</version>
+									<!-- valve version is the same as tomcat.version to assure that valve corresponding to tomcat 
+									       was a bad idea , keep old version-->
+									<version>6.0.35</version>
 								</artifactItem>
 								<artifactItem>
 									<groupId>org.bonitasoft.jboss</groupId>
