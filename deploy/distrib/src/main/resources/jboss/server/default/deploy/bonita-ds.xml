@@ -15,6 +15,8 @@
 		<xa-datasource-property name="URL">jdbc:h2:tcp://localhost:${bonita.h2.port}/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE</xa-datasource-property>
 		<xa-datasource-property name="User">sa</xa-datasource-property>
 		<xa-datasource-property name="Password"></xa-datasource-property>
+		<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+		<background-validation-millis>30000</background-validation-millis>
 		<track-connection-by-tx/>
 	</xa-datasource>
 
@@ -45,6 +47,8 @@
 		<xa-datasource-property name="DatabaseName">bonita</xa-datasource-property>
 		<xa-datasource-property name="User">bonita</xa-datasource-property>
 		<xa-datasource-property name="Password">bpm</xa-datasource-property>
+		<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+		<background-validation-millis>30000</background-validation-millis>
 		<track-connection-by-tx/>
 	</xa-datasource>
 
@@ -69,6 +73,8 @@
 		<xa-datasource-property name="URL">jdbc:oracle:thin:@localhost:1521:XE</xa-datasource-property>
 		<xa-datasource-property name="User">bonita</xa-datasource-property>
 		<xa-datasource-property name="Password">bpm</xa-datasource-property>
+		<check-valid-connection-sql>SELECT 1 FROM dual</check-valid-connection-sql>
+		<background-validation-millis>30000</background-validation-millis>
 		<track-connection-by-tx/>
 	</xa-datasource>
 
@@ -93,6 +99,8 @@
 		<xa-datasource-property name="URL">jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</xa-datasource-property>
 		<xa-datasource-property name="User">bonita</xa-datasource-property>
 		<xa-datasource-property name="Password">bpm</xa-datasource-property>
+		<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+		<background-validation-millis>30000</background-validation-millis>
 		<track-connection-by-tx/>
 	</xa-datasource>
 
@@ -117,6 +125,8 @@
 		<xa-datasource-property name="URL">jdbc:sqlserver://localhost:1433;database=journaljdbc:sqlserver://localhost:1433;database=journal</xa-datasource-property>
 		<xa-datasource-property name="User">bonita</xa-datasource-property>
 		<xa-datasource-property name="Password">bpm</xa-datasource-property>
+		<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+		<background-validation-millis>30000</background-validation-millis>
 		<track-connection-by-tx/>
 	</xa-datasource>
 
