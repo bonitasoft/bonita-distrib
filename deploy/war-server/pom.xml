@@ -72,6 +72,27 @@
 							</artifactItems>
 						</configuration>
 					</execution>
+					<execution>
+						<id>copy-looknfeel</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.bonitasoft.web.toolkit</groupId>
+									<artifactId>toolkit-looknfeel</artifactId>
+									<version>${project.version}</version>
+									<classifier>less</classifier>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+									<destFileName>bonita-portal-theme.zip</destFileName>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.build.directory}/portal/WEB-INF/lib</outputDirectory>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 		</plugins>
