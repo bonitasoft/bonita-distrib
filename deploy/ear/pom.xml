@@ -52,6 +52,13 @@
 			<type>zip</type>
 		</dependency>
 		<dependency>
+			<groupId>org.bonitasoft.web.toolkit</groupId>
+			<artifactId>toolkit-looknfeel</artifactId>
+			<version>${project.version}</version>
+			<classifier>css</classifier>
+			<type>zip</type>
+		</dependency>
+		<dependency>
 			<groupId>org.bonitasoft.distrib</groupId>
 			<artifactId>war-ear</artifactId>
 			<version>${project.version}</version>
@@ -95,7 +102,14 @@
 						<jarModule>
 							<groupId>org.bonitasoft.web.toolkit</groupId>
 							<artifactId>toolkit-looknfeel</artifactId>
-							<uri>bonita-portal-theme.zip</uri>
+							<classifier>less</classifier>
+							<uri>lib/bonita-portal-theme.zip</uri>
+						</jarModule>
+						<jarModule>
+							<groupId>org.bonitasoft.web.toolkit</groupId>
+							<artifactId>toolkit-looknfeel</artifactId>
+							<classifier>css</classifier>
+							<uri>lib/bonita-portal-theme-css.zip</uri>
 						</jarModule>
 						<webModule>
 							<groupId>org.bonitasoft.distrib</groupId>

@@ -89,6 +89,15 @@
 									<overWrite>true</overWrite>
 									<destFileName>bonita-portal-theme.zip</destFileName>
 								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.web.toolkit</groupId>
+									<artifactId>toolkit-looknfeel</artifactId>
+									<version>${project.version}</version>
+									<classifier>css</classifier>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+									<destFileName>bonita-portal-theme-css.zip</destFileName>
+								</artifactItem>
 							</artifactItems>
 							<outputDirectory>${project.build.directory}/portal/WEB-INF/lib</outputDirectory>
 						</configuration>
