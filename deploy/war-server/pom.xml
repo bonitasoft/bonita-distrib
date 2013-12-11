@@ -6,7 +6,7 @@
 		<version>6.2.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>all-in-one-with-server</artifactId>
-	<name>all-in-one-with-server</name>
+	<name>all in one with server</name>
 	<packaging>war</packaging>
 
 	<dependencies>
@@ -99,7 +99,7 @@
 									<destFileName>bonita-portal-theme-css.zip</destFileName>
 								</artifactItem>
 							</artifactItems>
-							<outputDirectory>${project.build.directory}/portal/WEB-INF/lib</outputDirectory>
+							<outputDirectory>${project.build.directory}/portal/WEB-INF/classes</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>

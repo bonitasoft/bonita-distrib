@@ -14,6 +14,7 @@
 		<module>all-in-one</module>
 		<module>war-server</module>
 		<module>war-ear</module>
+		<module>ear-resources</module>
 		<module>ear</module>
 		<module>distrib</module>
 		<module>tests</module>
