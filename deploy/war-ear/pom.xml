@@ -69,7 +69,8 @@
 										WEB-INF/lib/ehcache*.jar,
 										WEB-INF/lib/commons-codec*.jar,
 										WEB-INF/lib/commons-io*.jar,
-										WEB-INF/lib/commons-logging*.jar
+										WEB-INF/lib/commons-logging*.jar,
+										WEB-INF/lib/groovy-all-*.jar
 									</excludes>
 								</artifactItem>
 							</artifactItems>
