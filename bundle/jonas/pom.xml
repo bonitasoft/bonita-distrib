@@ -209,27 +209,6 @@ export  JAVA_OPTS
 									<type>jar</type>
 									<overWrite>true</overWrite>
 								</artifactItem>
-								<artifactItem>
-									<groupId>org.bonitasoft.platform</groupId>
-									<artifactId>platform-model</artifactId>
-									<version>${bonita.web.version}</version>
-									<type>jar</type>
-									<overWrite>true</overWrite>
-								</artifactItem>
-								<artifactItem>
-									<groupId>org.bonitasoft.platform</groupId>
-									<artifactId>platform-server-api</artifactId>
-									<version>${bonita.web.version}</version>
-									<type>jar</type>
-									<overWrite>true</overWrite>
-								</artifactItem>
-								<artifactItem>
-									<groupId>org.bonitasoft.platform</groupId>
-									<artifactId>platform-server-impl</artifactId>
-									<version>${bonita.web.version}</version>
-									<type>jar</type>
-									<overWrite>true</overWrite>
-								</artifactItem>
 							</artifactItems>
 							<outputDirectory>
 								${jonas.lib.dir}
