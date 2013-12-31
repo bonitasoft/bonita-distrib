@@ -11,12 +11,8 @@
 		<fileSet>
 			<outputDirectory>/</outputDirectory>
 			<directory>${glassfish.home.dir}</directory>
-			<includes>
-				<include>**/*</include>
-			</includes>
 			<excludes>
 				<exclude>glassfish/bin/*</exclude>
-				<exclude>glassfish/domains/domain1/bonita/client/platform/scripts/*.sh</exclude>
 			</excludes>
 		</fileSet>
 		<fileSet>
@@ -24,9 +20,8 @@
 			<directory>${glassfish.home.dir}</directory>
 			<includes>
 				<include>glassfish/bin/*</include>
-				<include>glassfish/domains/domain1/bonita/client/platform/scripts/*.sh</include>
 			</includes>
-			<fileMode>755</fileMode>
+			<fileMode>0755</fileMode>
 		</fileSet>
 	</fileSets>
 </assembly>
