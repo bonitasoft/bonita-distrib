@@ -98,6 +98,11 @@
 										<exclude name="lib/*" />
 									</fileset>
 								</copy>
+								<copy overwrite="true" todir="${tomcat.home.dir}">
+									<fileset dir="${project.build.directory}/${distrib.zipname}/license">
+										<include name="**/*" />
+									</fileset>
+								</copy>
 							</tasks>
 						</configuration>
 					</execution>
