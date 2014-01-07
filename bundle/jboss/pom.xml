@@ -97,6 +97,7 @@
 										<include name="**/*" />
 									</fileset>
 								</copy>
+							</tasks>
 						</configuration>
 					</execution>
 					<execution>
