@@ -92,7 +92,11 @@
 								<copy overwrite="true" todir="${jboss.home}">
 									<fileset dir="${project.build.directory}/${distrib.zipname}/Jboss-${jboss.version}" />
 								</copy>
-							</tasks>
+								<copy overwrite="true" todir="${jboss.home}">
+									<fileset dir="${project.build.directory}/${distrib.zipname}/license">
+										<include name="**/*" />
+									</fileset>
+								</copy>
 						</configuration>
 					</execution>
 					<execution>
