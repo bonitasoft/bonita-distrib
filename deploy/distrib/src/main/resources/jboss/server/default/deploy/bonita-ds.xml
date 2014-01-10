@@ -122,7 +122,7 @@
 		<jndi-name>bonitaDS</jndi-name>
 		<use-java-context>false</use-java-context>
 		<xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class>
-		<xa-datasource-property name="URL">jdbc:sqlserver://localhost:1433;database=journaljdbc:sqlserver://localhost:1433;database=journal</xa-datasource-property>
+		<xa-datasource-property name="URL">jdbc:sqlserver://localhost:1433;database=journal</xa-datasource-property>
 		<xa-datasource-property name="User">bonita</xa-datasource-property>
 		<xa-datasource-property name="Password">bpm</xa-datasource-property>
 		<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
