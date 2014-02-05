@@ -15,7 +15,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<packagingExcludes>.gwt-tmp/**,WEB-INF/deploy/**</packagingExcludes>
+					<packagingExcludes>.gwt-tmp/**,WEB-INF/deploy/**,WEB-INF/lib/jboss-transaction-api*.jar,WEB-INF/lib/jboss-logging-annotations*.jar</packagingExcludes>
 				</configuration>
 			</plugin>
 			<plugin>
