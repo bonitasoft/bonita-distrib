@@ -64,6 +64,7 @@
     
     <attribute name="Properties">
 
+	  sysprop.bonita.hibernate.transaction.jta_platform=org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform
       sysprop.bonita.db.vendor=h2
       file.encoding=UTF-8
 
