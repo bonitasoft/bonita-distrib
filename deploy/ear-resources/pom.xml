@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>deploy-parent</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
-		<version>6.2.4-SNAPSHOT</version>
+		<version>6.2.4.TESTCG</version>
 	</parent>
 	<artifactId>ear-resources</artifactId>
 	<name>ear resources</name>
