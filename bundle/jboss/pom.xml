@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>bundle-parent</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
-		<version>6.2.5-UpdateTo626</version>
+		<version>6.2.6-SNAPSHOT</version>
 	</parent>
 	<groupId>org.bonitasoft.distrib</groupId>
 	<artifactId>bundle-jboss</artifactId>
