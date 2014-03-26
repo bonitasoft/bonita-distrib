@@ -80,7 +80,7 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-									<groupId>org.bonitasoft.web.toolkit</groupId>
+									<groupId>org.bonitasoft.console</groupId>
 									<artifactId>looknfeel</artifactId>
 									<version>${project.version}</version>
 									<classifier>less</classifier>
@@ -89,7 +89,7 @@
 									<destFileName>bonita-portal-theme.zip</destFileName>
 								</artifactItem>
 								<artifactItem>
-									<groupId>org.bonitasoft.web.toolkit</groupId>
+									<groupId>org.bonitasoft.console</groupId>
 									<artifactId>looknfeel</artifactId>
 									<version>${project.version}</version>
 									<classifier>css</classifier>
