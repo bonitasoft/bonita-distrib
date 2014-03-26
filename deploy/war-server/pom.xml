@@ -81,7 +81,7 @@
 							<artifactItems>
 								<artifactItem>
 									<groupId>org.bonitasoft.web.toolkit</groupId>
-									<artifactId>toolkit-looknfeel</artifactId>
+									<artifactId>looknfeel</artifactId>
 									<version>${project.version}</version>
 									<classifier>less</classifier>
 									<type>zip</type>
@@ -90,7 +90,7 @@
 								</artifactItem>
 								<artifactItem>
 									<groupId>org.bonitasoft.web.toolkit</groupId>
-									<artifactId>toolkit-looknfeel</artifactId>
+									<artifactId>looknfeel</artifactId>
 									<version>${project.version}</version>
 									<classifier>css</classifier>
 									<type>zip</type>
