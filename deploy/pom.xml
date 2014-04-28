@@ -17,21 +17,5 @@
 		<module>ear-resources</module>
 		<module>ear</module>
 		<module>distrib</module>
-		<module>tests</module>
 	</modules>
-	
-	<profiles>
-		<profile>
-			<id>package-tests</id>
-			<activation>
-				<property>
-					<name>tests</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<modules>
-				<module>tests</module>
-			</modules>
-		</profile>
-	</profiles>
 </project>
