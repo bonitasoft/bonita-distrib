@@ -360,6 +360,10 @@
    
    <!-- Bonita logging -->
    
+    <category name="org.bonitasoft.engine.EngineInitializer">
+      <priority value="INFO"/>
+    </category>
+   
 	<!-- By default for development it's a good idea to set the default level for all Bonita component to INFO.
 	In production WARNING is a good choice. -->
    <!-- <category name="org.bonitasoft">
