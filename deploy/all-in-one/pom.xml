@@ -23,12 +23,11 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<packagingExcludes>.gwt-tmp/**,WEB-INF/deploy/**</packagingExcludes>
                     <webResources>
                         <resource>
                             <filtering>true</filtering>
                             <targetPath>WEB-INF</targetPath>
-                            <directory>${project.build.directory}/${project.artifactId}-${project.version}-sources</directory>
+                            <directory>${project.build.directory}/${project.artifactId}-${project.version}-sources/WEB-INF</directory>
                             <includes>
                                 <include>web.xml</include>
                             </includes>
@@ -42,24 +41,33 @@
 				<executions>
 					<execution>
 						<id>unpack-webapps</id>
-						<phase>process-resources</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>unpack</goal>
 						</goals>
 						<configuration>
 							<artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>console-client</artifactId>
+                                    <version>${bonita.web.version}</version>
+                                    <type>war</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+                                    <excludes>WEB-INF/web.xml,WEB-INF/lib/**</excludes>
+                                </artifactItem>
 								<artifactItem>
 									<groupId>org.bonitasoft.console</groupId>
-									<artifactId>console-war</artifactId>
+									<artifactId>console-server</artifactId>
 									<version>${bonita.web.version}</version>
 									<type>war</type>
 									<overWrite>false</overWrite>
 									<outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
-									<excludes>WEB-INF/web.xml,WEB-INF/jetty-env.xml,WEB-INF/jetty.xml</excludes>
-								</artifactItem>
+									<excludes>WEB-INF/web.xml</excludes>
+                                </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.console</groupId>
-                                    <artifactId>console-war</artifactId>
+                                    <artifactId>console-server</artifactId>
                                     <version>${bonita.web.version}</version>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
