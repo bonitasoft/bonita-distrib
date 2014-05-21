@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.bonitasoft.console</groupId>
 		<artifactId>bonita-console</artifactId>
-		<version>6.3.0-SNAPSHOT</version>
+		<version>6.3.1-SNAPSHOT</version>
 	</parent>
 	
 	<groupId>org.bonitasoft.distrib</groupId>
@@ -43,6 +43,7 @@
 			<dependency>
 				<groupId>org.bonitasoft.console</groupId>
 				<artifactId>bonita-home</artifactId>
+                <classifier>full</classifier>
 				<version>${bonita.web.version}</version>
 				<type>zip</type>
 			</dependency>
