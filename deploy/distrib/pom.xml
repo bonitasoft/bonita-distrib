@@ -179,6 +179,7 @@
 								<artifactItem>
 									<groupId>org.bonitasoft.console</groupId>
 									<artifactId>bonita-home</artifactId>
+                                    <classifier>full</classifier>
 									<type>zip</type>
 									<overWrite>true</overWrite>
 								</artifactItem>
