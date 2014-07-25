@@ -57,7 +57,7 @@
                                     <excludes>WEB-INF/web.xml,WEB-INF/lib/**</excludes>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>org.bonitasoft.console</groupId>
+                                    <groupId>org.bonitasoft.web</groupId>
                                     <artifactId>bonita-portal-js</artifactId>
                                     <version>${bonita.web.version}</version>
                                     <type>zip</type>
