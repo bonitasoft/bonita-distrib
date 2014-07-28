@@ -56,6 +56,14 @@
                                     <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
                                     <excludes>WEB-INF/web.xml,WEB-INF/lib/**</excludes>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.web</groupId>
+                                    <artifactId>bonita-portal-js</artifactId>
+                                    <version>${bonita.web.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+                                </artifactItem>
 								<artifactItem>
 									<groupId>org.bonitasoft.console</groupId>
 									<artifactId>console-server</artifactId>
