@@ -3,6 +3,6 @@
 *.settings
 *.classpath
 *.iml
-
+*.orig
 # target
 target/
