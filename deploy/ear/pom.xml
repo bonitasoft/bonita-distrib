@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>deploy-parent</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
-		<version>6.3.6-SNAPSHOT</version>
+		<version>6.3.7-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>deploy-ear-all-in-one</artifactId>
