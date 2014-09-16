@@ -84,6 +84,69 @@
             <logger category="jacorb.config">
                 <level name="ERROR"/>
             </logger>
+            
+            <!-- By default for development it's a good idea to set the default level 
+				for all Bonita component to INFO. In production WARNING is a good choice. -->
+			<logger category="org.bonitasoft">
+				<level name="WARNING" />
+			</logger>
+			<logger category="org.bonitasoft.engine.EngineInitializer">
+				<level name="INFO" />
+			</logger>
+			
+			<!-- If you want to have more log on connectors execution only, you can activate and modify the following lines -->
+			<!-- <logger category="org.bonitasoft.engine.core.connector">
+				<level name="FINE" />
+			</logger>
+			<logger category="org.bonitasoft.engine.connector">
+				<level name="FINE" />
+			</logger> -->
+			
+			
+			<!-- If you want to have more log on expressions only, you can activate and modify the following lines -->
+			<!-- <logger category="org.bonitasoft.engine.expression">
+				<level name="FINE" />
+			</logger>
+			<logger category="org.bonitasoft.engine.data.instance.api.DataExpressionExecutorStrategy">
+				<level name="FINE" />
+			</logger> -->
+
+			<!-- If you want to have more log on input/output of API calls, you can activate and modify the following line -->
+			<!-- <logger category="org.bonitasoft.engine.api">
+				<level name="FINE" />
+			</logger> -->
+
+			<!-- If you want to have more log on Asynchronous executions (Work/Job), 
+				you can activate and modify the following lines -->
+			<!-- <logger category="org.bonitasoft.engine.work">
+				<level name="FINE" />
+			</logger>
+			<logger category="org.bonitasoft.engine.execution.work">
+				<level name="FINE" />
+			</logger>
+			<logger category="org.bonitasoft.engine.job">
+				<level name="FINE" />
+			</logger>
+			<logger category="org.bonitasoft.engine.jobs">
+				<level name="FINE" />
+			</logger>
+			<logger category="org.bonitasoft.engine.scheduler">
+				<level name="FINE" />
+			</logger> -->
+		
+			<!-- If you want to deactivate warnings on wrong handling of transient data -->
+			<!-- <logger category="org.bonitasoft.engine.operation.TransientDataLeftOperandHandler">
+				<level name="SEVERE" />
+			</logger>
+			<logger category="org.bonitasoft.engine.expression.ReevaluatingTransientDataExpressionExecutorStrategy">
+				<level name="SEVERE" />
+			</logger> -->
+		
+			<!-- Show stack traces of exceptions when a work fails -->
+			<!-- <logger category="org.bonitasoft.engine.execution.work.FailureHandlingBonitaWork">
+				<level name="FINE" />
+			</logger> -->
+			
             <root-logger>
                 <level name="INFO"/>
                 <handlers>
