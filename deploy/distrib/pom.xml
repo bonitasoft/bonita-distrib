@@ -5,7 +5,6 @@
 		<version>6.4.0-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.bonitasoft.distrib</groupId>
 	<artifactId>deploy-distrib</artifactId>
 	<name>deploy distrib</name>
 
@@ -18,7 +17,7 @@
 		<jboss_folder>${folderToZip}/Jboss-${jboss.version}</jboss_folder>
 		<migration_folder>${folderToZip}/migration</migration_folder>
 		<bitronix.version>2.1.3</bitronix.version>
-
+		<jboss-h2-mbean.version>1.1.0</jboss-h2-mbean.version>
 	</properties>
 
 	<dependencies>
@@ -30,7 +29,7 @@
         <dependency>
             <groupId>org.bonitasoft.jboss</groupId>
             <artifactId>bonita-jboss-h2-mbean</artifactId>
-            <version>1.0.0</version>
+            <version>${jboss-h2-mbean.version}</version>
         </dependency>
         <!-- Transaction manager dependencies -->
         <dependency>
@@ -46,7 +45,6 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -119,7 +117,7 @@
 									<artifactId>bonita-tomcat-valve</artifactId>
 									<!-- valve version is the same as tomcat.version to assure that valve corresponding to tomcat 
 									       was a bad idea , keep old version-->
-									<version>6.0.35</version>
+									<version>${valve.version}</version>
 								</artifactItem>
 								<artifactItem>
 									<groupId>org.bonitasoft.jboss</groupId>
@@ -228,14 +226,40 @@
 								<copy overwrite="true" todir="${jboss_folder}">
 									<fileset dir="${project.basedir}/src/main/resources/jboss" />
 								</copy>
+								<replace file="${jboss_folder}/modules/com/h2database/h2/main/module.xml" token="#h2.version#"
+                                                 value="${h2.version}"/>
+                                <replace file="${jboss_folder}/standalone/deployments/h2.sar/META-INF/jboss-deployment-structure.xml" token="#jboss-h2-mbean.version#"
+                                                 value="${jboss-h2-mbean.version}"/>
+                                                 
 								<!-- Copy ear-->
-								<copy todir="${jboss_folder}/server/default/deploy" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
-								<!-- lib common libs -->
-								<copy todir="${jboss_folder}/server/default/lib">
-									<fileset dir="${project.build.directory}/common-libs" />
+								<copy todir="${jboss_folder}/standalone/deployments" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
+								
+								<!-- Copy the libs  -->
+								<copy todir="${jboss_folder}/standalone/deployments/h2.sar">
+									<fileset dir="${project.build.directory}/common-libs">
+										<include name="bonita-jboss-h2-mbean-*"/>
+									</fileset>
+								</copy>
+								<copy todir="${jboss_folder}/modules/com/h2database/h2/main">
+									<fileset dir="${project.build.directory}/common-libs">
+										<include name="h2-*"/>
+									</fileset>
+								</copy>
+								
+								<copy todir="${jboss_folder}/modules/org/bonitasoft/bonita-tomcat-valve/main">
+									<fileset dir="${project.build.directory}/common-libs">
+										<include name="bonita-tomcat-valve-*"/>
+									</fileset>
+								</copy>
+								<copy todir="${jboss_folder}/standalone/lib/ext">
+									<fileset dir="${project.build.directory}/common-libs">
+										<exclude name="h2-*"/>
+										<exclude name="bonita-jboss-h2-mbean-*"/>
+										<exclude name="bonita-tomcat-valve-*"/>
+									</fileset>
 								</copy>
 
-							<!-- Copy resources -->
+								<!-- Copy resources -->
 								<copy todir="${folderToZip}/license">
 									<fileset dir="${project.basedir}/src/main/resources/license" />
 								</copy>
