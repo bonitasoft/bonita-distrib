@@ -24,7 +24,6 @@
 	</scm>
 
 	<properties>
-
 		<bonita.web.version>${project.version}</bonita.web.version>
 		
 		<distrib.zipname>BonitaBPMCommunity-${project.version}-deploy</distrib.zipname>

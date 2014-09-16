@@ -91,9 +91,6 @@
 								
 								<!-- Configure the datasource -->
 								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="java:comp/env/" value="" />
-								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="sysprop.bonita.transaction.manager:java:comp/UserTransaction" value="sysprop.bonita.transaction.manager:java:/TransactionManager" />
-								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="sysprop.bonita.userTransaction:java:comp/UserTransaction" value="sysprop.bonita.userTransaction:UserTransaction" />
-								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="org.bonitasoft.engine.persistence.BTMJNDITransactionManagerLookup" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
 								
 								<!-- Delete default h2 library  -->
 								<delete>
