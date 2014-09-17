@@ -218,7 +218,9 @@
 								</copy>
 								<!-- Tomcat transaction libs -->
 								<copy todir="${tomcat_folder}/lib">
-									<fileset dir="${project.build.directory}/tomcat-transaction-libs" />
+									<fileset dir="${project.build.directory}/tomcat-transaction-libs">
+										<exclude name="bonita-jboss-h2-mbean-*"/>
+									</fileset>
 								</copy>
 
 							<!-- Jboss -->
