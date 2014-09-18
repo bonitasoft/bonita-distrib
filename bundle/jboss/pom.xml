@@ -89,9 +89,6 @@
 									<fileset dir="${project.build.directory}/${distrib.zipname}/bonita_home-${bonita.engine.version}" />
 								</copy>
 								
-								<!-- Configure the datasource -->
-								<replace file="${bonita.home.dir}/server/platform/conf/bonita-platform.properties" token="java:comp/env/" value="" />
-								
 								<!-- Delete default h2 library  -->
 								<delete>
 									<fileset dir="${jboss.home}/modules/com/h2database/h2/main"/>
