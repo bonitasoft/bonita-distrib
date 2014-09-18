@@ -242,6 +242,7 @@
 										<include name="bonita-jboss-h2-mbean-*"/>
 									</fileset>
 								</copy>
+								<touch file="${jboss_folder}/standalone/deployments/h2.sar.dodeploy"/>
 								<copy todir="${jboss_folder}/modules/com/h2database/h2/main">
 									<fileset dir="${project.build.directory}/common-libs">
 										<include name="h2-*"/>

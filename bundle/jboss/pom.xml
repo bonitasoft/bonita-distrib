@@ -101,7 +101,6 @@
 					 			<copy overwrite="true" todir="${jboss.home}">
 									<fileset dir="${project.build.directory}/${distrib.zipname}/Jboss-${jboss.version}" />
 								</copy> 
-								<touch file="${jboss.deploy.dir}/h2.sar.dodeploy"/>
 								
 								<!-- Copy the license -->
 								<copy overwrite="true" todir="${jboss.home}">
