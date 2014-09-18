@@ -13,8 +13,6 @@
 	<modules>
 		<module>tomcat</module>
  		<module>jboss</module>
-<!-- 		<module>glassfish</module> -->
-<!-- 		<module>jonas</module> -->
 	</modules>
 	
 </project>

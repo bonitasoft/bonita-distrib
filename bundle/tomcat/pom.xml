@@ -22,7 +22,7 @@
 		<tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
 		<tomcat.webapps.dir>${tomcat.home.dir}/webapps</tomcat.webapps.dir>
 		<tomcat.conf.dir>${tomcat.home.dir}/conf</tomcat.conf.dir>
-		<tomcat.download.url>http://archive.apache.org/dist/tomcat/tomcat-6/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</tomcat.download.url>
+		<tomcat.download.url>http://archive.apache.org/dist/tomcat/tomcat-${tomcat.version.major}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</tomcat.download.url>
 	</properties>
 
 	<dependencies>
