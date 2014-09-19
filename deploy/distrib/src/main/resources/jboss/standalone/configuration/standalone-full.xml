@@ -222,7 +222,7 @@
 				
 				<!-- PostgreSQL Example -->
 				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false" use-java-context="false">
-				        <driver>postgresql</driver>
+				        <driver>postgres</driver>
 				        <xa-datasource-property name="ServerName">localhost</xa-datasource-property>
 						<xa-datasource-property name="portNumber">5432</xa-datasource-property>
 						<xa-datasource-property name="DatabaseName">bonita</xa-datasource-property>
