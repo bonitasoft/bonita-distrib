@@ -217,8 +217,7 @@
 				</drivers>
 				
 				<!-- PostgreSQL Example -->
-				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false">
-				        <use-java-context>false</use-java-context>
+				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>postgresql</driver>
 				        <xa-datasource-property name="ServerName">localhost</xa-datasource-property>
 						<xa-datasource-property name="portNumber">5432</xa-datasource-property>
@@ -241,8 +240,7 @@
 						</statement> 
 				    </xa-datasource>
 				    
-				    <datasource jta="false" jndi-name="java:jboss/datasources/bonitaSequenceManagerDS" pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false">
-				        <use-java-context>false</use-java-context>
+				    <datasource jta="false" jndi-name="java:jboss/datasources/bonitaSequenceManagerDS" pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>postgres</driver>
 				        <connection-url>jdbc:postgresql://localhost:5432/bonita</connection-url>
 				        <security>
@@ -270,8 +268,7 @@
 				 -->
 				
 				<!-- Oracle Example -->
-				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false">
-				        <use-java-context>false</use-java-context>
+				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>oracle</driver>
 				        <xa-datasource-property name="URL">jdbc:oracle:thin:@localhost:1521:XE</xa-datasource-property>
 				        <xa-pool>
@@ -292,8 +289,7 @@
 						</statement> 
 				    </xa-datasource>
 				
-				    <datasource jta="false" jndi-name="java:jboss/datasources/bonitaSequenceManagerDS" pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false">
-				        <use-java-context>false</use-java-context>
+				    <datasource jta="false" jndi-name="java:jboss/datasources/bonitaSequenceManagerDS" pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>oracle</driver>
 				        <connection-url>jdbc:oracle:thin:@localhost:1521:XE</connection-url>
 				        <security>
@@ -321,8 +317,7 @@
 				 -->
 				 
 				<!-- MySQL Example -->
-				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false">
-				        <use-java-context>false</use-java-context>
+				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>mysql</driver>
 				        <xa-datasource-property name="URL">jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</xa-datasource-property>
 				        <xa-pool>
@@ -343,8 +338,7 @@
 						</statement> 
 				    </xa-datasource>
 				
-				    <datasource jta="false" jndi-name="java:jboss/datasources/bonitaSequenceManagerDS" pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false">
-				        <use-java-context>false</use-java-context>
+				    <datasource jta="false" jndi-name="java:jboss/datasources/bonitaSequenceManagerDS" pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>mysql</driver>
 				        <connection-url>jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</connection-url>
 				        <security>
@@ -372,8 +366,7 @@
 				 -->
 				 
 				<!-- SQL Server Example -->
-				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false">
-				        <use-java-context>false</use-java-context>
+				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>sqlserver</driver>
 				        <xa-datasource-property name="URL">jdbc:sqlserver://localhost:1433;database=journal</xa-datasource-property>
 				        <xa-pool>
@@ -394,8 +387,7 @@
 						</statement> 
 				    </xa-datasource>
 				
-				    <datasource jta="false" jndi-name="java:jboss/datasources/bonitaSequenceManagerDS" pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false">
-				        <use-java-context>false</use-java-context>
+				    <datasource jta="false" jndi-name="java:jboss/datasources/bonitaSequenceManagerDS" pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>sqlserver</driver>
 				        <connection-url>jdbc:sqlserver://localhost:1433;database=journal</connection-url>
 				        <security>
