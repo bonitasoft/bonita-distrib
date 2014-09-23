@@ -72,6 +72,9 @@ rem set "JAVA_OPTS=%JAVA_OPTS% -Djboss.modules.lockless=true"
 
 :JAVA_OPTS_SET
 
+# Enable GZIP compression:
+rem set "JAVA_OPTS=%JAVA_OPTS% -Dorg.apache.coyote.http11.Http11Protocol.COMPRESSION=on"
+
 rem Sets some variables
 set tmp_jboss_home=%~dp0/..
 set "BONITA_HOME=-Dbonita.home=%tmp_jboss_home%/bonita"
