@@ -72,6 +72,9 @@
 										<include name="**/*" />
 									</patternset>
 								</unzip>
+                                <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/docs" />
+                                <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/examples" />
+                                <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/host-manager" />
 							</tasks>
 						</configuration>
 					</execution>
