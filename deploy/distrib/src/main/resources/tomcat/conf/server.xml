@@ -33,9 +33,11 @@
   <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
   <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
 
+    <!-- Comment the following line for production as h2 is not attended to be use in production. Note: h2 listening port can conflict if you run both Bonita BPM 
+        Studio and a bundle on a single computer -->
   <Listener className="org.bonitasoft.tomcat.H2Listener" tcpPort="9091" baseDir="${catalina.home}/bonita/server/platform/work" start="true" />
 
-  <!-- Bitronix listener -->
+  <!-- Bitronix listener. Used by Bonita Engine for transaction management (JTA) -->
   <Listener className="bitronix.tm.integration.tomcat55.BTMLifecycleListener" />
 
   <!-- Global JNDI resources
@@ -130,9 +132,6 @@
 				 resourceName="UserDatabase"/>
 	  </Realm>
 
-      <!-- Define the default virtual host
-           Note: XML Schema validation will not work with Xerces 2.2.
-       -->
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="true"
             xmlValidation="false" xmlNamespaceAware="false">
@@ -148,7 +147,8 @@
         <!-- Access log processes all example.
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
-			 
+
+        <!-- AccessLogValve below is commented out as it is not advisable for production environments -->
         <!--
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
                prefix="localhost_access_log." suffix=".txt"
