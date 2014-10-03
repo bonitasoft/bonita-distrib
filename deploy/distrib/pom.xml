@@ -104,6 +104,10 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
+									<groupId>org.bonitasoft.tomcat</groupId>
+									<artifactId>bonita-tomcat-h2-listener</artifactId>
+								</artifactItem>
+								<artifactItem>
 									<groupId>com.h2database</groupId>
 									<artifactId>h2</artifactId>
 									<version>${h2.version}</version>
@@ -115,40 +119,14 @@
 									       was a bad idea , keep old version-->
 									<version>${valve.version}</version>
 								</artifactItem>
-							</artifactItems>
-							<outputDirectory>${project.build.directory}/common-libs</outputDirectory>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-jboss-libs</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
 								<artifactItem>
 									<groupId>org.bonitasoft.jboss</groupId>
 									<artifactId>bonita-jboss-h2-mbean</artifactId>
 								</artifactItem>
 							</artifactItems>
-                                <outputDirectory>${jboss_folder}/standalone/deployments/h2.sar</outputDirectory>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-tomcat-libs</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.bonitasoft.tomcat</groupId>
-									<artifactId>bonita-tomcat-h2-listener</artifactId>
-								</artifactItem>
-							</artifactItems>
-                                <outputDirectory>${tomcat_folder}/lib/bonita</outputDirectory>
+							<outputDirectory>
+								${project.build.directory}/common-libs
+							</outputDirectory>
 						</configuration>
 					</execution>
 					<!-- retrieve Tomcat transaction libs -->
@@ -274,6 +252,13 @@
 								<copy todir="${jboss_folder}/modules/org/bonitasoft/bonita-tomcat-valve/main">
 									<fileset dir="${project.build.directory}/common-libs">
 										<include name="bonita-tomcat-valve-*"/>
+									</fileset>
+								</copy>
+								<copy todir="${jboss_folder}/standalone/lib/ext">
+									<fileset dir="${project.build.directory}/common-libs">
+										<exclude name="h2-*"/>
+										<exclude name="bonita-jboss-h2-mbean-*"/>
+										<exclude name="bonita-tomcat-valve-*"/>
 									</fileset>
 								</copy>
 
