@@ -104,6 +104,10 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
+									<groupId>org.bonitasoft.tomcat</groupId>
+									<artifactId>bonita-tomcat-h2-listener</artifactId>
+								</artifactItem>
+								<artifactItem>
 									<groupId>com.h2database</groupId>
 									<artifactId>h2</artifactId>
 									<version>${h2.version}</version>
@@ -133,22 +137,6 @@
 								</artifactItem>
 							</artifactItems>
                                 <outputDirectory>${jboss_folder}/standalone/deployments/h2.sar</outputDirectory>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-tomcat-libs</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.bonitasoft.tomcat</groupId>
-									<artifactId>bonita-tomcat-h2-listener</artifactId>
-								</artifactItem>
-							</artifactItems>
-                                <outputDirectory>${tomcat_folder}/lib/bonita</outputDirectory>
 						</configuration>
 					</execution>
 					<!-- retrieve Tomcat transaction libs -->
