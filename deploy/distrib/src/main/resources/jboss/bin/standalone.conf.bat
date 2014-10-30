@@ -72,15 +72,11 @@ rem set "JAVA_OPTS=%JAVA_OPTS% -Djboss.modules.lockless=true"
 
 :JAVA_OPTS_SET
 
-# Enable GZIP compression:
+rem # Enable GZIP compression:
 rem set "JAVA_OPTS=%JAVA_OPTS% -Dorg.apache.coyote.http11.Http11Protocol.COMPRESSION=on"
 
 rem Sets some variables
 set tmp_jboss_home=%~dp0/..
 set "BONITA_HOME=-Dbonita.home="%tmp_jboss_home%/bonita""
-set "DB_OPTS=-Dsysprop.bonita.db.vendor=h2 -Dbonita.h2.port=1234 -Dsysprop.bonita.database.journal.datasource.name=java:jboss/datasources/bonitaDS -Dsysprop.bonita.database.sequence.manager.datasource.name=java:jboss/datasources/bonitaSequenceManagerDS"
-set "HIBERNATE_OPTS=-Dsysprop.bonita.hibernate.transaction.jta_platform=org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform -Dsysprop.bonita.hibernate.transaction.manager_lookup_class=org.bonitasoft.JBoss7TransactionManagerLookup -Dsysprop.bonita.transaction.manager=java:jboss/TransactionManager -Dsysprop.bonita.userTransaction=java:jboss/UserTransaction"
-set "ENCODING_OPTS=-Dfile.encoding=UTF-8 "
-set "BONITA_OPTS=%BONITA_HOME% %DB_OPTS% %HIBERNATE_OPTS% %ENCODING_OPTS%"
-set "JAVA_OPTS=%JAVA_OPTS% %BONITA_OPTS%"
+set "JAVA_OPTS=%JAVA_OPTS% %BONITA_HOME%"
 goto :eof
