@@ -156,7 +156,9 @@
 			<!-- <logger category="org.bonitasoft.engine.execution.work.FailureHandlingBonitaWork">
 				<level name="FINE" />
 			</logger> -->
-			
+			<logger category="org.tuckey.level">
+				<level name="WARNING" />
+			</logger>
 			<root-logger>
 				<level name="INFO" />
 				<handlers>
