@@ -22,10 +22,12 @@
 		<dependency>
 			<groupId>org.bonitasoft.engine</groupId>
 			<artifactId>bonita-common</artifactId>
+			<version>${bonita.engine.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.bonitasoft.engine</groupId>
 			<artifactId>bonita-server</artifactId>
+			<version>${bonita.engine.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>
