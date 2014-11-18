@@ -27,10 +27,18 @@
 		<extension module="org.jboss.as.weld" />
 	</extensions>
 
-    <system-properties>
-        <property name="org.apache.catalina.connector.URI_ENCODING" value="UTF-8"/>
-        <property name="org.apache.catalina.connector.USE_BODY_ENCODING_FOR_QUERY_STRING" value="false"/>
-    </system-properties>
+	<system-properties>
+		<property name="org.apache.catalina.connector.URI_ENCODING" value="UTF-8" />
+		<property name="org.apache.catalina.connector.USE_BODY_ENCODING_FOR_QUERY_STRING" value="false" />
+		<property name="sysprop.bonita.db.vendor" value="h2" />
+		<property name="bonita.h2.port" value="1234" />
+		<property name="sysprop.bonita.database.journal.datasource.name" value="java:jboss/datasources/bonitaDS" />
+		<property name="sysprop.bonita.database.sequence.manager.datasource.name" value="java:jboss/datasources/bonitaSequenceManagerDS" />
+		<property name="sysprop.bonita.hibernate.transaction.jta_platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+		<property name="sysprop.bonita.hibernate.transaction.manager_lookup_class" value="org.bonitasoft.JBoss7TransactionManagerLookup" />
+		<property name="sysprop.bonita.transaction.manager" value="java:jboss/TransactionManager" />
+		<property name="sysprop.bonita.userTransaction" value="java:jboss/UserTransaction" />
+	</system-properties>
 	
 	<management>
 		<security-realms>
@@ -148,7 +156,9 @@
 			<!-- <logger category="org.bonitasoft.engine.execution.work.FailureHandlingBonitaWork">
 				<level name="FINE" />
 			</logger> -->
-			
+			<logger category="org.tuckey.level">
+				<level name="WARNING" />
+			</logger>
 			<root-logger>
 				<level name="INFO" />
 				<handlers>
