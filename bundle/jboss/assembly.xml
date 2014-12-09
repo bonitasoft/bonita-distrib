@@ -10,14 +10,14 @@
 	<fileSets>
 		<fileSet>
 			<outputDirectory>/</outputDirectory>
-			<directory>${project.build.directory}/${zipName}/jboss-${jboss.version}</directory>
+			<directory>${project.build.directory}/${zipName}/jboss-as-${jboss.version}</directory>
 			<excludes>
 				<exclude>bin/*.sh</exclude>
 			</excludes>
 		</fileSet>
 		<fileSet>
 			<outputDirectory>/</outputDirectory>
-			<directory>${project.build.directory}/${zipName}/jboss-${jboss.version}</directory>
+			<directory>${project.build.directory}/${zipName}/jboss-as-${jboss.version}</directory>
 			<includes>
 				<include>bin/*.sh</include>
 			</includes>

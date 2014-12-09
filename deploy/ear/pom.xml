@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>deploy-parent</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
-		<version>6.4.0-SNAPSHOT</version>
+		<version>6.5.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>deploy-ear-all-in-one</artifactId>
@@ -28,12 +28,6 @@
 			<groupId>org.bonitasoft.engine</groupId>
 			<artifactId>bonita-server</artifactId>
 			<version>${bonita.engine.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>dom4j</artifactId>
-					<groupId>dom4j</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -104,16 +98,19 @@
 						</webModule>
 					</modules>
 
-					<generateApplicationXml>true</generateApplicationXml>
-					<version>5</version>
-					<displayName>Bonita Application</displayName>
-					<description>Bonita Application</description>
-					<defaultJavaBundleDir>lib</defaultJavaBundleDir>
+					<!-- Tell Maven we are using Java EE 6 -->
+					<version>6</version>
+					<!-- Use Java EE ear libraries as needed. Java EE ear libraries are 
+						in easy way to package any libraries needed in the ear, and automatically 
+						have any modules (EJB-JARs and WARs) use them -->
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
 
-					<jboss>
-						<version>5</version>
-						<loader-repository>org.bonitasoft.engine:loader=${project.artifactId}-${project.version}.ear</loader-repository>
-					</jboss>
+					<generateApplicationXml>true</generateApplicationXml>
+					<displayName>Bonita Application</displayName>
+					<!-- WARNING : the applicationName is used for JNDI lookup in EJB client 
+						connection URL in org.bonitasoft.engine.api.EJB3ServerAPI -->
+					<applicationName>bonita-ear</applicationName>
+					<description>Bonita Application</description>
 				</configuration>
 			</plugin>
 		</plugins>

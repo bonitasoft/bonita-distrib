@@ -2,7 +2,7 @@
 	<parent>
 		<artifactId>bundle-parent</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
-		<version>6.4.0-SNAPSHOT</version>
+		<version>6.5.0-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bonitasoft.distrib</groupId>
@@ -12,7 +12,7 @@
 
 	<properties>
 		<zipName>BonitaBPMCommunity-${project.version}-Tomcat-${tomcat.version}</zipName>
-		<zipFolder>${user.home}</zipFolder>
+		<tomcat.zip.parent.folder>${user.home}</tomcat.zip.parent.folder>
 		<if.task>net.sf.antcontrib.logic.IfTask</if.task>
 		<tomcat.bos.home.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</tomcat.bos.home.dir>
 		<tomcat.home.dir>${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}</tomcat.home.dir>
@@ -22,7 +22,7 @@
 		<tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
 		<tomcat.webapps.dir>${tomcat.home.dir}/webapps</tomcat.webapps.dir>
 		<tomcat.conf.dir>${tomcat.home.dir}/conf</tomcat.conf.dir>
-		<tomcat.download.url>http://archive.apache.org/dist/tomcat/tomcat-6/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</tomcat.download.url>
+		<tomcat.download.url>http://archive.apache.org/dist/tomcat/tomcat-${tomcat.version.major}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</tomcat.download.url>
 	</properties>
 
 	<dependencies>
@@ -72,6 +72,9 @@
 										<include name="**/*" />
 									</patternset>
 								</unzip>
+                                <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/docs" />
+                                <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/examples" />
+                                <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/host-manager" />
 							</tasks>
 						</configuration>
 					</execution>
@@ -96,11 +99,6 @@
 								<copy overwrite="true" todir="${tomcat.home.dir}">
 									<fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}">
 										<exclude name="lib/*" />
-									</fileset>
-								</copy>
-								<copy overwrite="true" todir="${tomcat.home.dir}">
-									<fileset dir="${project.build.directory}/${distrib.zipname}/license">
-										<include name="**/*" />
 									</fileset>
 								</copy>
 							</tasks>
@@ -192,28 +190,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	<profiles>
-		<profile>
-			<id>common</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<tomcat.zip.parent.folder>${user.home}</tomcat.zip.parent.folder>
-			</properties>
-		</profile>
-		<profile>
-			<id>offline</id>
-			<activation>
-				<property>
-					<name>offline</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<properties>
-				<tomcat.zip.parent.folder>${zipFolder}</tomcat.zip.parent.folder>
-			</properties>
-		</profile>
-	</profiles>
 </project>
