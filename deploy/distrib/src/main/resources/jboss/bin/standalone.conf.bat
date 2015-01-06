@@ -78,5 +78,5 @@ rem set "JAVA_OPTS=%JAVA_OPTS% -Dorg.apache.coyote.http11.Http11Protocol.COMPRES
 rem Sets some variables
 set tmp_jboss_home=%~dp0/..
 set "BONITA_HOME=-Dbonita.home="%tmp_jboss_home%/bonita""
-set "JAVA_OPTS=%JAVA_OPTS% %BONITA_HOME%"
+set "JAVA_OPTS=%JAVA_OPTS% %BONITA_HOME% -Dfile.encoding=UTF-8"
 goto :eof
