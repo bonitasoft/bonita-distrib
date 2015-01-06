@@ -96,9 +96,9 @@
 			</logger>
 
 			<!-- By default for development it's a good idea to set the default level 
-				for all Bonita component to INFO. In production WARNING is a good choice. -->
+				for all Bonita component to INFO. In production WARN is a good choice. -->
 			<logger category="org.bonitasoft">
-				<level name="WARNING" />
+				<level name="WARN" />
 			</logger>
 			<logger category="org.bonitasoft.engine.EngineInitializer">
 				<level name="INFO" />
@@ -156,8 +156,14 @@
 			<!-- <logger category="org.bonitasoft.engine.execution.work.FailureHandlingBonitaWork">
 				<level name="FINE" />
 			</logger> -->
-			<logger category="org.tuckey.level">
-				<level name="WARNING" />
+            <logger category="org.hibernate">
+                <level name="WARN" />
+            </logger>
+            <logger category="net.sf.ehcache">
+                <level name="WARN" />
+            </logger>
+			<logger category="org.tuckey">
+				<level name="WARN" />
 			</logger>
 			<root-logger>
 				<level name="INFO" />
