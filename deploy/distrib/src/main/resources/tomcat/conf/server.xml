@@ -103,7 +103,7 @@
 
     <!-- Define an AJP 1.3 Connector on port 8009 
     	 Define maxPostSize to allow the upload of large files.-->
-    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" maxPostSize="-1"/>
+    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" maxPostSize="-1" URIEncoding="UTF-8"/>
 
 
     <!-- An Engine represents the entry point (within Catalina) that processes
