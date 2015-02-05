@@ -97,6 +97,31 @@
 									<overWrite>true</overWrite>
 									<destFileName>bonita-portal-theme-css.zip</destFileName>
 								</artifactItem>
+                                <!-- Custom pages -->
+								<artifactItem>
+									<groupId>org.bonitasoft.console</groupId>
+									<artifactId>groovy-page-example</artifactId>
+									<version>${project.version}</version>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+									<destFileName>bonita-groovy-page-example.zip</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.bonitasoft.console</groupId>
+									<artifactId>html-page-example</artifactId>
+									<version>${project.version}</version>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+									<destFileName>bonita-html-page-example.zip</destFileName>
+								</artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>home-page</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>bonita-home-page.zip</destFileName>
+                                </artifactItem>
 							</artifactItems>
 							<outputDirectory>${project.build.directory}/portal/WEB-INF/classes</outputDirectory>
 						</configuration>
