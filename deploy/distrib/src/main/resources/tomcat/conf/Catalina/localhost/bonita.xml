@@ -25,6 +25,27 @@
               driverClassName="org.h2.Driver" 
               url="jdbc:h2:tcp://localhost:9091/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=TRUE;IGNORECASE=TRUE;"/>
 
+   <!-- Configure Business Data Datasource -->
+  <Resource name="BusinessDataDS" auth="Container" type="javax.sql.DataSource"
+        factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/BusinessDataDSXA" />
+
+  <Resource name="NotManagedBizDataDS"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxActive="17"
+              minIdle="5"
+              maxWait="10000"
+              initialSize="3"
+              validationQuery="SELECT 1"
+              validationInterval="30000"
+              removeAbandoned="true"
+              logAbandoned="true"
+              username="sa"
+              password=""
+              driverClassName="org.h2.Driver"
+              url="jdbc:h2:tcp://localhost:9091/business_data.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=TRUE;IGNORECASE=TRUE;"/>
+
+			  
     <!-- Postgresql Example -->
     <!--
     <Resource name="bonitaSequenceManagerDS"  
