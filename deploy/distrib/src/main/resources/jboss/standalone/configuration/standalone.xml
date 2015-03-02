@@ -181,8 +181,7 @@
 					pool-name="bonitaDS" enabled="true" use-ccm="false"
 					use-java-context="false">
 					<driver>h2</driver>
-					<xa-datasource-property name="URL">jdbc:h2:tcp://localhost:${bonita.h2.port}/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE
-					</xa-datasource-property>
+					<xa-datasource-property name="URL">jdbc:h2:tcp://localhost:${bonita.h2.port}/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE</xa-datasource-property>
 					<xa-pool>
 						<min-pool-size>1</min-pool-size>
 						<max-pool-size>50</max-pool-size>
@@ -206,8 +205,53 @@
 					pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false"
 					use-java-context="false">
 					<driver>h2</driver>
-					<connection-url>jdbc:h2:tcp://localhost:${bonita.h2.port}/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE
-					</connection-url>
+					<connection-url>jdbc:h2:tcp://localhost:${bonita.h2.port}/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE</connection-url>
+					<security>
+						<user-name>sa</user-name>
+						<password></password>
+					</security>
+					<validation>
+						<background-validation-millis>30000</background-validation-millis>
+						<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+					</validation>
+					<timeout>
+						<idle-timeout-minutes>0</idle-timeout-minutes>
+					</timeout>
+					<statement>
+						<share-prepared-statements>false</share-prepared-statements>
+					</statement>
+				</datasource>
+				
+				<!-- Business Data -->
+				<xa-datasource jndi-name="java:jboss/datasources/BusinessDataDS"
+					pool-name="BusinessDataDS" enabled="true" use-ccm="false"
+					use-java-context="false">
+					<driver>h2</driver>
+					<xa-datasource-property name="URL">jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE</xa-datasource-property>
+					<xa-pool>
+						<min-pool-size>1</min-pool-size>
+						<max-pool-size>50</max-pool-size>
+						<prefill>true</prefill>
+					</xa-pool>
+					<security>
+						<user-name>sa</user-name>
+						<password></password>
+					</security>
+					<validation>
+						<background-validation-millis>30000</background-validation-millis>
+						<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+					</validation>
+					<statement>
+						<share-prepared-statements>false</share-prepared-statements>
+					</statement>
+				</xa-datasource>
+								
+				<datasource jta="false"
+					jndi-name="java:jboss/datasources/NotManagedBizDataDS"
+					pool-name="NotManagedBizDataDS" enabled="true" use-ccm="false"
+					use-java-context="false">
+					<driver>h2</driver>
+					<connection-url>jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE</connection-url>
 					<security>
 						<user-name>sa</user-name>
 						<password></password>
@@ -226,8 +270,7 @@
 	
 				<drivers>
 					<driver name="h2" module="com.h2database.h2">
-						<xa-datasource-class>org.h2.jdbcx.JdbcDataSource
-						</xa-datasource-class>
+						<xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
 						<datasource-class>org.h2.Driver</datasource-class>
 					</driver>
 				</drivers>
@@ -433,8 +476,7 @@
 		</subsystem>
 		
 		<subsystem xmlns="urn:jboss:domain:deployment-scanner:1.1">
-			<deployment-scanner path="deployments"
-				relative-to="jboss.server.base.dir" scan-interval="5000" />
+			<deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" />
 		</subsystem>
 		<subsystem xmlns="urn:jboss:domain:ee:1.0" />
 		<subsystem xmlns="urn:jboss:domain:ejb3:1.2">
