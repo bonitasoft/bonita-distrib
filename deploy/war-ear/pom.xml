@@ -61,17 +61,27 @@
                                     <outputDirectory>${project.build.directory}/portal/</outputDirectory>
                                     <excludes>
                                         WEB-INF/lib/bonita-common*.jar,
+                                        WEB-INF/lib/bonita-client*.jar,
+                                        WEB-INF/lib/commons-beanutils*.jar,
+                                        WEB-INF/lib/commons-codec*.jar,
+                                        WEB-INF/lib/commons-fileupload*.jar,
+                                        WEB-INF/lib/commons-io*.jar,
+                                        WEB-INF/lib/commons-lang3*.jar,
+                                        WEB-INF/lib/commons-logging*.jar,
+                                        WEB-INF/lib/ehcache*.jar,
+                                        WEB-INF/lib/groovy-all-*.jar,
+                                        WEB-INF/lib/httpclient*.jar,
+                                        WEB-INF/lib/httpcore*.jar,
+                                        WEB-INF/lib/httpmime*.jar,
+                                        WEB-INF/lib/jackson-annotations-*.jar
+                                        WEB-INF/lib/jackson-core-*.jar,
+                                        WEB-INF/lib/jackson-databind-*.jar,
                                         WEB-INF/lib/slf4j-api*.jar,
+                                        WEB-INF/lib/spring-core-*.jar,
                                         WEB-INF/lib/stax-api*.jar,
                                         WEB-INF/lib/xmlpull-*.jar,
                                         WEB-INF/lib/xpp3_min-*.jar,
-                                        WEB-INF/lib/xstream-*.jar,
-                                        WEB-INF/lib/ehcache*.jar,
-                                        WEB-INF/lib/commons-codec*.jar,
-                                        WEB-INF/lib/commons-io*.jar,
-                                        WEB-INF/lib/commons-logging*.jar,
-                                        WEB-INF/lib/groovy-all-*.jar,
-                                        WEB-INF/lib/spring-core-*.jar
+                                        WEB-INF/lib/xstream-*.jar
                                     </excludes>
                                 </artifactItem>
                             </artifactItems>
