@@ -122,6 +122,14 @@
                                     <overWrite>true</overWrite>
                                     <destFileName>bonita-home-page.zip</destFileName>
                                 </artifactItem>
+								<artifactItem>
+                                    <groupId>org.bonitasoft.console.pages</groupId>
+                                    <artifactId>layout-page</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>bonita-layout-page.zip</destFileName>
+                                </artifactItem>
 							</artifactItems>
 							<outputDirectory>${project.build.directory}/portal/WEB-INF/classes</outputDirectory>
 						</configuration>
