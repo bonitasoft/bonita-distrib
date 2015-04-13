@@ -60,6 +60,7 @@
 									<overWrite>true</overWrite>
 									<outputDirectory>${project.build.directory}/portal/</outputDirectory>
 									<excludes>
+										WEB-INF/lib/spring*.jar,
 									    WEB-INF/lib/bonita-common*.jar,
 										WEB-INF/lib/slf4j-api*.jar,
 										WEB-INF/lib/stax-api*.jar,
