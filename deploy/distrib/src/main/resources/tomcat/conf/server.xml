@@ -152,12 +152,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
 
         <!-- AccessLogValve below is commented out as it is not advisable for production environments -->
-        <!--
+        <!-- 
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
                prefix="localhost_access_log." suffix=".txt"
-               pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+               pattern="%{yyyy}t-%{MM}t-%{dd}t %{HH}t:%{mm}t:%{ss}t.%{SSS}t %{Z}t %h %l %u &quot;%r&quot; %s %b" />
         -->
-
       </Host>
     </Engine>
   </Service>
