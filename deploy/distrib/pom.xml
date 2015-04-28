@@ -215,7 +215,7 @@
 							<tasks>
 							<!-- bonita home -->
 								<copy todir="${bonita_home_folder}">
-									<fileset dir="${project.build.directory}/bonita-home/bonita" />
+									<fileset dir="${project.build.directory}/bonita-home/bonita-home" />
 								</copy>
 							<!-- Tomcat -->
 								<!-- Copy all resources from project to Tomcat -->
