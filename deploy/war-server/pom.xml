@@ -163,7 +163,6 @@
 									<destFileName>bonita-theme-page.zip</destFileName>
 								</artifactItem>
 							</artifactItems>
-                            </artifactItems>
                             <outputDirectory>${project.build.directory}/portal/WEB-INF/classes</outputDirectory>
                         </configuration>
                     </execution>
