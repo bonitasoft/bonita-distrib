@@ -6,7 +6,7 @@ rem Bonita home folder (configuration files, temporary folder...) location
 set BONITA_HOME="-Dbonita.home=%CATALINA_HOME%\bonita"
 
 rem Define the RDMBS vendor use by Bonita Engine to store data
-set DB_OPTS="-Dsysprop.bonita.db.vendor=h2"
+set DB_OPTS="-Dsysprop.bonita.db.vendor=h2 -Dsysprop.bonita.bdm.db.vendor=h2"
 
 rem Bitronix (JTA service added to Tomcat and required by Bonita Engine for transaction management)
 set BTM_OPTS="-Dbtm.root=%CATALINA_HOME%" "-Dbitronix.tm.configuration=%CATALINA_HOME%\conf\bitronix-config.properties"
