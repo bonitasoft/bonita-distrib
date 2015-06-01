@@ -107,6 +107,22 @@
                                     <overWrite>true</overWrite>
                                     <destFileName>bonita-theme-page.zip</destFileName>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console.pages</groupId>
+                                    <artifactId>api-extension-example</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>api-extension-example.zip</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console.pages</groupId>
+                                    <artifactId>api-extension-viewer</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>api-extension-viewer.zip</destFileName>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
                         </configuration>
