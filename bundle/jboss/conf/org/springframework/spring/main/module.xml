@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.0" name="org.springframework.spring">
+	<resources>
+		<resource-root path="spring-aop-@@SPRING_VERSION@@.jar"/>
+		<resource-root path="spring-asm-@@SPRING_VERSION@@.jar"/>
+		<resource-root path="spring-beans-@@SPRING_VERSION@@.jar"/>
+		<resource-root path="spring-context-@@SPRING_VERSION@@.jar"/>
+		<resource-root path="spring-core-@@SPRING_VERSION@@.jar"/>
+		<resource-root path="spring-expression-@@SPRING_VERSION@@.jar"/>
+	</resources>
+	<dependencies>
+		<module name="org.apache.commons.logging"/>
+		<module name="org.slf4j"/>
+		<module name="javax.servlet.api"/>
+		<module name="javax.faces.api" slot="1.2" />
+		<module name="com.sun.jsf-impl" slot="1.2" />
+		<module name="org.jboss.vfs"/>
+		<module name="javax.persistence.api"/>
+		<module name="javax.xml.bind.api"/>
+		<module name="javax.api"/>
+		<module name="javax.jms.api"/>
+		<module name="javax.annotation.api"/>
+		<module name="org.apache.commons.logging"/>
+	</dependencies>
+</module> 
