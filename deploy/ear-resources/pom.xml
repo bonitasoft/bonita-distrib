@@ -97,7 +97,7 @@
                                     <version>${project.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
-                                    <destFileName>bonita-layout-page.zip</destFileName>
+                                    <destFileName>bonita-default-layout.zip</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.console.pages</groupId>
@@ -105,7 +105,7 @@
                                     <version>${project.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
-                                    <destFileName>bonita-theme-page.zip</destFileName>
+                                    <destFileName>bonita-default-theme.zip</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.console.pages</groupId>
