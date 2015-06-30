@@ -101,11 +101,11 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.console.pages</groupId>
-                                    <artifactId>theme-page</artifactId>
+                                    <artifactId>bootstrap-default-theme</artifactId>
                                     <version>${project.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
-                                    <destFileName>bonita-default-theme.zip</destFileName>
+                                    <destFileName>bonita-bootstrap-default-theme.zip</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.console.pages</groupId>
