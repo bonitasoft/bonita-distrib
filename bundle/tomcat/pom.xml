@@ -2,7 +2,7 @@
 	<parent>
 		<artifactId>bundle-parent</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
-		<version>7.0.2-SNAPSHOT</version>
+		<version>7.0.3-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bonitasoft.distrib</groupId>
