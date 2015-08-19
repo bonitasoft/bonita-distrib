@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Context>
 
-	<!--  To not persist the session after reboot tomcat -->
-	<Manager pathname="" />
-	
+    <!--  To not persist the session after reboot tomcat -->
+    <Manager pathname="" />
+
     <!-- ##################################################### -->
     <!-- Configure Datasource for Bonita BPM standard database -->
     <!-- ##################################################### -->
-	<Resource name="bonitaDS" auth="Container" type="javax.sql.DataSource"
+    <Resource name="bonitaDS" auth="Container" type="javax.sql.DataSource"
         factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/bonitaDSXA" />
 
     <!-- H2 Example -->
