@@ -179,6 +179,61 @@
 		
 		<subsystem xmlns="urn:jboss:domain:datasources:1.0">
 			<datasources>
+
+				<!--
+				#######################################################################################################
+				Drivers: uncomment the drivers related to the RDBMS vendors used in any of data source configuration below
+				#######################################################################################################
+				-->
+
+				<drivers>
+					<!-- H2 -->
+					<driver name="h2" module="com.h2database.h2">
+						<xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+						<datasource-class>org.h2.Driver</datasource-class>
+					</driver>
+
+					<!-- PostgreSQL example -->
+					<!--
+					<driver name="postgres" module="org.postgresql">
+						<xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+						<datasource-class>org.postgresql.Driver</datasource-class>
+					</driver>
+					-->
+
+					<!-- Oracle Example -->
+					<!--
+					<driver name="oracle" module="com.oracle">
+						<xa-datasource-class>oracle.jdbc.xa.client.OracleXADataSource</xa-datasource-class>
+						<datasource-class>oracle.jdbc.OracleDriver</datasource-class>
+					</driver>
+					-->
+
+					<!-- MySQL Example -->
+					<!--
+					<driver name="mysql" module="com.mysql">
+						<xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+						<datasource-class>com.mysql.jdbc.Driver</datasource-class>
+					</driver>
+					-->
+
+					<!-- SQL Server Example -->
+					<!--
+					<driver name="sqlserver" module="com.sqlserver">
+						<xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class> .
+						<datasource-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</datasource-class>
+					</driver>
+					-->
+
+
+				</drivers>
+
+            <!--
+            #######################################################################################################
+            Configure Data source for Bonita BPM standard database
+            #######################################################################################################
+            -->
+				<!-- H2 -->
 				<xa-datasource jndi-name="java:jboss/datasources/bonitaDS"
 					pool-name="bonitaDS" enabled="true" use-ccm="false"
 					use-java-context="false">
@@ -223,60 +278,7 @@
 						<share-prepared-statements>false</share-prepared-statements>
 					</statement>
 				</datasource>
-				
-				<!-- Business Data -->
-				<xa-datasource jndi-name="java:jboss/datasources/BusinessDataDS"
-					pool-name="BusinessDataDS" enabled="true" use-ccm="false"
-					use-java-context="false">
-					<driver>h2</driver>
-					<xa-datasource-property name="URL">jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE</xa-datasource-property>
-					<xa-pool>
-						<min-pool-size>1</min-pool-size>
-						<max-pool-size>50</max-pool-size>
-						<prefill>true</prefill>
-					</xa-pool>
-					<security>
-						<user-name>sa</user-name>
-						<password></password>
-					</security>
-					<validation>
-						<background-validation-millis>30000</background-validation-millis>
-						<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
-					</validation>
-					<statement>
-						<share-prepared-statements>false</share-prepared-statements>
-					</statement>
-				</xa-datasource>
-								
-				<datasource jta="false"
-					jndi-name="java:jboss/datasources/NotManagedBizDataDS"
-					pool-name="NotManagedBizDataDS" enabled="true" use-ccm="false"
-					use-java-context="false">
-					<driver>h2</driver>
-					<connection-url>jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE</connection-url>
-					<security>
-						<user-name>sa</user-name>
-						<password></password>
-					</security>
-					<validation>
-						<background-validation-millis>30000</background-validation-millis>
-						<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
-					</validation>
-					<timeout>
-						<idle-timeout-minutes>0</idle-timeout-minutes>
-					</timeout>
-					<statement>
-						<share-prepared-statements>false</share-prepared-statements>
-					</statement>
-				</datasource>
-	
-				<drivers>
-					<driver name="h2" module="com.h2database.h2">
-						<xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
-						<datasource-class>org.h2.Driver</datasource-class>
-					</driver>
-				</drivers>
-				
+
 				<!-- PostgreSQL Example -->
 				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>postgres</driver>
@@ -320,14 +322,8 @@
 						</statement>
 				    </datasource>
 				    
-				    <drivers>
-						<driver name="postgres" module="org.postgresql"> 
-							<xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class> 
-							<datasource-class>org.postgresql.Driver</datasource-class> 
-						</driver> 
-					</drivers>
 				 -->
-				
+
 				<!-- Oracle Example -->
 				<!-- <xa-datasource jndi-name="java:jboss/datasources/bonitaDS" pool-name="bonitaDS" enabled="true" use-ccm="false" use-java-context="false">
 				        <driver>oracle</driver>
@@ -369,12 +365,6 @@
 						</statement>
 				    </datasource>
 				    
-				    <drivers>
-						<driver name="oracle" module="com.oracle"> 
-							<xa-datasource-class>oracle.jdbc.xa.client.OracleXADataSource</xa-datasource-class> 
-							<datasource-class>oracle.jdbc.OracleDriver</datasource-class> 
-						</driver> 
-					</drivers>
 				 -->
 				 
 				<!-- MySQL Example -->
@@ -418,12 +408,6 @@
 						</statement>
 				    </datasource>
 				    
-				    <drivers> 
-						<driver name="mysql" module="com.mysql"> 
-							<xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class> 
-							<datasource-class>com.mysql.jdbc.Driver</datasource-class> 
-						</driver> 
-					</drivers>
 				 -->
 				 
 				<!-- SQL Server Example -->
@@ -466,14 +450,233 @@
 							<share-prepared-statements>false</share-prepared-statements>
 						</statement>
 				    </datasource>
-				
-					<drivers> 
-						<driver name="sqlserver" module="com.sqlserver"> 
-							<xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class> .
-							<datasource-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</datasource-class> 
-						</driver> 
-					</drivers>
 				-->
+
+				<!--
+				#######################################################################################################
+				Configure Data source for Bonita Business Data database
+				#######################################################################################################
+				-->
+
+				<!-- H2 -->
+				<xa-datasource jndi-name="java:jboss/datasources/BusinessDataDS"
+							   pool-name="BusinessDataDS" enabled="true" use-ccm="false"
+							   use-java-context="false">
+					<driver>h2</driver>
+					<xa-datasource-property name="URL">jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE</xa-datasource-property>
+					<xa-pool>
+						<min-pool-size>1</min-pool-size>
+						<max-pool-size>50</max-pool-size>
+						<prefill>true</prefill>
+					</xa-pool>
+					<security>
+						<user-name>sa</user-name>
+						<password></password>
+					</security>
+					<validation>
+						<background-validation-millis>30000</background-validation-millis>
+						<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+					</validation>
+					<statement>
+						<share-prepared-statements>false</share-prepared-statements>
+					</statement>
+				</xa-datasource>
+
+				<datasource jta="false"
+							jndi-name="java:jboss/datasources/NotManagedBizDataDS"
+							pool-name="NotManagedBizDataDS" enabled="true" use-ccm="false"
+							use-java-context="false">
+					<driver>h2</driver>
+					<connection-url>jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE</connection-url>
+					<security>
+						<user-name>sa</user-name>
+						<password></password>
+					</security>
+					<validation>
+						<background-validation-millis>30000</background-validation-millis>
+						<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+					</validation>
+					<timeout>
+						<idle-timeout-minutes>0</idle-timeout-minutes>
+					</timeout>
+					<statement>
+						<share-prepared-statements>false</share-prepared-statements>
+					</statement>
+				</datasource>
+
+				<!-- PostgreSQL Example -->
+				<!-- <xa-datasource jndi-name="java:jboss/datasources/BusinessDataDS" pool-name="BusinessDataDS" enabled="true" use-ccm="false" use-java-context="false">
+				        <driver>postgres</driver>
+				        <xa-datasource-property name="ServerName">localhost</xa-datasource-property>
+						<xa-datasource-property name="portNumber">5432</xa-datasource-property>
+						<xa-datasource-property name="DatabaseName">business_data</xa-datasource-property>
+				        <xa-pool>
+				            <min-pool-size>1</min-pool-size>
+				            <max-pool-size>50</max-pool-size>
+				            <prefill>true</prefill>
+				        </xa-pool>
+				        <security>
+				            <user-name>bonita</user-name>
+				            <password>bpm</password>
+				        </security>
+				        <validation>
+				        	<background-validation-millis>30000</background-validation-millis>
+				        	<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+				        </validation>
+				        <statement>
+							<share-prepared-statements>false</share-prepared-statements>
+						</statement>
+				    </xa-datasource>
+
+				    <datasource jta="false" jndi-name="java:jboss/datasources/NotManagedBizDataDS" pool-name="NotManagedBizDataDS" enabled="true" use-ccm="false" use-java-context="false">
+				        <driver>postgres</driver>
+				        <connection-url>jdbc:postgresql://localhost:5432/business_data</connection-url>
+				        <security>
+				            <user-name>bonita</user-name>
+				            <password>bpm</password>
+				        </security>
+				        <validation>
+				        	<background-validation-millis>30000</background-validation-millis>
+				        	<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+				        </validation>
+				        <timeout>
+				        	<idle-timeout-minutes>0</idle-timeout-minutes>
+				        </timeout>
+				        <statement>
+							<share-prepared-statements>false</share-prepared-statements>
+						</statement>
+				    </datasource>
+
+				 -->
+
+				<!-- Oracle Example -->
+				<!-- <xa-datasource jndi-name="java:jboss/datasources/BusinessDataDS" pool-name="BusinessDataDS" enabled="true" use-ccm="false" use-java-context="false">
+				        <driver>oracle</driver>
+				        <xa-datasource-property name="URL">jdbc:oracle:thin:@localhost:1521:XE</xa-datasource-property>
+				        <xa-pool>
+				            <min-pool-size>1</min-pool-size>
+				            <max-pool-size>50</max-pool-size>
+				            <prefill>true</prefill>
+				        </xa-pool>
+				        <security>
+				            <user-name>business_data</user-name>
+				            <password>bpm</password>
+				        </security>
+				        <validation>
+				        	<background-validation-millis>30000</background-validation-millis>
+				        	<check-valid-connection-sql>SELECT 1 FROM dual</check-valid-connection-sql>
+				        </validation>
+				        <statement>
+							<share-prepared-statements>false</share-prepared-statements>
+						</statement>
+				    </xa-datasource>
+
+				    <datasource jta="false" jndi-name="java:jboss/datasources/NotManagedBizDataDS" pool-name="NotManagedBizDataDS" enabled="true" use-ccm="false" use-java-context="false">
+				        <driver>oracle</driver>
+				        <connection-url>jdbc:oracle:thin:@localhost:1521:XE</connection-url>
+				        <security>
+				            <user-name>business_data</user-name>
+				            <password>bpm</password>
+				        </security>
+				        <validation>
+				        	<background-validation-millis>30000</background-validation-millis>
+				        	<check-valid-connection-sql>SELECT 1 FROM dual</check-valid-connection-sql>
+				        </validation>
+				        <timeout>
+				        	<idle-timeout-minutes>0</idle-timeout-minutes>
+				        </timeout>
+				        <statement>
+							<share-prepared-statements>false</share-prepared-statements>
+						</statement>
+				    </datasource>
+
+				 -->
+
+				<!-- MySQL Example -->
+				<!-- <xa-datasource jndi-name="java:jboss/datasources/BusinessDataDS" pool-name="BusinessDataDS" enabled="true" use-ccm="false" use-java-context="false">
+				        <driver>mysql</driver>
+				        <xa-datasource-property name="URL">jdbc:mysql://localhost:3306/business_data?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</xa-datasource-property>
+				        <xa-pool>
+				            <min-pool-size>1</min-pool-size>
+				            <max-pool-size>50</max-pool-size>
+				            <prefill>true</prefill>
+				        </xa-pool>
+				        <security>
+				            <user-name>bonita</user-name>
+				            <password>bpm</password>
+				        </security>
+				        <validation>
+				        	<background-validation-millis>30000</background-validation-millis>
+				        	<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+				        </validation>
+				        <statement>
+							<share-prepared-statements>false</share-prepared-statements>
+						</statement>
+				    </xa-datasource>
+
+				    <datasource jta="false" jndi-name="java:jboss/datasources/NotManagedBizDataDS" pool-name="NotManagedBizDataDS" enabled="true" use-ccm="false" use-java-context="false">
+				        <driver>mysql</driver>
+				        <connection-url>jdbc:mysql://localhost:3306/business_data?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</connection-url>
+				        <security>
+				            <user-name>bonita</user-name>
+				            <password>bpm</password>
+				        </security>
+				        <validation>
+				        	<background-validation-millis>30000</background-validation-millis>
+				        	<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+				        </validation>
+				        <timeout>
+				        	<idle-timeout-minutes>0</idle-timeout-minutes>
+				        </timeout>
+				        <statement>
+							<share-prepared-statements>false</share-prepared-statements>
+						</statement>
+				    </datasource>
+
+				 -->
+
+				<!-- SQL Server Example -->
+				<!-- <xa-datasource jndi-name="java:jboss/datasources/BusinessDataDS" pool-name="BusinessDataDS" enabled="true" use-ccm="false" use-java-context="false">
+				        <driver>sqlserver</driver>
+				        <xa-datasource-property name="URL">jdbc:sqlserver://localhost:1433;database=business_data</xa-datasource-property>
+				        <xa-pool>
+				            <min-pool-size>1</min-pool-size>
+				            <max-pool-size>50</max-pool-size>
+				            <prefill>true</prefill>
+				        </xa-pool>
+				        <security>
+				            <user-name>bonita</user-name>
+				            <password>bpm</password>
+				        </security>
+				        <validation>
+				        	<background-validation-millis>30000</background-validation-millis>
+				        	<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+				        </validation>
+				        <statement>
+							<share-prepared-statements>false</share-prepared-statements>
+						</statement>
+				    </xa-datasource>
+
+				    <datasource jta="false" jndi-name="java:jboss/datasources/NotManagedBizDataDS" pool-name="NotManagedBizDataDS" enabled="true" use-ccm="false" use-java-context="false">
+				        <driver>sqlserver</driver>
+				        <connection-url>jdbc:sqlserver://localhost:1433;database=business_data</connection-url>
+				        <security>
+				            <user-name>bonita</user-name>
+				            <password>bpm</password>
+				        </security>
+				        <validation>
+				        	<background-validation-millis>30000</background-validation-millis>
+				        	<check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+				        </validation>
+				        <timeout>
+				        	<idle-timeout-minutes>0</idle-timeout-minutes>
+				        </timeout>
+				        <statement>
+							<share-prepared-statements>false</share-prepared-statements>
+						</statement>
+				    </datasource>
+				-->
+
 			</datasources>
 		</subsystem>
 		
