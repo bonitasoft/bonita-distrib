@@ -139,7 +139,7 @@
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="true">
 
-	<Valve className="org.bonitasoft.console.security.SessionFixationValve" authenticationUrl="/loginservice"/>
+	<Valve className="org.bonitasoft.console.security.SessionFixationValve" authenticationUrl="/loginservice" asyncSupported="true"/>
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
