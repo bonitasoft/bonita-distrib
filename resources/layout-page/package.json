@@ -2,8 +2,9 @@
   "name": "layout-page",
   "version": "1.0.0",
   "description": "layout page for a living application",
+  "main": "gulpfile.js",
   "scripts": {
-    "test": "karma start --single-run --config karma.conf.js",
+    "test": "./node_modules/karma/bin/karma start --single-run --config karma.conf.js",
     "e2e": "gulp e2e",
     "pree2e": "webdriver-manager update"
   },
