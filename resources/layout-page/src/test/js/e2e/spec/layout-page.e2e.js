@@ -61,11 +61,10 @@
 
         describe('preview', function () {
             it('should display application name on the browser tab', function () {
-                browser.controlFlow().execute(deployLayoutPage).then(function() {
+                browser.controlFlow().execute(deployLayoutPage).then(function () {
                         browser.driver.sleep(1000);
                         browser.driver.manage().window().setSize(width, height);
                         browser.get('/designer/preview/page/layout-page/');
-                        console.log('####GET BROWSER');
                         expect(browser.getTitle()).toEqual('My application');
                         var brandTarget = element(by.css('.navbar-brand')).getAttribute('href');
                         expect(brandTarget).toEqual(browser.baseUrl + '/designer/preview/page/');
@@ -77,25 +76,35 @@
 
     function deployLayoutPage() {
         var deferred = protractor.promise.defer();
-        var pagePath = __dirname + '/../../../../../target/layout-page-7.1.0-SNAPSHOT.zip';
-        var restler = require('restler');
-        var fs = require('fs');
 
-        fs.stat(pagePath, function (err, stats) {
-            restler.post(browser.baseUrl+'/designer/import/page', {
-                multipart: true,
-                data: {
-                    "file": restler.file(pagePath, null, stats.size, null, "application/zip")
-                }
-            }).on("complete", function () {
-                console.log('####FULL Fill');
-                deferred.fulfill();
-            }).on("error", function (e) {
-                deferred.reject(e);
-            }).on("fail", function (e) {
-                deferred.reject(e);
-            });
+        var fs = require('fs');
+        var path = require('path');
+        var pageDirPath = path.join(__dirname, '/../../../../../target/');
+        fs.readdir(pageDirPath, function (err, files) {
+            var pagePath = files.filter(function (file) {
+                return /layout-page-.*\.zip/.test(file);
+            })[0];
+            upload(path.join(pageDirPath, pagePath));
         });
+
+        function upload(pagePath) {
+            var restler = require('restler');
+
+            fs.stat(pagePath, function (err, stats) {
+                restler.post(browser.baseUrl + '/designer/import/page', {
+                    multipart: true,
+                    data: {
+                        "file": restler.file(pagePath, null, stats.size, null, "application/zip")
+                    }
+                }).on("complete", function () {
+                    deferred.fulfill();
+                }).on("error", function (e) {
+                    deferred.reject(e);
+                }).on("fail", function (e) {
+                    deferred.reject(e);
+                });
+            });
+        }
 
         return deferred.promise;
     }
