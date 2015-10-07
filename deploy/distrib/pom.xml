@@ -2,7 +2,7 @@
 	<parent>
 		<groupId>org.bonitasoft.distrib</groupId>
 		<artifactId>deploy-parent</artifactId>
-		<version>7.1.2-SNAPSHOT</version>
+		<version>7.1.3-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bonitasoft.distrib</groupId>
