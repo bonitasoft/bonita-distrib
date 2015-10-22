@@ -220,7 +220,7 @@
 					<!-- SQL Server Example -->
 					<!--
 					<driver name="sqlserver" module="com.sqlserver">
-						<xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class> .
+						<xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class>
 						<datasource-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</datasource-class>
 					</driver>
 					-->
