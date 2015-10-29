@@ -83,13 +83,33 @@
         $scope.postData = function postData() {
             $scope.message = undefined;
             var jsonifiedDataToSend = jsonify($scope.dataToSend);
-            contractSrvc.startProcess(processId, jsonifiedDataToSend).then(function () {
-
-                $window.top.location.href = '/bonita';
-            }, function (reason) {
-                $scope.message = reason.data.explanations ? reason.data.explanations : reason.data.message;
-            });
+            contractSrvc.startProcess(processId, jsonifiedDataToSend).then(
+              function(response){
+                onPostSuccess(response);
+              }, function(response) {
+                onPostError(response)
+              });
         };
+
+        var onPostSuccess = function(response) {
+          notifyParentFrame('success', response.status);
+          //if the form is not displayed in an iframe
+          if ($window.parent === $window.self) {
+            $window.location.assign('/bonita');
+          }
+        }
+
+        var onPostError = function(response) {
+          notifyParentFrame('error', response.status);
+          $scope.message = response.data.explanations ? response.data.explanations : response.data.message;
+        }
+        
+        function notifyParentFrame(message, status) {
+        	if ($window.parent !== $window.self) {
+        		var dataToSend = {message:message, status:status, action:'Start process', targetUrlOnSuccess:'/bonita'};
+                $window.parent.postMessage(JSON.stringify(dataToSend), '*');
+        	}
+        }
 
         $scope.isSimpleInput = function isSimpleInput(input) {
             return (input.inputs.length === 0);
