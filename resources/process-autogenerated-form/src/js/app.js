@@ -91,6 +91,7 @@
             //if the form is displayed in an iframe
             if ($window.parent !== $window.self) {
                 notifyParentFrame('success', response.status);
+                //Add a confirmation message here in case the parent frame doesn't catch the postMessage
             } else {
                 $window.location.assign('/bonita');
             }
