@@ -85,27 +85,33 @@
             $scope.message = undefined;
             var jsonifiedDataToSend = jsonify($scope.dataToSend);
             contractSrvc.executeTask(taskId, jsonifiedDataToSend).then(
-              onPostSuccess, onPostError);
+                onPostSuccess, onPostError);
         };
 
         var onPostSuccess = function(response) {
-          notifyParentFrame('success', response.status);
-          //if the form is not displayed in an iframe
-          if ($window.parent === $window.self) {
-            $window.location.assign('/bonita');
-          }
+            //if the form is displayed in an iframe
+            if ($window.parent !== $window.self) {
+                notifyParentFrame('success', response.status);
+            } else {
+                $window.location.assign('/bonita');
+            }
         }
 
         var onPostError = function(response) {
-          notifyParentFrame('error', response.status);
-          $scope.message = response.data.explanations ? response.data.explanations : response.data.message;
+            if ($window.parent !== $window.self) {
+                notifyParentFrame('error', response.status);
+            }
+            $scope.message = response.data.explanations ? response.data.explanations : response.data.message;
         }
 
         function notifyParentFrame(message, status) {
-          if ($window.parent !== $window.self) {
-            var dataToSend = {message:message, status:status, action:'Submit task', targetUrlOnSuccess:'/bonita'};
+            var dataToSend = {
+                message:message,
+                status:status,
+                action:'Submit task',
+                targetUrlOnSuccess:'/bonita'
+            };
             $window.parent.postMessage(JSON.stringify(dataToSend), '*');
-          }
         }
 
         $scope.isSimpleInput = function isSimpleInput(input) {
