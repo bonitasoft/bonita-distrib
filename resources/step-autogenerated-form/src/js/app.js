@@ -32,7 +32,7 @@
         'org.bonitasoft.common.filters.stringTemplater'
     ]);
 
-    app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'humanTaskAPI', 'gettextCatalog', 'i18nService', '$http', function ($scope, $location, contractSrvc, urlParser, $window, humanTaskAPI, gettextCatalog, i18nService, $http) {
+    app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'humanTaskAPI', 'i18nService', '$http', function ($scope, $location, contractSrvc, urlParser, $window, humanTaskAPI, i18nService, $http) {
 
         var taskId = urlParser.getQueryStringParamValue('id');
 
