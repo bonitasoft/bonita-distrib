@@ -85,11 +85,7 @@
             $scope.message = undefined;
             var jsonifiedDataToSend = jsonify($scope.dataToSend);
             contractSrvc.executeTask(taskId, jsonifiedDataToSend).then(
-              function(response){
-                onPostSuccess(response);
-              }, function(response) {
-                onPostError(response)
-              });
+              onPostSuccess, onPostError);
         };
 
         var onPostSuccess = function(response) {
