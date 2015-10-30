@@ -32,7 +32,7 @@
         'org.bonitasoft.common.filters.stringTemplater'
     ]);
 
-    app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'processAPI', 'gettextCatalog', 'i18nService', '$http', function ($scope, $location, contractSrvc, urlParser, $window, processAPI, gettextCatalog, i18nService, $http) {
+    app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'processAPI', 'i18nService', '$http', function ($scope, $location, contractSrvc, urlParser, $window, processAPI, i18nService, $http) {
 
         var processId = urlParser.getQueryStringParamValue('id');
 
