@@ -115,7 +115,7 @@
                                         <artifactItem>
                                             <groupId>org.bonitasoft.web</groupId>
                                             <artifactId>ui-designer-backend-webapp</artifactId>
-                                            <version>1.0.8</version>
+                                            <version>${ui.designer.version}</version>
                                             <type>jar</type>
                                             <classifier>exec-war</classifier>
                                             <outputDirectory>${project.build.directory}/designer</outputDirectory>
@@ -146,8 +146,6 @@
                                         <argument>
                                             ${basedir}/target/designer/ui-designer-standalone.jar
                                         </argument>
-                                        <!--<argument>-Drepository.pages=${project.build.directory}/designer/repository/pages</argument>
-                                        <argument>-Drepository.widgets=${project.build.directory}/designer/repository/widgets</argument>-->
                                         <argument>-Dworkspace=${project.build.directory}/designer/repository</argument>
                                         <argument>-httpPort=8083</argument>
                                     </arguments>
