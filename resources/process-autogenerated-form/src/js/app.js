@@ -32,7 +32,7 @@
         'org.bonitasoft.common.filters.stringTemplater'
     ]);
 
-    app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'processAPI', 'gettextCatalog', 'i18nService', '$http', function ($scope, $location, contractSrvc, urlParser, $window, processAPI, gettextCatalog, i18nService, $http) {
+    app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'processAPI', 'i18nService', '$http', function ($scope, $location, contractSrvc, urlParser, $window, processAPI, i18nService, $http) {
 
         var processId = urlParser.getQueryStringParamValue('id');
 
@@ -83,13 +83,36 @@
         $scope.postData = function postData() {
             $scope.message = undefined;
             var jsonifiedDataToSend = jsonify($scope.dataToSend);
-            contractSrvc.startProcess(processId, jsonifiedDataToSend).then(function () {
-
-                $window.top.location.href = '/bonita';
-            }, function (reason) {
-                $scope.message = reason.data.explanations ? reason.data.explanations : reason.data.message;
-            });
+            contractSrvc.startProcess(processId, jsonifiedDataToSend).then(
+                onPostSuccess, onPostError);
         };
+
+        var onPostSuccess = function(response) {
+            //if the form is displayed in an iframe
+            if ($window.parent !== $window.self) {
+                notifyParentFrame('success', response.status);
+                //Add a confirmation message here in case the parent frame doesn't catch the postMessage
+            } else {
+                $window.location.assign('/bonita');
+            }
+        }
+
+        var onPostError = function(response) {
+            if ($window.parent !== $window.self) {
+                notifyParentFrame('error', response.status);
+            }
+            $scope.message = response.data.explanations ? response.data.explanations : response.data.message;
+        }
+        
+        function notifyParentFrame(message, status) {
+            var dataToSend = {
+                message:message,
+                status:status,
+                action:'Start process',
+                targetUrlOnSuccess:'/bonita'
+            };
+            $window.parent.postMessage(JSON.stringify(dataToSend), '*');
+        }
 
         $scope.isSimpleInput = function isSimpleInput(input) {
             return (input.inputs.length === 0);
