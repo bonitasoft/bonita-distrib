@@ -26,7 +26,7 @@
               username="sa"
               password=""
               driverClassName="org.h2.Driver"
-              url="jdbc:h2:tcp://localhost:9091/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=TRUE;IGNORECASE=TRUE;"/>
+              url="jdbc:h2:tcp://localhost:9091/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;"/>
 
     <!-- MySQL Example -->
     <!--
@@ -129,7 +129,7 @@
               username="sa"
               password=""
               driverClassName="org.h2.Driver"
-              url="jdbc:h2:tcp://localhost:9091/business_data.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=TRUE;IGNORECASE=TRUE;"/>
+              url="jdbc:h2:tcp://localhost:9091/business_data.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;"/>
 
     <!-- Postgresql Example -->
     <!--
