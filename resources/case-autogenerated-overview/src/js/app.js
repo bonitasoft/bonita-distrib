@@ -26,11 +26,14 @@
     var app = angular.module('caseOverview', [
         'ui.bootstrap',
         'ngResource',
+        'gettext',
         'org.bonita.common.resources',
-        'angular-timeline'
+        'angular-timeline',
+        'org.bonitasoft.services.i18n',
+        'org.bonitasoft.common.filters.stringTemplater'
     ]);
 
-    app.controller('MainCtrl', ['$scope', '$window', 'archivedTaskAPI', '$location', 'overviewSrvc', 'urlParser', '$http', function ($scope, $window, archivedTaskAPI, $location, overviewSrvc, urlParser, $http) {
+    app.controller('MainCtrl', ['$scope', '$window', 'archivedTaskAPI', '$location', 'overviewSrvc', 'urlParser', 'i18nService', '$http', function ($scope, $window, archivedTaskAPI, $location, overviewSrvc, urlParser, i18nService, $http) {
 
         $scope.case = {};
 
@@ -49,12 +52,22 @@
         );
 
         var init = function () {
+            i18nService.then(function () {
+                $scope.i18nLoaded = true;
+            });
+
             overviewSrvc.fetchCase(caseId).then(function (result) {
                 $scope.case = result;
+
+                // Tasks can only be listed based on sourceObjectId in case of archived case
+                // So I need to make a conversion of the ID to use.
+                $scope.case.caseIdToDisplay = $scope.case.sourceObjectId || $scope.case.id;
+                console.debug($scope.case);
+                overviewSrvc.listDoneTasks($scope.case.caseIdToDisplay).then(function mapArchivedTasks(data) {
+                    $scope.doneTasks = data;
+                });
             });
-            overviewSrvc.listDoneTasks(caseId).then(function mapArchivedTasks(data) {
-                $scope.doneTasks = data;
-            });
+
             overviewSrvc.fetchContext(caseId).then(function (data) {
                 $scope.businessData = data.businessData;
                 $scope.documents = data.documents;
