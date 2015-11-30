@@ -36,6 +36,7 @@
     app.controller('MainCtrl', ['$scope', '$window', 'archivedTaskAPI', '$location', 'overviewSrvc', 'urlParser', 'i18nService', '$http', function ($scope, $window, archivedTaskAPI, $location, overviewSrvc, urlParser, i18nService, $http) {
 
         $scope.case = {};
+        $scope.i18nLoaded = false;
 
         $scope.isInternalField = function (propertyName) {
             return (propertyName === 'persistenceId') || (propertyName === 'persistenceVersion') || (propertyName === 'links');
@@ -62,7 +63,7 @@
                 // Tasks can only be listed based on sourceObjectId in case of archived case
                 // So I need to make a conversion of the ID to use.
                 $scope.case.caseIdToDisplay = $scope.case.sourceObjectId || $scope.case.id;
-                console.debug($scope.case);
+
                 overviewSrvc.listDoneTasks($scope.case.caseIdToDisplay).then(function mapArchivedTasks(data) {
                     $scope.doneTasks = data;
                 });
