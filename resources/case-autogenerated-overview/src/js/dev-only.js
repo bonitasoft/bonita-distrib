@@ -128,7 +128,7 @@
     }];
 
     var case2 = {
-        id: '1',
+        id: '2',
         end_date: '',
         failedFlowNodes: '9',
         startedBySubstitute: {
@@ -150,7 +150,7 @@
         start: '2014-11-27 17:55:00.906',
         activeFlowNodes: '9',
         state: 'started',
-        rootCaseId: '1',
+        rootCaseId: '2',
         started_by:{
           last_connection: '',
           created_by_user_id: '-1',
