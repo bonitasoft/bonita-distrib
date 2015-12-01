@@ -22,7 +22,9 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/angular-bootstrap/ui-bootstrap.js',
       'node_modules/angular-resource/angular-resource.js',
+      'node_modules/angular-gettext/dist/angular-gettext.js',
       'node_modules/angular-timeline/src/angular-timeline.js',
+      'node_modules/angular-cookies/angular-cookies.js',
       'src/**/*.js',
       'test/unit/**/*Spec.js',
       // include fixtures html  in karma webserver, available at /base/dev/fixtures

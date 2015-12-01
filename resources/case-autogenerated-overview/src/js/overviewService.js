@@ -11,26 +11,43 @@
       // Implement fetching of data based on 2 strategies to illustrate the 2 possible capabilities. Using the link is
       // the most generic approach and should be preferred in most of the cases.
       // Using the type and value are most likely to be used to call a custom query on the API.
-      if(angular.isObject(valueToFetch) && valueToFetch.storageId){
+      if(isBusinessObject(valueToFetch)){
         fetchDataFromTypeAndStorageId(valueToFetch, deferred);
-      } else if(angular.isObject(valueToFetch) && angular.isArray(valueToFetch.storageIds)) {
+      } else if(isMultipleBusinessObject(valueToFetch)) {
         fetchDataFromLink(valueToFetch, deferred);
-      } else if(angular.isObject(valueToFetch) && valueToFetch.fileName){
+      } else if(isBonitaDocument(valueToFetch)){
         /* Element in context is a reference to a document */
         if(!angular.isDefined(documentRefs)) {
           documentRefs = [];
         }
-        if(angular.isArray(valueToFetch)){
-          documentRefs = documentRefs.concat(valueToFetch);
-        } else {
-          documentRefs.push(valueToFetch);
+        documentRefs.push(valueToFetch);
+        notifyResponse(deferred);
+      }else if(isMultipleBonitaDocument(valueToFetch)) {
+        if(!angular.isDefined(documentRefs)) {
+          documentRefs = [];
         }
+        documentRefs = documentRefs.concat(valueToFetch);
         notifyResponse(deferred);
       } else {
-        console.log('ignoring context entry', valueToFetch);
         // ignore value as it is not initialised.
         notifyResponse(deferred);
       }
+    };
+
+    var isBusinessObject = function(valueToFetch) {
+      return (angular.isObject(valueToFetch) && valueToFetch.storageId);
+    };
+
+    var isMultipleBusinessObject = function(valueToFetch){
+      return (angular.isObject(valueToFetch) && angular.isArray(valueToFetch.storageIds) && valueToFetch.storageIds.length);
+    };
+
+    var isBonitaDocument = function(valueToFetch) {
+      return (angular.isObject(valueToFetch) && valueToFetch.fileName);
+    };
+
+    var isMultipleBonitaDocument = function(valueToFetch) {
+      return (angular.isArray(valueToFetch) && valueToFetch.length);
     };
 
     var fetchDataFromTypeAndStorageId = function(valueToFetch, deferred) {
@@ -39,6 +56,9 @@
         businessData[valueToFetch.type].push(result.data);
         notifyResponse(deferred);
 
+      }, function(error){
+        console.log(error);
+        notifyResponse(deferred);
       });
     };
 
@@ -47,6 +67,9 @@
       dataSrvc.queryData(valueToFetch.link).then(function(result){
         initBusinessDataForType(valueToFetch.type);
         businessData[valueToFetch.type] = businessData[valueToFetch.type].concat(result.data);
+        notifyResponse(deferred);
+      }, function(error){
+        console.log(error);
         notifyResponse(deferred);
       });
     };

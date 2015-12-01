@@ -27,3 +27,7 @@
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
+
+.container{
+    padding: 15px;
+}
