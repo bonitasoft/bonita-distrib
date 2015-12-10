@@ -27,7 +27,7 @@ check_errors() {
 
 SCRIPT_DIR=$(dirname $(readlink -f "$0"))
 BUILD_DIR=$SCRIPT_DIR
-BASE_DIR=$SCRIPT_DIR/..
+BASE_DIR=$SCRIPT_DIR
 
 PROJECT="bonita-bpm-new-features"
 BRANCH_NAME=master
