@@ -1,5 +1,10 @@
-angular.module('bonitasoft.ui.widgets')
-  .directive('customLivingApplicationMenu', function() {
+(function () {
+  try {
+    return angular.module('bonitasoft.ui.widgets');
+  } catch(e) {
+    return angular.module('bonitasoft.ui.widgets', []);
+  }
+})().directive('customLivingApplicationMenu', function() {
     return {
       controllerAs: 'ctrl',
       controller: function WidgetlivingApplicationMenuController($scope, $http, $window) {
