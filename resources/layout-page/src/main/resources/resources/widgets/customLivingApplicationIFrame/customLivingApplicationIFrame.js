@@ -1,5 +1,10 @@
-angular.module('bonitasoft.ui.widgets')
-  .directive('customLivingApplicationIFrame', function() {
+(function () {
+  try {
+    return angular.module('bonitasoft.ui.widgets');
+  } catch(e) {
+    return angular.module('bonitasoft.ui.widgets', []);
+  }
+})().directive('customLivingApplicationIFrame', function() {
     return {
       controllerAs: 'ctrl',
       controller: function WidgetlivingApplicationIFrameController($scope, $element, $interval, $sce) {
