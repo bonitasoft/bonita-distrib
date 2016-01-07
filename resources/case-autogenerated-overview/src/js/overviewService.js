@@ -97,6 +97,15 @@
       }
     };
 
+    var processContext = function(result, deferred) {
+      initNumberOfAwaitedResponses(result.data);
+
+      var contextData;
+      for (contextData in result.data) {
+        fetchValue(result.data[contextData], deferred);
+      }
+    };
+
     return {
       listDoneTasks: function(caseId){
         return archivedTaskAPI.search({
@@ -110,13 +119,15 @@
       fetchContext: function(caseId){
         var deferred = $q.defer();
         contextSrvc.fetchCaseContext(caseId).then(function(result){
+          processContext(result, deferred);
+        });
+        return deferred.promise;
+      },
 
-          initNumberOfAwaitedResponses(result.data);
-
-          var contextData;
-          for (contextData in result.data) {
-            fetchValue(result.data[contextData], deferred);
-          }
+      fetchArchivedCaseContext: function(caseId){
+        var deferred = $q.defer();
+        contextSrvc.fetchArchivedCaseContext(caseId).then(function(result){
+          processContext(result, deferred);
         });
         return deferred.promise;
       },
