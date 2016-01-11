@@ -67,12 +67,34 @@
                 overviewSrvc.listDoneTasks($scope.case.caseIdToDisplay).then(function mapArchivedTasks(data) {
                     $scope.doneTasks = data;
                 });
+
+                return result;
+
+            }).then(function(result){
+                var caseIsArchived = function(caseObject){
+                    return !!caseObject.sourceObjectId;
+                };
+
+                var storeContextInScope = function(data) {
+                    $scope.businessData = data.businessData;
+                    $scope.documents = data.documents;
+                };
+
+                if(caseIsArchived(result)) {
+                    // fetch context on archived case with its own ID
+                    overviewSrvc.fetchArchivedCaseContext(result.id).then(function (data) {
+                        storeContextInScope(data);
+                    });
+                } else {
+                    overviewSrvc.fetchContext(result.id).then(function (data) {
+                        storeContextInScope(data);
+                    });
+                }
+
+                return result;
             });
 
-            overviewSrvc.fetchContext(caseId).then(function (data) {
-                $scope.businessData = data.businessData;
-                $scope.documents = data.documents;
-            });
+
         };
     }]);
 
