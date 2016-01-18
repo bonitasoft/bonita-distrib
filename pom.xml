@@ -31,7 +31,7 @@
 		
 		<ant-contrib.version>1.0b3</ant-contrib.version>
 		<tomcat.version.major>7</tomcat.version.major>
-		<tomcat.version>${tomcat.version.major}.0.55</tomcat.version>
+		<tomcat.version>${tomcat.version.major}.0.67</tomcat.version>
 		<valve.version>7.0.55</valve.version>
 		<jboss.version.minor>7.1</jboss.version.minor>
 		<jboss.version>${jboss.version.minor}.1.Final</jboss.version>
