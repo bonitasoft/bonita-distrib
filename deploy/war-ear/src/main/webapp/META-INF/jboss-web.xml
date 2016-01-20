@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jboss-web>
-	<valve>
-		<class-name>org.bonitasoft.console.security.SessionFixationValve</class-name>
-		<param param-name="authenticationUrl" param-value="loginservice" />
-	</valve>
-</jboss-web>  
