@@ -60,4 +60,15 @@ echo "Exporting community pot to $PROJECT crowdin project ..."
 curl -F "files[$BRANCH_NAME/bonita-web/distrib/resources.pot]=@$BUILD_DIR/resources.pot"  \
      -F "export_patterns[$BRANCH_NAME/bonita-web/distrib/resources.pot]=/$BRANCH_NAME/bonita-web/distrib/resources_%locale_with_underscore%.po" \
    https://api.crowdin.com/api/project/$PROJECT/update-file?key=$CROWDINKEY
-check_errors $? "Error while uploading pot file"
+if [ $? -ne 0 ]
+then
+  echo "Error while updating pot file: $?"
+  curl -F "files[$BRANCH_NAME/bonita-web/distrib/resources.pot]=@$BUILD_DIR/resources.pot"  \
+       -F "export_patterns[$BRANCH_NAME/bonita-web/distrib/resources.pot]=/$BRANCH_NAME/bonita-web/distrib/resources_%locale_with_underscore%.po" \
+     https://api.crowdin.com/api/project/$PROJECT/add-file?key=$CROWDINKEY
+     if [ $? -ne 0 ]
+     then
+       echo "Error while adding pot file: $?"
+       exit $?
+     fi
+fi
