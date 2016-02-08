@@ -9,6 +9,7 @@
     <artifactId>resources</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>looknfeel</module>
         <module>example</module>
         <module>groovy-example</module>
         <module>html-example</module>
