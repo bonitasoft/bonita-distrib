@@ -8,9 +8,6 @@
 		<fileSet>
 			<directory>${project.build.directory}/less</directory>
 			<outputDirectory></outputDirectory>
-			<includes>
-				<include>**/*.less</include>
-			</includes>
 		</fileSet>
 	</fileSets>
 </assembly>
