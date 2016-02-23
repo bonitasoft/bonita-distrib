@@ -25,7 +25,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.bonitasoft.console</groupId>
+                                    <groupId>org.bonitasoft.distrib</groupId>
                                     <artifactId>looknfeel</artifactId>
                                     <version>${project.version}</version>
                                     <classifier>less</classifier>
@@ -34,7 +34,7 @@
                                     <destFileName>bonita-portal-theme.zip</destFileName>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>org.bonitasoft.console</groupId>
+                                    <groupId>org.bonitasoft.distrib</groupId>
                                     <artifactId>looknfeel</artifactId>
                                     <version>${project.version}</version>
                                     <classifier>css</classifier>
