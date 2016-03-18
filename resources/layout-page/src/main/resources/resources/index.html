@@ -44,7 +44,7 @@
 </script> 
    <script>angular.module('bonitasoft.ui.services').factory('dataModelFactory', function() {
   var resources = {};
-  resources['layout-page'] =  {"AuthorizeApplicationAPI":{"type":"url","value":"../API/living/application","exposed":false},"AuthorizeApplicationPageAPI":{"type":"url","value":"../API/living/application-page","exposed":false},"AuthorizeApplicationMenuAPI":{"type":"url","value":"../API/living/application-menu","exposed":false},"targetedPageUrl":{"type":"constant","value":"","exposed":false}};
+  resources['layout-page'] =  {"targetedPageUrl":{"type":"constant","value":"","exposed":false}};
   return {
     get: function(uuid) {
       return resources[uuid];
@@ -63,8 +63,8 @@
 </script> 
    <script>angular.module('bonitasoft.ui.services').factory('propertyValuesFactory', function() {
   var resources = {};
-  resources['c49a2cd8-39d5-4bef-a264-c0e18ed3ba3c'] =  {"cssClasses":{"type":"constant","value":""},"hidden":{"type":"constant","value":false},"targetUrl":{"type":"variable","value":"targetedPageUrl"},"sticky":{"type":"constant","value":true}};
   resources['9cd7cd7e-d548-410a-aaa3-4318f9280818'] =  {"cssClasses":{"type":"constant","value":""},"hidden":{"type":"constant","value":false},"src":{"type":"expression","value":"targetedPageUrl"},"contentHeight":{"type":"constant","value":"700px;"}};
+  resources['c49a2cd8-39d5-4bef-a264-c0e18ed3ba3c'] =  {"cssClasses":{"type":"constant","value":""},"hidden":{"type":"constant","value":false},"targetUrl":{"type":"variable","value":"targetedPageUrl"},"sticky":{"type":"constant","value":true}};
   return {
     get: function(uuid) {
       return resources[uuid];
