@@ -1,27 +1,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<groupId>org.bonitasoft.distrib</groupId>
-		<artifactId>deploy-parent</artifactId>
-		<version>7.3.0-SNAPSHOT</version>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.bonitasoft.distrib</groupId>
-	<artifactId>deploy-distrib</artifactId>
-	<name>deploy distrib</name>
+    <parent>
+        <groupId>org.bonitasoft.distrib</groupId>
+        <artifactId>deploy-parent</artifactId>
+        <version>7.3.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.bonitasoft.distrib</groupId>
+    <artifactId>deploy-distrib</artifactId>
+    <name>deploy distrib</name>
 
-	<packaging>jar</packaging>
+    <packaging>jar</packaging>
 
-	<properties>
-		<folderToZip>${project.build.directory}/${distrib.zipname}</folderToZip>
-		<bonita_home_folder>${folderToZip}/bonita_home-${bonita.engine.version}</bonita_home_folder>
-		<tomcat_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_folder>
-		<jboss_folder>${folderToZip}/Jboss-${jboss.version}</jboss_folder>
-		<migration_folder>${folderToZip}/migration</migration_folder>
-		<bitronix.version>2.1.3</bitronix.version>
-		<jboss-h2-mbean.version>1.1.0</jboss-h2-mbean.version>
-	</properties>
+    <properties>
+        <folderToZip>${project.build.directory}/${distrib.zipname}</folderToZip>
+        <bonita_home_folder>${folderToZip}/bonita_home-${bonita.engine.version}</bonita_home_folder>
+        <platform_setup_folder>${folderToZip}/platform-setup-${bonita.engine.version}</platform_setup_folder>
+        <tomcat_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_folder>
+        <jboss_folder>${folderToZip}/Jboss-${jboss.version}</jboss_folder>
+        <migration_folder>${folderToZip}/migration</migration_folder>
+        <bitronix.version>2.1.3</bitronix.version>
+        <jboss-h2-mbean.version>1.1.0</jboss-h2-mbean.version>
+    </properties>
 
-	<dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.bonitasoft.tomcat</groupId>
             <artifactId>bonita-tomcat-h2-listener</artifactId>
@@ -31,6 +32,12 @@
             <groupId>org.bonitasoft.jboss</groupId>
             <artifactId>bonita-jboss-h2-mbean</artifactId>
             <version>${jboss-h2-mbean.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bonitasoft.platform</groupId>
+            <artifactId>platform-resources</artifactId>
+            <version>${bonita.engine.version}</version>
+            <type>zip</type>
         </dependency>
         <!-- Transaction manager dependencies -->
         <dependency>
@@ -58,99 +65,99 @@
             <artifactId>btm-tomcat55-lifecycle</artifactId>
             <version>${bitronix.version}</version>
         </dependency>
-	</dependencies>
-   
-  	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<!-- Unpack all in one webapps -->
-					<execution>
-						<id>unpack-all-in-one-with-server</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.bonitasoft.distrib</groupId>
-									<artifactId>all-in-one-with-server</artifactId>
-									<version>${project.version}</version>
-									<type>war</type>
-									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}/war-with-server</outputDirectory>
-                  					<destFileName>bonita.war</destFileName>
-								</artifactItem>
-								<artifactItem>
-									<groupId>org.bonitasoft.distrib</groupId>
-									<artifactId>deploy-ear-all-in-one</artifactId>
-									<version>${project.version}</version>
-									<type>ear</type>
-									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}/ear-with-server</outputDirectory>
-                  					<destFileName>bonita-all-in-one-${bonita.engine.version}.ear</destFileName>
-								</artifactItem>
-							</artifactItems>
-						</configuration>
-					</execution>
-					<!-- retrieve common libs -->
-					<execution>
-						<id>copy-common-libs</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.bonitasoft.tomcat</groupId>
-									<artifactId>bonita-tomcat-h2-listener</artifactId>
-								</artifactItem>
-								<artifactItem>
-									<groupId>com.h2database</groupId>
-									<artifactId>h2</artifactId>
-									<version>${h2.version}</version>
-								</artifactItem>
-								<artifactItem>
-									<groupId>org.bonitasoft.web.tooling</groupId>
-									<artifactId>bonita-tomcat-valve</artifactId>
-									<!-- valve version is the same as tomcat.version to assure that valve corresponding to tomcat 
-									       was a bad idea , keep old version-->
-									<version>${valve.version}</version>
-								</artifactItem>
-							</artifactItems>
-							<outputDirectory>${project.build.directory}/common-libs</outputDirectory>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-jboss-libs</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.bonitasoft.jboss</groupId>
-									<artifactId>bonita-jboss-h2-mbean</artifactId>
-								</artifactItem>
-							</artifactItems>
-                                <outputDirectory>${jboss_folder}/standalone/deployments/h2.sar</outputDirectory>
-						</configuration>
-					</execution>
-					<!-- retrieve Tomcat transaction libs -->
-					<execution>
-						<id>copy-tomcat-transaction-libs</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-                                <!-- http://docs.codehaus.org/display/BTM/Tomcat2x#Tomcat2x-Step1CopytheBTMjars -->   
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <!-- Unpack all in one webapps -->
+                    <execution>
+                        <id>unpack-all-in-one-with-server</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.distrib</groupId>
+                                    <artifactId>all-in-one-with-server</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/war-with-server</outputDirectory>
+                                    <destFileName>bonita.war</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.distrib</groupId>
+                                    <artifactId>deploy-ear-all-in-one</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>ear</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/ear-with-server</outputDirectory>
+                                    <destFileName>bonita-all-in-one-${bonita.engine.version}.ear</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <!-- retrieve common libs -->
+                    <execution>
+                        <id>copy-common-libs</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.tomcat</groupId>
+                                    <artifactId>bonita-tomcat-h2-listener</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.h2database</groupId>
+                                    <artifactId>h2</artifactId>
+                                    <version>${h2.version}</version>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.web.tooling</groupId>
+                                    <artifactId>bonita-tomcat-valve</artifactId>
+                                    <!-- valve version is the same as tomcat.version to assure that valve corresponding to tomcat
+                                           was a bad idea , keep old version-->
+                                    <version>${valve.version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/common-libs</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-jboss-libs</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.jboss</groupId>
+                                    <artifactId>bonita-jboss-h2-mbean</artifactId>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${jboss_folder}/standalone/deployments/h2.sar</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- retrieve Tomcat transaction libs -->
+                    <execution>
+                        <id>copy-tomcat-transaction-libs</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <!-- http://docs.codehaus.org/display/BTM/Tomcat2x#Tomcat2x-Step1CopytheBTMjars -->
                                 <artifactItem>
                                     <groupId>org.codehaus.btm</groupId>
                                     <artifactId>btm</artifactId>
@@ -171,134 +178,159 @@
                                     <groupId>org.codehaus.btm</groupId>
                                     <artifactId>btm-tomcat55-lifecycle</artifactId>
                                 </artifactItem>
-							</artifactItems>
-							<outputDirectory>
-								${project.build.directory}/tomcat-transaction-libs
-							</outputDirectory>
-						</configuration>
-					</execution>
-					<!-- Unpack Bonita_home and external files for configuration-->
-					<execution>
-						<id>unpack-bonita_home</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>unpack</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.bonitasoft.console</groupId>
-									<artifactId>bonita-home</artifactId>
+                            </artifactItems>
+                            <outputDirectory>
+                                ${project.build.directory}/tomcat-transaction-libs
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- Unpack Bonita_home and external files for configuration-->
+                    <execution>
+                        <id>unpack-bonita_home</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>bonita-home</artifactId>
                                     <classifier>full</classifier>
-									<type>zip</type>
-									<overWrite>true</overWrite>
-								</artifactItem>
-							</artifactItems>
-							<outputDirectory>
-								${project.build.directory}/bonita-home
-							</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>use-bonita-engine-deploy</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>						
-						<configuration>
-							<tasks>
-							<!-- bonita home -->
-								<copy todir="${bonita_home_folder}">
-									<fileset dir="${project.build.directory}/bonita-home/bonita-home" />
-								</copy>
-							<!-- Tomcat -->
-								<!-- Copy all resources from project to Tomcat -->
-								<copy overwrite="true" todir="${tomcat_folder}">
-									<fileset dir="${project.basedir}/src/main/resources/tomcat" />
-								</copy>
-								<!-- Copy webapps-->
-								<copy todir="${tomcat_folder}/webapps" file="${project.build.directory}/war-with-server/bonita.war" />
-								<!-- lib common libs -->
-								<copy todir="${tomcat_folder}/lib">
-									<fileset dir="${project.build.directory}/common-libs" />
-								</copy>
-								<!-- Tomcat transaction libs -->
-								<copy todir="${tomcat_folder}/lib">
-									<fileset dir="${project.build.directory}/tomcat-transaction-libs">
-										<exclude name="bonita-jboss-h2-mbean-*"/>
-									</fileset>
-								</copy>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>
+                                ${project.build.directory}/bonita-home
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- unpack platform-resources -->
+                    <execution>
+                        <id>unpack-platform_setup</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.platform</groupId>
+                                    <artifactId>platform-resources</artifactId>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>
+                                ${project.build.directory}/platform-setup
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>use-bonita-engine-deploy</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <!-- bonita home -->
+                                <copy todir="${bonita_home_folder}">
+                                    <fileset dir="${project.build.directory}/bonita-home/bonita-home" />
+                                </copy>
+                                <!-- platform setup folder -->
+                                <copy todir="${platform_setup_folder}">
+                                    <fileset dir="${project.build.directory}/platform-setup/platform-resources" />
+                                </copy>
+                                <!-- Tomcat -->
+                                <!-- Copy all resources from project to Tomcat -->
+                                <copy overwrite="true" todir="${tomcat_folder}">
+                                    <fileset dir="${project.basedir}/src/main/resources/tomcat" />
+                                </copy>
+                                <!-- Copy webapps-->
+                                <copy todir="${tomcat_folder}/webapps" file="${project.build.directory}/war-with-server/bonita.war" />
+                                <!-- lib common libs -->
+                                <copy todir="${tomcat_folder}/lib">
+                                    <fileset dir="${project.build.directory}/common-libs" />
+                                </copy>
+                                <!-- Tomcat transaction libs -->
+                                <copy todir="${tomcat_folder}/lib">
+                                    <fileset dir="${project.build.directory}/tomcat-transaction-libs">
+                                        <exclude name="bonita-jboss-h2-mbean-*" />
+                                    </fileset>
+                                </copy>
 
-							<!-- Jboss -->
-								<!-- Copy all resources from project to Jboss -->
-								<copy overwrite="true" todir="${jboss_folder}">
-									<fileset dir="${project.basedir}/src/main/resources/jboss" />
-								</copy>
-								<replace file="${jboss_folder}/modules/com/h2database/h2/main/module.xml" token="#h2.version#"
-                                                 value="${h2.version}"/>
+                                <!-- Jboss -->
+                                <!-- Copy all resources from project to Jboss -->
+                                <copy overwrite="true" todir="${jboss_folder}">
+                                    <fileset dir="${project.basedir}/src/main/resources/jboss" />
+                                </copy>
+                                <replace file="${jboss_folder}/modules/com/h2database/h2/main/module.xml" token="#h2.version#"
+                                         value="${h2.version}" />
                                 <replace file="${jboss_folder}/standalone/deployments/h2.sar/META-INF/jboss-deployment-structure.xml" token="#jboss-h2-mbean.version#"
-                                                 value="${jboss-h2-mbean.version}"/>
-                                                 
-								<!-- Copy ear-->
-								<copy todir="${jboss_folder}/standalone/deployments" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
-								
-								<!-- Copy the libs  -->
-								<copy todir="${jboss_folder}/standalone/deployments/h2.sar">
-									<fileset dir="${project.build.directory}/common-libs">
-										<include name="bonita-jboss-h2-mbean-*"/>
-									</fileset>
-								</copy>
-								<touch file="${jboss_folder}/standalone/deployments/h2.sar.dodeploy"/>
-								<copy todir="${jboss_folder}/modules/com/h2database/h2/main">
-									<fileset dir="${project.build.directory}/common-libs">
-										<include name="h2-*"/>
-									</fileset>
-								</copy>
-								
-								<copy todir="${jboss_folder}/modules/org/bonitasoft/bonita-tomcat-valve/main">
-									<fileset dir="${project.build.directory}/common-libs">
-										<include name="bonita-tomcat-valve-*"/>
-									</fileset>
-								</copy>
+                                         value="${jboss-h2-mbean.version}" />
 
-								<!-- Copy resources -->
-								<copy todir="${folderToZip}/license">
-									<fileset dir="${project.basedir}/src/main/resources/license" />
-								</copy>
-								<copy todir="${folderToZip}" file="${project.basedir}/src/main/resources/README.TXT" />
-								<replace file="${folderToZip}/README.TXT" token="XXX_VERSION_XXX" value="${project.version}" />
-							</tasks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>generate-package</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-							<finalName>${distrib.zipname}</finalName>
-							<appendAssemblyId>false</appendAssemblyId>
-							<descriptors>
-								<descriptor>assembly.xml</descriptor>
-							</descriptors>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+                                <!-- Copy ear-->
+                                <copy todir="${jboss_folder}/standalone/deployments" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
+
+                                <!-- Copy the libs  -->
+                                <copy todir="${jboss_folder}/standalone/deployments/h2.sar">
+                                    <fileset dir="${project.build.directory}/common-libs">
+                                        <include name="bonita-jboss-h2-mbean-*" />
+                                    </fileset>
+                                </copy>
+                                <touch file="${jboss_folder}/standalone/deployments/h2.sar.dodeploy" />
+                                <copy todir="${jboss_folder}/modules/com/h2database/h2/main">
+                                    <fileset dir="${project.build.directory}/common-libs">
+                                        <include name="h2-*" />
+                                    </fileset>
+                                </copy>
+
+                                <copy todir="${jboss_folder}/modules/org/bonitasoft/bonita-tomcat-valve/main">
+                                    <fileset dir="${project.build.directory}/common-libs">
+                                        <include name="bonita-tomcat-valve-*" />
+                                    </fileset>
+                                </copy>
+
+                                <!-- Copy resources -->
+                                <copy todir="${folderToZip}/license">
+                                    <fileset dir="${project.basedir}/src/main/resources/license" />
+                                </copy>
+                                <copy todir="${folderToZip}" file="${project.basedir}/src/main/resources/README.TXT" />
+                                <replace file="${folderToZip}/README.TXT" token="XXX_VERSION_XXX" value="${project.version}" />
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+                            <finalName>${distrib.zipname}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
