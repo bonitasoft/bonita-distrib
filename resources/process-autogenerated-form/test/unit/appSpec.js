@@ -108,7 +108,8 @@ describe('Process auto generated form', function () {
           message: 'success',
           status: responseStatus,
           action: 'Start process',
-          targetUrlOnSuccess: '/bonita'
+          targetUrlOnSuccess: '/bonita',
+          dataFromSuccess: {caseId:1}
         }), '*');
     });
 
@@ -127,7 +128,8 @@ describe('Process auto generated form', function () {
           message: 'error',
           status: responseStatus,
           action: 'Start process',
-          targetUrlOnSuccess: '/bonita'
+          targetUrlOnSuccess: '/bonita',
+          dataFromError: 'FileTooBigError'
         }), '*');
     });
 
