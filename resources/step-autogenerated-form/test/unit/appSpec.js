@@ -108,7 +108,8 @@ describe('Step auto generated form', function () {
           message: 'success',
           status: responseStatus,
           action: 'Submit task',
-          targetUrlOnSuccess: '/bonita'
+          targetUrlOnSuccess: '/bonita',
+          dataFromSuccess: ''
         }), '*');
     });
 
@@ -127,7 +128,8 @@ describe('Step auto generated form', function () {
           message: 'error',
           status: responseStatus,
           action: 'Submit task',
-          targetUrlOnSuccess: '/bonita'
+          targetUrlOnSuccess: '/bonita',
+          dataFromError: 'FileTooBigError'
         }), '*');
     });
 

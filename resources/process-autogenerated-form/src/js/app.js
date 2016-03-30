@@ -90,7 +90,7 @@
         var onPostSuccess = function(response) {
             //if the form is displayed in an iframe
             if ($window.parent !== $window.self) {
-                notifyParentFrame('success', response.status);
+                notifyParentFrame('success', response.status, response.data, null);
                 //Add a confirmation message here in case the parent frame doesn't catch the postMessage
             } else {
                 $window.location.assign('/bonita');
@@ -99,18 +99,24 @@
 
         var onPostError = function(response) {
             if ($window.parent !== $window.self) {
-                notifyParentFrame('error', response.status);
+                notifyParentFrame('error', response.status, null, response.data.message);
             }
             $scope.message = response.data.explanations ? response.data.explanations : response.data.message;
         }
         
-        function notifyParentFrame(message, status) {
+        function notifyParentFrame(message, status, dataFromSuccess, dataFromError) {
             var dataToSend = {
                 message:message,
                 status:status,
                 action:'Start process',
                 targetUrlOnSuccess:'/bonita'
             };
+            if (dataFromSuccess) {
+            	dataToSend.dataFromSuccess = dataFromSuccess;
+            }
+            if (dataFromError) {
+            	dataToSend.dataFromError = dataFromError;
+            }
             $window.parent.postMessage(JSON.stringify(dataToSend), '*');
         }
 
