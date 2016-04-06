@@ -36,7 +36,7 @@
         <spring.module.relative.path>org/springframework/spring/main</spring.module.relative.path>
         <jboss.spring.module.dir>${jboss.modules.dir}/${spring.module.relative.path}</jboss.spring.module.dir>
         <jboss.download.url>http://download.jboss.org/jbossas/${jboss.version.minor}/jboss-as-${jboss.version}/${jboss.zip.name}.zip</jboss.download.url>
-        <spring.version>3.1.2.RELEASE</spring.version>
+        <spring.version>4.2.4.RELEASE</spring.version>
     </properties>
 
     <build>
@@ -216,13 +216,6 @@
                                 <artifactItem>
                                     <groupId>org.springframework</groupId>
                                     <artifactId>spring-aop</artifactId>
-                                    <version>${spring.version}</version>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${jboss.spring.module.dir}</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.springframework</groupId>
-                                    <artifactId>spring-asm</artifactId>
                                     <version>${spring.version}</version>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${jboss.spring.module.dir}</outputDirectory>
