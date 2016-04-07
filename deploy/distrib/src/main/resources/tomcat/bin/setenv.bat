@@ -5,6 +5,7 @@ rem Set some JVM system properties required by Bonita BPM
 rem Bonita home folder (configuration files, temporary folder...) location
 set BONITA_HOME="-Dbonita.home=%CATALINA_HOME%\bonita"
 set PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=%CATALINA_HOME%\platform-setup"
+set H2_DATABASE_DIR="-Dorg.bonitasoft.h2.database.dir=%CATALINA_HOME%\database"
 
 rem Define the RDMBS vendor use by Bonita Engine to store data
 set DB_OPTS="-Dsysprop.bonita.db.vendor=h2"
@@ -20,6 +21,6 @@ rem Optionnal JAAS configuration. Usually used when delgating authentication to 
 rem set SECURITY_OPTS="-Djava.security.auth.login.config=%CATALINA_HOME%\conf\jaas-standard.cfg"
 
 rem Pass the JVM system properties to Tomcat JVM using CATALINA_OPTS variable
-set CATALINA_OPTS=%CATALINA_OPTS% %BONITA_HOME% %PLATFORM_SETUP% %DB_OPTS% %BDM_DB_OPTS% %BTM_OPTS% -Dfile.encoding=UTF-8 -Xshare:auto -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError
+set CATALINA_OPTS=%CATALINA_OPTS% %BONITA_HOME% %PLATFORM_SETUP% %H2_DATABASE_DIR% %DB_OPTS% %BDM_DB_OPTS% %BTM_OPTS% -Dfile.encoding=UTF-8 -Xshare:auto -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError
 
 set CATALINA_PID=%CATALINA_BASE%\catalina.pid
