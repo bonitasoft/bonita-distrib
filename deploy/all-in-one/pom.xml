@@ -12,10 +12,10 @@
     <packaging>war</packaging>
 
     <properties>
-        <enable.engine.http.api.start/>
-        <enable.engine.http.api.end/>
-        <enable.engine.listener.start/>
-        <enable.engine.listener.end/>
+        <enable.engine.http.api.start />
+        <enable.engine.http.api.end />
+        <enable.engine.listener.start />
+        <enable.engine.listener.end />
     </properties>
 
     <build>
@@ -93,6 +93,14 @@
                                     <outputDirectory>
                                         ${project.build.directory}/${project.artifactId}-${project.version}-sources
                                     </outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>i18n</artifactId>
+                                    <version>${bonita.web.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/classes/i18n</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
