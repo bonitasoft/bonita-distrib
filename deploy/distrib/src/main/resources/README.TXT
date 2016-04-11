@@ -58,14 +58,10 @@ Contents of this package:
 |   `-- welcome-content
 |       `-- favicon.ico
 |    
-|-- bonita_home-<engine.version>            			BONITA_HOME folder, contains all Bonita Open Solution configuration files
-|   |-- client
-|   `-- server
+|-- platform-setup							            Platform creation/initialization files (Database scripts + configuration files)
 |-- license                                 			License files
 `-- README.txt                              			You are here!
 
 In order to install bonita you need to copy into the root folder of your application server:
 - the content of the directory matching it
-- create a directory named "bonita"
-- copy the content of bonita_home-<engine.version> in it
-- for Jboss update the file bonita/server/platform/conf/bonita-platform.xml to remove every occurrence of "java:comp/env/"
+- for Jboss update the file bonita-platform-community.properties and bonita-tenant-community.properties to remove every occurrence of "java:comp/env/"
