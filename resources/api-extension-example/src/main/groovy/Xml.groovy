@@ -1,14 +1,14 @@
-import org.bonitasoft.console.common.server.page.*
+import org.bonitasoft.web.extension.rest.*
 
 import javax.servlet.http.HttpServletRequest
 
 public class Xml implements RestApiController {
 
-    @Override
-    RestApiResponse doHandle(HttpServletRequest request, PageResourceProvider pageResourceProvider, PageContext pageContext, RestApiResponseBuilder apiResponseBuilder, RestApiUtil restApiUtil) {
+   @Override
+    RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder apiResponseBuilder, RestAPIContext context) {
 
         def String xmlResponse
-        pageResourceProvider.getResourceAsStream("xml/demo.xml").withStream { InputStream s ->
+        context.resourceProvider.getResourceAsStream("xml/demo.xml").withStream { InputStream s ->
             xmlResponse = s.getText()
         }
 

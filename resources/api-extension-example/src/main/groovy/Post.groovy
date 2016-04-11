@@ -1,13 +1,12 @@
 import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper
-import org.bonitasoft.console.common.server.page.*
-
+import org.bonitasoft.web.extension.rest.*
 import javax.servlet.http.HttpServletRequest
 
 public class Post implements RestApiController {
 
     @Override
-    RestApiResponse doHandle(HttpServletRequest request, PageResourceProvider pageResourceProvider, PageContext pageContext, RestApiResponseBuilder apiResponseBuilder, RestApiUtil restApiUtil) {
+    RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder apiResponseBuilder, RestAPIContext context) {
         String joinRequest = request.reader.readLines().join("\n")
         Map<String, String> response = [:]
         def slurper = new JsonSlurper()
