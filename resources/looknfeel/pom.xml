@@ -49,7 +49,18 @@
                                     <classifier>less</classifier>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
+                                    <excludes>skin/**</excludes>
                                     <outputDirectory>${project.build.directory}/less/skin/bootstrap/portal</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.web</groupId>
+                                    <artifactId>bonita-portal-js</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>less</classifier>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <includes>skin/fonts/*.*</includes>
+                                    <outputDirectory>${project.build.directory}/less</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.web</groupId>
