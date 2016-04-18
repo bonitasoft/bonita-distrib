@@ -3,7 +3,7 @@ import groovy.json.JsonBuilder
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-import org.bonitasoft.console.common.server.page.*
+import org.bonitasoft.web.extension.rest.*
 
 import wslite.soap.SOAPClient
 import wslite.soap.SOAPResponse
@@ -11,7 +11,8 @@ import wslite.soap.SOAPResponse
 
 class Soap implements RestApiController{
 
-    RestApiResponse doHandle(HttpServletRequest request, PageResourceProvider pageResourceProvider, PageContext pageContext, RestApiResponseBuilder apiResponseBuilder, RestApiUtil restApiUtil) {
+    @Override
+    RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder apiResponseBuilder, RestAPIContext context) {
         String yearParam = request.getParameter "year"
         Map<String, String> result = [:]
         if (yearParam == null) {
