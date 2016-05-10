@@ -1,1 +1,102 @@
-{"designerVersion":"1.2.9","favorite":false,"id":"layout-page","name":"LivingApplicationLayoutPage","type":"layout","lastUpdate":1458310285048,"rows":[[{"type":"component","dimension":{"lg":12,"md":12,"sm":12,"xs":12},"propertyValues":{"cssClasses":{"type":"constant","value":""},"hidden":{"type":"constant","value":false},"targetUrl":{"type":"variable","value":"targetedPageUrl"},"sticky":{"type":"constant","value":true}},"reference":"c49a2cd8-39d5-4bef-a264-c0e18ed3ba3c","id":"customLivingApplicationMenu"}],[{"type":"component","dimension":{"lg":12,"md":12,"sm":12,"xs":12},"propertyValues":{"cssClasses":{"type":"constant","value":""},"hidden":{"type":"constant","value":false},"src":{"type":"expression","value":"targetedPageUrl"},"contentHeight":{"type":"constant","value":"700px;"}},"reference":"9cd7cd7e-d548-410a-aaa3-4318f9280818","id":"customLivingApplicationIFrame"}]],"assets":[{"id":"27b2007f-d336-4f20-b640-5810f7a8af54","name":"layout.js","type":"js","order":0,"active":true,"external":false}],"inactiveAssets":[],"data":{"targetedPageUrl":{"type":"constant","value":"","exposed":false}}}
+{
+  "designerVersion": "1.2.9",
+  "favorite": false,
+  "id": "layout-page",
+  "name": "LivingApplicationLayoutPage",
+  "type": "layout",
+  "lastUpdate": 1462882697788,
+  "rows": [
+    [
+      {
+        "type": "component",
+        "dimension": {
+          "lg": 12,
+          "md": 12,
+          "sm": 12,
+          "xs": 12
+        },
+        "propertyValues": {
+          "cssClasses": {
+            "type": "constant",
+            "value": ""
+          },
+          "hidden": {
+            "type": "constant",
+            "value": false
+          },
+          "targetUrl": {
+            "type": "variable",
+            "value": "targetedPageUrl"
+          },
+          "sticky": {
+            "type": "constant",
+            "value": true
+          }
+        },
+        "reference": "c49a2cd8-39d5-4bef-a264-c0e18ed3ba3c",
+        "id": "customLivingApplicationMenu"
+      }
+    ],
+    [
+      {
+        "type": "component",
+        "dimension": {
+          "lg": 12,
+          "md": 12,
+          "sm": 12,
+          "xs": 12
+        },
+        "propertyValues": {
+          "cssClasses": {
+            "type": "constant",
+            "value": ""
+          },
+          "hidden": {
+            "type": "constant",
+            "value": false
+          },
+          "src": {
+            "type": "expression",
+            "value": "targetedPageUrl"
+          },
+          "contentHeight": {
+            "type": "constant",
+            "value": "700px;"
+          },
+          "resizeToContent": {
+            "type": "constant",
+            "value": false
+          }
+        },
+        "reference": "9cd7cd7e-d548-410a-aaa3-4318f9280818",
+        "id": "customLivingApplicationIFrame"
+      }
+    ]
+  ],
+  "assets": [
+    {
+      "id": "2007621b-afa8-48ec-846f-f4d78ce90b8a",
+      "name": "layout.css",
+      "type": "css",
+      "order": 1,
+      "active": true,
+      "external": false
+    },
+    {
+      "id": "27b2007f-d336-4f20-b640-5810f7a8af54",
+      "name": "layout.js",
+      "type": "js",
+      "order": 0,
+      "active": true,
+      "external": false
+    }
+  ],
+  "inactiveAssets": [],
+  "data": {
+    "targetedPageUrl": {
+      "type": "constant",
+      "value": "",
+      "exposed": false
+    }
+  }
+}

@@ -1,0 +1,20 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+div.container-fluid, div.container-fluid div.row:nth-child(2), div.container-fluid div.row:nth-child(2) div {
+  height: 100%;
+}
+
+iframe {
+  min-height: 100%;
+}
+
+.component {
+  margin: 0;
+  padding: 0;
+}

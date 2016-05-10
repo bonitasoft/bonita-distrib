@@ -14,7 +14,7 @@
     ctrl.pageToken =  pathArray[pathArray.length-2];
     
     this.isSticky = function() {
-        $window.document.body.style.paddingTop = $scope.properties.sticky ? "70px": "0px";
+        $window.document.body.style.paddingTop = $scope.properties.sticky ? "50px": "0px";
         return $scope.properties.sticky;
     }
 
