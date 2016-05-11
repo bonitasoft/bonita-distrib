@@ -14,7 +14,7 @@
     <properties>
         <folderToZip>${project.build.directory}/${distrib.zipname}</folderToZip>
         <bonita_home_folder>${folderToZip}/bonita_home-${bonita.engine.version}</bonita_home_folder>
-        <platform_setup_folder>${folderToZip}/platform-setup-${bonita.engine.version}</platform_setup_folder>
+        <platform_setup_folder>${folderToZip}/platform-setup</platform_setup_folder>
         <tomcat_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_folder>
         <jboss_folder>${folderToZip}/Jboss-${jboss.version}</jboss_folder>
         <migration_folder>${folderToZip}/migration</migration_folder>
@@ -35,7 +35,7 @@
         </dependency>
         <dependency>
             <groupId>org.bonitasoft.platform</groupId>
-            <artifactId>platform-resources</artifactId>
+            <artifactId>platform-setup</artifactId>
             <version>${bonita.engine.version}</version>
             <type>zip</type>
         </dependency>
@@ -217,7 +217,7 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.platform</groupId>
-                                    <artifactId>platform-resources</artifactId>
+                                    <artifactId>platform-setup</artifactId>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                 </artifactItem>
@@ -247,7 +247,7 @@
                                 </copy>
                                 <!-- platform setup folder -->
                                 <copy todir="${platform_setup_folder}">
-                                    <fileset dir="${project.build.directory}/platform-setup/platform-resources" />
+                                    <fileset dir="${project.build.directory}/platform-setup" />
                                 </copy>
                                 <!-- Tomcat -->
                                 <!-- Copy all resources from project to Tomcat -->
