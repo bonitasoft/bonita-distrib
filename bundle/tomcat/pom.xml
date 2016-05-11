@@ -17,7 +17,7 @@
         <tomcat.bos.home.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</tomcat.bos.home.dir>
         <tomcat.home.dir>${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}</tomcat.home.dir>
         <bonita.home.dir>${tomcat.home.dir}/bonita</bonita.home.dir>
-        <platform.setup.folder>${tomcat.home.dir}/platform-setup</platform.setup.folder>
+        <platform.setup.folder>${tomcat.home.dir}/setup</platform.setup.folder>
         <bonita.home.server.default.conf.dir>${bonita.home.dir}/server/default/conf</bonita.home.server.default.conf.dir>
         <bonita.home.client.dir>${bonita.home.dir}/client/</bonita.home.client.dir>
         <tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
@@ -98,7 +98,7 @@
                                     </fileset>
                                 </copy>
                                 <copy overwrite="true" todir="${platform.setup.folder}">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/platform-setup-${bonita.engine.version}">
+                                    <fileset dir="${project.build.directory}/${distrib.zipname}/platform-setup">
                                         <include name="**/*" />
                                     </fileset>
                                 </copy>
