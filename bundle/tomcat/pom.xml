@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>bundle-parent</artifactId>
         <groupId>org.bonitasoft.distrib</groupId>
         <version>7.3.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.bonitasoft.distrib</groupId>
+
     <artifactId>bundle-tomcat</artifactId>
     <name>tomcat bundle</name>
     <packaging>pom</packaging>
@@ -18,8 +18,6 @@
         <tomcat.home.dir>${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}</tomcat.home.dir>
         <bonita.home.dir>${tomcat.home.dir}/bonita</bonita.home.dir>
         <platform.setup.folder>${tomcat.home.dir}/setup</platform.setup.folder>
-        <bonita.home.server.default.conf.dir>${bonita.home.dir}/server/default/conf</bonita.home.server.default.conf.dir>
-        <bonita.home.client.dir>${bonita.home.dir}/client/</bonita.home.client.dir>
         <tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
         <tomcat.webapps.dir>${tomcat.home.dir}/webapps</tomcat.webapps.dir>
         <tomcat.conf.dir>${tomcat.home.dir}/conf</tomcat.conf.dir>
