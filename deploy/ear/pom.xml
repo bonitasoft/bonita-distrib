@@ -30,11 +30,6 @@
 			<version>${bonita.engine.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.bonitasoft.engine</groupId>
-			<artifactId>bonita-client</artifactId>
-			<version>${bonita.engine.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
@@ -77,10 +72,6 @@
 						<jarModule>
 							<groupId>org.bonitasoft.engine</groupId>
 							<artifactId>bonita-server</artifactId>
-						</jarModule>
-						<jarModule>
-							<groupId>org.bonitasoft.engine</groupId>
-							<artifactId>bonita-client</artifactId>
 						</jarModule>
 						<jarModule>
 							<groupId>org.slf4j</groupId>
