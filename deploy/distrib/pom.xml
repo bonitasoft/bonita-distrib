@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.bonitasoft.distrib</groupId>
         <artifactId>deploy-parent</artifactId>
         <version>7.3.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.bonitasoft.distrib</groupId>
+
     <artifactId>deploy-distrib</artifactId>
     <name>deploy distrib</name>
 
@@ -249,6 +249,11 @@
                                 <copy todir="${platform_setup_folder}">
                                     <fileset dir="${project.build.directory}/platform-setup" />
                                 </copy>
+                                <chmod perm="740">
+                                    <fileset dir="${platform_setup_folder}">
+                                        <include name="*.sh" />
+                                    </fileset>
+                                </chmod>
                                 <!-- Tomcat -->
                                 <!-- Copy all resources from project to Tomcat -->
                                 <copy overwrite="true" todir="${tomcat_folder}">
