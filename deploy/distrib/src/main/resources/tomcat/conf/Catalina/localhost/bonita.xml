@@ -8,7 +8,7 @@
     <!-- Configure Datasource for Bonita BPM standard database -->
     <!-- ##################################################### -->
     <Resource name="bonitaDS" auth="Container" type="javax.sql.DataSource"
-        factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/bonitaDSXA" />
+              factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/bonitaDSXA" />
 
     <!-- H2 Example -->
     <Resource name="bonitaSequenceManagerDS"
@@ -26,9 +26,9 @@
               username="sa"
               password=""
               driverClassName="org.h2.Driver"
-              url="jdbc:h2:tcp://localhost:9091/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;"/>
+              url="jdbc:h2:tcp://localhost:9091/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;" />
 
-    <!-- MySQL Example -->
+    <!-- Postgresql Example -->
     <!--
     <Resource name="bonitaSequenceManagerDS"
               auth="Container"
@@ -44,8 +44,8 @@
               logAbandoned="true"
               username="bonita"
               password="bpm"
-              driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/bonita"/>
     -->
 
     <!-- Oracle Example -->
@@ -68,26 +68,6 @@
               url="jdbc:oracle:thin:@localhost:1521:XE"/>
     -->
 
-    <!-- Postgresql Example -->
-    <!--
-    <Resource name="bonitaSequenceManagerDS"
-              auth="Container"
-              type="javax.sql.DataSource"
-              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
-              maxActive="17"
-              minIdle="5"
-              maxWait="10000"
-              initialSize="3"
-              validationQuery="SELECT 1"
-              validationInterval="30000"
-              removeAbandoned="true"
-              logAbandoned="true"
-              username="bonita"
-              password="bpm"
-              driverClassName="org.postgresql.Driver"
-              url="jdbc:postgresql://localhost:5432/bonita"/>
-    -->
-
     <!-- SQL Server Example -->
     <!--
     <Resource name="bonitaSequenceManagerDS"
@@ -108,13 +88,34 @@
               url="jdbc:sqlserver://localhost:1433;database=journal"/>
     -->
 
-   <!-- ##################################################### -->
-   <!-- Configure Business Data Datasource -->
-   <!-- ##################################################### -->
-  <Resource name="BusinessDataDS" auth="Container" type="javax.sql.DataSource"
-        factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/BusinessDataDSXA" />
+    <!-- MySQL Example -->
+    <!--
+    <Resource name="bonitaSequenceManagerDS"
+              auth="Container"
+              type="javax.sql.DataSource"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              maxActive="17"
+              minIdle="5"
+              maxWait="10000"
+              initialSize="3"
+              validationQuery="SELECT 1"
+              validationInterval="30000"
+              removeAbandoned="true"
+              logAbandoned="true"
+              username="bonita"
+              password="bpm"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+    -->
 
-  <Resource name="NotManagedBizDataDS"
+    <!-- ##################################################### -->
+    <!-- Configure Business Data Datasource -->
+    <!-- ##################################################### -->
+    <Resource name="BusinessDataDS" auth="Container" type="javax.sql.DataSource"
+              factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/BusinessDataDSXA" />
+
+    <!-- H2 Example -->
+    <Resource name="NotManagedBizDataDS"
               auth="Container"
               type="javax.sql.DataSource"
               factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
@@ -129,7 +130,7 @@
               username="sa"
               password=""
               driverClassName="org.h2.Driver"
-              url="jdbc:h2:tcp://localhost:9091/business_data.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;"/>
+              url="jdbc:h2:tcp://localhost:9091/business_data.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;" />
 
     <!-- Postgresql Example -->
     <!--
