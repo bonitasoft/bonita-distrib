@@ -73,7 +73,7 @@
                                         WEB-INF/lib/httpclient*.jar,
                                         WEB-INF/lib/httpcore*.jar,
                                         WEB-INF/lib/httpmime*.jar,
-                                        WEB-INF/lib/jackson-annotations-*.jar
+                                        WEB-INF/lib/jackson-annotations-*.jar,
                                         WEB-INF/lib/jackson-core-*.jar,
                                         WEB-INF/lib/jackson-databind-*.jar,
                                         WEB-INF/lib/slf4j-api*.jar,
