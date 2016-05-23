@@ -27,10 +27,6 @@
           "targetUrl": {
             "type": "variable",
             "value": "targetedPageUrl"
-          },
-          "sticky": {
-            "type": "constant",
-            "value": true
           }
         },
         "reference": "c49a2cd8-39d5-4bef-a264-c0e18ed3ba3c",

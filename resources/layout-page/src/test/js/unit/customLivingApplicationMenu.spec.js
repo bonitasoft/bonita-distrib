@@ -99,7 +99,6 @@ describe('Custom widget living application menu', function () {
         $httpBackend.flush();
 
         expect($scope.properties.targetUrl).toEqual('../../../portal/resource/app/myApp/home/content/?anyparam=value');
-        expect($window.document.body.style.paddingTop).toEqual("50px");
         expect($window.document.title).toEqual('My application');
 
 
