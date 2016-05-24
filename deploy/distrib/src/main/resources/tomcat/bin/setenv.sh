@@ -6,6 +6,7 @@
 BONITA_HOME="-Dbonita.home=${CATALINA_HOME}/bonita"
 PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=${CATALINA_HOME}/setup"
 H2_DATABASE_DIR="-Dorg.bonitasoft.h2.database.dir=${CATALINA_HOME}/database"
+INCIDENT_LOG_DIR="-Dorg.bonitasoft.engine.incident.folder=${CATALINA_HOME}/logs"
 
 # Define the RDMBS vendor use by Bonita Engine to store data. Valid values are: h2, postgres, sqlserver, oracle, mysql.
 DB_OPTS="-Dsysprop.bonita.db.vendor=h2"
@@ -17,11 +18,11 @@ BDM_DB_OPTS="-Dsysprop.bonita.bdm.db.vendor=h2"
 # Bitronix (JTA service added to Tomcat and required by Bonita Engine for transaction management)
 BTM_OPTS="-Dbtm.root=${CATALINA_HOME} -Dbitronix.tm.configuration=${CATALINA_HOME}/conf/bitronix-config.properties"
 
-# Optionnal JAAS configuration. Usually used when delgating authentication to LDAP / Active Directory server
+# Optional JAAS configuration. Usually used when delegating authentication to LDAP / Active Directory server
 #SECURITY_OPTS="-Djava.security.auth.login.config=${CATALINA_HOME}/conf/jaas-standard.cfg"
 
 # Pass the JVM system properties to Tomcat JVM using CATALINA_OPTS variable
-CATALINA_OPTS="${CATALINA_OPTS} ${BONITA_HOME} ${PLATFORM_SETUP} ${H2_DATABASE_DIR} ${DB_OPTS} ${BDM_DB_OPTS} ${BTM_OPTS} -Dfile.encoding=UTF-8 -Xshare:auto -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError"
+CATALINA_OPTS="${CATALINA_OPTS} ${BONITA_HOME} ${PLATFORM_SETUP} ${H2_DATABASE_DIR} ${DB_OPTS} ${BDM_DB_OPTS} ${BTM_OPTS} ${INCIDENT_LOG_DIR} -Dfile.encoding=UTF-8 -Xshare:auto -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError"
 export CATALINA_OPTS
 
 # Only set CATALINA_PID if not already set (check for empty value) by startup script (usually done by /etc/init.d/tomcat7 but not by startup.sh nor catalina.sh)
