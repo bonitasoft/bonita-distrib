@@ -13,4 +13,4 @@ if [ -d "./setup" ]; then
     testReturnCode $? "Setting up Bonita BPM platform"
 fi
 
-./bin/startup.sh
+./bin/standalone.sh

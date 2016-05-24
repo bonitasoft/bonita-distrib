@@ -7,10 +7,10 @@ set BONITA_HOME="-Dbonita.home=%CATALINA_HOME%\bonita"
 set PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=%CATALINA_HOME%\setup"
 set H2_DATABASE_DIR="-Dorg.bonitasoft.h2.database.dir=%CATALINA_HOME%\database"
 
-rem Define the RDMBS vendor use by Bonita Engine to store data
+rem Define the RDMBS vendor use by Bonita Engine to store data. Valid values are: h2, postgres, sqlserver, oracle, mysql.
 set DB_OPTS="-Dsysprop.bonita.db.vendor=h2"
 
-rem Define the RDMBS vendor use by Bonita Engine to store Business Data
+rem Define the RDMBS vendor use by Bonita Engine to store Business Data. Valid values are: h2, postgres, sqlserver, oracle, mysql.
 rem If you use different DB engines by tenants, please update directly bonita-tenant-community-custom.properties
 set BDM_DB_OPTS="-Dsysprop.bonita.bdm.db.vendor=h2"
 
