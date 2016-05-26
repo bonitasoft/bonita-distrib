@@ -13,7 +13,6 @@
 
     <properties>
         <folderToZip>${project.build.directory}/${distrib.zipname}</folderToZip>
-        <bonita_home_folder>${folderToZip}/bonita_home-${bonita.engine.version}</bonita_home_folder>
         <platform_setup_folder>${folderToZip}/platform-setup</platform_setup_folder>
         <tomcat_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_folder>
         <jboss_folder>${folderToZip}/Jboss-${jboss.version}</jboss_folder>
@@ -184,28 +183,6 @@
                             </outputDirectory>
                         </configuration>
                     </execution>
-                    <!-- Unpack Bonita_home and external files for configuration-->
-                    <execution>
-                        <id>unpack-bonita_home</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.console</groupId>
-                                    <artifactId>bonita-home</artifactId>
-                                    <classifier>full</classifier>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>
-                                ${project.build.directory}/bonita-home
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
                     <!-- unpack platform-resources -->
                     <execution>
                         <id>unpack-platform_setup</id>
@@ -241,10 +218,6 @@
                         </goals>
                         <configuration>
                             <tasks>
-                                <!-- bonita home -->
-                                <copy todir="${bonita_home_folder}">
-                                    <fileset dir="${project.build.directory}/bonita-home/bonita-home" />
-                                </copy>
                                 <!-- platform setup folder -->
                                 <copy todir="${platform_setup_folder}">
                                     <fileset dir="${project.build.directory}/platform-setup" />
