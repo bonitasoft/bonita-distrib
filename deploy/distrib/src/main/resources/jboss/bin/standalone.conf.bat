@@ -77,8 +77,7 @@ rem set "JAVA_OPTS=%JAVA_OPTS% -Dorg.apache.coyote.http11.Http11Protocol.COMPRES
 
 rem Sets some variables
 set tmp_jboss_home=%~dp0/..
-set "BONITA_HOME=-Dbonita.home="%tmp_jboss_home%/bonita""
 set "PLATFORM_SETUP=-Dorg.bonitasoft.platform.setup.folder="%tmp_jboss_home%/setup""
 set "INCIDENT_LOG_DIR=-Dorg.bonitasoft.engine.incident.folder="%tmp_jboss_home%/standalone/log""
-set "JAVA_OPTS=%JAVA_OPTS% %BONITA_HOME% %PLATFORM_SETUP% %INCIDENT_LOG_DIR% -Dfile.encoding=UTF-8"
+set "JAVA_OPTS=%JAVA_OPTS% %PLATFORM_SETUP% %INCIDENT_LOG_DIR% -Dfile.encoding=UTF-8"
 goto :eof

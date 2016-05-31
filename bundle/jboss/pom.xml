@@ -26,7 +26,6 @@
         <jboss.zip.name>jboss-as-${jboss.version}</jboss.zip.name>
         <jboss.bos.home.dir>${project.build.directory}/${zipName}</jboss.bos.home.dir>
         <jboss.home>${jboss.bos.home.dir}/${jboss.zip.name}</jboss.home>
-        <bonita.home.dir>${jboss.home}/bonita</bonita.home.dir>
         <platform.setup.folder>${jboss.home}/setup</platform.setup.folder>
         <jboss.default.dir>${jboss.home}/standalone/</jboss.default.dir>
         <jboss.deploy.dir>${jboss.default.dir}/deployments</jboss.deploy.dir>
@@ -90,11 +89,6 @@
                         </goals>
                         <configuration>
                             <tasks>
-                                <!-- Copy the bonita home -->
-                                <copy overwrite="true" todir="${bonita.home.dir}">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/bonita_home-${bonita.engine.version}" />
-                                </copy>
-
                                 <copy overwrite="true" todir="${platform.setup.folder}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/platform-setup" />
                                 </copy>

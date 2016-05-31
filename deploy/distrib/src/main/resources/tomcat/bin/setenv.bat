@@ -2,8 +2,6 @@
 
 rem Set some JVM system properties required by Bonita BPM
 
-rem Bonita home folder (configuration files, temporary folder...) location
-set BONITA_HOME="-Dbonita.home=%CATALINA_HOME%\bonita"
 set PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=%CATALINA_HOME%\setup"
 set H2_DATABASE_DIR="-Dorg.bonitasoft.h2.database.dir=%CATALINA_HOME%\database"
 set INCIDENT_LOG_DIR="-Dorg.bonitasoft.engine.incident.folder=%CATALINA_HOME%\logs"

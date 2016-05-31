@@ -16,7 +16,6 @@
         <if.task>net.sf.antcontrib.logic.IfTask</if.task>
         <tomcat.bos.home.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</tomcat.bos.home.dir>
         <tomcat.home.dir>${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}</tomcat.home.dir>
-        <bonita.home.dir>${tomcat.home.dir}/bonita</bonita.home.dir>
         <platform.setup.folder>${tomcat.home.dir}/setup</platform.setup.folder>
         <tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
         <tomcat.webapps.dir>${tomcat.home.dir}/webapps</tomcat.webapps.dir>
@@ -88,11 +87,6 @@
                                 <copy overwrite="true" todir="${tomcat.lib.dir}/bonita">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}/lib">
                                         <include name="*.jar" />
-                                    </fileset>
-                                </copy>
-                                <copy overwrite="true" todir="${bonita.home.dir}">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/bonita_home-${bonita.engine.version}">
-                                        <include name="**/*" />
                                     </fileset>
                                 </copy>
                                 <copy overwrite="true" todir="${platform.setup.folder}">
