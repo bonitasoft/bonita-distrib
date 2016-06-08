@@ -43,7 +43,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <taskdef name="if" classname="${if.task}" classpathref="maven.runtime.classpath" />
                                 <available property="tomcat.present" file="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" />
                                 <if>
@@ -54,7 +54,7 @@
                                         <get src="${tomcat.download.url}" dest="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" />
                                     </then>
                                 </if>
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                     <execution>
@@ -64,7 +64,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <unzip src="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" dest="${tomcat.bos.home.dir}">
                                     <patternset>
                                         <include name="**/*" />
@@ -73,7 +73,7 @@
                                 <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/docs" />
                                 <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/examples" />
                                 <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/host-manager" />
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                     <execution>
@@ -83,7 +83,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <copy overwrite="true" todir="${tomcat.lib.dir}/bonita">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}/lib">
                                         <include name="*.jar" />
@@ -99,7 +99,7 @@
                                         <exclude name="lib/*" />
                                     </fileset>
                                 </copy>
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                     <execution>
@@ -109,10 +109,10 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <!--Add bonita-libs to the common classpath entry -->
                                 <replace file="${tomcat.conf.dir}/catalina.properties" token="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar" value="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar,$${catalina.home}/lib/bonita,$${catalina.home}/lib/bonita/*.jar" />
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                     <execution>
@@ -122,7 +122,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <!-- copy tomcat resources -->
                                 <copy overwrite="true" todir="${tomcat.home.dir}" verbose="true">
                                     <fileset dir="${project.basedir}/src/main/resources" erroronmissingdir="false" />
@@ -133,7 +133,7 @@
                                         <include name="*.sh" />
                                     </fileset>
                                 </chmod>
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>

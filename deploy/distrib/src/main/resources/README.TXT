@@ -64,4 +64,7 @@ Contents of this package:
 
 In order to install bonita you need to copy into the root folder of your application server:
 - the content of the directory matching it
-- for Jboss update the file bonita-platform-community.properties and bonita-tenant-community.properties to remove every occurrence of "java:comp/env/"
+- for Jboss update the files `platform-setup/platform_conf/initial/platform_engine/bonita-platform-community-custom.properties`
+  and `platform-setup/platform_conf/initial/tenant_template_engine/bonita-tenant-community-custom.properties`:
+      - uncomment lines containing "java:comp/env/"
+      - remove every occurrence of "java:comp/env/" (leave the rest of the value)

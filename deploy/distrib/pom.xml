@@ -217,7 +217,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <!-- platform setup folder -->
                                 <copy todir="${platform_setup_folder}">
                                     <fileset dir="${project.build.directory}/platform-setup" />
@@ -283,7 +283,7 @@
                                 </copy>
                                 <copy todir="${folderToZip}" file="${project.basedir}/src/main/resources/README.TXT" />
                                 <replace file="${folderToZip}/README.TXT" token="XXX_VERSION_XXX" value="${project.version}" />
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>

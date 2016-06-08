@@ -51,7 +51,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <taskdef name="if" classname="${if.task}" classpathref="maven.runtime.classpath" />
                                 <available property="jboss.present" file="${jboss.zip.parent.folder}/${jboss.zip.name}.zip" />
                                 <if>
@@ -62,7 +62,7 @@
                                         <get src="${jboss.download.url}" dest="${jboss.zip.parent.folder}/${jboss.zip.name}.zip" />
                                     </then>
                                 </if>
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                     <execution>
@@ -72,13 +72,13 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <unzip src="${jboss.zip.parent.folder}/${jboss.zip.name}.zip" dest="${jboss.bos.home.dir}">
                                     <patternset>
                                         <include name="**/*" />
                                     </patternset>
                                 </unzip>
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                     <execution>
@@ -88,7 +88,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <copy overwrite="true" todir="${platform.setup.folder}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/platform-setup" />
                                 </copy>
@@ -122,7 +122,7 @@
                                 </replace>
 
 
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                     <execution>
@@ -132,7 +132,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <copy overwrite="true" todir="${jboss.home}" verbose="true">
                                     <fileset dir="${project.basedir}/src/main/resources" erroronmissingdir="false" />
                                 </copy>
@@ -141,7 +141,7 @@
                                         <include name="*.sh" />
                                     </fileset>
                                 </chmod>
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
