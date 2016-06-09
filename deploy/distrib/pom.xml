@@ -183,7 +183,7 @@
                             </outputDirectory>
                         </configuration>
                     </execution>
-                    <!-- unpack platform-resources -->
+                    <!-- unpack platform-setup -->
                     <execution>
                         <id>unpack-platform_setup</id>
                         <phase>generate-resources</phase>
@@ -217,11 +217,11 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target name="Preparing all the resources to package in the final zip file">
                                 <!-- platform setup folder -->
-                                <copy todir="${platform_setup_folder}">
+                                <move todir="${platform_setup_folder}">
                                     <fileset dir="${project.build.directory}/platform-setup" />
-                                </copy>
+                                </move>
                                 <chmod perm="740">
                                     <fileset dir="${platform_setup_folder}">
                                         <include name="*.sh" />
@@ -233,17 +233,17 @@
                                     <fileset dir="${project.basedir}/src/main/resources/tomcat" />
                                 </copy>
                                 <!-- Copy webapps-->
-                                <copy todir="${tomcat_folder}/webapps" file="${project.build.directory}/war-with-server/bonita.war" />
+                                <move todir="${tomcat_folder}/webapps" file="${project.build.directory}/war-with-server/bonita.war" />
                                 <!-- lib common libs -->
                                 <copy todir="${tomcat_folder}/lib">
                                     <fileset dir="${project.build.directory}/common-libs" />
                                 </copy>
                                 <!-- Tomcat transaction libs -->
-                                <copy todir="${tomcat_folder}/lib">
+                                <move todir="${tomcat_folder}/lib">
                                     <fileset dir="${project.build.directory}/tomcat-transaction-libs">
                                         <exclude name="bonita-jboss-h2-mbean-*" />
                                     </fileset>
-                                </copy>
+                                </move>
 
                                 <!-- Jboss -->
                                 <!-- Copy all resources from project to Jboss -->
@@ -256,26 +256,26 @@
                                          value="${jboss-h2-mbean.version}" />
 
                                 <!-- Copy ear-->
-                                <copy todir="${jboss_folder}/standalone/deployments" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
+                                <move todir="${jboss_folder}/standalone/deployments" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
 
                                 <!-- Copy the libs  -->
-                                <copy todir="${jboss_folder}/standalone/deployments/h2.sar">
+                                <move todir="${jboss_folder}/standalone/deployments/h2.sar">
                                     <fileset dir="${project.build.directory}/common-libs">
                                         <include name="bonita-jboss-h2-mbean-*" />
                                     </fileset>
-                                </copy>
+                                </move>
                                 <touch file="${jboss_folder}/standalone/deployments/h2.sar.dodeploy" />
-                                <copy todir="${jboss_folder}/modules/com/h2database/h2/main">
+                                <move todir="${jboss_folder}/modules/com/h2database/h2/main">
                                     <fileset dir="${project.build.directory}/common-libs">
                                         <include name="h2-*" />
                                     </fileset>
-                                </copy>
+                                </move>
 
-                                <copy todir="${jboss_folder}/modules/org/bonitasoft/bonita-tomcat-valve/main">
+                                <move todir="${jboss_folder}/modules/org/bonitasoft/bonita-tomcat-valve/main">
                                     <fileset dir="${project.build.directory}/common-libs">
                                         <include name="bonita-tomcat-valve-*" />
                                     </fileset>
-                                </copy>
+                                </move>
 
                                 <!-- Copy resources -->
                                 <copy todir="${folderToZip}/license">
@@ -283,7 +283,7 @@
                                 </copy>
                                 <copy todir="${folderToZip}" file="${project.basedir}/src/main/resources/README.TXT" />
                                 <replace file="${folderToZip}/README.TXT" token="XXX_VERSION_XXX" value="${project.version}" />
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>

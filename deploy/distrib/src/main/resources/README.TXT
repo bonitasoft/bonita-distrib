@@ -20,8 +20,10 @@ Contents of this package:
 |   |   `-- *.jar                           			Common libs that can be shared by several webapps (JDBC driver, valve preventing session fixation issue)
 |   `-- webapps
 |   |   |-- ROOT
-|       	`-- favicon.ico
-|       `-- bonita.war                      			Webapp containing the portal, the engine and the REST API
+|   |   | 	`-- favicon.ico
+|   |   `-- bonita.war                      			Webapp containing the portal, the engine and the REST API
+|   `-- bonita-start(.sh|.bat)                          Script used to start Bonita BPM Tomcat bundle
+|   `-- bonita-stop(.sh|.bat)                           Script used to stop Bonita BPM Tomcat bundle
 |
 |-- Jboss-<jboss.version>                  	 			Content necessary in order to deploy on a JBoss AS
 |   |-- bin
@@ -56,12 +58,16 @@ Contents of this package:
 |   |   `-- lib
 |   |       `-- *.jar                    				Common libs that can be shared by several webapps (H2 listener)
 |   `-- welcome-content
-|       `-- favicon.ico
-|    
+|   |   `-- favicon.ico
+|   `-- bonita-start(.sh|.bat)                          Script used to start Bonita BPM Tomcat bundle
+|
 |-- platform-setup							            Platform creation/initialization files (Database scripts + configuration files)
 |-- license                                 			License files
 `-- README.txt                              			You are here!
 
 In order to install bonita you need to copy into the root folder of your application server:
 - the content of the directory matching it
-- for Jboss update the file bonita-platform-community.properties and bonita-tenant-community.properties to remove every occurrence of "java:comp/env/"
+- for Jboss update the files `platform-setup/platform_conf/initial/platform_engine/bonita-platform-community-custom.properties`
+  and `platform-setup/platform_conf/initial/tenant_template_engine/bonita-tenant-community-custom.properties`:
+      - uncomment lines containing "java:comp/env/"
+      - remove every occurrence of "java:comp/env/" (leave the rest of the value)
