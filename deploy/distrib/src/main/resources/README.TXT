@@ -59,7 +59,7 @@ Contents of this package:
 |   |       `-- *.jar                    				Common libs that can be shared by several webapps (H2 listener)
 |   `-- welcome-content
 |   |   `-- favicon.ico
-|   `-- bonita-start(.sh|.bat)                          Script used to start Bonita BPM Tomcat bundle
+|   `-- bonita-start(.sh|.bat)                          Script used to start Bonita BPM JBoss bundle
 |
 |-- platform-setup							            Platform creation/initialization files (Database scripts + configuration files)
 |-- license                                 			License files
