@@ -43,7 +43,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target>
+                            <target name="Downloading official Tomcat package if necessary">
                                 <taskdef name="if" classname="${if.task}" classpathref="maven.runtime.classpath" />
                                 <available property="tomcat.present" file="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" />
                                 <if>
@@ -64,7 +64,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target>
+                            <target name="Cleaning up unwanted default built-in webapps">
                                 <unzip src="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" dest="${tomcat.bos.home.dir}">
                                     <patternset>
                                         <include name="**/*" />
@@ -83,22 +83,27 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target>
-                                <copy overwrite="true" todir="${tomcat.lib.dir}/bonita">
+                            <target name="Adding Bonita-specific file to Tomcat bundle">
+                                <move overwrite="true" todir="${tomcat.lib.dir}/bonita">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}/lib">
                                         <include name="*.jar" />
                                     </fileset>
-                                </copy>
-                                <copy overwrite="true" todir="${platform.setup.folder}">
+                                </move>
+                                <move overwrite="true" todir="${platform.setup.folder}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/platform-setup">
                                         <include name="**/*" />
                                     </fileset>
-                                </copy>
-                                <copy overwrite="true" todir="${tomcat.home.dir}">
+                                </move>
+                                <move overwrite="true" todir="${tomcat.home.dir}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}">
                                         <exclude name="lib/*" />
                                     </fileset>
-                                </copy>
+                                </move>
+                                <chmod perm="ugo+x">
+                                    <fileset dir="${tomcat.home.dir}/bin">
+                                        <include name="*.sh" />
+                                    </fileset>
+                                </chmod>
                             </target>
                         </configuration>
                     </execution>
@@ -109,30 +114,8 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target>
-                                <!--Add bonita-libs to the common classpath entry -->
+                            <target name="Add bonita-libs to the common classpath entry">
                                 <replace file="${tomcat.conf.dir}/catalina.properties" token="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar" value="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar,$${catalina.home}/lib/bonita,$${catalina.home}/lib/bonita/*.jar" />
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-resources-for-tomcat</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <!-- copy tomcat resources -->
-                                <copy overwrite="true" todir="${tomcat.home.dir}" verbose="true">
-                                    <fileset dir="${project.basedir}/src/main/resources" erroronmissingdir="false" />
-                                </copy>
-                                <!-- set permission  on scripts -->
-                                <chmod perm="ugo+x">
-                                    <fileset dir="${tomcat.home.dir}/bin">
-                                        <include name="*.sh" />
-                                    </fileset>
-                                </chmod>
                             </target>
                         </configuration>
                     </execution>
