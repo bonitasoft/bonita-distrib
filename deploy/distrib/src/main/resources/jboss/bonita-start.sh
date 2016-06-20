@@ -8,9 +8,4 @@ testReturnCode() {
   fi
 }
 
-if [ -d "./setup" ]; then
-    ./setup/setup.sh init
-    testReturnCode $? "Setting up Bonita BPM platform"
-fi
-
 ./bin/standalone.sh
