@@ -199,9 +199,7 @@
                                     <overWrite>true</overWrite>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>
-                                ${project.build.directory}/platform-setup
-                            </outputDirectory>
+                            <outputDirectory>${project.build.directory}/platform-setup</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
