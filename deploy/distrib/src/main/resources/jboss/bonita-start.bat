@@ -1,4 +1,5 @@
 @echo off
 setlocal
 
-call ./bin/standalone.bat
+cd bin
+call ./standalone.bat
