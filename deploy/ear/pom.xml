@@ -1,127 +1,145 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<artifactId>deploy-parent</artifactId>
-		<groupId>org.bonitasoft.distrib</groupId>
-		<version>7.3.0-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <artifactId>deploy-parent</artifactId>
+        <groupId>org.bonitasoft.distrib</groupId>
+        <version>7.3.0-SNAPSHOT</version>
+    </parent>
 
-	<artifactId>deploy-ear-all-in-one</artifactId>
-	<name>ear</name>
-	<packaging>ear</packaging>
+    <artifactId>deploy-ear-all-in-one</artifactId>
+    <name>ear</name>
+    <packaging>ear</packaging>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.bonitasoft.engine</groupId>
-			<artifactId>bonita-deploy-ejb3</artifactId>
-			<version>${bonita.engine.version}</version>
-			<type>ejb</type>
-		</dependency>
-		<dependency>
-			<groupId>org.bonitasoft.engine</groupId>
-			<artifactId>bonita-common</artifactId>
-			<version>${bonita.engine.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.bonitasoft.engine</groupId>
-			<artifactId>bonita-server</artifactId>
-			<version>${bonita.engine.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.bonitasoft.engine</groupId>
-			<artifactId>bonita-client</artifactId>
-			<version>${bonita.engine.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-pool</groupId>
-			<artifactId>commons-pool</artifactId>
-			<version>1.5.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.bonitasoft.distrib</groupId>
-			<artifactId>ear-resources</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.bonitasoft.distrib</groupId>
-			<artifactId>war-ear</artifactId>
-			<version>${project.version}</version>
-			<type>war</type>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.bonitasoft.engine</groupId>
+            <artifactId>bonita-deploy-ejb3</artifactId>
+            <version>${bonita.engine.version}</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>org.bonitasoft.engine</groupId>
+            <artifactId>bonita-common</artifactId>
+            <version>${bonita.engine.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bonitasoft.engine</groupId>
+            <artifactId>bonita-server</artifactId>
+            <version>${bonita.engine.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <groupId>mysql</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.bonitasoft.engine</groupId>
+            <artifactId>bonita-client</artifactId>
+            <version>${bonita.engine.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bonitasoft.distrib</groupId>
+            <artifactId>ear-resources</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bonitasoft.distrib</groupId>
+            <artifactId>war-ear</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-ear-plugin</artifactId>
-				<configuration>
-					<modules>
-						<ejbModule>
-							<groupId>org.bonitasoft.engine</groupId>
-							<artifactId>bonita-deploy-ejb3</artifactId>
-							<bundleDir>/</bundleDir>
-							<bundleFileName>bonita-engine-ejb.jar</bundleFileName>
-						</ejbModule>
-						<jarModule>
-							<groupId>org.bonitasoft.engine</groupId>
-							<artifactId>bonita-common</artifactId>
-						</jarModule>
-						<jarModule>
-							<groupId>org.bonitasoft.engine</groupId>
-							<artifactId>bonita-server</artifactId>
-						</jarModule>
-						<jarModule>
-							<groupId>org.bonitasoft.engine</groupId>
-							<artifactId>bonita-client</artifactId>
-						</jarModule>
-						<jarModule>
-							<groupId>org.slf4j</groupId>
-							<artifactId>slf4j-api</artifactId>
-							<excluded>true</excluded>
-						</jarModule>
-						<jarModule>
-							<groupId>commons-dbcp</groupId>
-							<artifactId>commons-dbcp</artifactId>
-						</jarModule>
-						<jarModule>
-							<groupId>commons-pool</groupId>
-							<artifactId>commons-pool</artifactId>
-						</jarModule>
-						<jarModule>
-							<groupId>org.bonitasoft.distrib</groupId>
-							<artifactId>ear-resources</artifactId>
-						</jarModule>
-						<webModule>
-							<groupId>org.bonitasoft.distrib</groupId>
-							<artifactId>war-ear</artifactId>
-							<uri>bonita.war</uri>
-							<contextRoot>/bonita</contextRoot>
-						</webModule>
-					</modules>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <modules>
+                        <ejbModule>
+                            <groupId>org.bonitasoft.engine</groupId>
+                            <artifactId>bonita-deploy-ejb3</artifactId>
+                            <bundleDir>/</bundleDir>
+                            <bundleFileName>bonita-engine-ejb.jar</bundleFileName>
+                        </ejbModule>
+                        <jarModule>
+                            <groupId>org.bonitasoft.engine</groupId>
+                            <artifactId>bonita-common</artifactId>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>org.bonitasoft.engine</groupId>
+                            <artifactId>bonita-server</artifactId>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>org.bonitasoft.engine</groupId>
+                            <artifactId>bonita-client</artifactId>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>org.slf4j</groupId>
+                            <artifactId>slf4j-api</artifactId>
+                            <excluded>true</excluded>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>commons-dbcp</groupId>
+                            <artifactId>commons-dbcp</artifactId>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>commons-pool</groupId>
+                            <artifactId>commons-pool</artifactId>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>org.bonitasoft.distrib</groupId>
+                            <artifactId>ear-resources</artifactId>
+                        </jarModule>
+                        <webModule>
+                            <groupId>org.bonitasoft.distrib</groupId>
+                            <artifactId>war-ear</artifactId>
+                            <uri>bonita.war</uri>
+                            <contextRoot>/bonita</contextRoot>
+                        </webModule>
+                    </modules>
 
-					<!-- Tell Maven we are using Java EE 6 -->
-					<version>6</version>
-					<!-- Use Java EE ear libraries as needed. Java EE ear libraries are 
-						in easy way to package any libraries needed in the ear, and automatically 
-						have any modules (EJB-JARs and WARs) use them -->
-					<defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <!-- Tell Maven we are using Java EE 6 -->
+                    <version>6</version>
+                    <!-- Use Java EE ear libraries as needed. Java EE ear libraries are
+                        in easy way to package any libraries needed in the ear, and automatically
+                        have any modules (EJB-JARs and WARs) use them -->
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
 
-					<generateApplicationXml>true</generateApplicationXml>
-					<displayName>Bonita Application</displayName>
-					<!-- WARNING : the applicationName is used for JNDI lookup in EJB client 
-						connection URL in org.bonitasoft.engine.api.EJB3ServerAPI -->
-					<applicationName>bonita-ear</applicationName>
-					<description>Bonita Application</description>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <displayName>Bonita Application</displayName>
+                    <!-- WARNING : the applicationName is used for JNDI lookup in EJB client
+                        connection URL in org.bonitasoft.engine.api.EJB3ServerAPI -->
+                    <applicationName>bonita-ear</applicationName>
+                    <description>Bonita Application</description>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
