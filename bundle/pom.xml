@@ -13,6 +13,7 @@
 	<modules>
 		<module>tomcat</module>
  		<module>jboss</module>
+ 		<module>wildfly</module>
 	</modules>
 	
 </project>
