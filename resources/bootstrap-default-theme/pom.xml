@@ -4,7 +4,7 @@
 	<parent>
         <groupId>org.bonitasoft.distrib</groupId>
         <artifactId>resources</artifactId>
-		<version>7.3.1-SNAPSHOT</version>
+		<version>7.3.1.W30</version>
 	</parent>
 	<artifactId>bootstrap-default-theme</artifactId>
 	<packaging>jar</packaging>

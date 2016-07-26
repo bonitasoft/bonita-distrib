@@ -3,7 +3,7 @@
     <parent>
         <artifactId>deploy-parent</artifactId>
         <groupId>org.bonitasoft.distrib</groupId>
-        <version>7.3.1-SNAPSHOT</version>
+        <version>7.3.1.W30</version>
     </parent>
     <artifactId>war-ear</artifactId>
     <name>war for ear</name>
