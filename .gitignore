@@ -10,3 +10,4 @@ node/
 node_modules/
 *.orig
 *.tmp
+**/*.swp
