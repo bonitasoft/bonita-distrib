@@ -1,0 +1,12 @@
+# eclipse settings
+*.project
+*.settings
+*.classpath
+*.iml
+*.orig
+# target
+target/
+node/
+node_modules/
+*.orig
+*.tmp
