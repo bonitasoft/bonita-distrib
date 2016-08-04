@@ -108,8 +108,7 @@ describe('Step auto generated form', function () {
           message: 'success',
           status: responseStatus,
           action: 'Submit task',
-          targetUrlOnSuccess: '/bonita',
-          dataFromSuccess: ''
+          targetUrlOnSuccess: '/bonita'
         }), '*');
     });
 
@@ -117,7 +116,7 @@ describe('Step auto generated form', function () {
       jasmine.addCustomEqualityTester(stringifiedJSONArgsMatcher);
       $window.self = null;
       var responseStatus = 500;
-      deferedTaskExecution.reject({data:'FileTooBigError', status: responseStatus});
+      deferedTaskExecution.reject({data: {message: 'FileTooBigError'}, status: responseStatus});
 
       scope.postData();
 
