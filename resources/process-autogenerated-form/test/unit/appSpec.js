@@ -97,7 +97,7 @@ describe('Process auto generated form', function () {
       jasmine.addCustomEqualityTester(stringifiedJSONArgsMatcher);
       $window.self = null;
       var responseStatus = 200;
-      deferedProcessStart.resolve({data:'{"caseId":1}', status: responseStatus});
+      deferedProcessStart.resolve({data: {caseId:1}, status: responseStatus});
 
       scope.postData();
 
@@ -117,7 +117,7 @@ describe('Process auto generated form', function () {
       jasmine.addCustomEqualityTester(stringifiedJSONArgsMatcher);
       $window.self = null;
       var responseStatus = 500;
-      deferedProcessStart.reject({data:'FileTooBigError', status: responseStatus});
+      deferedProcessStart.reject({data: {message: 'FileTooBigError'}, status: responseStatus});
 
       scope.postData();
 
