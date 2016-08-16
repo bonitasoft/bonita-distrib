@@ -35,6 +35,7 @@
     app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'processAPI', 'i18nService', '$http', function ($scope, $location, contractSrvc, urlParser, $window, processAPI, i18nService, $http) {
 
         var processId = urlParser.getQueryStringParamValue('id');
+        var userId = urlParser.getQueryStringParamValue('user');
 
         $scope.contract = {};
         $scope.dataToSend = {};
@@ -83,7 +84,7 @@
         $scope.postData = function postData() {
             $scope.message = undefined;
             var jsonifiedDataToSend = jsonify($scope.dataToSend);
-            contractSrvc.startProcess(processId, jsonifiedDataToSend).then(
+            contractSrvc.startProcess(processId, userId, jsonifiedDataToSend).then(
                 onPostSuccess, onPostError);
         };
 

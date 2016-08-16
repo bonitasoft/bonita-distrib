@@ -20,12 +20,17 @@
           method: 'GET'
         });
       },
-      startProcess: function(id, dataToSend) {
+      startProcess: function(id, userId, dataToSend) {
+          function getUserParam() {
+              return userId ? { 'user': userId } : {};
+          }
+
         // submit data to start process on server
         return $http({
           url: '../API/bpm/process/' + id + '/instantiation',
           method: 'POST',
           data: dataToSend,
+          params: getUserParam(),
           transformRequest: appendTransform($http.defaults.transformRequest, function(value, headers) {
             console.log('Request:', value);
             return value;

@@ -35,6 +35,7 @@
     app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'humanTaskAPI', 'i18nService', '$http', function ($scope, $location, contractSrvc, urlParser, $window, humanTaskAPI, i18nService, $http) {
 
         var taskId = urlParser.getQueryStringParamValue('id');
+        var userId = urlParser.getQueryStringParamValue('user');
 
         $scope.contract = {};
         $scope.dataToSend = {};
@@ -84,7 +85,7 @@
         $scope.postData = function postData() {
             $scope.message = undefined;
             var jsonifiedDataToSend = jsonify($scope.dataToSend);
-            contractSrvc.executeTask(taskId, jsonifiedDataToSend).then(
+            contractSrvc.executeTask(taskId, userId, jsonifiedDataToSend).then(
                 onPostSuccess, onPostError);
         };
 
