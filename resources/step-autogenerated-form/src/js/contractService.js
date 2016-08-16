@@ -11,7 +11,6 @@
       return defaults.concat(transform);
     }
 
-
     return {
       fetchContract: function (taskId) {
         // fetch contract from server
@@ -20,12 +19,17 @@
           method: 'GET'
         });
       },
-      executeTask: function(taskId, dataToSend) {
+      executeTask: function(taskId, userId, dataToSend) {
+        function getUserParam() {
+            return userId ? { 'user': userId } : {};
+        }
+
         // submit data to execute task on server
         return $http({
           url: '../API/bpm/userTask/' + taskId + '/execution',
           method: 'POST',
           data: dataToSend,
+          params: getUserParam(),
           transformRequest: appendTransform($http.defaults.transformRequest, function(value, headers) {
             console.log('Request:', value);
             return value;
