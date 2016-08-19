@@ -30,18 +30,12 @@ Contents of this package:
 |   |   |-- standalone.conf                        		Script setting JVM options for linux
 |   |   `-- standalone.conf.bat                    		Script setting JVM options for windows
 |   |-- modules
-|   |   |-- com
-|   |   |	`-- h2database
-|   |   |		`-- h2
-|   |   |			`-- main							JDBC driver & module conf for H2
-|   |   |				|-- h2-*.jar	
-|   |   |				`-- module.xml
-|   |   `-- org
-|   |   	`-- bonitasoft
-|   |   		`-- bonita-tomcat-valve					Lib & module conf for the Valve preventing session fixation issue
-|   |   			`-- main
-|   |   				|-- bonita-tomcat-valve-*.jar	
-|   |   				`-- module.xml
+|   |   ` -- com
+|   |    	`-- h2database
+|   |    		`-- h2
+|   |    			`-- main							JDBC driver & module conf for H2
+|   |    				|-- h2-*.jar	
+|   |    				`-- module.xml
 |   |-- standalone
 |   |   |-- configuration
 |   |   |	|-- standalone-full-ha.xml					Datasource & logs configuration
