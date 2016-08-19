@@ -121,13 +121,6 @@
                                     <artifactId>h2</artifactId>
                                     <version>${h2.version}</version>
                                 </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.web.tooling</groupId>
-                                    <artifactId>bonita-tomcat-valve</artifactId>
-                                    <!-- valve version is the same as tomcat.version to assure that valve corresponding to tomcat
-                                           was a bad idea , keep old version-->
-                                    <version>${valve.version}</version>
-                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/common-libs</outputDirectory>
                         </configuration>
@@ -270,12 +263,6 @@
                                     </fileset>
                                 </copy>
 
-                                <copy todir="${jboss_folder}/modules/org/bonitasoft/bonita-tomcat-valve/main">
-                                    <fileset dir="${project.build.directory}/common-libs">
-                                        <include name="bonita-tomcat-valve-*" />
-                                    </fileset>
-                                </copy>
-
                                 <!-- wildfly -->
                                 <!-- Copy all resources from project to wildfly -->
                                 <copy overwrite="true" todir="${wildfly_folder}">
@@ -284,12 +271,6 @@
 
                                 <!-- Copy ear-->
                                 <copy todir="${wildfly_folder}/standalone/deployments" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
-
-                                <copy todir="${wildfly_folder}/modules/system/layers/base/org/bonitasoft/bonita-tomcat-valve/main">
-                                    <fileset dir="${project.build.directory}/common-libs">
-                                        <include name="bonita-tomcat-valve-*" />
-                                    </fileset>
-                                </copy>
 
                                 <!-- Copy resources -->
                                 <copy todir="${folderToZip}/license">
