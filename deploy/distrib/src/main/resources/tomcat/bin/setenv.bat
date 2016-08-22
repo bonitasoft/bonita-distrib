@@ -3,6 +3,7 @@
 rem Set some JVM system properties required by Bonita BPM
 
 set PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=%CATALINA_HOME%\setup"
+rem When changing org.bonitasoft.h2.database.dir location, update %CATALINA_HOME%\conf\bitronix-resources.properties datasources accordingly.
 set H2_DATABASE_DIR="-Dorg.bonitasoft.h2.database.dir=%CATALINA_HOME%\database"
 set INCIDENT_LOG_DIR="-Dorg.bonitasoft.engine.incident.folder=%CATALINA_HOME%\logs"
 
