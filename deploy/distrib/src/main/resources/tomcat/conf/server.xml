@@ -33,10 +33,6 @@
     <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
     <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
 
-    <!-- Comment the following line for production as h2 is not intended to be used in production. Note: h2 listening port can conflict if you run both Bonita BPM 
-        Studio and a bundle on a single computer -->
-    <Listener className="org.bonitasoft.tomcat.H2Listener" tcpPort="9091" baseDir="${org.bonitasoft.h2.database.dir}" start="true" />
-
     <!-- Bitronix listener. Used by Bonita Engine for transaction management (JTA) -->
     <Listener className="bitronix.tm.integration.tomcat55.BTMLifecycleListener" />
 
