@@ -82,5 +82,9 @@ rem Sets some variables
 set tmp_wildfly_home=%~dp0/..
 set "PLATFORM_SETUP=-Dorg.bonitasoft.platform.setup.folder="%tmp_wildfly_home%/setup""
 set "INCIDENT_LOG_DIR=-Dorg.bonitasoft.engine.incident.folder="%tmp_wildfly_home%/standalone/log""
-set "JAVA_OPTS=%JAVA_OPTS% %PLATFORM_SETUP% %INCIDENT_LOG_DIR% -Dfile.encoding=UTF-8"
+
+rem Setting the java.util.logging.config.file system property allows to inform Restlet Engine that logging has already been set up for it not to set logging up in a wrong way
+rem (ConsoleHandler trace on stderr is printed otherwise)
+
+set "JAVA_OPTS=%JAVA_OPTS% %PLATFORM_SETUP% %INCIDENT_LOG_DIR% -Dfile.encoding=UTF-8 -Djava.util.logging.config.file=%tmp_wildfly_home%/standalone/configuration/logging.properties"
 goto :eof
