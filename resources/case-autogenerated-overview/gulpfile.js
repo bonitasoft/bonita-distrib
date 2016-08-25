@@ -24,7 +24,6 @@ var zip = require('gulp-zip');
 var runSequence = require('run-sequence');
 
 /* javascript */
-var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
 
 /* test */
@@ -54,7 +53,7 @@ var useminOpt = {
   css: ['concat', rev()],
   css2: ['concat', rev()],
   html: [htmlmin(htmlminOpt)],
-  js: [uglify(), rev()]
+  js: ['concat', rev()]
 };
 
 function serve(configuration) {
