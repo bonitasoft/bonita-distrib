@@ -15,19 +15,12 @@
         <folderToZip>${project.build.directory}/${distrib.zipname}</folderToZip>
         <platform_setup_folder>${folderToZip}/platform-setup</platform_setup_folder>
         <tomcat_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_folder>
-        <jboss_folder>${folderToZip}/Jboss-${jboss.version}</jboss_folder>
         <wildfly_folder>${folderToZip}/wildfly-${wildfly.version}</wildfly_folder>
         <migration_folder>${folderToZip}/migration</migration_folder>
         <bitronix.version>2.1.3</bitronix.version>
-        <jboss-h2-mbean.version>1.1.0</jboss-h2-mbean.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.bonitasoft.jboss</groupId>
-            <artifactId>bonita-jboss-h2-mbean</artifactId>
-            <version>${jboss-h2-mbean.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.bonitasoft.platform</groupId>
             <artifactId>platform-setup</artifactId>
@@ -114,22 +107,6 @@
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/common-libs</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-jboss-libs</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.jboss</groupId>
-                                    <artifactId>bonita-jboss-h2-mbean</artifactId>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${jboss_folder}/standalone/deployments/h2.sar</outputDirectory>
                         </configuration>
                     </execution>
                     <!-- retrieve Tomcat transaction libs -->
@@ -223,35 +200,7 @@
                                 </copy>
                                 <!-- Tomcat transaction libs -->
                                 <copy todir="${tomcat_folder}/lib">
-                                    <fileset dir="${project.build.directory}/tomcat-transaction-libs">
-                                        <exclude name="bonita-jboss-h2-mbean-*" />
-                                    </fileset>
-                                </copy>
-
-                                <!-- Jboss -->
-                                <!-- Copy all resources from project to Jboss -->
-                                <copy overwrite="true" todir="${jboss_folder}">
-                                    <fileset dir="${project.basedir}/src/main/resources/jboss" />
-                                </copy>
-                                <replace file="${jboss_folder}/modules/com/h2database/h2/main/module.xml" token="#h2.version#"
-                                         value="${h2.version}" />
-                                <replace file="${jboss_folder}/standalone/deployments/h2.sar/META-INF/jboss-deployment-structure.xml" token="#jboss-h2-mbean.version#"
-                                         value="${jboss-h2-mbean.version}" />
-
-                                <!-- Copy ear-->
-                                <copy todir="${jboss_folder}/standalone/deployments" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
-
-                                <!-- Copy the libs  -->
-                                <copy todir="${jboss_folder}/standalone/deployments/h2.sar">
-                                    <fileset dir="${project.build.directory}/common-libs">
-                                        <include name="bonita-jboss-h2-mbean-*" />
-                                    </fileset>
-                                </copy>
-                                <touch file="${jboss_folder}/standalone/deployments/h2.sar.dodeploy" />
-                                <copy todir="${jboss_folder}/modules/com/h2database/h2/main">
-                                    <fileset dir="${project.build.directory}/common-libs">
-                                        <include name="h2-*" />
-                                    </fileset>
+                                    <fileset dir="${project.build.directory}/tomcat-transaction-libs" />
                                 </copy>
 
                                 <!-- wildfly -->
