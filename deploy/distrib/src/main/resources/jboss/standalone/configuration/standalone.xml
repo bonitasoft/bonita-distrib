@@ -469,7 +469,7 @@
                                pool-name="BusinessDataDS" enabled="true" use-ccm="false"
                                use-java-context="false">
                     <driver>h2</driver>
-                    <xa-datasource-property name="URL">jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE</xa-datasource-property>
+                    <xa-datasource-property name="URL">jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=FALSE</xa-datasource-property>
                     <xa-pool>
                         <min-pool-size>1</min-pool-size>
                         <max-pool-size>50</max-pool-size>
@@ -493,7 +493,7 @@
                             pool-name="NotManagedBizDataDS" enabled="true" use-ccm="false"
                             use-java-context="false">
                     <driver>h2</driver>
-                    <connection-url>jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE</connection-url>
+                    <connection-url>jdbc:h2:tcp://localhost:${bonita.h2.port}/business_data.db;MVCC=TRUE;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <security>
                         <user-name>sa</user-name>
                         <password></password>
