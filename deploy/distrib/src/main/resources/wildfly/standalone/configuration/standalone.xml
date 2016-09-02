@@ -284,7 +284,7 @@
                                pool-name="bonitaDS" enabled="true" use-ccm="false"
                                use-java-context="false">
                     <driver>h2</driver>
-                    <xa-datasource-property name="URL">jdbc:h2:../database/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE</xa-datasource-property>
+                    <xa-datasource-property name="URL">jdbc:h2:../database/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE</xa-datasource-property>
                     <xa-pool>
                         <min-pool-size>1</min-pool-size>
                         <max-pool-size>50</max-pool-size>
@@ -308,7 +308,7 @@
                             pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false"
                             use-java-context="false">
                     <driver>h2</driver>
-                    <connection-url>jdbc:h2:../database/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;AUTO_SERVER=TRUE</connection-url>
+                    <connection-url>jdbc:h2:../database/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <security>
                         <user-name>sa</user-name>
                         <password></password>
@@ -509,7 +509,7 @@
                                pool-name="BusinessDataDS" enabled="true" use-ccm="false"
                                use-java-context="false">
                     <driver>h2</driver>
-                    <xa-datasource-property name="URL">jdbc:h2:../database/business_data.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE</xa-datasource-property>
+                    <xa-datasource-property name="URL">jdbc:h2:../database/business_data.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE</xa-datasource-property>
                     <xa-pool>
                         <min-pool-size>1</min-pool-size>
                         <max-pool-size>50</max-pool-size>
@@ -533,7 +533,7 @@
                             pool-name="NotManagedBizDataDS" enabled="true" use-ccm="false"
                             use-java-context="false">
                     <driver>h2</driver>
-                    <connection-url>jdbc:h2:../database/business_data.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE</connection-url>
+                    <connection-url>jdbc:h2:../database/business_data.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <security>
                         <user-name>sa</user-name>
                         <password></password>
