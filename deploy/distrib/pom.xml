@@ -216,8 +216,11 @@
                                 <copy todir="${folderToZip}/license">
                                     <fileset dir="${project.basedir}/src/main/resources/license" />
                                 </copy>
-                                <copy todir="${folderToZip}" file="${project.basedir}/src/main/resources/README.TXT" />
-                                <replace file="${folderToZip}/README.TXT" token="XXX_VERSION_XXX" value="${project.version}" />
+                                <copy todir="${folderToZip}" file="${project.basedir}/src/main/resources/README.TXT" >
+                                  <filterchain>
+                                    <expandproperties />
+                                  </filterchain>
+                                </copy>
                             </target>
                         </configuration>
                     </execution>
