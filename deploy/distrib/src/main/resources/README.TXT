@@ -1,9 +1,9 @@
 
-Bonita deploy version XXX_VERSION_XXX
+Bonita deploy version ${project.version}
 
 Contents of this package:
 
-|-- Tomcat-<tomcat.version>                 			Content necessary in order to deploy on a tomcat servlet container
+|-- Tomcat-${tomcat.version}                 			Content necessary in order to deploy on a tomcat servlet container
 |   |-- bin
 |   |   |-- setenv.sh                       			Script setting system variables for linux
 |   |   `-- setenv.bat                      			Script setting system variable for windows
@@ -25,7 +25,7 @@ Contents of this package:
 |   `-- bonita-start(.sh|.bat)                                  Script used to start Bonita BPM Tomcat bundle
 |   `-- bonita-stop(.sh|.bat)                                   Script used to stop Bonita BPM Tomcat bundle
 |
-|-- Wildfly-<wildfly.version>                  	 	        Content necessary in order to deploy on a Wildfly AS
+|-- wildfly-${wildfly.version}                 	 	        Content necessary in order to deploy on a Wildfly AS
 |   |-- bin
 |   |   |-- standalone.conf                        		Script setting JVM options for linux
 |   |   `-- standalone.conf.bat                    		Script setting JVM options for windows
@@ -34,6 +34,14 @@ Contents of this package:
 |   |   |   `-- standalone.xml					Datasource & logs configuration
 |   |   `-- deployments
 |   |       `-- bonita-all-in-one-*.ear              	        EAR containing the portal, the engine and the REST API
+|   |-- modules
+|   |   `-- system
+|   |       `-- layers
+|   |           `-- base
+|   |               `-- sun
+|   |                   `-- jdk
+|   |                       `-- main
+|   |                           `-- module.xml                  Describe the list of sdk packages use by wildfly extended with the ones required by Bonita
 |   `-- bonita-start(.sh|.bat)                                  Script used to start Bonita BPM Wildfly bundle
 |
 |-- platform-setup						Platform creation/initialization files (Database scripts + configuration files)
