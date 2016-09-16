@@ -36,7 +36,6 @@
         <property name="org.apache.catalina.connector.USE_BODY_ENCODING_FOR_QUERY_STRING" value="false"/>
         <property name="sysprop.bonita.db.vendor" value="h2"/>
         <property name="sysprop.bonita.bdm.db.vendor" value="h2"/>
-        <property name="bonita.h2.port" value="1234"/>
         <property name="sysprop.bonita.businessdata.datasource.jndi" value="java:jboss/datasources/BusinessDataDS"/>
         <property name="sysprop.bonita.businessdata.notmanageddatasource.jndi" value="java:jboss/datasources/NotManagedBizDataDS"/>
         <property name="sysprop.bonita.database.journal.datasource.name" value="java:jboss/datasources/bonitaDS"/>
@@ -200,6 +199,16 @@
                 <level name="WARN" />
             </logger>
 
+            <logger category="org.hibernate">
+                <level name="WARN" />
+            </logger>
+            <logger category="net.sf.ehcache">
+                <level name="WARN" />
+            </logger>
+            <logger category="org.tuckey">
+                <level name="WARN" />
+            </logger>
+
             <root-logger>
                 <level name="INFO"/>
                 <handlers>
@@ -308,7 +317,7 @@
                             pool-name="bonitaSequenceManagerDS" enabled="true" use-ccm="false"
                             use-java-context="false">
                     <driver>h2</driver>
-                    <connection-url>jdbc:h2:../database/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+                    <connection-url>jdbc:h2:../database/bonita_journal.db;MVCC=TRUE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <security>
                         <user-name>sa</user-name>
                         <password></password>
