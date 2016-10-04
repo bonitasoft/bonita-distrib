@@ -160,6 +160,14 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- wildfly does not need to be deployed since it is not used by Bonita BPM build chain -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
