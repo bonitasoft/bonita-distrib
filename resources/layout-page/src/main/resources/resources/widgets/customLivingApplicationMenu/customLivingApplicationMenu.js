@@ -34,8 +34,12 @@
     }
 
     function setTargetedUrl() {
-        $scope.properties.targetUrl = "../../../portal/resource/app/"+ctrl.applicationToken+"/"+ ctrl.pageToken+"/content/"+ $window.location.search;
+        $scope.properties.targetUrl = "../../../portal/resource/app/"+ctrl.applicationToken+"/"+ ctrl.pageToken+"/content/"+ $window.location.search + ctrl.searchSeparator() + "app=" + ctrl.applicationToken;
     }
+
+    ctrl.searchSeparator = function() {
+        return $window.location.search ? "&" : "?";
+    };
 
     ctrl.isParentMenu= function(menu) {
         return menu.parentMenuId==-1 && menu.applicationPageId==-1;
