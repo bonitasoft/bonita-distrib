@@ -46,20 +46,14 @@ rem # options that are always passed by run.bat.
 rem #
 
 rem # JVM memory allocation pool parameters - modify as appropriate.
-set "JAVA_OPTS=-Xms1024M -Xmx1024M -XX:MaxPermSize=256M -XX:+HeapDumpOnOutOfMemoryError"
+set "JAVA_OPTS=-Xms1024M -Xmx1024M -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m"
 
-rem # Reduce the RMI GCs to once per hour for Sun JVMs.
-set "JAVA_OPTS=%JAVA_OPTS% -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djava.net.preferIPv4Stack=true"
-
-rem # Warn when resolving remote XML DTDs or schemas.
-set "JAVA_OPTS=%JAVA_OPTS% -Dorg.jboss.resolver.warning=true"
+rem # Prefer IPv4
+set "JAVA_OPTS=%JAVA_OPTS% -Djava.net.preferIPv4Stack=true"
 
 rem # Make Byteman classes visible in all module loaders
 rem # This is necessary to inject Byteman rules into AS7 deployments
 set "JAVA_OPTS=%JAVA_OPTS% -Djboss.modules.system.pkgs=org.jboss.byteman"
-
-rem # Set the default configuration file to use if -c or --server-config are not used
-set "JAVA_OPTS=%JAVA_OPTS% -Djboss.server.default.config=standalone.xml"
 
 rem # Sample JPDA settings for remote socket debugging
 rem set "JAVA_OPTS=%JAVA_OPTS% -agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n"
@@ -70,14 +64,11 @@ rem set "JAVA_OPTS=%JAVA_OPTS% -agentlib:jdwp=transport=dt_shmem,address=jboss,s
 rem # Use JBoss Modules lockless mode
 rem set "JAVA_OPTS=%JAVA_OPTS% -Djboss.modules.lockless=true"
 
-:JAVA_OPTS_SET
-
-rem # Enable GZIP compression:
-rem set "JAVA_OPTS=%JAVA_OPTS% -Dorg.apache.coyote.http11.Http11Protocol.COMPRESSION=on"
-
 rem # Uncomment this to run with a security manager enabled
 rem set "SECMGR=true"
 
+:JAVA_OPTS_SET
+rem
 rem Sets some variables
 set tmp_wildfly_home=%~dp0/..
 set "PLATFORM_SETUP=-Dorg.bonitasoft.platform.setup.folder="%tmp_wildfly_home%/setup""

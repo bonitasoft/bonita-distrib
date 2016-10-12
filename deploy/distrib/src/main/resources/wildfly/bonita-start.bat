@@ -10,7 +10,7 @@ IF NOT EXIST setup GOTO NOSETUPDIR
    )
    call setup\setup.bat configure %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
    if errorlevel 1 (
-       echo ERROR 1 Configuring Wildfly bundle
+       echo ERROR 1 Configuring WildFly bundle
        exit /b 1
    )
 
