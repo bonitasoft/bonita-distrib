@@ -14,7 +14,7 @@ if [ -d "./setup" ]; then
     testReturnCode $? "Setting up Bonita BPM platform Community edition"
 
     ./setup/setup.sh configure $@
-    testReturnCode $? "Configuring Wildfly bundle"
+    testReturnCode $? "Configuring WildFly bundle"
 
 fi
 

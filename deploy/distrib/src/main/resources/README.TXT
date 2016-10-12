@@ -25,7 +25,7 @@ Contents of this package:
 |   `-- bonita-start(.sh|.bat)                                  Script used to start Bonita BPM Tomcat bundle
 |   `-- bonita-stop(.sh|.bat)                                   Script used to stop Bonita BPM Tomcat bundle
 |
-|-- wildfly-${wildfly.version}                 	 	        Content necessary in order to deploy on a Wildfly AS
+|-- wildfly-${wildfly.version}                 	 	        Content necessary in order to deploy on a WildFly AS
 |   |-- bin
 |   |   |-- standalone.conf                        		Script setting JVM options for linux
 |   |   `-- standalone.conf.bat                    		Script setting JVM options for windows
@@ -41,8 +41,8 @@ Contents of this package:
 |   |               `-- sun
 |   |                   `-- jdk
 |   |                       `-- main
-|   |                           `-- module.xml                  Describe the list of sdk packages use by wildfly extended with the ones required by Bonita
-|   `-- bonita-start(.sh|.bat)                                  Script used to start Bonita BPM Wildfly bundle
+|   |                           `-- module.xml                  Describe the list of sdk packages use by WildFly extended with the ones required by Bonita
+|   `-- bonita-start(.sh|.bat)                                  Script used to start Bonita BPM WildFly bundle
 |
 |-- platform-setup						Platform creation/initialization files (Database scripts + configuration files)
 |-- license                                 			License files
@@ -50,7 +50,7 @@ Contents of this package:
 
 In order to install bonita you need to copy into the root folder of your application server:
 - the content of the directory matching it
-- for Wildfly update the files `platform-setup/platform_conf/initial/platform_engine/bonita-platform-community-custom.properties`
+- for WildFly update the files `platform-setup/platform_conf/initial/platform_engine/bonita-platform-community-custom.properties`
   and `platform-setup/platform_conf/initial/tenant_template_engine/bonita-tenant-community-custom.properties`:
       - uncomment lines containing "java:comp/env/"
       - remove every occurrence of "java:comp/env/" (leave the rest of the value)
