@@ -18,4 +18,4 @@ if [ -d "./setup" ]; then
 
 fi
 
-./bin/standalone.sh
+./server/bin/standalone.sh

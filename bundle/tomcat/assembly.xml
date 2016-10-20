@@ -10,9 +10,9 @@
     <fileSets>
         <fileSet>
             <outputDirectory>/</outputDirectory>
-            <directory>${tomcat.home.dir}</directory>
+            <directory>${bundle.dir}</directory>
             <excludes>
-                <exclude>bin/*.sh</exclude>
+                <exclude>server/bin/*.sh</exclude>
                 <exclude>setup/*.sh</exclude>
                 <exclude>*.sh</exclude>
                 <exclude>*.bat</exclude>
@@ -20,9 +20,9 @@
         </fileSet>
         <fileSet>
             <outputDirectory>/</outputDirectory>
-            <directory>${tomcat.home.dir}</directory>
+            <directory>${bundle.dir}</directory>
             <includes>
-                <include>bin/*.sh</include>
+                <include>server/bin/*.sh</include>
                 <include>setup/*.sh</include>
                 <include>*.sh</include>
                 <include>*.bat</include>

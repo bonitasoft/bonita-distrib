@@ -18,4 +18,4 @@ if [ -d "./setup" ]; then
 
 fi
 
-./bin/startup.sh
+./server/bin/startup.sh
