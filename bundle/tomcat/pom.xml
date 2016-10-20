@@ -14,9 +14,9 @@
         <zipName>BonitaBPMCommunity-${project.version}-Tomcat-${tomcat.version}</zipName>
         <tomcat.zip.parent.folder>${user.home}</tomcat.zip.parent.folder>
         <if.task>net.sf.antcontrib.logic.IfTask</if.task>
-        <tomcat.bos.home.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</tomcat.bos.home.dir>
-        <tomcat.home.dir>${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}</tomcat.home.dir>
-        <platform.setup.folder>${tomcat.home.dir}/setup</platform.setup.folder>
+        <bundle.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</bundle.dir>
+        <tomcat.home.dir>${bundle.dir}/server</tomcat.home.dir>
+        <platform.setup.folder>${bundle.dir}/setup</platform.setup.folder>
         <tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
         <tomcat.webapps.dir>${tomcat.home.dir}/webapps</tomcat.webapps.dir>
         <tomcat.conf.dir>${tomcat.home.dir}/conf</tomcat.conf.dir>
@@ -65,19 +65,20 @@
                         </goals>
                         <configuration>
                             <target name="Cleaning up unwanted default built-in webapps">
-                                <unzip src="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" dest="${tomcat.bos.home.dir}">
+                                <unzip src="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" dest="${bundle.dir}">
                                     <patternset>
                                         <include name="**/*" />
                                     </patternset>
                                 </unzip>
-                                <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/docs" />
-                                <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/examples" />
-                                <delete dir="${tomcat.bos.home.dir}/apache-tomcat-${tomcat.version}/webapps/host-manager" />
+                                <move file="${bundle.dir}/apache-tomcat-${tomcat.version}" tofile="${tomcat.home.dir}" />
+                                <delete dir="${tomcat.home.dir}/webapps/docs" />
+                                <delete dir="${tomcat.home.dir}/webapps/examples" />
+                                <delete dir="${tomcat.home.dir}/webapps/host-manager" />
                             </target>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-libs-and-home</id>
+                        <id>copy-libs-and-setup</id>
                         <phase>package</phase>
                         <goals>
                             <goal>run</goal>
@@ -85,19 +86,17 @@
                         <configuration>
                             <target name="Adding Bonita-specific file to Tomcat bundle">
                                 <move overwrite="true" todir="${tomcat.lib.dir}/bonita">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}/lib">
+                                    <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}/server/lib">
                                         <include name="*.jar" />
                                     </fileset>
                                 </move>
-                                <move overwrite="true" todir="${platform.setup.folder}">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/platform-setup">
-                                        <include name="**/*" />
-                                    </fileset>
-                                </move>
-                                <move overwrite="true" todir="${tomcat.home.dir}">
+                                <move overwrite="true" todir="${bundle.dir}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}">
                                         <exclude name="lib/*" />
                                     </fileset>
+                                </move>
+                                <move overwrite="true" todir="${platform.setup.folder}">
+                                    <fileset dir="${project.build.directory}/${distrib.zipname}/setup" />
                                 </move>
                                 <chmod perm="ugo+x">
                                     <fileset dir="${tomcat.home.dir}/bin">

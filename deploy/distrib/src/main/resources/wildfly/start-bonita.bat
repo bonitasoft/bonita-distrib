@@ -15,4 +15,4 @@ IF NOT EXIST setup GOTO NOSETUPDIR
    )
 
 :NOSETUPDIR
-call bin\standalone.bat
+call server\bin\standalone.bat

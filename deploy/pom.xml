@@ -1,21 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>bonita-distrib</artifactId>
-		<groupId>org.bonitasoft.distrib</groupId>
-		<version>7.4.0-SNAPSHOT</version>
-	</parent>
-	<groupId>org.bonitasoft.distrib</groupId>
-	<artifactId>deploy-parent</artifactId>
-	<packaging>pom</packaging>
-	<name>deploy parent</name>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>bonita-distrib</artifactId>
+        <groupId>org.bonitasoft.distrib</groupId>
+        <version>7.4.0-SNAPSHOT</version>
+    </parent>
+    <groupId>org.bonitasoft.distrib</groupId>
+    <artifactId>deploy-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>deploy parent</name>
 
-	<modules>
-		<module>all-in-one</module>
-		<module>war-server</module>
-		<module>war-ear</module>
-		<module>ear-resources</module>
-                <module>ear</module>
-		<module>distrib</module>
-	</modules>
+    <modules>
+        <module>all-in-one</module>
+        <module>war-server</module>
+        <module>war-ear</module>
+        <module>ear-resources</module>
+        <module>ear</module>
+        <module>distrib</module>
+    </modules>
 </project>

@@ -5,7 +5,7 @@
         <groupId>org.bonitasoft.distrib</groupId>
         <version>7.4.0-SNAPSHOT</version>
     </parent>
-    <groupId>org.bonitasoft.distrib</groupId>
+
     <artifactId>bundle-wildfly</artifactId>
     <name>wildfly bundle</name>
     <packaging>pom</packaging>
@@ -25,13 +25,13 @@
 
         <wildfly.zip.parent.folder>${zipFolder}</wildfly.zip.parent.folder>
         <wildfly.zip.name>wildfly-${wildfly.version}</wildfly.zip.name>
-        <wildfly.bos.home.dir>${project.build.directory}/${zipName}</wildfly.bos.home.dir>
-        <wildfly.home>${wildfly.bos.home.dir}/${wildfly.zip.name}</wildfly.home>
-        <platform.setup.folder>${wildfly.home}/setup</platform.setup.folder>
+        <bundle.dir>${project.build.directory}/${zipName}</bundle.dir>
+        <wildfly.home>${bundle.dir}/server</wildfly.home>
         <wildfly.default.dir>${wildfly.home}/standalone/</wildfly.default.dir>
         <wildfly.deploy.dir>${wildfly.default.dir}/deployments</wildfly.deploy.dir>
         <wildfly.conf.dir>${wildfly.default.dir}/configuration</wildfly.conf.dir>
         <wildfly.lib.dir>${wildfly.default.dir}/lib</wildfly.lib.dir>
+        <platform.setup.folder>${bundle.dir}/setup</platform.setup.folder>
         <wildfly.download.url>http://download.jboss.org/wildfly/${wildfly.version}/${wildfly.zip.name}.zip</wildfly.download.url>
     </properties>
 
@@ -70,11 +70,12 @@
                         </goals>
                         <configuration>
                             <target name="Unzipping wildfly package">
-                                <unzip src="${wildfly.zip.parent.folder}/${wildfly.zip.name}.zip" dest="${wildfly.bos.home.dir}">
+                                <unzip src="${wildfly.zip.parent.folder}/${wildfly.zip.name}.zip" dest="${bundle.dir}">
                                     <patternset>
                                         <include name="**/*" />
                                     </patternset>
                                 </unzip>
+                                <move file="${bundle.dir}/${wildfly.zip.name}" tofile="${bundle.dir}/server" />
                             </target>
                         </configuration>
                     </execution>
@@ -86,28 +87,27 @@
                         </goals>
                         <configuration>
                             <target name="Adding Bonita-specific file to wildfly bundle">
-                                <copy overwrite="true" todir="${platform.setup.folder}">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/platform-setup" />
-                                </copy>
+                                <move overwrite="true" todir="${platform.setup.folder}">
+                                    <fileset dir="${project.build.directory}/${distrib.zipname}/setup" />
+                                </move>
 
                                 <!-- Copy the configuration on the deploy zip into the bundle wildfly -->
-                                <copy overwrite="true" todir="${wildfly.home}">
+                                <move overwrite="true" todir="${bundle.dir}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/wildfly-${wildfly.version}" />
-                                </copy>
+                                </move>
 
                                 <!-- Copy the license -->
-                                <copy overwrite="true" todir="${wildfly.home}">
+                                <move overwrite="true" todir="${wildfly.home}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/license">
                                         <include name="**/*" />
                                     </fileset>
-                                </copy>
+                                </move>
 
                                 <chmod perm="ugo+x">
                                     <fileset dir="${wildfly.home}/bin">
                                         <include name="*.sh" />
                                     </fileset>
                                 </chmod>
-
                             </target>
                         </configuration>
                     </execution>
