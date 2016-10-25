@@ -37,8 +37,9 @@ They are used as a basis for Tomcat configuration and will overwrite Tomcat prov
 
 ## Bonita BPM internal configuration update
 ### Update other configuration items
+* Stop Bonita BPM Community Tomcat bundle
 * In setup/ folder, run `setup(.sh|.bat) pull` to retrieve your current configuration from database
-* Edit any configuration file in `pulled` folder setup/platform_conf/current. Example of frequently customized files are:
+* Edit any configuration file in setup/platform_conf/current folder. Example of frequently customized files are:
 setup/platform_conf/current/platform_engine/bonita-platform-community-custom.properties
 setup/platform_conf/current/tenants/1/tenant_engine/bonita-tenant-community-custom.properties
 * Run `setup(.sh|.bat) push` to push the new configuration to the database
@@ -48,5 +49,5 @@ setup/platform_conf/current/tenants/1/tenant_engine/bonita-tenant-community-cust
 ## FAQ
 
 ### When I run on H2, I get prompted to confirm that I want to use H2
-=> Yes, H2 is not recommended for production, but only in development/testing phase. Confirm once, you will not be prompted any longer.
-Alternatively, you can run `start-bonita(.sh|.bat) --allow-default` if you do not want to be prompted for confirmation.
+=> Yes, H2 is not recommended for production, but only in development/testing phase.
+To make sure this is what you want, you are asked to confirm it.
