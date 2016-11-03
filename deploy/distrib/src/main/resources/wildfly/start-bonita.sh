@@ -3,18 +3,32 @@
 testReturnCode() {
   COD_RET=$1
   if [ ${COD_RET} -ne 0 ]; then
-    echo "ERROR ${COD_RET} $2"
     exit ${COD_RET}
   fi
 }
 
+# Setup the JVM
+if [ "x$JAVA" = "x" ]; then
+    if [ "x$JAVA_HOME" != "x" ]; then
+        JAVA="$JAVA_HOME/bin/java"
+    else
+        JAVA="java"
+    fi
+fi
+# Check Java version is 8+
+java_version=$("$JAVA" -version 2>&1 | sed 's/.*version "\(.*\)\.\(.*\)\..*"/\2/; 1q')
+if [ "$java_version" -lt "8" ]; then
+    echo "Wrong Java version ($java_version) < 8. Please set JAVA or JAVA_HOME variable to a JDK / JRE 8+"
+    exit 18
+fi
+
 if [ -d "./setup" ]; then
 
     ./setup/setup.sh init $@
-    testReturnCode $? "Setting up Bonita BPM platform Community edition"
+    testReturnCode $?
 
     ./setup/setup.sh configure $@
-    testReturnCode $? "Configuring WildFly bundle"
+    testReturnCode $?
 
 fi
 
