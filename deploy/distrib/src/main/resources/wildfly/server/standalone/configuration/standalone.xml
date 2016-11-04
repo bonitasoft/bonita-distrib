@@ -130,6 +130,9 @@
             <logger category="org.bonitasoft">
                 <level name="WARN" />
             </logger>
+            <logger category="com.bonitasoft">
+                <level name="WARN" />
+            </logger>
             <logger category="org.bonitasoft.engine.EngineInitializer">
                 <level name="INFO" />
             </logger>
@@ -150,6 +153,10 @@
             <!-- <logger category="org.bonitasoft.engine.expression">
                 <level name="FINE" />
             </logger>
+            <logger category="com.bonitasoft.engine.expression">
+                <level name="FINE" />
+            </logger>
+
             <logger category="org.bonitasoft.engine.data.instance.api.DataExpressionExecutorStrategy">
                 <level name="FINE" />
             </logger> -->
@@ -157,7 +164,11 @@
             <!-- If you want to have more log on input/output of API calls, you can activate and modify the following line -->
             <!-- <logger category="org.bonitasoft.engine.api">
                 <level name="FINE" />
-            </logger> -->
+            </logger>
+            <logger category="com.bonitasoft.engine.api">
+                <level name="FINE" />
+            </logger>
+            -->
 
             <!-- If you want to have more log on Asynchronous executions (Work/Job),
                 you can activate and modify the following lines -->
