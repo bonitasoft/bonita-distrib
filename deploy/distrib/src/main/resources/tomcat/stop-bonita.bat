@@ -1,4 +1,6 @@
 @echo off
 setlocal
 
-call server\bin\shutdown.bat
+cd server
+call bin\shutdown.bat
+cd ..
