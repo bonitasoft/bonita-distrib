@@ -16,7 +16,7 @@ if [ "x$JAVA" = "x" ]; then
     fi
 fi
 # Check Java version is 8+
-java_version=$("$JAVA" -version 2>&1 | sed 's/.*version "\(.*\)\.\(.*\)\..*"/\2/; 1q')
+java_version=$("$JAVA" -version 2>&1 | grep -i version | sed 's/.*version ".*\.\(.*\)\..*"/\1/; 1q')
 if [ "$java_version" -lt "8" ]; then
     echo "Wrong Java version ($java_version) < 8. Please set JAVA or JAVA_HOME variable to a JDK / JRE 8+"
     exit 18
