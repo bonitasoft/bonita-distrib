@@ -15,4 +15,7 @@ IF NOT EXIST setup GOTO NOSETUPDIR
    )
 
 :NOSETUPDIR
-call server\bin\startup.bat
+cd server
+call bin\startup.bat
+cd ..
+
