@@ -23,6 +23,9 @@ if [ "$java_version" -lt "8" ]; then
 fi
 
 if [ -d "./setup" ]; then
+	echo "------------------------------------------------------"
+    echo "Initializing and configuring Bonita BPM WildFly bundle"
+	echo "------------------------------------------------------"
 
     ./setup/setup.sh init $@
     testReturnCode $?
@@ -32,4 +35,7 @@ if [ -d "./setup" ]; then
 
 fi
 
+echo "------------------------------------------------------"
+echo "Starting Bonita BPM WildFly bundle"
+echo "------------------------------------------------------"
 ./server/bin/standalone.sh
