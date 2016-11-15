@@ -29,6 +29,9 @@ if "%VERSION_NUMBER%" LSS "8" (
 
 
 IF NOT EXIST setup GOTO NOSETUPDIR
+echo ------------------------------------------------------
+echo Initializing and configuring Bonita BPM WildFly bundle
+echo ------------------------------------------------------
 shift
 call setup\setup.bat init %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 (
@@ -40,6 +43,9 @@ if errorlevel 1 (
 )
 
 :NOSETUPDIR
+echo "------------------------------------------------------"
+echo "Starting Bonita BPM WildFly bundle"
+echo "------------------------------------------------------"
 call server\bin\standalone.bat
 
 endlocal

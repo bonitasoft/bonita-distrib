@@ -8,6 +8,9 @@ testReturnCode() {
 }
 
 if [ -d "./setup" ]; then
+	echo "-----------------------------------------------------"
+    echo "Initializing and configuring Bonita BPM Tomcat bundle"
+	echo "-----------------------------------------------------"
 
     ./setup/setup.sh init $@
     testReturnCode $?
@@ -17,4 +20,7 @@ if [ -d "./setup" ]; then
 
 fi
 
+echo "-----------------------------------------------------"
+echo "Starting Tomcat server..."
+echo "-----------------------------------------------------"
 ./server/bin/startup.sh
