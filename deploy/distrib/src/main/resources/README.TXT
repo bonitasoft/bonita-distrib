@@ -49,9 +49,6 @@ Contents of this package:
 |-- license                                 			License files
 `-- README.txt                              			You are here!
 
-In order to install bonita you need to copy into the root folder of your application server:
-- the content of the directory matching it
-- for WildFly update the files `setup/platform_conf/initial/platform_engine/bonita-platform-community-custom.properties`
-  and `setup/platform_conf/initial/tenant_template_engine/bonita-tenant-community-custom.properties`:
-      - uncomment lines containing "java:comp/env/"
-      - remove every occurrence of "java:comp/env/" (leave the rest of the value)
+In order to install Bonita BPM into your Application Server installation, you need:
+- to rename your Application Server installation root folder with name `server`
+- to copy into your Application Server installation the content of the folder named Tomcat-${tomcat.version} or wildfly-${wildfly.version}
