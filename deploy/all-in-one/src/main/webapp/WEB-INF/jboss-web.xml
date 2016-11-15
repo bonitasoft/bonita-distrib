@@ -1,0 +1,18 @@
+<jboss-web>
+    <resource-ref>
+        <res-ref-name>java:comp/env/bonitaDS</res-ref-name>
+        <jndi-name>java:jboss/datasources/bonitaDS</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>java:comp/env/bonitaSequenceManagerDS</res-ref-name>
+        <jndi-name>java:jboss/datasources/bonitaSequenceManagerDS</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>java:comp/env/BusinessDataDS</res-ref-name>
+        <jndi-name>java:jboss/datasources/BusinessDataDS</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>java:comp/env/NotManagedBizDataDS</res-ref-name>
+        <jndi-name>java:jboss/datasources/NotManagedBizDataDS</jndi-name>
+    </resource-ref>
+</jboss-web>
