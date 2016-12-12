@@ -41,13 +41,13 @@
         $scope.parent = $scope.dataToSend;
         $scope.process = {};
         $scope.message = undefined;
-
         $scope.importUrl = '../API/formFileUpload';
         $scope.filename = '';
 
         $http({ method: 'GET', url: '../API/system/session/unusedId' })
             .success(function (data, status, headers) {
-                $http.defaults.headers.common['X-Bonita-API-Token'] = headers('X-Bonita-API-Token');
+                $scope.csrfToken = headers('X-Bonita-API-Token');
+                $http.defaults.headers.common['X-Bonita-API-Token'] = $scope.csrfToken;
                 init();
             }
         );
@@ -95,14 +95,14 @@
             } else {
                 $window.location.assign('/bonita');
             }
-        }
+        };
 
         var onPostError = function(response) {
             if ($window.parent !== $window.self) {
                 notifyParentFrame('error', response.status, null, response.data.message);
             }
             $scope.message = response.data.explanations ? response.data.explanations : response.data.message;
-        }
+        };
         
         function notifyParentFrame(message, status, dataFromSuccess, dataFromError) {
             var dataToSend = {

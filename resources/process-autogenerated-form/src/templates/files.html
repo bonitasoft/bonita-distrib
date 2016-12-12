@@ -10,6 +10,7 @@
         <div class="form-group">
             <div>
                 <div class="input-group file-upload">
+                    <input type="hidden" name="CSRFToken" value="{{csrfToken}}"/>
                     <input type="text" readonly="" disabled placeholder="{{'Select a file'| translate}}" value="{{multipleInput.value}}" name="{{input.name}}" class="form-control">
                     <div class="input-group-btn">
                         <div class="btn" ng-class="{'btn-default disabled':$isUploading, 'btn-primary':!$isUploading}">
