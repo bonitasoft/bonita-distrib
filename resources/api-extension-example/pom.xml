@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.bonitasoft.distrib</groupId>
         <artifactId>resources</artifactId>
-        <version>7.4.2-SNAPSHOT</version>
+        <version>7.4.2-W04-03</version>
     </parent>
     <artifactId>api-extension-example</artifactId>
     <packaging>jar</packaging>
