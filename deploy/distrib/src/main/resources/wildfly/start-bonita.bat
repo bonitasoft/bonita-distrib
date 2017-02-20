@@ -10,7 +10,7 @@ if "x%JAVA_HOME%" == "x" (
 rem If JAVA_HOME system variable is not set try to use java command in the path.
 ) else (
     echo JAVA_HOME is set to: "%JAVA_HOME%"
-    rem Verifiy that value of JAVA_HOME refer to a folder that actually exists.
+    rem Verify that value of JAVA_HOME refer to a folder that actually exists.
     if not exist "%JAVA_HOME%" (
         rem Folder does not exist.
         echo JAVA_HOME "%JAVA_HOME%" path doesn't exist
@@ -19,7 +19,7 @@ rem If JAVA_HOME system variable is not set try to use java command in the path.
         rem Value of JAVA_HOME point to an existing folder.
         rem Build the full path to java executable.
         set JAVA=%JAVA_HOME%\bin\java
-        echo Java command path is "!JAVA!"
+        echo Java command path is "%JAVA%"
     )
 )
 
@@ -47,7 +47,7 @@ echo Java minor version is: %VERSION_NUMBER%
 echo Check that Java minor version is compatible with WildFly (need to be 8 or higher)
 if "%VERSION_NUMBER%" LSS "8" (
     rem Java minor version is lower then 8. Not supported by WildFly.
-    echo Wrong Java minor version %VERSION_NUMBER% ^< 8. Please set JAVA_HOME system variable to a JDK / JRE 8+
+    echo Invalid Java minor version %VERSION_NUMBER% ^< 8. Please set JAVA_HOME system variable to a JDK / JRE 8+
     exit /b 1
 )
 echo Java minor version is compatible
