@@ -6,11 +6,33 @@ testReturnCode() {
     exit ${COD_RET}
   fi
 }
+echo "JAVA_CMD: $JAVA_CMD"
+# Setup the JVM
+if [ "x$JRE_HOME" = "x" ]; then
+    if [ "x$JAVA_HOME" != "x" ]; then
+        JAVA_CMD="$JAVA_HOME/bin/java"
+    fi
+else
+    JAVA_CMD="$JRE_HOME/bin/java"
+fi
+export JAVA_CMD
+
+# Check Java version is 8+
+java_version=$("$JAVA_CMD" -version 2>&1 | grep -i version | sed 's/.*version ".*\.\(.*\)\..*"/\1/; 1q')
+if [ "x$java_version" = "x" ]; then
+  echo "No Java command could be found. Please set JRE_HOME or JAVA_HOME variable to a JRE / JDK 1.8+"
+  exit 12
+else
+  if [ "$java_version" -lt "8" ]; then
+    echo "Invalid Java version (1.$java_version) < 1.8. Please set JRE_HOME or JAVA_HOME variable to a JRE / JDK 1.8+"
+    exit 18
+  fi
+fi
 
 if [ -d "./setup" ]; then
-	echo "-----------------------------------------------------"
+  echo "-----------------------------------------------------"
     echo "Initializing and configuring Bonita BPM Tomcat bundle"
-	echo "-----------------------------------------------------"
+  echo "-----------------------------------------------------"
 
     ./setup/setup.sh init $@
     testReturnCode $?
