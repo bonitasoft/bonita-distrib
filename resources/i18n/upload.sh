@@ -26,7 +26,29 @@ check_errors() {
   fi
 }
 
-SCRIPT_DIR=$(dirname $(readlink -f "$0"))
+
+upload_keys() {
+  # add folder in case it does not exists  yet
+  curl  --silent -o /dev/null \
+        -F "branch=$BRANCH_NAME" \
+        -F "name=bonita-web/distrib" \
+        https://api.crowdin.com/api/project/$PROJECT/add-directory?key=$CROWDINKEY
+
+  # add file in case it does not exists yet
+  curl --silent -o /dev/null \
+        -F "files[bonita-web/distrib/resources.pot]=@$BUILD_DIR/resources.pot"  \
+        -F "branch=$BRANCH_NAME" \
+        -F "export_patterns[bonita-web/distrib/resources.pot]=/bonita-web/distrib/resources_%locale_with_underscore%.po" \
+        https://api.crowdin.com/api/project/$PROJECT/add-file?key=$CROWDINKEY
+
+  # update file
+  curl  -F "files[bonita-web/distrib/resources.pot]=@$BUILD_DIR/resources.pot"  \
+        -F "branch=$BRANCH_NAME" \
+        -F "export_patterns[bonita-web/distrib/resources.pot]=/bonita-web/distrib/resources_%locale_with_underscore%.po" \
+        https://api.crowdin.com/api/project/$PROJECT/update-file?key=$CROWDINKEY
+}
+
+SCRIPT_DIR=$(cd $(dirname $0) && pwd)
 BUILD_DIR=$SCRIPT_DIR
 BASE_DIR=$SCRIPT_DIR
 
@@ -58,22 +80,11 @@ echo "web distrib TRANSLATION UPLOAD"
 echo "***********************************************************************************"
 cd $BASE_DIR
 
+echo "BRANCH: $BRANCH_NAME"
+echo "PROJECT: $PROJECT"
+
 echo "Building pot files..."
 npm_pot
 
 echo "Exporting community pot to $PROJECT crowdin project ..."
-curl -F "files[$BRANCH_NAME/bonita-web/distrib/resources.pot]=@$BUILD_DIR/resources.pot"  \
-     -F "export_patterns[$BRANCH_NAME/bonita-web/distrib/resources.pot]=/$BRANCH_NAME/bonita-web/distrib/resources_%locale_with_underscore%.po" \
-   https://api.crowdin.com/api/project/$PROJECT/update-file?key=$CROWDINKEY
-if [ $? -ne 0 ]
-then
-  echo "Error while updating pot file: $?"
-  curl -F "files[$BRANCH_NAME/bonita-web/distrib/resources.pot]=@$BUILD_DIR/resources.pot"  \
-       -F "export_patterns[$BRANCH_NAME/bonita-web/distrib/resources.pot]=/$BRANCH_NAME/bonita-web/distrib/resources_%locale_with_underscore%.po" \
-     https://api.crowdin.com/api/project/$PROJECT/add-file?key=$CROWDINKEY
-     if [ $? -ne 0 ]
-     then
-       echo "Error while adding pot file: $?"
-       exit $?
-     fi
-fi
+upload_keys
