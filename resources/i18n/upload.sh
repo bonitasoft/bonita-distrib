@@ -2,9 +2,10 @@
 
 usage() {
     echo "***********************************************************************************"
-    echo "Usage:     $0 --crowdin-api-key=<key> [--branch-name=<branch>]"
+    echo "Usage:     $0 --crowdin-api-key=<key> [--branch-name=<branch>] [--crowdin-project=<crowdin project>]"
     echo ""
-    echo "  --crowdin-api-key the crowdin api key of crowdin project (bonita-bpm-new-features)"
+    echo "  --crowdin-api-key the crowdin api key of crowdin project"
+    echo "  --crowdin-project crowdin project (default: bonita-bpm)"
     echo "  --branch-name branch name to upload to crowdin (default to master)"
     echo "***********************************************************************************"
     exit 1;
@@ -29,7 +30,7 @@ SCRIPT_DIR=$(dirname $(readlink -f "$0"))
 BUILD_DIR=$SCRIPT_DIR
 BASE_DIR=$SCRIPT_DIR
 
-PROJECT="bonita-bpm-new-features"
+PROJECT="bonita-bpm"
 BRANCH_NAME=master
 for i in "$@"; do
     case $i in
@@ -39,6 +40,10 @@ for i in "$@"; do
         ;;
         --branch-name=*)
         BRANCH_NAME="${i#*=}"
+        shift
+        ;;
+        --crowdin-project=*)
+        PROJECT="${i#*=}"
         shift
         ;;
     esac
