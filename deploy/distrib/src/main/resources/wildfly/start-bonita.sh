@@ -31,8 +31,6 @@ else
   fi
 fi
 
-read unused
-
 if [ -d "./setup" ]; then
   echo "------------------------------------------------------"
   echo "Initializing and configuring Bonita BPM WildFly bundle"
