@@ -4,7 +4,7 @@
   } catch(e) {
     return angular.module('bonitasoft.ui.widgets', []);
   }
-})().directive('customLivingApplicationIFrame', function() {
+})().directive('customLivingApplicationIFrameV2', function() {
     return {
       controllerAs: 'ctrl',
       controller: function WidgetlivingApplicationIFrameController($scope, $element, $interval, $sce) {
