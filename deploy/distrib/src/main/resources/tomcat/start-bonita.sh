@@ -6,7 +6,7 @@ testReturnCode() {
     exit ${COD_RET}
   fi
 }
-echo "JAVA_CMD: $JAVA_CMD"
+
 # Setup the JVM
 if [ "x$JRE_HOME" = "x" ]; then
     if [ "x$JAVA_HOME" != "x" ]; then
@@ -31,14 +31,14 @@ fi
 
 if [ -d "./setup" ]; then
   echo "-----------------------------------------------------"
-    echo "Initializing and configuring Bonita BPM Tomcat bundle"
+  echo "Initializing and configuring Bonita BPM Tomcat bundle"
   echo "-----------------------------------------------------"
 
-    ./setup/setup.sh init $@
-    testReturnCode $?
+  ./setup/setup.sh init $@
+  testReturnCode $?
 
-    ./setup/setup.sh configure $@
-    testReturnCode $?
+  ./setup/setup.sh configure $@
+  testReturnCode $?
 
 fi
 
