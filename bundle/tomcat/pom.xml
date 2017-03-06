@@ -3,7 +3,7 @@
     <parent>
         <artifactId>bundle-parent</artifactId>
         <groupId>org.bonitasoft.distrib</groupId>
-        <version>7.4.4-SNAPSHOT</version>
+        <version>7.4.4.W10-01</version>
     </parent>
 
     <artifactId>bundle-tomcat</artifactId>
