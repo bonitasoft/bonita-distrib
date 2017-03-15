@@ -17,7 +17,7 @@ if "x%JRE_HOME%" == "x" (
         ) else (
             REM Value of JAVA_HOME points to an existing folder.
             REM Build the full path to java executable.
-            set JAVA_CMD="%JAVA_HOME%\bin\java"
+            set JAVA_CMD=%JAVA_HOME%\bin\java
         )
     )
 ) else (
@@ -30,7 +30,7 @@ if "x%JRE_HOME%" == "x" (
     ) else (
         REM Value of JRE_HOME points to an existing folder.
         REM Build the full path to java executable.
-        set JAVA_CMD="%JRE_HOME%\bin\java"
+        set JAVA_CMD=%JRE_HOME%\bin\java
     )
 )
 echo Java command path is %JAVA_CMD%
