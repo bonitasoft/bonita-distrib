@@ -341,6 +341,27 @@
          inputs:[]
        },
        {
+         description:'Ticket creation DateOnly',
+         name:'ticket_date_only',
+         multiple:false,
+         type:'LOCALDATE',
+         inputs:[]
+       },
+        {
+          description:'Ticket creation Date&Time Local',
+          name:'ticket_date_date_time',
+          multiple:false,
+          type:'LOCALDATETIME',
+          inputs:[]
+        },
+        {
+          description:'Ticket creation Date&Time UTC',
+          name:'ticket_date_date_time_utc',
+          multiple:false,
+          type:'OFFSETDATETIME',
+          inputs:[]
+        },
+        {
           type: 'FILE',
           description: 'buisness archive',
           name: 'buisnessArchive',
