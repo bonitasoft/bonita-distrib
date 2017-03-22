@@ -153,8 +153,17 @@
             return (input.type === 'FILE');
         };
 
-        $scope.isDateInput = function isDateInput(input) {
-            return (input.type === 'DATE');
+        $scope.getExample = function(input) {
+            var examples = {
+                'DATE': '(2017-06-18)',
+                'LOCALDATE': '(2017-06-18)',
+                'LOCALDATETIME': '2017-06-18T15:30',
+                'OFFSETDATETIME': '2017-06-18T22:00Z'
+            };
+            if(examples[input.type]) {
+                return ' ' + examples[input.type];
+            }
+            return ''
         };
 
         $scope.inputType2HTML = function inputType2HTML(input) {
@@ -162,7 +171,7 @@
 
             if (input.type === 'INTEGER' || input.type === 'DECIMAL') {
                 result = 'number';
-            } else if (input.type === 'DATE') {
+            } else if (input.type.contains('DATE')) {
                 result = 'text';
             } /*else if (input.type === 'BOOLEAN') {
              result = 'checkbox';
