@@ -79,6 +79,11 @@
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>1.2.1</version>
                 </plugin>
+                <plugin>
+                    <groupId>net.nicoulaj.maven.plugins</groupId>
+                    <artifactId>checksum-maven-plugin</artifactId>
+                    <version>1.5</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
