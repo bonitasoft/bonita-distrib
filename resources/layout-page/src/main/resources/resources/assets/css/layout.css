@@ -6,7 +6,7 @@ body {
   overflow: hidden;
 }
 
-div.container-fluid {
+body > div.container-fluid {
   display: table;
   width: 100%;
   height: 100%;
@@ -14,15 +14,15 @@ div.container-fluid {
   padding: 0;
 }
 
-div.container-fluid div.row {
+body > div.container-fluid div.row {
   display: table-row;
 }
 
-div.container-fluid div.row > div {
+body > div.container-fluid div.row > div {
   display: table-cell;
 }
 
-div.container-fluid div.row:nth-child(2) div {
+body > div.container-fluid div.row:nth-child(2) div {
   height: 100%;
 }
 
