@@ -32,7 +32,7 @@
         'org.bonitasoft.common.filters.stringTemplater'
     ]);
 
-    app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'humanTaskAPI', 'i18nService', '$http', function ($scope, $location, contractSrvc, urlParser, $window, humanTaskAPI, i18nService, $http) {
+    app.controller('MainCtrl', ['$scope', '$location', 'contractSrvc', 'urlParser', '$window', 'humanTaskAPI', 'i18nService', '$http', '$filter', function ($scope, $location, contractSrvc, urlParser, $window, humanTaskAPI, i18nService, $http, $filter) {
 
         var taskId = urlParser.getQueryStringParamValue('id');
         var userId = urlParser.getQueryStringParamValue('user');
@@ -155,15 +155,15 @@
 
         $scope.getExample = function(input) {
             var examples = {
-                'DATE': '(2017-06-18)',
-                'LOCALDATE': '(2017-06-18)',
-                'LOCALDATETIME': '2017-06-18T15:30',
-                'OFFSETDATETIME': '2017-06-18T22:00Z'
+                'DATE': $filter('date')(new Date(), 'yyyy-MM-dd'),
+                'LOCALDATE': $filter('date')(new Date(), 'yyyy-MM-dd'),
+                'LOCALDATETIME': $filter('date')(new Date(), 'yyyy-MM-ddTHH:mm'),
+                'OFFSETDATETIME': $filter('date')(new Date(), 'yyyy-MM-ddTHH:mm', 'UTC') + 'Z'
             };
             if(examples[input.type]) {
-                return ' ' + examples[input.type];
+                return examples[input.type];
             }
-            return ''
+            return '';
         };
 
         $scope.inputType2HTML = function inputType2HTML(input) {
@@ -171,7 +171,7 @@
 
             if (input.type === 'INTEGER' || input.type === 'DECIMAL') {
                 result = 'number';
-            } else if (input.type.contains('DATE')) {
+            } else if (input.type.indexOf('DATE') >=0) {
                 result = 'text';
             } /*else if (input.type === 'BOOLEAN') {
              result = 'checkbox';

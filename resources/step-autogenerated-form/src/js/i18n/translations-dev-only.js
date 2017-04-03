@@ -2733,6 +2733,9 @@
         }, {"value": "{}-{} of {}", "key": "{}-{} of {}"}, {
             "value": "Démarrer",
             "key": "Start"
+        }, {
+            "value": "Exemple :",
+            "key": "Example:"
         }];
 
         $httpBackend.whenGET('../API/system/i18ntranslation?f=locale%3Dfr').respond(french);
