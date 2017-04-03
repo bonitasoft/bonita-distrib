@@ -1,91 +1,154 @@
 {
-    "designerVersion": "1.2.9",
-    "id": "layout-page",
-    "name": "LivingApplicationLayoutPage",
-    "type": "layout",
-    "lastUpdate": 1488366647443,
-    "rows": [
-        [
-            {
-                "type": "component",
-                "dimension": {
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 12,
-                    "lg": 12
-                },
-                "propertyValues": {
-                    "cssClasses": {
-                        "type": "constant",
-                        "value": ""
-                    },
-                    "hidden": {
-                        "type": "constant",
-                        "value": false
-                    },
-                    "targetUrl": {
-                        "type": "variable",
-                        "value": "targetedPageUrl"
-                    }
-                },
-                "reference": "0cb14c2a-41f1-488d-a85f-c5502f7ed168",
-                "id": "customLivingApplicationMenuV2"
-            }
-        ],
-        [
-            {
-                "type": "component",
-                "dimension": {
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 12,
-                    "lg": 12
-                },
-                "propertyValues": {
-                    "cssClasses": {
-                        "type": "constant",
-                        "value": ""
-                    },
-                    "hidden": {
-                        "type": "constant",
-                        "value": false
-                    },
-                    "src": {
-                        "type": "expression",
-                        "value": "targetedPageUrl"
-                    },
-                    "resizeToContent": {
-                        "type": "constant",
-                        "value": false
-                    }
-                },
-                "reference": "cc8333c9-9d3c-4306-9fb0-480b85bcba2a",
-                "id": "customLivingApplicationIFrameV2"
-            }
-        ]
-    ],
-    "assets": [
-        {
-            "id": "2007621b-afa8-48ec-846f-f4d78ce90b8a",
-            "name": "layout.css",
-            "type": "css",
-            "order": 1,
-            "external": false
+  "designerVersion" : "1.5.7",
+  "id" : "layout-page",
+  "name" : "LivingApplicationLayoutPage",
+  "type" : "layout",
+  "lastUpdate" : 1489756212929,
+  "rows" : [ [ {
+    "type" : "container",
+    "dimension" : {
+      "xs" : 12,
+      "sm" : 12,
+      "md" : 12,
+      "lg" : 12
+    },
+    "propertyValues" : {
+      "cssClasses" : {
+        "type" : "constant",
+        "value" : "layout-header"
+      },
+      "hidden" : {
+        "type" : "constant",
+        "value" : false
+      },
+      "repeatedCollection" : {
+        "type" : "variable"
+      }
+    },
+    "reference" : "0f313748-345b-4708-a802-b6ef2bf5afe1",
+    "rows" : [ [ {
+      "type" : "component",
+      "dimension" : {
+        "lg" : 12,
+        "md" : 12,
+        "sm" : 12,
+        "xs" : 12
+      },
+      "propertyValues" : {
+        "hidden" : {
+          "type" : "constant",
+          "value" : false
         },
-        {
-            "id": "27b2007f-d336-4f20-b640-5810f7a8af54",
-            "name": "layout.js",
-            "type": "js",
-            "order": 0,
-            "external": false
+        "targetUrl" : {
+          "type" : "variable",
+          "value" : "targetedPageUrl"
+        },
+        "cssClasses" : {
+          "type" : "constant",
+          "value" : ""
         }
-    ],
-    "inactiveAssets": [],
-    "data": {
-        "targetedPageUrl": {
-            "type": "constant",
-            "value": "",
-            "exposed": false
+      },
+      "reference" : "c49a2cd8-39d5-4bef-a264-c0e18ed3ba3c",
+      "id" : "customLivingApplicationMenuV2"
+    } ] ]
+  } ], [ {
+    "type" : "container",
+    "dimension" : {
+      "xs" : 12,
+      "sm" : 12,
+      "md" : 12,
+      "lg" : 12
+    },
+    "propertyValues" : {
+      "cssClasses" : {
+        "type" : "constant",
+        "value" : "layout-content"
+      },
+      "hidden" : {
+        "type" : "constant",
+        "value" : false
+      },
+      "repeatedCollection" : {
+        "type" : "variable"
+      }
+    },
+    "reference" : "97e28265-9cfe-4edd-9f12-d0d388b379c8",
+    "rows" : [ [ {
+      "type" : "component",
+      "dimension" : {
+        "lg" : 12,
+        "md" : 12,
+        "sm" : 12,
+        "xs" : 12
+      },
+      "propertyValues" : {
+        "cssClasses" : {
+          "type" : "constant",
+          "value" : ""
+        },
+        "hidden" : {
+          "type" : "constant",
+          "value" : false
+        },
+        "src" : {
+          "type" : "expression",
+          "value" : "targetedPageUrl"
+        },
+        "contentHeight" : {
+          "type" : "constant",
+          "value" : "700px;"
+        },
+        "resizeToContent" : {
+          "type" : "constant",
+          "value" : false
         }
+      },
+      "reference" : "9cd7cd7e-d548-410a-aaa3-4318f9280818",
+      "id" : "customLivingApplicationIFrameV2"
+    } ] ]
+  } ], [ {
+    "type" : "container",
+    "dimension" : {
+      "xs" : 12,
+      "sm" : 12,
+      "md" : 12,
+      "lg" : 12
+    },
+    "propertyValues" : {
+      "cssClasses" : {
+        "type" : "constant",
+        "value" : "layout-footer"
+      },
+      "hidden" : {
+        "type" : "constant",
+        "value" : false
+      },
+      "repeatedCollection" : {
+        "type" : "variable"
+      }
+    },
+    "reference" : "3a919e47-8dfd-4389-8db6-21ea353352f8",
+    "rows" : [ [ ] ]
+  } ] ],
+  "assets" : [ {
+    "id" : "2007621b-afa8-48ec-846f-f4d78ce90b8a",
+    "name" : "layout.css",
+    "type" : "css",
+    "order" : 1,
+    "external" : false
+  }, {
+    "id" : "27b2007f-d336-4f20-b640-5810f7a8af54",
+    "name" : "layout.js",
+    "type" : "js",
+    "order" : 0,
+    "external" : false
+  } ],
+  "inactiveAssets" : [ ],
+  "data" : {
+    "targetedPageUrl" : {
+      "type" : "constant",
+      "value" : "",
+      "exposed" : false
     }
+  }
 }
