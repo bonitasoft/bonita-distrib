@@ -116,6 +116,13 @@
           multiple:true,
           type:'TEXT',
           inputs:[]
+        },
+        {
+          description:'When did you experience the issue?',
+          name:'ticket_last_occurrences',
+          multiple:true,
+          type:'OFFSETDATETIME',
+          inputs:[]
         }
       ]
     } ;
