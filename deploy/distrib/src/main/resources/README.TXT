@@ -15,9 +15,9 @@ Contents of this package:
 |   |   |   |-- bitronix-resources.properties
 |   |   |   |-- context.xml
 |   |   |   |-- logging.properties                      Logs configuration
-|   |   |   `-- server.xml                              Default tomcat conf file including valve configuration
+|   |   |   `-- server.xml                              Default tomcat conf file
 |   |   |-- lib
-|   |   |   `-- *.jar                                   Common libs that can be shared by several webapps (JDBC driver, valve preventing session fixation issue)
+|   |   |   `-- *.jar                                   Common libs that can be shared by several webapps (JDBC driver, etc...)
 |   |   `-- webapps
 |   |       |-- ROOT
 |   |       | 	`-- favicon.ico
