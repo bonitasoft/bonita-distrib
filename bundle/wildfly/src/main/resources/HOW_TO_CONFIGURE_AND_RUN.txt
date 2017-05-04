@@ -27,6 +27,7 @@ If you decide to do it anyway, your custom values will be overwritten by the tem
 If you need to finely tune the configuration, modify the following template file:
     setup/wildfly-templates/standalone.xml
 It is used as a basis for WildFly configuration and will overwrite WildFly provided file.
+Bonita BPM Community Wildfly bundle must be restarted so the new configuration is taken into account.
 
 
 III. Database vendor change after first start

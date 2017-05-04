@@ -30,6 +30,7 @@ If you need to finely tune the configuration, modify the following template file
     - setup/tomcat-templates/setenv.sh
     - setup/tomcat-templates/setenv.bat
 They are used as a basis for Tomcat configuration and will overwrite Tomcat provided files.
+Bonita BPM Community Tomcat bundle must be restarted so the new configuration is taken into account.
 
 
 III. Database vendor switch after first start
