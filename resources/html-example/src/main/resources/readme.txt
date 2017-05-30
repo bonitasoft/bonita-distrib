@@ -1,4 +1,4 @@
-This is a custom page example archive for Bonita BPM Portal.
+This is a custom page example archive for Bonita Portal.
 
 You can customize this custom page by modifying the existing resources or by adding or removing some.
 

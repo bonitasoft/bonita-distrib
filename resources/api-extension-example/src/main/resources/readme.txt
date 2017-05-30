@@ -1,4 +1,4 @@
-is is a REST API extension example archive for Bonita BPM Portal.
+is is a REST API extension example archive for Bonita Portal.
 
 You can customize this custom page by modifying the existing resources or by adding or removing some.
 

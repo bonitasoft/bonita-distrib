@@ -33,7 +33,7 @@ fi
 
 if [ -d "./setup" ]; then
   echo "------------------------------------------------------"
-  echo "Initializing and configuring Bonita BPM WildFly bundle"
+  echo "Initializing and configuring Bonita WildFly bundle"
   echo "------------------------------------------------------"
 
   ./setup/setup.sh init $@
@@ -45,6 +45,6 @@ if [ -d "./setup" ]; then
 fi
 
 echo "------------------------------------------------------"
-echo "Starting Bonita BPM WildFly bundle"
+echo "Starting Bonita WildFly bundle"
 echo "------------------------------------------------------"
 ./server/bin/standalone.sh

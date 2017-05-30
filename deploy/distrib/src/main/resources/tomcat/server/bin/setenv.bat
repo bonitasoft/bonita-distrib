@@ -5,7 +5,7 @@ rem #   Instead, edit the  setenv.bat template located in the folder setup/tomca
 rem #   During start-bonita script execution, the template will overwrite this file.                                   #
 rem ####################################################################################################################
 
-rem Set some JVM system properties required by Bonita BPM
+rem Set some JVM system properties required by Bonita
 
 set PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=%CATALINA_HOME%\..\setup"
 rem When changing org.bonitasoft.h2.database.dir location, update %CATALINA_HOME%\conf\bitronix-resources.properties datasources accordingly.

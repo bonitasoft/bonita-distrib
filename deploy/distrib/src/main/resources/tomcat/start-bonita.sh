@@ -33,7 +33,7 @@ fi
 
 if [ -d "./setup" ]; then
   echo "-----------------------------------------------------"
-  echo "Initializing and configuring Bonita BPM Tomcat bundle"
+  echo "Initializing and configuring Bonita Tomcat bundle"
   echo "-----------------------------------------------------"
 
   ./setup/setup.sh init $@
