@@ -1,4 +1,4 @@
-This is a custom page example archive for Bonita BPM Portal.
+This is a custom page example archive for Bonita Portal.
 
 You can customize this custom page by modifying the existing resources or by adding or removing some.
 
@@ -7,7 +7,7 @@ Examples provided in the archive:
 Write simple text
 Get information provided in the groovy class
 Retrieve the URL of a resource of the custom page
-Call the Bonita BPM Engine APIs using the current session
+Call the Bonita Engine APIs using the current session
 URL to an external page
 Get localized string from resources bundles
 

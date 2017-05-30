@@ -5,7 +5,7 @@
 #   During start-bonita script execution, the template will overwrite this file.                                   #
 ####################################################################################################################
 
-# Set some JVM system properties required by Bonita BPM
+# Set some JVM system properties required by Bonita
 
 PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=${CATALINA_HOME}/../setup"
 #When changing org.bonitasoft.h2.database.dir location, update ${CATALINA_HOME}/conf/bitronix-resources.properties datasources accordingly.

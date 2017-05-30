@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <zipName>BonitaBPMCommunity-${project.version}-Tomcat-${tomcat.version}</zipName>
+        <zipName>BonitaCommunity-${project.version}-Tomcat-${tomcat.version}</zipName>
         <tomcat.zip.parent.folder>${user.home}</tomcat.zip.parent.folder>
         <if.task>net.sf.antcontrib.logic.IfTask</if.task>
         <bundle.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</bundle.dir>

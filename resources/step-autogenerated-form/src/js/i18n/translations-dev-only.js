@@ -454,8 +454,8 @@
             "value": "Avant d'importer une application, les pages et le profils utilisés doivent avoir été déployés dans le Portail.",
             "key": "Before you import the application, the pages and the profile must already be loaded in the Portal."
         }, {"value": "Archive Bonita", "key": "Bonita Archive"}, {
-            "value": "Bonita BPM Portal",
-            "key": "Bonita BPM Portal"
+            "value": "Bonita Portal",
+            "key": "Bonita Portal"
         }, {
             "value": "Recherchez et sélectionnez le fichier contenant la définition du processus à installer (.bar).",
             "key": "Browse your computer and select the business archive containing the process definition to install."
@@ -1123,11 +1123,11 @@
             "value": "Exporter le look & feel courant",
             "key": "Export the current Look & Feel"
         }, {
-            "value": "Exporter le look & feel courant afin de le modifier ou l'importer dans une autre version du portail Bonita BPM",
-            "key": "Export the current Look & Feel to modify it or import it to another mobile version of the Bonita BPM Portal"
+            "value": "Exporter le look & feel courant afin de le modifier ou l'importer dans une autre version du portail Bonita",
+            "key": "Export the current Look & Feel to modify it or import it to another mobile version of the Bonita Portal"
         }, {
-            "value": "Exporter le look & feel actuel afin de le modifier ou l'importer dans une autre version web du portail Bonita BPM .",
-            "key": "Export the current Look & Feel to modify it or to import it to another web version of the Bonita BPM Portal."
+            "value": "Exporter le look & feel actuel afin de le modifier ou l'importer dans une autre version web du portail Bonita .",
+            "key": "Export the current Look & Feel to modify it or to import it to another web version of the Bonita Portal."
         }, {
             "value": "Exporter le look & feel par défaut",
             "key": "Export the default Look & Feel"
@@ -1870,7 +1870,7 @@
             "value": "Paramètres",
             "key": "Settings"
         }, {"value": "Afficher", "key": "Show"}, {
-            "value": "Voir tous les profils du Bonita BPM Portal",
+            "value": "Voir tous les profils du Bonita Portal",
             "key": "Show all profiles of portal"
         }, {"value": "Show key", "key": "Show key"}, {
             "value": "Afficher plus de détails sur ce cas archivé",
@@ -2281,14 +2281,14 @@
             "value": "Ce profil sera disponible pour les utilisateurs associés lors de leur prochaine connexion . Si vous vous êtes associé ce profil, rafraîchissez la page de votre navigateur pour le rendre disponible.",
             "key": "This profile will be available on next login to the users who are mapped. If you mapped the profile to yourself, it will be available after you refresh the page in your browser."
         }, {
-            "value": "Ce rapport affiche le temps moyen nécessaire pour clore un cas. Deux options sont disponibles : la moyenne et la médiane, pour une période donnée et/ou un processus donné.\nVous pouvez accéder au Bonita BPM Portal en cliquant sur un lien dans le tableau ci-dessous.\nL'affichage est limité aux 100 premiers éléments. Pour voir tous les éléments, cliquez sur le bouton EXPORTER en haut à droite de la page.",
-            "key": "This report displays the average time to close a case. Two figures are available: the mean and the median for a given period and/or process.\nYou can access Bonita BPM Portal by clicking on a link in the below table.\nThe display is limited to the first 100 items. To see all items, click on the EXPORT button at the top right of the page."
+            "value": "Ce rapport affiche le temps moyen nécessaire pour clore un cas. Deux options sont disponibles : la moyenne et la médiane, pour une période donnée et/ou un processus donné.\nVous pouvez accéder au Bonita Portal en cliquant sur un lien dans le tableau ci-dessous.\nL'affichage est limité aux 100 premiers éléments. Pour voir tous les éléments, cliquez sur le bouton EXPORTER en haut à droite de la page.",
+            "key": "This report displays the average time to close a case. Two figures are available: the mean and the median for a given period and/or process.\nYou can access Bonita Portal by clicking on a link in the below table.\nThe display is limited to the first 100 items. To see all items, click on the EXPORT button at the top right of the page."
         }, {
-            "value": "Ce rapport affiche la liste des cas dans chaque état (ouvert ou archivé) pour une période donnée et/ou un processus donné.\nVous pouvez accéder au Bonita BPM Portal en cliquant sur un lien dans le tableau ci-dessous.\nL'affichage est limité aux 100 premiers éléments. Pour voir tous les éléments, cliquez sur le bouton EXPORTER en haut à droite de la page.",
-            "key": "This report displays the list of cases in each status (open or closed) for a given period and/or process.\nYou can access Bonita BPM Portal by clicking on a link in the below table.\nThe display is limited to the first 100 items. To see all items, click on the EXPORT button at the top right of the page."
+            "value": "Ce rapport affiche la liste des cas dans chaque état (ouvert ou archivé) pour une période donnée et/ou un processus donné.\nVous pouvez accéder au Bonita Portal en cliquant sur un lien dans le tableau ci-dessous.\nL'affichage est limité aux 100 premiers éléments. Pour voir tous les éléments, cliquez sur le bouton EXPORTER en haut à droite de la page.",
+            "key": "This report displays the list of cases in each status (open or closed) for a given period and/or process.\nYou can access Bonita Portal by clicking on a link in the below table.\nThe display is limited to the first 100 items. To see all items, click on the EXPORT button at the top right of the page."
         }, {
-            "value": "Ce rapport affiche la liste des tâches humaines dans chaque état (ouverte, en échec ou faite), pour une période donnée et/ou un processus donné.\nVous pouvez accéder au Bonita BPM Portal en cliquant sur un lien dans le tableau ci-dessous.\nL'affichage est limité aux 100 premiers éléments. Pour voir tous les éléments, cliquez sur le bouton EXPORTER en haut à droite de la page.",
-            "key": "This report displays the list of human tasks in each status (open, failed or closed) for a given period and/or process.\nYou can access Bonita BPM Portal by clicking on a link in the below table.\nThe display is limited to the first 100 items. To see all items, click on the EXPORT button at the top right of the page."
+            "value": "Ce rapport affiche la liste des tâches humaines dans chaque état (ouverte, en échec ou faite), pour une période donnée et/ou un processus donné.\nVous pouvez accéder au Bonita Portal en cliquant sur un lien dans le tableau ci-dessous.\nL'affichage est limité aux 100 premiers éléments. Pour voir tous les éléments, cliquez sur le bouton EXPORTER en haut à droite de la page.",
+            "key": "This report displays the list of human tasks in each status (open, failed or closed) for a given period and/or process.\nYou can access Bonita Portal by clicking on a link in the below table.\nThe display is limited to the first 100 items. To see all items, click on the EXPORT button at the top right of the page."
         }, {
             "value": "Ce rapport affiche la liste des tâches humaines faites dans un ou plusieurs cas pour une période et/ou un processus donné(s).",
             "key": "This report displays the list of human tasks performed in one or more cases, for a given period, and/or process."

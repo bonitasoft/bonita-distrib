@@ -27,7 +27,7 @@
     <properties>
         <bonita.web.version>${project.version}</bonita.web.version>
 
-        <distrib.zipname>BonitaBPMCommunity-${project.version}-deploy</distrib.zipname>
+        <distrib.zipname>BonitaCommunity-${project.version}-deploy</distrib.zipname>
 
         <ant-contrib.version>1.0b3</ant-contrib.version>
         <tomcat.version.major>7</tomcat.version.major>

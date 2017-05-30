@@ -11,7 +11,7 @@
     <Manager pathname="" />
 
     <!-- ##################################################### -->
-    <!-- Configure Datasource for Bonita BPM standard database -->
+    <!-- Configure Datasource for Bonita standard database -->
     <!-- ##################################################### -->
     <Resource name="bonitaDS" auth="Container" type="javax.sql.DataSource"
               factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/bonitaDSXA" />

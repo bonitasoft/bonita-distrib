@@ -20,7 +20,7 @@
     <properties>
         <if.task>net.sf.antcontrib.logic.IfTask</if.task>
 
-        <zipName>BonitaBPMCommunity-${project.version}-wildfly-${wildfly.version}</zipName>
+        <zipName>BonitaCommunity-${project.version}-wildfly-${wildfly.version}</zipName>
         <zipFolder>${user.home}</zipFolder>
 
         <wildfly.zip.parent.folder>${zipFolder}</wildfly.zip.parent.folder>
@@ -160,7 +160,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- wildfly does not need to be deployed since it is not used by Bonita BPM build chain -->
+            <!-- wildfly does not need to be deployed since it is not used by Bonita build chain -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>

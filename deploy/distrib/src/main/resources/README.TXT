@@ -22,8 +22,8 @@ Contents of this package:
 |   |       |-- ROOT
 |   |       | 	`-- favicon.ico
 |   |       `-- bonita.war                              Webapp containing the portal, the engine and the REST API
-|   `-- start-bonita(.sh|.bat)                          Script used to start Bonita BPM Tomcat bundle
-|   `-- stop-bonita(.sh|.bat)                           Script used to stop Bonita BPM Tomcat bundle
+|   `-- start-bonita(.sh|.bat)                          Script used to start Bonita Tomcat bundle
+|   `-- stop-bonita(.sh|.bat)                           Script used to stop Bonita Tomcat bundle
 |
 |-- wildfly-${wildfly.version}                 	 	    Content necessary in order to deploy on a WildFly AS
 |   `-- server
@@ -43,12 +43,12 @@ Contents of this package:
 |   |                       `-- jdk
 |   |                           `-- main
 |   |                               `-- module.xml      Describe the list of sdk packages use by WildFly extended with the ones required by Bonita
-|   `-- start-bonita(.sh|.bat)                          Script used to start Bonita BPM WildFly bundle
+|   `-- start-bonita(.sh|.bat)                          Script used to start Bonita WildFly bundle
 |
 |-- setup						                        Platform installation files (Database scripts + configuration files + bundle configurator)
 |-- license                                 			License files
 `-- README.txt                              			You are here!
 
-In order to install Bonita BPM into your Application Server installation, you need:
+In order to install Bonita into your Application Server installation, you need:
 - to rename your Application Server installation root folder with name `server`
 - to copy into your Application Server installation the content of the folder named Tomcat-${tomcat.version} or wildfly-${wildfly.version}
