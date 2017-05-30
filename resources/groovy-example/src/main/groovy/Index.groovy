@@ -105,7 +105,7 @@ public class Index implements PageController {
             </div>
             <h3>Call API</h3>
             <div>
-            <h4>Call the Bonita BPM Engine APIs using the current session</h4>''')
+            <h4>Call the Bonita Engine APIs using the current session</h4>''')
             //START_EXAMPLE:Call_API
             // Use the session given by pageContext to retrieve an Engine API and use it
             def session = pageContext.getApiSession()

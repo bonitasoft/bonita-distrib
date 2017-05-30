@@ -52,9 +52,9 @@ for /f "delims=. tokens=2" %%v in ("%JAVAVER%") do (
     set VERSION_NUMBER=%%v
 )
 
-echo Check that Java minor version is compatible with Bonita BPM 7.5+ (need to be 8 or higher)...
+echo Check that Java minor version is compatible with Bonita 7.5+ (need to be 8 or higher)...
 if "%VERSION_NUMBER%" LSS "8" (
-    REM Java minor version is lower then 8. Not supported by Bonita BPM 7.5+.
+    REM Java minor version is lower then 8. Not supported by Bonita 7.5+.
     echo Invalid Java minor version 1.%VERSION_NUMBER% ^< 1.8. Please set JRE_HOME or JAVA_HOME variable to a JRE / JDK 1.8+
     goto exit
 )
@@ -62,7 +62,7 @@ echo Java minor version is compatible
 
 IF NOT EXIST setup GOTO NOSETUPDIR
 	echo "-----------------------------------------------------"
-    echo "Initializing and configuring Bonita BPM Tomcat bundle"
+    echo "Initializing and configuring Bonita Tomcat bundle"
 	echo "-----------------------------------------------------"
    shift
    call setup\setup.bat init %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
