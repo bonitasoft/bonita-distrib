@@ -2,7 +2,7 @@
 
 describe('Custom widget living application menu', function () {
 
-    var $httpBackend, $compile, $rootScope, $scope, $window;
+    var $httpBackend, $compile, $rootScope, $scope, $window, $timeout;
 
     beforeEach(module('bonitasoft.ui.widgets'));
 
@@ -11,18 +11,20 @@ describe('Custom widget living application menu', function () {
         module(function ($provide) {
             $window = {};
             $window.document = {body: {style: {paddingTop: ''}}};
+            $window.addEventListener = function(){};
             $provide.value('$window', $window);
         });
 
-        inject(function ($injector, _$httpBackend_, _$compile_, _$rootScope_) {
+        inject(function ($injector, _$httpBackend_, _$compile_, _$rootScope_, _$timeout_) {
             // Set up the mock http service responses
             $httpBackend = _$httpBackend_;
             $compile = _$compile_;
             $rootScope = _$rootScope_;
+            $timeout = _$timeout_;
         });
         $scope = $rootScope.$new();
         $scope.properties = {};
-
+        
         $httpBackend
             .expectGET('../API/living/application/?c=1&f=token%3DmyApp')
             .respond([{
@@ -82,7 +84,15 @@ describe('Custom widget living application menu', function () {
                 'displayName': 'groovy example'
             }]);
 
-
+        $httpBackend
+            .expectGET('../API/living/application-page/1')
+            .respond([{
+                'id': '1',
+                'pageId': '20',
+                'applicationId': '1',
+                'token': 'homePage'
+            }]);
+        
     });
 
     afterEach(function () {
@@ -93,10 +103,12 @@ describe('Custom widget living application menu', function () {
     it('should get menu related to the parsed url', function () {
 
         $window.location = {'pathname': 'myApp/home/', 'search': '?anyparam=value'};
-        $compile('<custom-living-application-menu-v2></custom-living-application-menu-v2>')($scope);
+        $compile('<custom-living-application-menu-v3></custom-living-application-menu-v3>')($scope);
         $scope.properties.sticky = true;
 
         $httpBackend.flush();
+        
+        $timeout.flush();
 
         expect($scope.properties.targetUrl).toEqual('../../../portal/resource/app/myApp/home/content/?anyparam=value&app=myApp');
         expect($window.document.title).toEqual('My application');
@@ -107,7 +119,7 @@ describe('Custom widget living application menu', function () {
     it('should identify Parent menu', function () {
 
         $window.location = {'pathname': 'myApp/home/', 'search': '?anyparam=value'};
-        $compile('<custom-living-application-menu-v2></custom-living-application-menu-v2')($scope);
+        $compile('<custom-living-application-menu-v3></custom-living-application-menu-v3')($scope);
         $httpBackend.flush();
 
         expect($scope.ctrl.isParentMenu({parentMenuId:-1, applicationPageId:-1})).toEqual(true);

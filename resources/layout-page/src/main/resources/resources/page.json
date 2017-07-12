@@ -1,9 +1,9 @@
 {
   "designerVersion" : "1.5.7",
   "id" : "layout-page",
-  "name" : "LivingApplicationLayoutPage",
+  "name" : "LivingApplicationLayoutPageV3",
   "type" : "layout",
-  "lastUpdate" : 1489756212929,
+  "lastUpdate" : 1498662753069,
   "rows" : [ [ {
     "type" : "container",
     "dimension" : {
@@ -26,6 +26,7 @@
       }
     },
     "reference" : "0f313748-345b-4708-a802-b6ef2bf5afe1",
+    "id" : "pbContainer",
     "rows" : [ [ {
       "type" : "component",
       "dimension" : {
@@ -49,7 +50,7 @@
         }
       },
       "reference" : "c49a2cd8-39d5-4bef-a264-c0e18ed3ba3c",
-      "id" : "customLivingApplicationMenuV2"
+      "id" : "customLivingApplicationMenuV3"
     } ] ]
   } ], [ {
     "type" : "container",
@@ -69,10 +70,12 @@
         "value" : false
       },
       "repeatedCollection" : {
-        "type" : "variable"
+        "type" : "variable",
+        "value" : ""
       }
     },
     "reference" : "97e28265-9cfe-4edd-9f12-d0d388b379c8",
+    "id" : "pbContainer",
     "rows" : [ [ {
       "type" : "component",
       "dimension" : {
@@ -91,7 +94,7 @@
           "value" : false
         },
         "src" : {
-          "type" : "expression",
+          "type" : "variable",
           "value" : "targetedPageUrl"
         },
         "contentHeight" : {
@@ -104,7 +107,7 @@
         }
       },
       "reference" : "9cd7cd7e-d548-410a-aaa3-4318f9280818",
-      "id" : "customLivingApplicationIFrameV2"
+      "id" : "customLivingApplicationIFrameV3"
     } ] ]
   } ], [ {
     "type" : "container",
@@ -128,6 +131,7 @@
       }
     },
     "reference" : "3a919e47-8dfd-4389-8db6-21ea353352f8",
+    "id" : "pbContainer",
     "rows" : [ [ ] ]
   } ] ],
   "assets" : [ {

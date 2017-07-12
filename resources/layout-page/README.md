@@ -3,9 +3,9 @@
 ## How to update custom widget
 In case modification on a custom widget of this page is needed,
 it is required to Update the widget name as following.
-- customLivingApplicationMenuV2 -> customLivingApplicationMenuV3
+- customLivingApplicationMenuV3 -> customLivingApplicationMenuV4
 or 
-- customLivingApplicationIFrameV2 -> customLivingApplicationIFrameV3
+- customLivingApplicationIFrameV3 -> customLivingApplicationIFrameV4
 
 this version is required to avoid to override those widget.
 see the ticket :

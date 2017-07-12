@@ -20,12 +20,11 @@
     "karma-jasmine": "1.0.2",
     "karma-phantomjs-launcher": "1.0.2",
     "phantomjs": "2.1.7",
-    "protractor": "4.0.11",
-    "protractor-http-mock": "0.9.0",
+    "protractor": "4.0.14",
     "restler": "3.1.0"
   },
   "dependencies": {
     "karma": "^0.13.22",
-    "protractor": "^2.2.0"
+    "protractor": "4.0.14"
   }
 }
