@@ -20,44 +20,7 @@
 
     describe('Layout page', function () {
 
-        var mock = require('protractor-http-mock');
         var width = 1280, height = 800;
-
-        beforeEach(function () {
-            mock([{
-                request: {
-                    path: '../API/living/application/',
-                    method: 'GET',
-                    queryString: {
-                        c: '1',
-                        f: 'token=page'
-                    }
-                },
-                response: {
-                    data: [{
-                        'themeId': '3',
-                        'state': 'ACTIVATED',
-                        'layoutId': '16',
-                        'homePageId': '1',
-                        'version': '1.0',
-                        'lastUpdateDate': '1442305112306',
-                        'updatedBy': '4',
-                        'id': '1',
-                        'creationDate': '1442234827102',
-                        'iconPath': '',
-                        'createdBy': '4',
-                        'token': 'myapp',
-                        'description': '',
-                        'profileId': '2',
-                        'displayName': 'My application'
-                    }]
-                }
-            }]);
-        });
-
-        afterEach(function () {
-            mock.teardown();
-        });
 
         describe('preview', function () {
             it('should display application name on the browser tab', function () {
@@ -65,9 +28,7 @@
                         browser.driver.sleep(1000);
                         browser.driver.manage().window().setSize(width, height);
                         browser.get('/designer/preview/page/layout-page/');
-                        expect(browser.getTitle()).toEqual('My application');
-                        var brandTarget = element(by.css('.navbar-brand')).getAttribute('href');
-                        expect(brandTarget).toEqual(browser.baseUrl + '/designer/preview/page/');
+                        expect(browser.getTitle()).toEqual('LivingApplicationLayoutPageV3');
                     }
                 );
             });
