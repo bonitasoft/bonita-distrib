@@ -40,6 +40,7 @@
             parentDiv.removeChild(iframeToRemeove);
         }
         var iframe = document.createElement('iframe');
+        iframe.setAttribute("id", "bonitaframe");
         iframe.setAttribute("src",  $sce.trustAsResourceUrl($scope.properties.src));
         iframe.setAttribute("width", "100%");
         iframe.setAttribute("border", "0");
