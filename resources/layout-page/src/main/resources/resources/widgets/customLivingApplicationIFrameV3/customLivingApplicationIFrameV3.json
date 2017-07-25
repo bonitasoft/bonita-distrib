@@ -2,22 +2,16 @@
   "designerVersion" : "1.2.9",
   "id" : "customLivingApplicationIFrameV3",
   "name" : "livingApplicationIFrameV3",
-  "lastUpdate" : 1499699082394,
+  "lastUpdate" : 1500987276302,
   "template" : "",
-  "controller" : "function WidgetlivingApplicationIFrameController($scope, $element, $interval, $sce) {\n\n    function handleResizeContent() {\n        if ($scope.properties.resizeToContent) {\n            \n            var iframe = $element.find('iframe')[0];\n        \n            var polling = $interval(function() {\n                if(iframe.contentDocument.documentElement){\n        \t\t\tiframe.style.height = (iframe.contentDocument.documentElement.scrollHeight || 400) + \"px\";\n        \t\t}\n            }, 100);\n            \n            $scope.$on('$destroy', function() {\n                $interval.cancel(polling);\n            });\n                \n        }\n    }\n    \n    handleResizeContent();\n    \n    $scope.$watch(function(){\n        return $scope.properties.src\n    }, function() {\n        //Rebuild iframe on menu change in order to prevent issues with the browser's back button\n        var iframes = $element.find('iframe');\n        if (iframes.length > 0) {\n            var iframeToRemeove = iframes[0];\n            var parentDiv = iframeToRemeove.parentNode;\n            parentDiv.removeChild(iframeToRemeove);\n        }\n        var iframe = document.createElement('iframe');\n        iframe.setAttribute(\"id\", \"bonitaframe\");\n        iframe.setAttribute(\"src\",  $sce.trustAsResourceUrl($scope.properties.src));\n        iframe.setAttribute(\"width\", \"100%\");\n        iframe.setAttribute(\"border\", \"0\");\n        $element.append(iframe);\n        handleResizeContent();\n    });\n    \n}",
-  "description" : "IFrame to display the pages targeted by the LivingApplicationMenu.",
+  "controller" : "function WidgetlivingApplicationIFrameController($scope, $element, $interval, $sce) {\n\n    $scope.$watch(function(){\n        return $scope.properties.src\n    }, function() {\n        //Rebuild iframe on menu change in order to prevent issues with the browser's back button\n        var iframes = $element.find('iframe');\n        if (iframes.length > 0) {\n            var iframeToRemeove = iframes[0];\n            var parentDiv = iframeToRemeove.parentNode;\n            parentDiv.removeChild(iframeToRemeove);\n        }\n        var iframe = document.createElement('iframe');\n        iframe.setAttribute(\"id\", \"bonitaframe\");\n        iframe.setAttribute(\"src\",  $sce.trustAsResourceUrl($scope.properties.src));\n        iframe.setAttribute(\"width\", \"100%\");\n        iframe.setAttribute(\"border\", \"0\");\n        $element.append(iframe);\n        handleResizeContent();\n    });\n    \n}",
+  "description" : "LivingApplicationIFrameV3 display the pages targeted by the LivingApplicationMenu.",
   "custom" : true,
   "properties" : [ {
     "label" : "Source",
     "name" : "src",
     "type" : "text",
     "bond" : "variable"
-  }, {
-    "label" : "resizeToContent",
-    "name" : "resizeToContent",
-    "type" : "boolean",
-    "defaultValue" : false,
-    "bond" : "constant"
   } ],
   "assets" : [ ],
   "requiredModules" : [ ],

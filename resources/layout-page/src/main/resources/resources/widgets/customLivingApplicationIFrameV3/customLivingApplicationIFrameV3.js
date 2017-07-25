@@ -9,26 +9,6 @@
       controllerAs: 'ctrl',
       controller: function WidgetlivingApplicationIFrameController($scope, $element, $interval, $sce) {
 
-    function handleResizeContent() {
-        if ($scope.properties.resizeToContent) {
-            
-            var iframe = $element.find('iframe')[0];
-        
-            var polling = $interval(function() {
-                if(iframe.contentDocument.documentElement){
-        			iframe.style.height = (iframe.contentDocument.documentElement.scrollHeight || 400) + "px";
-        		}
-            }, 100);
-            
-            $scope.$on('$destroy', function() {
-                $interval.cancel(polling);
-            });
-                
-        }
-    }
-    
-    handleResizeContent();
-    
     $scope.$watch(function(){
         return $scope.properties.src
     }, function() {
