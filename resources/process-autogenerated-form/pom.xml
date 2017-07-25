@@ -68,30 +68,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>e2e</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.github.eirslett</groupId>
-						<artifactId>frontend-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>e2e tests</id>
-								<goals>
-									<goal>npm</goal>
-								</goals>
-								<phase>integration-test</phase>
-								<configuration>
-									<arguments>run e2e</arguments>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
