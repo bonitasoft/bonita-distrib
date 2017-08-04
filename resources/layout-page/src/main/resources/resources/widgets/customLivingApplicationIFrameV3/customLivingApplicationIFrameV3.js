@@ -25,7 +25,6 @@
         iframe.setAttribute("width", "100%");
         iframe.setAttribute("border", "0");
         $element.append(iframe);
-        handleResizeContent();
     });
     
 },
