@@ -23,7 +23,7 @@
         iframe.setAttribute("id", "bonitaframe");
         iframe.setAttribute("src",  $sce.trustAsResourceUrl($scope.properties.src));
         iframe.setAttribute("width", "100%");
-        iframe.setAttribute("border", "0");
+        iframe.style.border = "0";
         $element.append(iframe);
     });
     
