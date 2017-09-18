@@ -3,7 +3,7 @@
   "id" : "layout-page",
   "name" : "LivingApplicationLayoutPageV3",
   "type" : "layout",
-  "lastUpdate" : 1501774124579,
+  "lastUpdate" : 1505748492586,
   "rows" : [ [ {
     "type" : "container",
     "dimension" : {
@@ -79,9 +79,6 @@
     "rows" : [ [ {
       "type" : "component",
       "dimension" : {
-        "lg" : 12,
-        "md" : 12,
-        "sm" : 12,
         "xs" : 12
       },
       "propertyValues" : {
@@ -96,17 +93,9 @@
         "src" : {
           "type" : "variable",
           "value" : "targetedPageUrl"
-        },
-        "contentHeight" : {
-          "type" : "constant",
-          "value" : "700px;"
-        },
-        "resizeToContent" : {
-          "type" : "constant",
-          "value" : false
         }
       },
-      "reference" : "9cd7cd7e-d548-410a-aaa3-4318f9280818",
+      "reference" : "66253fcd-1c31-42ca-862a-ade2b34a0759",
       "id" : "customLivingApplicationIFrameV3"
     } ] ]
   } ], [ {
