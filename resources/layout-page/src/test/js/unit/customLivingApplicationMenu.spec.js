@@ -119,7 +119,7 @@ describe('Custom widget living application menu', function () {
     it('should identify Parent menu', function () {
 
         $window.location = {'pathname': 'myApp/home/', 'search': '?anyparam=value'};
-        $compile('<custom-living-application-menu-v3></custom-living-application-menu-v3')($scope);
+        $compile('<custom-living-application-menu-v3></custom-living-application-menu-v3>')($scope);
         $httpBackend.flush();
 
         expect($scope.ctrl.isParentMenu({parentMenuId:-1, applicationPageId:-1})).toEqual(true);
