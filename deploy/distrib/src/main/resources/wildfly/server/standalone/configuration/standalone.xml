@@ -204,6 +204,10 @@
             <!-- <logger category="org.bonitasoft.engine.execution.work.FailureHandlingBonitaWork">
                 <level name="FINE" />
             </logger> -->
+            <!-- If you want to have logs on execution time performance for BDM filtering, you can activate the following line: -->
+            <!-- <logger category="com.bonitasoft.engine.business.data.impl">
+                <level name="FINEST" />
+            </logger> -->
             <logger category="org.springframework">
                 <level name="WARN" />
             </logger>
