@@ -1,9 +1,9 @@
 {
   "designerVersion" : "1.5.7",
   "id" : "layout-page",
-  "name" : "LivingApplicationLayoutPageV3",
+  "name" : "LivingApplicationLayoutPageV4",
   "type" : "layout",
-  "lastUpdate" : 1505748492586,
+  "lastUpdate" : 1516368685731,
   "rows" : [ [ {
     "type" : "container",
     "dimension" : {
@@ -22,7 +22,8 @@
         "value" : false
       },
       "repeatedCollection" : {
-        "type" : "variable"
+        "type" : "variable",
+        "value" : ""
       }
     },
     "reference" : "0f313748-345b-4708-a802-b6ef2bf5afe1",
@@ -30,12 +31,16 @@
     "rows" : [ [ {
       "type" : "component",
       "dimension" : {
-        "lg" : 12,
-        "md" : 12,
+        "xs" : 12,
         "sm" : 12,
-        "xs" : 12
+        "md" : 12,
+        "lg" : 12
       },
       "propertyValues" : {
+        "cssClasses" : {
+          "type" : "constant",
+          "value" : ""
+        },
         "hidden" : {
           "type" : "constant",
           "value" : false
@@ -43,14 +48,10 @@
         "targetUrl" : {
           "type" : "variable",
           "value" : "targetedPageUrl"
-        },
-        "cssClasses" : {
-          "type" : "constant",
-          "value" : ""
         }
       },
-      "reference" : "c49a2cd8-39d5-4bef-a264-c0e18ed3ba3c",
-      "id" : "customLivingApplicationMenuV3"
+      "reference" : "5c777add-24fc-4501-824f-6e48f3327eca",
+      "id" : "customLivingApplicationMenuV4"
     } ] ]
   } ], [ {
     "type" : "container",
