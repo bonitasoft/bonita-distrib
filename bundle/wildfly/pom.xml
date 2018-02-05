@@ -81,7 +81,7 @@
                     </execution>
                     <execution>
                         <id>copy-libs-and-home</id>
-                        <phase>package</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
