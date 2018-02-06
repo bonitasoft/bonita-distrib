@@ -79,7 +79,7 @@
                     </execution>
                     <execution>
                         <id>copy-libs-and-setup</id>
-                        <phase>package</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
@@ -108,7 +108,7 @@
                     </execution>
                     <execution>
                         <id>rename-environment</id>
-                        <phase>package</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
