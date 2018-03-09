@@ -86,10 +86,12 @@
                                         WEB-INF/lib/spring-jdbc-*.jar,
                                         WEB-INF/lib/aopalliance-*.jar,
                                         WEB-INF/lib/stax-api*.jar,
+                                        WEB-INF/lib/stax2-api*.jar,
                                         WEB-INF/lib/xmlpull-*.jar,
                                         WEB-INF/lib/xpp3_min-*.jar,
                                         WEB-INF/lib/xstream-*.jar,
-                                        WEB-INF/lib/xmlbeans-*.jar
+                                        WEB-INF/lib/xmlbeans-*.jar,
+                                        WEB-INF/lib/woodstox-*.jar
                                     </excludes>
                                 </artifactItem>
                             </artifactItems>
