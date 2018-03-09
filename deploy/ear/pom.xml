@@ -50,6 +50,16 @@
 			<version>2.6.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>stax2-api</artifactId>
+			<version>3.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>woodstox-core-asl</artifactId>
+			<version>4.3.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.bonitasoft.distrib</groupId>
 			<artifactId>ear-resources</artifactId>
 			<version>${project.version}</version>
@@ -107,6 +117,14 @@
 						<jarModule>
 							<groupId>org.apache.xmlbeans</groupId>
 							<artifactId>xmlbeans</artifactId>
+						</jarModule>
+						<jarModule>
+							<groupId>org.codehaus.woodstox</groupId>
+							<artifactId>stax2-api</artifactId>
+						</jarModule>
+						<jarModule>
+							<groupId>org.codehaus.woodstox</groupId>
+							<artifactId>woodstox-core-asl</artifactId>
 						</jarModule>
 						<webModule>
 							<groupId>org.bonitasoft.distrib</groupId>
