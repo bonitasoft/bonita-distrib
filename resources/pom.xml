@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.bonitasoft.distrib</groupId>
         <artifactId>bonita-distrib</artifactId>
-        <version>7.7.0-SNAPSHOT</version>
+        <version>7.7.0.alpha-05</version>
     </parent>
 
     <groupId>org.bonitasoft.distrib</groupId>
