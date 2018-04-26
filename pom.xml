@@ -31,7 +31,7 @@
 
         <ant-contrib.version>1.0b3</ant-contrib.version>
         <tomcat.version.major>8</tomcat.version.major>
-        <tomcat.version>${tomcat.version.major}.5.23</tomcat.version>
+        <tomcat.version>${tomcat.version.major}.5.30</tomcat.version>
         <wildfly.version>10.1.0.Final</wildfly.version>
         <h2.version>1.3.175</h2.version>
         <slf4j.version>1.7.25</slf4j.version>
