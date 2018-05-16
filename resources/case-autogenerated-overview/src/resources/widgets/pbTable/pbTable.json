@@ -1,0 +1,43 @@
+{
+  "designerVersion" : "1.7.43",
+  "id" : "pbTable",
+  "name" : "Table",
+  "lastUpdate" : 1526303074010,
+  "template" : "<div class=\"table-responsive\">\n    <table class=\"table table-striped\" ng-class=\"{'table-hover': ctrl.isClickable()}\">\n        <thead>\n            <tr>\n                <th ng-repeat=\"header in properties.headers\">\n                    {{ header | uiTranslate }}\n                </th>\n            </tr>\n        </thead>\n        <tbody ng-if=\"ctrl.isArray(properties.content) && ctrl.isArray(properties.columnsKey)\">\n            <tr ng-repeat=\"row in properties.content\" ng-click=\"ctrl.selectRow(row)\" ng-class=\"{'info': ctrl.isSelected(row)}\">\n                <td ng-repeat=\"column in properties.columnsKey track by $index\">\n                    {{ $eval(column, row) | uiTranslate }}\n                </td>\n            </tr>\n        </tbody>\n        <tbody ng-if=\"ctrl.isArray(properties.content) && !ctrl.isArray(properties.columnsKey)\">\n            <tr ng-repeat=\"row in properties.content\" ng-click=\"ctrl.selectRow(row)\" ng-class=\"{'info': ctrl.isSelected(row)}\">\n                <td> {{ row | uiTranslate }} </td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n",
+  "icon" : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 20'><g><path fill='#CBD5E1' d='M36,15v2h11v-2H36z M40,10v2h7v-2H40z M11,10v2h14v-2H11z M3,10v2h3v-2H3z M11,15v2h17v-2H11z M3,15v2h3 v-2H3z'/><path fill='#fff' d='M1,19V1h48v18H1z M0,0v20h50V0H0z'/><path fill='#CBD5E1' d='M1,7v1h7v11h1V8h22v11h1V8h17V7H32V1h-1v6H9V1H8v6H1z'/><path fill='#fff' d='M35,3h12v2H35V3z M11,3h13v2H11V3z M3,3h3v2H3V3z'/></g></svg>",
+  "controller" : "function PbTableCtrl($scope) {\n\n  this.isArray = Array.isArray;\n\n  this.isClickable = function () {\n    return $scope.properties.isBound('selectedRow');\n  };\n\n  this.selectRow = function (row) {\n    if (this.isClickable()) {\n      $scope.properties.selectedRow = row;\n    }\n  };\n\n  this.isSelected = function(row) {\n    return angular.equals(row, $scope.properties.selectedRow);\n  }\n}\n",
+  "description" : "Tabular presentation of data from an array",
+  "custom" : false,
+  "order" : 15,
+  "properties" : [ {
+    "label" : "Headers",
+    "name" : "headers",
+    "caption" : "Comma-separated list",
+    "help" : "If you specify an expression, the result must be an array of strings",
+    "type" : "collection",
+    "defaultValue" : [ "Id", "Name", "Description", "Date" ],
+    "bond" : "expression"
+  }, {
+    "label" : "Content",
+    "name" : "content",
+    "help" : "Array used to populate the table. Can be a list of objects. Use 'Column keys' to refine content",
+    "type" : "collection",
+    "bond" : "expression"
+  }, {
+    "label" : "Column keys",
+    "name" : "columnsKey",
+    "caption" : "Use <a href=\"javascript:void(0);\" open-help=\"filters\" editor-mode=\"page\">Filters</a> to format the data (e.g. <span ng-non-bindable>columnKey|uiDate</span>)",
+    "help" : "When 'Content' is a list of objects, specifies the attributes to display in the table columns",
+    "type" : "collection",
+    "bond" : "expression"
+  }, {
+    "label" : "Selected Row",
+    "name" : "selectedRow",
+    "type" : "text",
+    "bond" : "variable"
+  } ],
+  "assets" : [ ],
+  "requiredModules" : [ ],
+  "type" : "widget",
+  "hasHelp" : false
+}
