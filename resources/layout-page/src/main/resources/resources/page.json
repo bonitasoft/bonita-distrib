@@ -1,9 +1,9 @@
 {
-  "designerVersion" : "1.5.7",
-  "id" : "layout-page",
-  "name" : "LivingApplicationLayoutPageV4",
-  "type" : "layout",
-  "lastUpdate" : 1516368685731,
+  "designerVersion" : "1.7.25",
+  "previousDesignerVersion" : "1.5.7",
+  "id" : "LivingApplicationLayoutPageV5",
+  "name" : "LivingApplicationLayoutPageV5",
+  "lastUpdate" : 1527239042316,
   "rows" : [ [ {
     "type" : "container",
     "dimension" : {
@@ -26,7 +26,7 @@
         "value" : ""
       }
     },
-    "reference" : "0f313748-345b-4708-a802-b6ef2bf5afe1",
+    "reference" : "d1c46218-da53-49e1-ae50-3fb6a29babfb",
     "id" : "pbContainer",
     "rows" : [ [ {
       "type" : "component",
@@ -50,7 +50,7 @@
           "value" : "targetedPageUrl"
         }
       },
-      "reference" : "5c777add-24fc-4501-824f-6e48f3327eca",
+      "reference" : "32dc0944-c1ef-4bef-85cd-f60ea6dd71bc",
       "id" : "customLivingApplicationMenuV4"
     } ] ]
   } ], [ {
@@ -75,12 +75,15 @@
         "value" : ""
       }
     },
-    "reference" : "97e28265-9cfe-4edd-9f12-d0d388b379c8",
+    "reference" : "ecb4164e-24ec-4390-8b32-d761d58cd511",
     "id" : "pbContainer",
     "rows" : [ [ {
       "type" : "component",
       "dimension" : {
-        "xs" : 12
+        "xs" : 12,
+        "sm" : 12,
+        "md" : 12,
+        "lg" : 12
       },
       "propertyValues" : {
         "cssClasses" : {
@@ -96,8 +99,8 @@
           "value" : "targetedPageUrl"
         }
       },
-      "reference" : "66253fcd-1c31-42ca-862a-ade2b34a0759",
-      "id" : "customLivingApplicationIFrameV3"
+      "reference" : "b48116ca-9f82-48c6-8ed6-0664f2712400",
+      "id" : "customLivingApplicationIFrameV4"
     } ] ]
   } ], [ {
     "type" : "container",
@@ -120,7 +123,7 @@
         "type" : "variable"
       }
     },
-    "reference" : "3a919e47-8dfd-4389-8db6-21ea353352f8",
+    "reference" : "09fc4859-4d3e-4848-99e3-e88a18804e82",
     "id" : "pbContainer",
     "rows" : [ [ ] ]
   } ] ],
@@ -144,5 +147,7 @@
       "value" : "",
       "exposed" : false
     }
-  }
+  },
+  "uuid" : "7abe173e-e85d-41c8-825e-570d8e488609",
+  "type" : "layout"
 }
