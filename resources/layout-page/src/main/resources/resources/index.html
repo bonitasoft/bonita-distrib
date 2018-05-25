@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
  <head> 
-  <title>LivingApplicationLayoutPageV4</title> 
+  <title>LivingApplicationLayoutPageV5</title> 
   <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="stylesheet" href="css/bootstrap.min.css"> 
@@ -17,15 +17,15 @@
             angular.module('bonitasoft.ui').requires.push('ui.bootstrap');
         </script> 
   <!-- widgets directives minified --> 
-  <script src="js/widgets-cfb5dbdfa4c7f1e10b1c35582bd0e50c15dd82c8.min.js"></script> 
+  <script src="js/widgets-9a3031d7fd8c5934d6fac86470ab0272af06d82c.min.js"></script> 
  </head> 
- <body ng-app="bonitasoft.ui" pb-model="layout-page"> 
+ <body ng-app="bonitasoft.ui" pb-model="LivingApplicationLayoutPageV5"> 
   <div class="container-fluid"> 
    <div class="row"> 
-    <div pb-property-values="0f313748-345b-4708-a802-b6ef2bf5afe1"> 
+    <div pb-property-values="d1c46218-da53-49e1-ae50-3fb6a29babfb"> 
      <div class="col-xs-12  col-sm-12  col-md-12  col-lg-12" ng-class="properties.cssClasses" ng-if="!properties.hidden"> 
       <div class="row"> 
-       <div pb-property-values="5c777add-24fc-4501-824f-6e48f3327eca"> 
+       <div pb-property-values="32dc0944-c1ef-4bef-85cd-f60ea6dd71bc"> 
         <div ng-if="!properties.hidden" class="component col-xs-12  col-sm-12  col-md-12  col-lg-12" ng-class="properties.cssClasses"> 
          <custom-living-application-menu-v4></custom-living-application-menu-v4> 
         </div> 
@@ -35,12 +35,12 @@
     </div> 
    </div> 
    <div class="row"> 
-    <div pb-property-values="97e28265-9cfe-4edd-9f12-d0d388b379c8"> 
+    <div pb-property-values="ecb4164e-24ec-4390-8b32-d761d58cd511"> 
      <div class="col-xs-12  col-sm-12  col-md-12  col-lg-12" ng-class="properties.cssClasses" ng-if="!properties.hidden"> 
       <div class="row"> 
-       <div pb-property-values="66253fcd-1c31-42ca-862a-ade2b34a0759"> 
-        <div ng-if="!properties.hidden" class="component col-xs-12" ng-class="properties.cssClasses"> 
-         <custom-living-application-i-frame-v3></custom-living-application-i-frame-v3> 
+       <div pb-property-values="b48116ca-9f82-48c6-8ed6-0664f2712400"> 
+        <div ng-if="!properties.hidden" class="component col-xs-12  col-sm-12  col-md-12  col-lg-12" ng-class="properties.cssClasses"> 
+         <custom-living-application-i-frame-v4></custom-living-application-i-frame-v4> 
         </div> 
        </div> 
       </div> 
@@ -48,7 +48,7 @@
     </div> 
    </div> 
    <div class="row"> 
-    <div pb-property-values="3a919e47-8dfd-4389-8db6-21ea353352f8"> 
+    <div pb-property-values="09fc4859-4d3e-4848-99e3-e88a18804e82"> 
      <div class="col-xs-12  col-sm-12  col-md-12  col-lg-12" ng-class="properties.cssClasses" ng-if="!properties.hidden"> 
       <div class="row"> 
       </div> 
@@ -58,14 +58,14 @@
    <script>angular.module('bonitasoft.ui.services').factory('localizationFactory', function() {
   return {
     get: function() {
-      return {};
+      return {"fr-FR":{"Title":"Titre","Default label":"Libellé par défaut","Default name":"Nom par défaut","Select":"Sélection","Select an option":"Sélectionner une option","green":"vert","red":"rouge","blue":"bleu","yes":"oui","no":"non","Id":"Id","Name":"Nom","Description":"Description","Link":"Lien","Submit":"Soumettre","This field is required":"Ce champ est requis","This field length should be larger":"La valeur de ce champ est trop courte","This field length should be smaller":"La valeur de ce champ est trop longue","This value is too small":"La valeur de ce champ est trop petite","This value is too large":"La valeur de ce champ est trop grande","This is not a valid email":"L'email saisi n'est pas valide","Toggle the text area to HTML source code / Rich text area":"Basculer l'affichage du texte vers HTML / Rich Text","Heading ":"Titre ","Paragraph":"Paragraphe","Preformatted text":"Texte preformaté","Unordered List":"Liste","Ordered List":"Liste numérotée","Quote/unquote selection or paragraph":"Citation du paragraphe ou de la selection","Undo":"Annuler","Redo":"Rétablir","Bold":"Gras","Italic":"Italique","Underline":"Souligné","Strikethrough":"Barré","Align text left":"Aligner le texte à gauche","Align text right":"Aligner le texte à droite","Justify text":"Justifier le texte","Center":"Centrer","Increase indent":"Augmenter l'indentation","Decrease indent":"Diminuer l'indentation","Clear formatting":"Effacer le formatage","Please enter an image URL to insert":"Entrez une image ou une URL à insérer","Insert image":"Insérer une image","Insert video":"Insérer une vidéo","Please enter a youtube URL to embed":"Entrez une URL youtube à embarquer","Insert / edit link":"Insérer / éditer un lien","Please enter a URL to insert":"Entrez une URL à insérer","Relink":"Changer le lien","Unlink":"Enlever le lien","Open in New Window":"Ouvrir dans une nouvelle fenêtre","Display words Count":"Afficher le nombre de mots","Display characters Count":"Afficher le nombre de caractères","The requested content cannot be loaded.<br />Please try again later.":"Le contenu ne peut être télécharger.<br/> Veuillez essayer plus tard.","Date":"Date","MM/dd/yyyy":"dd/MM/yyyy","Today":"Aujourd'hui","Now":"Maintenant","Enter a date (mm/dd/yyyy)":"Entrer une date (jj/mm/aaaa)","Date and time":"Date et heure","h:mm:ss a":"HH:mm:ss","Enter a time (h:mm:ss a)":"Entrer une heure (hh:mm:ss)","$locale":{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],"FIRSTDAYOFWEEK":1,"MONTH":["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],"SHORTDAY":["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],"SHORTMONTH":["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."],"fullDate":"EEEE d MMMM y","longDate":"d MMMM y","medium":"d MMM y HH:mm:ss","mediumDate":"d MMM y","mediumTime":"HH:mm:ss","short":"dd/MM/y HH:mm","shortDate":"dd/MM/y","shortTime":"HH:mm"}}},"es-ES":{"Title":"Título","Default label":"Etiqueta por defecto","Default name":"Nombre por defecto","Select":"Seleccionar","Select an option":"Selecciona una opción","green":"verde","red":"rojo","blue":"azul","yes":"sí","no":"no","Id":"Id","Name":"Nombre","Description":"Descripción","Link":"Enlace","Submit":"Enviar","This field is required":"Este campo es requerido","This field length should be larger":"La longitud de este campo debería ser mayor","This field length should be smaller":"La longitud de este campo debería ser menor","This value is too small":"El valor de este campo es demasiado pequeño","This value is too large":"El valor de este campo es demasiado grande","This is not a valid email":"El email introducido no es válido","Toggle the text area to HTML source code / Rich text area":"","Heading ":" ","Paragraph":"","Preformatted text":"","Unordered List":"","Ordered List":"","Quote/unquote selection or paragraph":"","Undo":"","Redo":"","Bold":"","Italic":"","Underline":"","Strikethrough":"","Align text left":"","Align text right":"","Justify text":"","Center":"","Increase indent":"","Decrease indent":"","Clear formatting":"","Please enter an image URL to insert":"","Insert image":"","Insert video":"","Please enter a youtube URL to embed":"","Insert / edit link":"","Please enter a URL to insert":"","Relink":"","Unlink":"","Open in New Window":"","Display words Count":"","Display characters Count":"","The requested content cannot be loaded.<br />Please try again later.":"El contenido solicitado no puede mostrarse.","Today":"Hoy","Now":"Ahora","Date":"Fecha","MM/dd/yyyy":"dd/MM/yyyy","Enter a date (mm/dd/yyyy)":"Introducir una fecha (dd/mm/aaaa)","Date and time":"Fecha y hora","h:mm:ss a":"H:mm:ss","Enter a time (h:mm:ss a)":"Introducir una hora (h:mm:ss)","$locale":{"DATETIME_FORMATS":{"AMPMS":["a. m.","p. m."],"DAY":["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],"FIRSTDAYOFWEEK":0,"MONTH":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],"SHORTDAY":["dom.","lun.","mar.","mié.","jue.","vie.","sáb."],"SHORTMONTH":["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sept.","oct.","nov.","dic."],"fullDate":"EEEE, d 'de' MMMM 'de' y","longDate":"d 'de' MMMM 'de' y","medium":"d 'de' MMM 'de' y H:mm:ss","mediumDate":"d 'de' MMM 'de' y","mediumTime":"H:mm:ss","short":"d/M/yy H:mm","shortDate":"d/M/yy","shortTime":"H:mm"}}}};
     }
   };
 });
 </script> 
    <script>angular.module('bonitasoft.ui.services').factory('dataModelFactory', function() {
   var resources = {};
-  resources['layout-page'] =  {"targetedPageUrl":{"type":"constant","value":"","exposed":false}};
+  resources['LivingApplicationLayoutPageV5'] =  {"targetedPageUrl":{"type":"constant","value":"","exposed":false}};
   return {
     get: function(uuid) {
       return resources[uuid];
@@ -84,11 +84,11 @@
 </script> 
    <script>angular.module('bonitasoft.ui.services').factory('propertyValuesFactory', function() {
   var resources = {};
-  resources['3a919e47-8dfd-4389-8db6-21ea353352f8'] =  {"cssClasses":{"type":"constant","value":"layout-footer"},"hidden":{"type":"constant","value":false},"repeatedCollection":{"type":"variable","value":null}};
-  resources['5c777add-24fc-4501-824f-6e48f3327eca'] =  {"cssClasses":{"type":"constant","value":""},"hidden":{"type":"constant","value":false},"targetUrl":{"type":"variable","value":"targetedPageUrl"}};
-  resources['0f313748-345b-4708-a802-b6ef2bf5afe1'] =  {"cssClasses":{"type":"constant","value":"layout-header"},"hidden":{"type":"constant","value":false},"repeatedCollection":{"type":"variable","value":""}};
-  resources['66253fcd-1c31-42ca-862a-ade2b34a0759'] =  {"cssClasses":{"type":"constant","value":""},"hidden":{"type":"constant","value":false},"src":{"type":"variable","value":"targetedPageUrl"}};
-  resources['97e28265-9cfe-4edd-9f12-d0d388b379c8'] =  {"cssClasses":{"type":"constant","value":"layout-content"},"hidden":{"type":"constant","value":false},"repeatedCollection":{"type":"variable","value":""}};
+  resources['32dc0944-c1ef-4bef-85cd-f60ea6dd71bc'] =  {"cssClasses":{"type":"constant","value":""},"hidden":{"type":"constant","value":false},"targetUrl":{"type":"variable","value":"targetedPageUrl"}};
+  resources['d1c46218-da53-49e1-ae50-3fb6a29babfb'] =  {"cssClasses":{"type":"constant","value":"layout-header"},"hidden":{"type":"constant","value":false},"repeatedCollection":{"type":"variable","value":""}};
+  resources['ecb4164e-24ec-4390-8b32-d761d58cd511'] =  {"cssClasses":{"type":"constant","value":"layout-content"},"hidden":{"type":"constant","value":false},"repeatedCollection":{"type":"variable","value":""}};
+  resources['b48116ca-9f82-48c6-8ed6-0664f2712400'] =  {"cssClasses":{"type":"constant","value":""},"hidden":{"type":"constant","value":false},"src":{"type":"variable","value":"targetedPageUrl"}};
+  resources['09fc4859-4d3e-4848-99e3-e88a18804e82'] =  {"cssClasses":{"type":"constant","value":"layout-footer"},"hidden":{"type":"constant","value":false},"repeatedCollection":{"type":"variable","value":null}};
   return {
     get: function(uuid) {
       return resources[uuid];

@@ -4,7 +4,7 @@
   } catch(e) {
     return angular.module('bonitasoft.ui.widgets', []);
   }
-})().directive('customLivingApplicationIFrameV3', function() {
+})().directive('customLivingApplicationIFrameV4', function() {
     return {
       controllerAs: 'ctrl',
       controller: function WidgetlivingApplicationIFrameController($scope, $element, $interval, $sce) {
@@ -12,6 +12,9 @@
     $scope.$watch(function(){
         return $scope.properties.src
     }, function() {
+        if(!$scope.properties.src){
+            return;
+        }
         //Rebuild iframe on menu change in order to prevent issues with the browser's back button
         var iframes = $element.find('iframe');
         if (iframes.length > 0) {
