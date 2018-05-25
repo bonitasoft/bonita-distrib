@@ -3,7 +3,7 @@
   "previousDesignerVersion" : "1.5.10",
   "id" : "CaseOverview",
   "name" : "CaseOverview",
-  "lastUpdate" : 1526309185154,
+  "lastUpdate" : 1527080761344,
   "rows" : [ [ {
     "type" : "container",
     "dimension" : {
@@ -441,6 +441,9 @@
           "buttonStyle" : {
             "type" : "constant",
             "value" : "link"
+          },
+          "urlParams" : {
+            "type" : "constant"
           }
         },
         "reference" : "6e6e1a49-df0e-4161-8aed-4fe967e6bc97",
@@ -685,12 +688,12 @@
     },
     "timelineEvents" : {
       "type" : "expression",
-      "value" : "function executedBy(task){\n    return \"completed\" === task.state ? \"Executed by \" + task.executedBy.firstname + \" \" + task.executedBy.lastname : null;\n}\n\nfunction assignedTo(task){\n    return task.assigned_id ? \"Assigned to \" +  task.assigned_id.firstname + \" \" +  task.assigned_id.lastname : null;\n}\n\nfunction iconFor(task){\n    switch(task.state) {\n        case \"completed\": return \"check\";\n        case \"failed\": return \"remove-circle\";\n        case \"cancelled\": return \"ban-circle\";\n        case \"aborted\": return \"ban-circle\";\n        default: return \"unchecked\";\n    }\n}\n\nfunction styleFor(task){\n    switch(task.state) {\n        case \"completed\": return \"success\";\n        case \"failed\": return \"danger\";\n        case \"cancelled\": return \"warning\";\n        case \"aborted\": return \"warning\";\n        default: return \"primary\";\n    }\n}\n\nfunction toEvent(task){\n    return {\n      \"title\" : task.displayName,\n      \"lastUpdateDate\" : new Date(task.last_update_date).getTime(),\n      \"executedBy\" :  executedBy(task),\n      \"assignedTo\" : assignedTo(task),\n      \"description\" : task.displayDescription,\n      \"icon\" : iconFor(task),\n      \"style\" : styleFor(task)\n    };\n}\n\nvar archived = $data.archivedTasks.map(toEvent);\nvar opened = $data.openedTasks.map(toEvent);\n\nreturn [].concat(opened,archived);",
+      "value" : "function executedBy(task){\n    return \"completed\" === task.state ? \"Executed by \" + task.executedBy.firstname + \" \" + task.executedBy.lastname : null;\n}\n\nfunction assignedTo(task){\n    return task.assigned_id ? \"Assigned to \" +  task.assigned_id.firstname + \" \" +  task.assigned_id.lastname : null;\n}\n\nfunction iconFor(task){\n    switch(task.state) {\n        case \"completed\": return \"check\";\n        case \"failed\": return \"remove-circle\";\n        case \"cancelled\": return \"ban-circle\";\n        case \"aborted\": return \"ban-circle\";\n        default: return \"unchecked\";\n    }\n}\n\nfunction styleFor(task){\n    switch(task.state) {\n        case \"completed\": return \"success\";\n        case \"failed\": return \"danger\";\n        case \"cancelled\": return \"warning\";\n        case \"aborted\": return \"warning\";\n        default: return \"primary\";\n    }\n}\n\nfunction toEvent(task){\n    return {\n      \"title\" : task.displayName,\n      \"lastUpdateDate\" : task.last_update_date,\n      \"executedBy\" :  executedBy(task),\n      \"assignedTo\" : assignedTo(task),\n      \"description\" : task.displayDescription,\n      \"icon\" : iconFor(task),\n      \"style\" : styleFor(task)\n    };\n}\n\nvar archived = $data.archivedTasks.map(toEvent);\nvar opened = $data.openedTasks.map(toEvent);\n\nreturn [].concat(opened,archived);",
       "exposed" : false
     },
     "timelineOrigin" : {
       "type" : "expression",
-      "value" : "return {\n \"title\": \"Case started\",\n \"startTime\": new Date($data.case.start).getTime(),\n \"description\":$data.case.processDefinitionId.displayDescription,\n \"initiator\": $data.case.started_by.firstname + \" \" + $data.case.started_by.lastname\n};",
+      "value" : "return {\n \"title\": \"Case started\",\n \"startTime\": $data.case.start,\n \"description\":$data.case.processDefinitionId.displayDescription,\n \"initiator\": $data.case.started_by.firstname + \" \" + $data.case.started_by.lastname\n};",
       "exposed" : false
     },
     "openedTasks" : {
