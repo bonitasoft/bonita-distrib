@@ -3,7 +3,7 @@
     <parent>
         <artifactId>bundle-parent</artifactId>
         <groupId>org.bonitasoft.distrib</groupId>
-        <version>7.7.0-SNAPSHOT</version>
+        <version>7.7.0.rc-01</version>
     </parent>
 
     <artifactId>bundle-wildfly</artifactId>
