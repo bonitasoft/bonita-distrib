@@ -123,6 +123,14 @@
                                     <overWrite>true</overWrite>
                                     <destFileName>api-extension-viewer.zip</destFileName>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.web.pages</groupId>
+                                    <artifactId>page-process-list</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>page-process-list.zip</destFileName>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
                         </configuration>
