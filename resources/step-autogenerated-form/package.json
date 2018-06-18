@@ -19,7 +19,6 @@
     "gulp-ng-html2js": "0.1.8",
     "gulp-open": "0.2.8",
     "gulp-plumber": "0.6.6",
-    "gulp-protractor": "0.0.11",
     "gulp-replace": "0.4.0",
     "gulp-rev": "1.1.0",
     "gulp-uglify": "1.4.1",
@@ -31,7 +30,6 @@
     "karma-jasmine": "1.0.2",
     "karma-phantomjs-launcher": "1.0.1",
     "properties": "1.2.1",
-    "protractor": "1.8.0",
     "run-sequence": "1.1.2"
   },
   "dependencies": {
@@ -46,8 +44,6 @@
   "scripts": {
     "dev": "gulp dev",
     "build": "gulp default",
-    "test": "karma start --single-run",
-    "pree2e": "webdriver-manager update",
-    "e2e": "gulp e2e"
+    "test": "karma start --single-run"
   }
 }
