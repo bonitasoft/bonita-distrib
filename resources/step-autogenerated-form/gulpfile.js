@@ -30,7 +30,6 @@ var jshint = require('gulp-jshint');
 /* test */
 var gulp = require('gulp');
 var karma = require('karma').server;
-var protractor = require('gulp-protractor').protractor;
 
 /*i18n*/
 var gettext = require('gulp-angular-gettext');
@@ -198,24 +197,6 @@ gulp.task('zip', ['assets', 'fonts', 'repath', 'templates'], function () {
   return gulp.src('target/dist/**/*')
     .pipe(zip(customPageName + '.zip'))
     .pipe(gulp.dest('target'));
-});
-
-gulp.task('e2e', function (done) {
-  serve({
-    livereload: false
-  });
-  gulp.src(['test/e2e/spec/**/*.js'])
-    .pipe(protractor({
-      configFile: 'test/e2e/protractor.conf.js',
-      args: ['--baseUrl', 'http://localhost:' + opt.port]
-    }))
-    .on('error', function (e) {
-      throw e;
-    })
-    .on('end', function () {
-      connect.serverClose();
-      done();
-    });
 });
 
 gulp.task('default', function (done) {
