@@ -104,6 +104,13 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                   <deployAtEnd>false</deployAtEnd>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
