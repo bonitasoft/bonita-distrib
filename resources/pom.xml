@@ -44,6 +44,7 @@
 
     <properties>
         <jacoco.skip>true</jacoco.skip>
+        <deploy_plugin_skip>true</deploy_plugin_skip>
     </properties>
 
 </project>
