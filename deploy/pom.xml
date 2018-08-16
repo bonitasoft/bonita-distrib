@@ -5,10 +5,13 @@
         <groupId>org.bonitasoft.distrib</groupId>
         <version>7.8.0-SNAPSHOT</version>
     </parent>
-    <groupId>org.bonitasoft.distrib</groupId>
     <artifactId>deploy-parent</artifactId>
     <packaging>pom</packaging>
     <name>deploy parent</name>
+
+    <properties>
+        <deploy_plugin_skip>true</deploy_plugin_skip>
+    </properties>
 
     <modules>
         <module>all-in-one</module>

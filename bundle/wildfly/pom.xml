@@ -19,6 +19,7 @@
 
     <properties>
         <if.task>net.sf.antcontrib.logic.IfTask</if.task>
+        <deploy_plugin_skip>true</deploy_plugin_skip>
 
         <zipName>BonitaCommunity-${project.version}-wildfly-${wildfly.version}</zipName>
         <zipFolder>${user.home}</zipFolder>
