@@ -5,7 +5,6 @@
 		<groupId>org.bonitasoft.distrib</groupId>
 		<version>7.7.4-SNAPSHOT</version>
 	</parent>
-	<groupId>org.bonitasoft.distrib</groupId>
 	<artifactId>bundle-parent</artifactId>
 	<packaging>pom</packaging>
 	<name>bundles parent</name>
