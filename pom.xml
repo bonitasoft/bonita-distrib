@@ -36,6 +36,8 @@
         <h2.version>1.3.175</h2.version>
         <slf4j.version>1.7.25</slf4j.version>
         <ui.designer.version>1.6.7</ui.designer.version>
+
+        <deploy_plugin_skip>false</deploy_plugin_skip>
     </properties>
 
     <dependencyManagement>
@@ -94,6 +96,11 @@
                     <artifactId>checksum-maven-plugin</artifactId>
                     <version>1.5</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.2</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -107,8 +114,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
                 <configuration>
-                   <deployAtEnd>false</deployAtEnd>
+                    <deployAtEnd>true</deployAtEnd>
+                    <skip>${deploy_plugin_skip}</skip>
                 </configuration>
             </plugin>
         </plugins>
