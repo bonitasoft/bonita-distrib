@@ -3,7 +3,7 @@
   "previousDesignerVersion" : "1.5.10",
   "id" : "CaseOverview",
   "name" : "CaseOverview",
-  "lastUpdate" : 1527080761344,
+  "lastUpdate" : 1535466843404,
   "rows" : [ [ {
     "type" : "container",
     "dimension" : {
@@ -26,7 +26,7 @@
         "value" : ""
       }
     },
-    "reference" : "cc686b55-e512-4554-9372-8b509a5e5b5e",
+    "reference" : "7f5616d5-5cef-470b-ac95-eff0397ec4f1",
     "id" : "pbContainer",
     "rows" : [ [ {
       "type" : "component",
@@ -58,7 +58,7 @@
           "value" : "left"
         }
       },
-      "reference" : "d1a10e42-d827-4e96-90ef-eeb1e6935245",
+      "reference" : "e976baf6-6c38-4861-a06d-6d730a9bb4af",
       "id" : "pbTitle"
     } ], [ {
       "type" : "component",
@@ -90,7 +90,7 @@
           "value" : true
         }
       },
-      "reference" : "cce42e61-e0e4-40d8-9d8a-cb24289e8510",
+      "reference" : "fd9b273b-c9a9-4111-ad30-e0113af2f4c6",
       "id" : "pbText"
     } ], [ {
       "type" : "container",
@@ -113,7 +113,7 @@
           "type" : "variable"
         }
       },
-      "reference" : "b319b31c-4676-4931-9da2-19bade12fef4",
+      "reference" : "bef70360-9652-4b0c-80f4-7ae1be0da02a",
       "id" : "pbContainer",
       "rows" : [ [ {
         "type" : "component",
@@ -145,7 +145,7 @@
             "value" : true
           }
         },
-        "reference" : "10eda89d-987c-488b-b912-6a3c52bdf22e",
+        "reference" : "008eed6a-4b7f-4d0d-adaa-860ba8f9ab2a",
         "id" : "pbText"
       } ] ]
     } ], [ {
@@ -169,7 +169,7 @@
           "type" : "variable"
         }
       },
-      "reference" : "8184b27e-83d2-45c9-9c5a-9189af069c6e",
+      "reference" : "2e18c882-1d10-4da6-890c-6cfc459c507c",
       "id" : "pbContainer",
       "rows" : [ [ {
         "type" : "component",
@@ -233,7 +233,7 @@
             "value" : "caseOverview.selectedBusinessDataRef"
           }
         },
-        "reference" : "debcc02a-b561-45ae-a1ba-7cd63760fa3d",
+        "reference" : "80287c22-71a9-4e0b-8ea0-733db4021149",
         "id" : "pbSelect"
       } ], [ {
         "type" : "component",
@@ -268,7 +268,7 @@
             "type" : "variable"
           }
         },
-        "reference" : "dc62ed69-bf89-4062-a25e-dc290631d7c5",
+        "reference" : "58332cc1-33f5-415c-afba-1937c61695ae",
         "id" : "pbTable"
       } ] ]
     } ], [ {
@@ -301,7 +301,7 @@
           "value" : true
         }
       },
-      "reference" : "5927b671-79e4-44ca-9603-85c79a8de2ef",
+      "reference" : "4be5c89c-3c1e-4d2a-a0b1-bd9a26dfc19b",
       "id" : "pbText"
     } ], [ {
       "type" : "container",
@@ -324,7 +324,7 @@
           "type" : "variable"
         }
       },
-      "reference" : "8e58b043-2f8f-4758-82b3-c85003c6dd56",
+      "reference" : "5e0aee97-bdf8-4ab7-b97f-1c08a354dca5",
       "id" : "pbContainer",
       "rows" : [ [ {
         "type" : "component",
@@ -356,7 +356,7 @@
             "value" : true
           }
         },
-        "reference" : "3174f0c2-132c-4107-902e-922182bf517d",
+        "reference" : "75850185-8234-40a2-a88e-30a06d877bd4",
         "id" : "pbText"
       } ] ]
     } ], [ {
@@ -381,7 +381,7 @@
           "value" : "caseOverview.documentRefs"
         }
       },
-      "reference" : "2d3bf5f1-66f7-4a0b-8ef0-dba7882fca4c",
+      "reference" : "775ae986-9532-44ea-9b21-55f17117a5e0",
       "id" : "pbContainer",
       "rows" : [ [ {
         "type" : "component",
@@ -446,7 +446,7 @@
             "type" : "constant"
           }
         },
-        "reference" : "6e6e1a49-df0e-4161-8aed-4fe967e6bc97",
+        "reference" : "f71a3d3d-a1f3-44b3-a2fc-45696df61011",
         "id" : "pbLink"
       } ] ]
     } ], [ {
@@ -479,7 +479,7 @@
           "value" : true
         }
       },
-      "reference" : "885c9cb6-39fd-4e2b-b859-2d5b62913aeb",
+      "reference" : "179ec8f9-5663-4ad5-994c-c80bcda59085",
       "id" : "pbText"
     } ], [ {
       "type" : "component",
@@ -559,7 +559,7 @@
           "value" : "event.icon"
         }
       },
-      "reference" : "590f2d1d-6f54-4350-9cf9-17cd7891c33f",
+      "reference" : "94f8d1e4-6470-44b2-a635-982bf0f14838",
       "id" : "timelineWidget"
     } ] ]
   } ], [ {
@@ -584,7 +584,7 @@
         "value" : ""
       }
     },
-    "reference" : "83205637-c0fa-494e-bcab-8db42eefbd5e",
+    "reference" : "31461e0b-8cb2-4a03-8d46-e929836d1eb3",
     "id" : "pbContainer",
     "rows" : [ [ {
       "type" : "component",
@@ -616,7 +616,7 @@
           "value" : true
         }
       },
-      "reference" : "283001a8-cd4c-46b9-95c8-dc12aaea1c3d",
+      "reference" : "3642a9c5-4d82-45d7-a776-958f2f93323b",
       "id" : "pbText"
     } ] ]
   } ] ],
@@ -658,7 +658,7 @@
     },
     "caseOverview" : {
       "type" : "expression",
-      "value" : "function values(object){\n    return  Object.keys(object).map(function(key){\n        return $data.context[key];\n    });\n}\n\nvar businessDataRefs = values($data.context).filter(function(ref){\n        return ref.type;\n    }).map(function(businessDataRef){\n        return {\n          \"name\" : businessDataRef.name + \" (\"+ businessDataRef.type +\")\",\n          \"link\" : businessDataRef.link\n        };\n    });\n    \nvar documentRefs = values($data.context).filter(function(ref){\n        if(ref.length > 0){\n            return ref[0].fileName;\n        }\n        return ref.fileName;\n    }).map(function(ref){\n        return ref.length > 0 ? ref : [ref];\n    });\nvar flattenDocRefs = [].concat.apply([],documentRefs);\n    \nreturn {\n    \"found\" : !!$data.case,\n    \"id\" : $data.case.id,\n    \"sourceObjectId\" : $data.case.sourceObjectId ?  $data.case.sourceObjectId  : $data.case.id ,\n    \"processName\" : $data.case.processDefinitionId.displayName + \" (\"+ $data.case.processDefinitionId.version+\")\",\n    \"businessDataRefs\" : businessDataRefs,\n    \"selectedBusinessDataRef\" : businessDataRefs[0],\n    \"documentRefs\" : flattenDocRefs \n};",
+      "value" : "function values(object){\n    if(!object){\n        return [];\n    }\n    return  Object.keys(object).map(function(key){\n        return $data.context[key];\n    });    \n    \n}\n\nvar businessDataRefs =  values($data.context).filter(function(ref){\n        return ref.type;\n    }).map(function(businessDataRef){\n        return {\n          \"name\" : businessDataRef.name + \" (\"+ businessDataRef.type +\")\",\n          \"link\" : businessDataRef.link\n        };\n    });\n    \nvar documentRefs = values($data.context).filter(function(ref){\n        if(ref.length > 0){\n            return ref[0].fileName;\n        }\n        return ref.fileName;\n    }).map(function(ref){\n        return ref.length > 0 ? ref : [ref];\n    });\nvar flattenDocRefs = [].concat.apply([],documentRefs);\n    \nreturn {\n    \"found\" : !!$data.case,\n    \"id\" : $data.case.id,\n    \"sourceObjectId\" : $data.case.sourceObjectId ?  $data.case.sourceObjectId  : $data.case.id ,\n    \"processName\" : $data.case.processDefinitionId.displayName + \" (\"+ $data.case.processDefinitionId.version+\")\",\n    \"businessDataRefs\" : businessDataRefs,\n    \"selectedBusinessDataRef\" : businessDataRefs[0],\n    \"documentRefs\" : flattenDocRefs \n};",
       "exposed" : false
     },
     "selectedBusinessData" : {
@@ -717,6 +717,6 @@
       "exposed" : false
     }
   },
-  "uuid" : "d239b776-1965-44e1-a1e0-0e9d82cf51be",
+  "uuid" : "db88c705-30f6-4cfd-a595-0fe74f2a4e29",
   "type" : "page"
 }
