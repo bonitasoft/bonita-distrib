@@ -35,7 +35,7 @@
 
   this.setSelectedValue = function (foundItem) {
     $timeout(function () {
-      if (foundItem) {
+      if (angular.isDefined(foundItem)) {
         $scope.properties.value = foundItem;
       } else {
         $scope.properties.value = null;
@@ -63,7 +63,7 @@
   });
 
   $scope.$watch('properties.value', function(value) {
-    if (value) {
+    if (angular.isDefined(value) && value !== null) {
       var items = $scope.properties.availableValues;
       if (Array.isArray(items)) {
         var foundItem = ctrl.findSelectedItem(items);
