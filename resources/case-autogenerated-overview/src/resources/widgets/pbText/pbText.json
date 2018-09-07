@@ -1,13 +1,13 @@
 {
-  "designerVersion" : "1.7.43",
+  "designerVersion" : "1.7.69",
   "id" : "pbText",
   "name" : "Text",
-  "lastUpdate" : 1526303073071,
+  "lastUpdate" : 1535383591228,
   "template" : "<p ng-if=\"properties.allowHTML\" class=\"text-{{ properties.alignment }}\" ng-bind-html=\"properties.text | uiTranslate\"></p>\n<p ng-if=\"!properties.allowHTML\" class=\"text-{{ properties.alignment }}\" ng-bind=\"properties.text | uiTranslate\"></p>\n",
   "icon" : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 20'><g><path fill='#fff' d='M8.2,20h15v-1h-15V20z M8.2,17h31v-1h-31V17z M8.2,4h32V3h-32V4z M8.2,14h34v-1h-34V14z M8.2,7h30V6h-30V7z M8.2,1h35V0h-35V1z'/></g></svg>",
   "description" : "Short string or paragraph of text to be displayed. Can include HTML tags",
   "custom" : false,
-  "order" : 16,
+  "order" : 19,
   "properties" : [ {
     "label" : "Interpret HTML",
     "name" : "allowHTML",
