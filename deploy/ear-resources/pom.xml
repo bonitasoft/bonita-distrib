@@ -131,6 +131,14 @@
                                     <overWrite>true</overWrite>
                                     <destFileName>page-process-list.zip</destFileName>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.web.pages</groupId>
+                                    <artifactId>page-tenant-status</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>page-tenant-status.zip</destFileName>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
                         </configuration>
