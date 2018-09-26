@@ -3,7 +3,7 @@
   "previousDesignerVersion" : "1.5.10",
   "id" : "CaseOverview",
   "name" : "CaseOverview",
-  "lastUpdate" : 1535466843404,
+  "lastUpdate" : 1537172550780,
   "rows" : [ [ {
     "type" : "container",
     "dimension" : {
@@ -26,7 +26,7 @@
         "value" : ""
       }
     },
-    "reference" : "7f5616d5-5cef-470b-ac95-eff0397ec4f1",
+    "reference" : "fc41a356-8998-452a-9ba6-d0461c025697",
     "id" : "pbContainer",
     "rows" : [ [ {
       "type" : "component",
@@ -58,7 +58,7 @@
           "value" : "left"
         }
       },
-      "reference" : "e976baf6-6c38-4861-a06d-6d730a9bb4af",
+      "reference" : "e42cf1f2-ba06-44f3-85f3-2b5df2165019",
       "id" : "pbTitle"
     } ], [ {
       "type" : "component",
@@ -90,7 +90,7 @@
           "value" : true
         }
       },
-      "reference" : "fd9b273b-c9a9-4111-ad30-e0113af2f4c6",
+      "reference" : "b3296a56-0223-423c-a701-e4a120a7f51a",
       "id" : "pbText"
     } ], [ {
       "type" : "container",
@@ -113,7 +113,7 @@
           "type" : "variable"
         }
       },
-      "reference" : "bef70360-9652-4b0c-80f4-7ae1be0da02a",
+      "reference" : "91aa69b7-40d4-4efe-91f1-3b0cc5905dce",
       "id" : "pbContainer",
       "rows" : [ [ {
         "type" : "component",
@@ -145,7 +145,7 @@
             "value" : true
           }
         },
-        "reference" : "008eed6a-4b7f-4d0d-adaa-860ba8f9ab2a",
+        "reference" : "897d91e3-4c78-4a0c-a250-d0ecdadf7d39",
         "id" : "pbText"
       } ] ]
     } ], [ {
@@ -166,10 +166,11 @@
           "value" : "caseOverview.businessDataRefs.length === 0"
         },
         "repeatedCollection" : {
-          "type" : "variable"
+          "type" : "variable",
+          "value" : ""
         }
       },
-      "reference" : "2e18c882-1d10-4da6-890c-6cfc459c507c",
+      "reference" : "1c1c80a1-d0eb-4f30-bcfe-1098085a0040",
       "id" : "pbContainer",
       "rows" : [ [ {
         "type" : "component",
@@ -233,7 +234,7 @@
             "value" : "caseOverview.selectedBusinessDataRef"
           }
         },
-        "reference" : "80287c22-71a9-4e0b-8ea0-733db4021149",
+        "reference" : "3b5b7ed7-ad8a-44fc-a3c6-b4cb063c5e2d",
         "id" : "pbSelect"
       } ], [ {
         "type" : "component",
@@ -268,7 +269,7 @@
             "type" : "variable"
           }
         },
-        "reference" : "58332cc1-33f5-415c-afba-1937c61695ae",
+        "reference" : "2161bfa5-d310-4c9a-ba3a-d7e4f79d2be0",
         "id" : "pbTable"
       } ] ]
     } ], [ {
@@ -301,7 +302,7 @@
           "value" : true
         }
       },
-      "reference" : "4be5c89c-3c1e-4d2a-a0b1-bd9a26dfc19b",
+      "reference" : "6838fb22-a20b-43c0-ad88-60454ea26638",
       "id" : "pbText"
     } ], [ {
       "type" : "container",
@@ -324,7 +325,7 @@
           "type" : "variable"
         }
       },
-      "reference" : "5e0aee97-bdf8-4ab7-b97f-1c08a354dca5",
+      "reference" : "ed91c941-f419-4937-9563-03880a62aee4",
       "id" : "pbContainer",
       "rows" : [ [ {
         "type" : "component",
@@ -356,7 +357,7 @@
             "value" : true
           }
         },
-        "reference" : "75850185-8234-40a2-a88e-30a06d877bd4",
+        "reference" : "e118a5fc-c787-4a72-b47f-d400791668e5",
         "id" : "pbText"
       } ] ]
     } ], [ {
@@ -381,7 +382,7 @@
           "value" : "caseOverview.documentRefs"
         }
       },
-      "reference" : "775ae986-9532-44ea-9b21-55f17117a5e0",
+      "reference" : "6f5594fa-aa76-448a-bb1b-2bb878062e70",
       "id" : "pbContainer",
       "rows" : [ [ {
         "type" : "component",
@@ -446,7 +447,7 @@
             "type" : "constant"
           }
         },
-        "reference" : "f71a3d3d-a1f3-44b3-a2fc-45696df61011",
+        "reference" : "f8e8d2cd-73d9-44a3-a4a2-b0e9212059a2",
         "id" : "pbLink"
       } ] ]
     } ], [ {
@@ -479,7 +480,7 @@
           "value" : true
         }
       },
-      "reference" : "179ec8f9-5663-4ad5-994c-c80bcda59085",
+      "reference" : "de35d1f4-89c8-4c75-84ca-40fb651481f7",
       "id" : "pbText"
     } ], [ {
       "type" : "component",
@@ -559,7 +560,7 @@
           "value" : "event.icon"
         }
       },
-      "reference" : "94f8d1e4-6470-44b2-a635-982bf0f14838",
+      "reference" : "a51d8918-bd2b-41a9-9526-c2b8377ec655",
       "id" : "timelineWidget"
     } ] ]
   } ], [ {
@@ -584,7 +585,7 @@
         "value" : ""
       }
     },
-    "reference" : "31461e0b-8cb2-4a03-8d46-e929836d1eb3",
+    "reference" : "b2e49c49-3849-4965-a368-a1797c166c76",
     "id" : "pbContainer",
     "rows" : [ [ {
       "type" : "component",
@@ -616,7 +617,7 @@
           "value" : true
         }
       },
-      "reference" : "3642a9c5-4d82-45d7-a776-958f2f93323b",
+      "reference" : "25414521-3c21-4d7e-83dd-c50103b09657",
       "id" : "pbText"
     } ] ]
   } ] ],
@@ -658,7 +659,7 @@
     },
     "caseOverview" : {
       "type" : "expression",
-      "value" : "function values(object){\n    if(!object){\n        return [];\n    }\n    return  Object.keys(object).map(function(key){\n        return $data.context[key];\n    });    \n    \n}\n\nvar businessDataRefs =  values($data.context).filter(function(ref){\n        return ref.type;\n    }).map(function(businessDataRef){\n        return {\n          \"name\" : businessDataRef.name + \" (\"+ businessDataRef.type +\")\",\n          \"link\" : businessDataRef.link\n        };\n    });\n    \nvar documentRefs = values($data.context).filter(function(ref){\n        if(ref.length > 0){\n            return ref[0].fileName;\n        }\n        return ref.fileName;\n    }).map(function(ref){\n        return ref.length > 0 ? ref : [ref];\n    });\nvar flattenDocRefs = [].concat.apply([],documentRefs);\n    \nreturn {\n    \"found\" : !!$data.case,\n    \"id\" : $data.case.id,\n    \"sourceObjectId\" : $data.case.sourceObjectId ?  $data.case.sourceObjectId  : $data.case.id ,\n    \"processName\" : $data.case.processDefinitionId.displayName + \" (\"+ $data.case.processDefinitionId.version+\")\",\n    \"businessDataRefs\" : businessDataRefs,\n    \"selectedBusinessDataRef\" : businessDataRefs[0],\n    \"documentRefs\" : flattenDocRefs \n};",
+      "value" : "function values(object){\n    if(!object){\n        return [];\n    }\n    return  Object.keys(object).map(function(key){\n        return $data.context[key];\n    });    \n}\n\nvar businessDataRefs =  values($data.context).filter(function(ref){\n        return ref && ref.type;\n    }).map(function(businessDataRef){\n        return {\n          \"name\" : businessDataRef.name + \" (\"+ businessDataRef.type +\")\",\n          \"link\" : businessDataRef.link\n        };\n    });\n\nvar documentRefs = values($data.context).filter(function(ref){\n        if(ref && ref.fileName && ref.length > 0){\n            return ref[0].fileName;\n        }\n    }).map(function(ref){\n        return ref.length > 0 ? ref : [ref];\n    });\n    \nvar flattenDocRefs = [].concat.apply([],documentRefs);\n \nreturn {\n    \"found\" : !!$data.case,\n    \"id\" : $data.case.id,\n    \"sourceObjectId\" : $data.case.rootCaseId ?  $data.case.rootCaseId  : $data.case.id ,\n    \"processName\" : $data.case.processDefinitionId.displayName + \" (\"+ $data.case.processDefinitionId.version+\")\",\n    \"businessDataRefs\" : businessDataRefs,\n    \"selectedBusinessDataRef\" : businessDataRefs[0],\n    \"documentRefs\" : flattenDocRefs \n};",
       "exposed" : false
     },
     "selectedBusinessData" : {
@@ -673,7 +674,7 @@
     },
     "case" : {
       "type" : "expression",
-      "value" : "return  $data.archivedCase.length > 0 ? $data.archivedCase[0] : $data.openCase ?  $data.openCase : null;",
+      "value" : "return $data.archivedCase.length > 0 ? $data.archivedCase[0] : $data.openCase;",
       "exposed" : false
     },
     "businessDataKeys" : {
@@ -708,15 +709,15 @@
     },
     "openedContext" : {
       "type" : "url",
-      "value" : "../API/bpm/case/{{case.id}}/context",
+      "value" : "../API/bpm/case/{{caseId}}/context",
       "exposed" : false
     },
     "context" : {
       "type" : "expression",
-      "value" : "return $data.openedContext || $data.archivedContext;",
+      "value" : "return $data.archivedContext ? $data.archivedContext : $data.openedContext;",
       "exposed" : false
     }
   },
-  "uuid" : "db88c705-30f6-4cfd-a595-0fe74f2a4e29",
-  "type" : "page"
+  "uuid" : "981aadcf-631a-4742-9507-59e85e93c39e",
+  "type" : "form"
 }
