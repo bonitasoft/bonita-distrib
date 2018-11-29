@@ -19,6 +19,7 @@
         <wildfly_root_folder>${folderToZip}/wildfly-${wildfly.version}</wildfly_root_folder>
         <wildfly_server_folder>${wildfly_root_folder}/server</wildfly_server_folder>
         <bitronix.version>2.1.3</bitronix.version>
+        <activation.version>1.1.1</activation.version>
     </properties>
 
     <dependencies>
@@ -51,6 +52,11 @@
             <groupId>org.codehaus.btm</groupId>
             <artifactId>btm-tomcat55-lifecycle</artifactId>
             <version>${bitronix.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>${activation.version}</version>
         </dependency>
     </dependencies>
 
@@ -137,6 +143,10 @@
                                 <artifactItem>
                                     <groupId>org.codehaus.btm</groupId>
                                     <artifactId>btm-tomcat55-lifecycle</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>javax.activation</groupId>
+                                    <artifactId>activation</artifactId>
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>
