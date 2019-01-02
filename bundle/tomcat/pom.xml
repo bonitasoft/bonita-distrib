@@ -12,64 +12,73 @@
 
     <properties>
         <zipName>BonitaCommunity-${project.version}-Tomcat-${tomcat.version}</zipName>
-        <tomcat.zip.parent.folder>${user.home}</tomcat.zip.parent.folder>
-        <if.task>net.sf.antcontrib.logic.IfTask</if.task>
-        <bundle.dir>${project.build.directory}/BOS-${project.version}-Tomcat-${tomcat.version}</bundle.dir>
-        <tomcat.home.dir>${bundle.dir}/server</tomcat.home.dir>
+        <bundle.dir>${project.build.directory}/${zipName}</bundle.dir>
         <platform.setup.folder>${bundle.dir}/setup</platform.setup.folder>
+
+        <tomcat.conf.dir>${tomcat.home.dir}/conf</tomcat.conf.dir>
+        <tomcat.home.dir>${bundle.dir}/server</tomcat.home.dir>
         <tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
         <tomcat.webapps.dir>${tomcat.home.dir}/webapps</tomcat.webapps.dir>
-        <tomcat.conf.dir>${tomcat.home.dir}/conf</tomcat.conf.dir>
-        <tomcat.download.url>http://archive.apache.org/dist/tomcat/tomcat-${tomcat.version.major}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</tomcat.download.url>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>ant-contrib</groupId>
-            <artifactId>ant-contrib</artifactId>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
+                <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
-                    <execution>
-                        <id>check-tomcat-availability</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="Downloading official Tomcat package if necessary">
-                                <taskdef name="if" classname="${if.task}" classpathref="maven.runtime.classpath" />
-                                <available property="tomcat.present" file="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" />
-                                <if>
-                                    <not>
-                                        <isset property="tomcat.present" />
-                                    </not>
-                                    <then>
-                                        <get src="${tomcat.download.url}" dest="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" />
-                                    </then>
-                                </if>
-                            </target>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>unpack-tomcat</id>
                         <phase>generate-resources</phase>
                         <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.apache.tomcat</groupId>
+                                    <artifactId>tomcat</artifactId>
+                                    <version>${tomcat.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${bundle.dir}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-webapps</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.distrib</groupId>
+                                    <artifactId>deploy-distrib</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>clean-tomcat</id>
+                        <phase>generate-resources</phase>
+                        <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target name="Cleaning up unwanted default built-in webapps">
-                                <unzip src="${tomcat.zip.parent.folder}/apache-tomcat-${tomcat.version}.zip" dest="${bundle.dir}">
-                                    <patternset>
-                                        <include name="**/*" />
-                                    </patternset>
-                                </unzip>
+                            <target name="Moving tomcat package and cleaning up unwanted default built-in webapps">
                                 <move file="${bundle.dir}/apache-tomcat-${tomcat.version}" tofile="${tomcat.home.dir}" />
                                 <delete dir="${tomcat.home.dir}/webapps/docs" />
                                 <delete dir="${tomcat.home.dir}/webapps/examples" />
@@ -136,32 +145,6 @@
                                     <directory>src/main/resources</directory>
                                 </resource>
                             </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>unpack-webapps</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                            <!-- goal>copy</goal -->
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>deploy-distrib</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
                         </configuration>
                     </execution>
                 </executions>

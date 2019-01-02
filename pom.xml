@@ -5,6 +5,8 @@
         <groupId>org.bonitasoft.console</groupId>
         <artifactId>bonita-console</artifactId>
         <version>7.8.1-SNAPSHOT</version>
+        <!-- use an empty value as workaround to ensure that maven resolves the parent pom from a repository -->
+        <relativePath />
     </parent>
 
     <groupId>org.bonitasoft.distrib</groupId>
@@ -24,6 +26,9 @@
     </scm>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <bonita.web.version>${project.version}</bonita.web.version>
 
         <distrib.zipname>BonitaCommunity-${project.version}-deploy</distrib.zipname>
