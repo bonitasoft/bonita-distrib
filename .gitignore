@@ -1,12 +1,20 @@
-# eclipse settings
-*.project
-*.settings
-*.classpath
+# Eclipse
+.project
+.settings
+.classpath
+
+# IntelliJ
 *.iml
-*.orig
-# target
+.idea
+
+# Maven
 target/
-node/
-node_modules/
+
+# Temp files
 *.orig
 *.tmp
+**/*.swp
+
+# node and npm
+node
+node_modules/
