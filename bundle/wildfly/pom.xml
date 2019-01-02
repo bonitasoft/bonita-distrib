@@ -10,73 +10,79 @@
     <name>wildfly bundle</name>
     <packaging>pom</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>ant-contrib</groupId>
-            <artifactId>ant-contrib</artifactId>
-        </dependency>
-    </dependencies>
-
     <properties>
-        <if.task>net.sf.antcontrib.logic.IfTask</if.task>
         <deploy_plugin_skip>true</deploy_plugin_skip>
 
         <zipName>BonitaCommunity-${project.version}-wildfly-${wildfly.version}</zipName>
-        <zipFolder>${user.home}</zipFolder>
-
-        <wildfly.zip.parent.folder>${zipFolder}</wildfly.zip.parent.folder>
-        <wildfly.zip.name>wildfly-${wildfly.version}</wildfly.zip.name>
         <bundle.dir>${project.build.directory}/${zipName}</bundle.dir>
-        <wildfly.home>${bundle.dir}/server</wildfly.home>
+        <platform.setup.folder>${bundle.dir}/setup</platform.setup.folder>
+
+        <wildfly.conf.dir>${wildfly.default.dir}/configuration</wildfly.conf.dir>
         <wildfly.default.dir>${wildfly.home}/standalone/</wildfly.default.dir>
         <wildfly.deploy.dir>${wildfly.default.dir}/deployments</wildfly.deploy.dir>
-        <wildfly.conf.dir>${wildfly.default.dir}/configuration</wildfly.conf.dir>
+        <wildfly.home>${bundle.dir}/server</wildfly.home>
         <wildfly.lib.dir>${wildfly.default.dir}/lib</wildfly.lib.dir>
-        <platform.setup.folder>${bundle.dir}/setup</platform.setup.folder>
-        <wildfly.download.url>http://download.jboss.org/wildfly/${wildfly.version}/${wildfly.zip.name}.zip</wildfly.download.url>
     </properties>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
+                <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
-                    <execution>
-                        <id>check-wildfly-availabality</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="Downloading official wildfly package if necessary">>
-                                <taskdef name="if" classname="${if.task}" classpathref="maven.runtime.classpath" />
-                                <available property="wildfly.present" file="${wildfly.zip.parent.folder}/${wildfly.zip.name}.zip" />
-                                <if>
-                                    <not>
-                                        <isset property="wildfly.present" />
-                                    </not>
-                                    <then>
-                                        <get src="${wildfly.download.url}" dest="${wildfly.zip.parent.folder}/${wildfly.zip.name}.zip" />
-                                    </then>
-                                </if>
-                            </target>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>unpack-wildfly</id>
                         <phase>generate-resources</phase>
                         <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-dist</artifactId>
+                                    <version>${wildfly.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${bundle.dir}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-bonita-distrib</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.distrib</groupId>
+                                    <artifactId>deploy-distrib</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>move-wildfly-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target name="Unzipping wildfly package">
-                                <unzip src="${wildfly.zip.parent.folder}/${wildfly.zip.name}.zip" dest="${bundle.dir}">
-                                    <patternset>
-                                        <include name="**/*" />
-                                    </patternset>
-                                </unzip>
-                                <move file="${bundle.dir}/${wildfly.zip.name}" tofile="${bundle.dir}/server" />
+                            <target name="Moving wildfly package">
+                                 <move file="${bundle.dir}/wildfly-${wildfly.version}" tofile="${bundle.dir}/server" />
                             </target>
                         </configuration>
                     </execution>
@@ -91,7 +97,6 @@
                                 <move overwrite="true" todir="${platform.setup.folder}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/setup" />
                                 </move>
-
                                 <!-- Copy the configuration on the deploy zip into the bundle wildfly -->
                                 <move overwrite="true" todir="${bundle.dir}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/wildfly-${wildfly.version}" />
@@ -136,32 +141,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <!-- Unpack Bonita distrib -->
-                    <execution>
-                        <id>copy-external-lib</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>deploy-distrib</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
@@ -180,14 +159,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <!-- wildfly does not need to be deployed since it is not used by Bonita build chain -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
         </plugins>
     </build>
