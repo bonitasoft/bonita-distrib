@@ -1,56 +1,60 @@
 @echo off
-setlocal enabledelayedexpansion
+setlocal
 
-echo Check Java minor version is 8+
-
-rem Test if system variable JAVA_HOME is set.
+:: Test if system variable JAVA_HOME is set.
 if "x%JAVA_HOME%" == "x" (
-    echo JAVA_HOME is not set. Trying to use java in path.
-    set JAVA=java
-rem If JAVA_HOME system variable is not set try to use java command in the path.
+    echo JAVA_HOME is not set. Use java in path.
+    set JAVA_CMD=java
 ) else (
-    echo JAVA_HOME is set to: "%JAVA_HOME%"
-    rem Verify that value of JAVA_HOME refer to a folder that actually exists.
+    echo JAVA_HOME is set to: %JAVA_HOME%
+    :: Verify that value of JAVA_HOME refer to a folder that actually exists.
     if not exist "%JAVA_HOME%" (
-        rem Folder does not exist.
+        :: Folder does not exist.
         echo JAVA_HOME "%JAVA_HOME%" path doesn't exist
-        exit /b 1
+        goto exit
     ) else (
-        rem Value of JAVA_HOME point to an existing folder.
-        rem Build the full path to java executable.
-        set JAVA=%JAVA_HOME%\bin\java
-        echo Java command path is "%JAVA%"
+        :: Value of JAVA_HOME points to an existing folder.
+        :: Build the full path to java executable.
+        set JAVA_CMD=%JAVA_HOME%\bin\java
     )
 )
+echo Java command path is %JAVA_CMD%
 
-echo Run "java -version" and parse the output
-rem 2>&1 allow to redirect error output to standard output. We do that because java -version print to error output.
-rem the pipe | takes output of the java -version command and pass it to findstr command. 
-rem findstr version will search for the word "version" is in the multiple lines output of java -version and return the single line that include the word "version".
-rem ^ is used to escape special characters.
-rem /f tokens=3 allow to only consider the third token on the line. I.e. the version number between quotes.
-rem matching token is stored in %%g variable (local to the for loop)
-for /f "tokens=3" %%g in ('"%JAVA%" -version 2^>^&1 ^| findstr version') do (
-    rem Store the token value in JAVAVER variable.
+echo Check that Java version is compatible with Bonita
+:: 2>&1 allow to redirect error output to standard output. We do that because java -version print to error output.
+:: the pipe | takes output of the java -version command and pass it to findstr command.
+:: findstr version will search for the word "version" is in the multiple lines output of java -version and return the single line that include the word "version".
+:: ^ is used to escape special characters.
+:: /f tokens=3 allow to only consider the third token on the line. I.e. the version number between quotes.
+:: matching token is stored in %%g variable (local to the for loop)
+for /f "tokens=3" %%g in ('"%JAVA_CMD%" -version 2^>^&1 ^| findstr version') do (
     set JAVAVER=%%g
 )
 
-echo Java version: %JAVAVER%
+:: Remove quotes from the version for easier processing
+set JAVAVER=%JAVAVER:"=%
+echo Java full version: %JAVAVER%
 
-echo Parsing Java version to get minor version
-for /f "delims=. tokens=2" %%v in ("%JAVAVER%") do (
-    set VERSION_NUMBER=%%v
+for /f "delims=. tokens=1" %%v in ("%JAVAVER%") do (
+    set VERSION_NUMBER_1ST_DIGIT=%%v
 )
-
-echo Java minor version is: %VERSION_NUMBER%
-
-echo Check that Java minor version is compatible with WildFly (need to be 8 or higher)
-if "%VERSION_NUMBER%" LSS "8" (
-    rem Java minor version is lower then 8. Not supported by WildFly.
-    echo Invalid Java minor version %VERSION_NUMBER% ^< 8. Please set JAVA_HOME system variable to a JDK / JRE 8+
-    exit /b 1
+:: pre Java 9 versions, get minor version
+if "%VERSION_NUMBER_1ST_DIGIT%" EQU "1" (
+  for /f "delims=. tokens=2" %%v in ("%JAVAVER%") do (
+      set VERSION_NUMBER=%%v
+      set VERSION_EXPECTED=8
+  )
+) else (
+  set VERSION_NUMBER=%VERSION_NUMBER_1ST_DIGIT%
+  set VERSION_EXPECTED=11
 )
-echo Java minor version is compatible
+echo Java version: %VERSION_NUMBER%
+
+if "%VERSION_NUMBER%" NEQ "%VERSION_EXPECTED%" (
+    echo Invalid Java version %VERSION_NUMBER% not 8 or 11. Please set JAVA_HOME system variable to a JRE / JDK related to one of these versions
+    goto exit
+)
+echo Java version is compatible
 
 IF NOT EXIST setup GOTO NOSETUPDIR
 echo ------------------------------------------------------
@@ -59,11 +63,11 @@ echo ------------------------------------------------------
 shift
 call setup\setup.bat init %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 (
-    exit /b 1
+   goto exit
 )
 call setup\setup.bat configure %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 (
-    exit /b 1
+   goto exit
 )
 
 :NOSETUPDIR
@@ -73,5 +77,9 @@ echo "------------------------------------------------------"
 call server\bin\standalone.bat
 
 pause
+exit /b 0
 
-endlocal
+:exit
+:: pause to let the user read the error message:
+pause
+exit /b 1

@@ -5,36 +5,37 @@ setlocal
 if "x%JRE_HOME%" == "x" (
     echo JRE_HOME is not set. Trying to use JAVA_HOME instead...
     if "x%JAVA_HOME%" == "x" (
-        echo No Java command could be found. Please set JRE_HOME or JAVA_HOME variable to a JRE / JDK 1.8+
+        echo No Java command could be found. Please set JRE_HOME or JAVA_HOME variable to a JRE / JDK
         goto exit
     ) else (
         echo JAVA_HOME is set to: %JAVA_HOME%
-        REM Verify that value of JAVA_HOME refer to a folder that actually exists.
+        :: Verify that value of JAVA_HOME refer to a folder that actually exists.
         if not exist "%JAVA_HOME%" (
-            REM Folder does not exist.
+            :: Folder does not exist.
             echo JAVA_HOME "%JAVA_HOME%" path doesn't exist
             goto exit
         ) else (
-            REM Value of JAVA_HOME points to an existing folder.
-            REM Build the full path to java executable.
+            :: Value of JAVA_HOME points to an existing folder.
+            :: Build the full path to java executable.
             set JAVA_CMD=%JAVA_HOME%\bin\java
         )
     )
 ) else (
     echo JRE_HOME is set to: "%JRE_HOME%"
-    REM Verify that value of JRE_HOME refer to a folder that actually exists.
+    :: Verify that value of JRE_HOME refer to a folder that actually exists.
     if not exist "%JRE_HOME%" (
-        REM Folder does not exist.
+        :: Folder does not exist.
         echo JRE_HOME "%JRE_HOME%" path doesn't exist
         goto exit
     ) else (
-        REM Value of JRE_HOME points to an existing folder.
-        REM Build the full path to java executable.
+        :: Value of JRE_HOME points to an existing folder.
+        :: Build the full path to java executable.
         set JAVA_CMD=%JRE_HOME%\bin\java
     )
 )
 echo Java command path is %JAVA_CMD%
 
+echo Check that Java version is compatible with Bonita
 :: 2>&1 allow to redirect error output to standard output. We do that because java -version print to error output.
 :: the pipe | takes output of the java -version command and pass it to findstr command.
 :: findstr version will search for the word "version" is in the multiple lines output of java -version and return the single line that include the word "version".
@@ -42,42 +43,52 @@ echo Java command path is %JAVA_CMD%
 :: /f tokens=3 allow to only consider the third token on the line. I.e. the version number between quotes.
 :: matching token is stored in %%g variable (local to the for loop)
 for /f "tokens=3" %%g in ('"%JAVA_CMD%" -version 2^>^&1 ^| findstr version') do (
-    REM Store the token value in JAVAVER variable.
     set JAVAVER=%%g
 )
 
-echo Java version: %JAVAVER%
+:: Remove quotes from the version for easier processing
+set JAVAVER=%JAVAVER:"=%
+echo Java full version: %JAVAVER%
 
-for /f "delims=. tokens=2" %%v in ("%JAVAVER%") do (
-    set VERSION_NUMBER=%%v
+for /f "delims=. tokens=1" %%v in ("%JAVAVER%") do (
+    set VERSION_NUMBER_1ST_DIGIT=%%v
 )
+:: pre Java 9 versions, get minor version
+if "%VERSION_NUMBER_1ST_DIGIT%" EQU "1" (
+  for /f "delims=. tokens=2" %%v in ("%JAVAVER%") do (
+      set VERSION_NUMBER=%%v
+      set VERSION_EXPECTED=8
+  )
+) else (
+  set VERSION_NUMBER=%VERSION_NUMBER_1ST_DIGIT%
+  set VERSION_EXPECTED=11
+)
+echo Java version: %VERSION_NUMBER%
 
-echo Check that Java minor version is compatible with Bonita 7.5+ (need to be 8 or higher)...
-if "%VERSION_NUMBER%" LSS "8" (
-    REM Java minor version is lower then 8. Not supported by Bonita 7.5+.
-    echo Invalid Java minor version 1.%VERSION_NUMBER% ^< 1.8. Please set JRE_HOME or JAVA_HOME variable to a JRE / JDK 1.8+
+if "%VERSION_NUMBER%" NEQ "%VERSION_EXPECTED%" (
+    echo Invalid Java version %VERSION_NUMBER% not 8 or 11. Please set JRE_HOME or JAVA_HOME system variable to a JRE / JDK related to one of these versions
     goto exit
 )
-echo Java minor version is compatible
+echo Java version is compatible
 
 IF NOT EXIST setup GOTO NOSETUPDIR
-	echo "-----------------------------------------------------"
-    echo "Initializing and configuring Bonita Tomcat bundle"
-	echo "-----------------------------------------------------"
-   shift
-   call setup\setup.bat init %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
-   if errorlevel 1 (
-       goto exit
-   )
-   call setup\setup.bat configure %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
-   if errorlevel 1 (
-       goto exit
-   )
+echo ------------------------------------------------------
+echo Initializing and configuring Bonita Tomcat bundle
+echo ------------------------------------------------------
+shift
+call setup\setup.bat init %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
+if errorlevel 1 (
+   goto exit
+)
+call setup\setup.bat configure %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
+if errorlevel 1 (
+   goto exit
+)
 
 :NOSETUPDIR
 cd server
 echo "-----------------------------------------------------"
-echo "Starting Tomcat server..."
+echo "Starting Bonita Tomcat bundle"
 echo "-----------------------------------------------------"
 call bin\startup.bat
 cd ..
