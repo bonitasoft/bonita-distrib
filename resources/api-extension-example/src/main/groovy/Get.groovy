@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest
 
 import org.bonitasoft.web.extension.rest.*
 
-public class Get implements RestApiController {
+class Get implements RestApiController {
 
     @Override
     RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder apiResponseBuilder, RestAPIContext context) {
@@ -12,8 +12,9 @@ public class Get implements RestApiController {
         response.put "response", "hello from get resource"
         response.putAll request.parameterMap
         apiResponseBuilder.with {
-            withResponse new JsonBuilder(response).toPrettyString()
+            withResponse new JsonBuilder(response).toString()
             build()
         }
     }
+
 }

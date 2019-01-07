@@ -3,7 +3,7 @@ import groovy.json.JsonSlurper
 import org.bonitasoft.web.extension.rest.*
 import javax.servlet.http.HttpServletRequest
 
-public class Post implements RestApiController {
+class Post implements RestApiController {
 
     @Override
     RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder apiResponseBuilder, RestAPIContext context) {
@@ -16,11 +16,11 @@ public class Post implements RestApiController {
                 put "response", "hello from post resource with json payload"
                 putAll requestParameters
             }
-            apiResponseBuilder.withResponse new JsonBuilder(response).toPrettyString()
+            apiResponseBuilder.withResponse new JsonBuilder(response).toString()
         }
-        else{
+        else {
             response.put "response", "hello from post resource with empty payload"
-            apiResponseBuilder.withResponse new JsonBuilder(response).toPrettyString()
+            apiResponseBuilder.withResponse new JsonBuilder(response).toString()
         }
         apiResponseBuilder.build()
     }

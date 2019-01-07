@@ -12,10 +12,14 @@
     <packaging>war</packaging>
 
     <properties>
+        <!-- Required to filter the web.xml file -->
         <enable.engine.http.api.start />
         <enable.engine.http.api.end />
         <enable.engine.listener.start />
         <enable.engine.listener.end />
+        <!-- Required to filter the VERSION file -->
+        <build.year>${maven.build.timestamp}</build.year>
+        <maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
     </properties>
 
     <build>
@@ -27,12 +31,11 @@
                     <webResources>
                         <resource>
                             <filtering>true</filtering>
-                            <targetPath>WEB-INF</targetPath>
-                            <directory>
-                                ${project.build.directory}/${project.artifactId}-${project.version}-sources/WEB-INF
-                            </directory>
+                            <targetPath/>
+                            <directory>${project.build.directory}/${project.artifactId}-${project.version}-sources</directory>
                             <includes>
-                                <include>web.xml</include>
+                                <include>WEB-INF/web.xml</include>
+                                <include>VERSION</include>
                             </includes>
                         </resource>
                     </webResources>
