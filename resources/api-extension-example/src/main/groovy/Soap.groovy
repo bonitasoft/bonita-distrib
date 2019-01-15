@@ -8,7 +8,6 @@ import org.bonitasoft.web.extension.rest.*
 import wslite.soap.SOAPClient
 import wslite.soap.SOAPResponse
 
-
 class Soap implements RestApiController{
 
     @Override
@@ -37,7 +36,7 @@ class Soap implements RestApiController{
         }
         JsonBuilder builder = new JsonBuilder(result)
         apiResponseBuilder.with {
-            withResponse builder.toPrettyString()
+            withResponse builder.toString()
             build()
         }
     }

@@ -2,12 +2,11 @@ import org.bonitasoft.web.extension.rest.*
 
 import javax.servlet.http.HttpServletRequest
 
-public class Xml implements RestApiController {
+class Xml implements RestApiController {
 
    @Override
     RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder apiResponseBuilder, RestAPIContext context) {
-
-        def String xmlResponse
+        String xmlResponse
         context.resourceProvider.getResourceAsStream("xml/demo.xml").withStream { InputStream s ->
             xmlResponse = s.getText()
         }

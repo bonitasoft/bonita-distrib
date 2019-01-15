@@ -2,32 +2,25 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import org.apache.commons.lang3.StringEscapeUtils
-import org.bonitasoft.console.common.server.page.PageContext
-import org.bonitasoft.console.common.server.page.PageController
-import org.bonitasoft.console.common.server.page.PageResourceProvider
-
 import org.bonitasoft.engine.api.TenantAPIAccessor
+import org.bonitasoft.web.extension.page.PageContext
+import org.bonitasoft.web.extension.page.PageController
+import org.bonitasoft.web.extension.page.PageResourceProvider
 
-
-public class Index implements PageController {
+class Index implements PageController {
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response, PageResourceProvider pageResourceProvider, PageContext pageContext) {
+    void doGet(HttpServletRequest request, HttpServletResponse response, PageResourceProvider pageResourceProvider, PageContext pageContext) {
         try {
-            def String indexContent;
+            String indexContent
             pageResourceProvider.getResourceAsStream("Index.groovy").withStream { InputStream s->
                 indexContent = s.getText()
             }
-            response.setCharacterEncoding("UTF-8");
-            def PrintWriter out = response.getWriter()
+            response.setCharacterEncoding("UTF-8")
+            PrintWriter out = response.getWriter()
 
-            /*
-             *
-             * bonita.css can be retrieved using pageResourceProvider.getBonitaThemeCSSURL()
-             * other css/js resources can be retrieved using pageResourceProvider.getResourceURL("<path in the custom page zip>")
-             *
-             */
-
+             // bonita.css can be retrieved using pageResourceProvider.getBonitaThemeCSSURL()
+             // other css/js resources can be retrieved using pageResourceProvider.getResourceURL("<path in the custom page zip>")
             out.write("""
             <html lang="en">
             <head>
@@ -73,7 +66,7 @@ public class Index implements PageController {
             ''')
             //START_EXAMPLE:Hello_WORLD
             // Write simple HTML code using the print writer of the response
-            out.write("<p>Hello world!</p>");
+            out.write("<p>Hello world!</p>")
             //END_EXAMPLE:Hello_WORLD
             out.print(extractCodeSample(indexContent, "Hello_WORLD"))
             out.write('''</div>
@@ -97,7 +90,7 @@ public class Index implements PageController {
             <h4>Retrieve the URL of a resource of the custom page</h4>''')
             //START_EXAMPLE:Resources
             // Get external resource using the pageResourceProvider
-            out.write("""<div> <img src="img/logo.png")}"/> </div>""");
+            out.write("""<div> <img src="img/logo.png")}"/> </div>""")
             //END_EXAMPLE:Resources
             out.print(extractCodeSample(indexContent, "Resources"))
 
@@ -109,7 +102,7 @@ public class Index implements PageController {
             //START_EXAMPLE:Call_API
             // Use the session given by pageContext to retrieve an Engine API and use it
             def session = pageContext.getApiSession()
-            def identityAPI = TenantAPIAccessor.getIdentityAPI(session);
+            def identityAPI = TenantAPIAccessor.getIdentityAPI(session)
             def nbUser = identityAPI.getNumberOfUsers()
             //END_EXAMPLE:Call_API
             out.write("nbuser = "+nbUser)
@@ -157,7 +150,7 @@ public class Index implements PageController {
             //START_EXAMPLE:Localized_Strings
             // Retrieve the current locale using pageContext.getLocale() and the ResourceBundle with pageResourceProvider.getResourceBundle
             def currentLocale = pageContext.getLocale()
-            ResourceBundle messages = pageResourceProvider.getResourceBundle("page",pageContext.getLocale())
+            ResourceBundle messages = pageResourceProvider.getResourceBundle("page",currentLocale)
             out.write("""<div>${messages.getString("hello")}&nbsp;${apiSession.userName}</div>""")
             //END_EXAMPLE:Localized_Strings
             out.print(extractCodeSample(indexContent, "Localized_Strings"))
@@ -169,19 +162,18 @@ public class Index implements PageController {
             </body>
             </html>
             """)
-            out.flush();
-            out.close();
+            out.flush()
+            out.close()
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace()
         }
     }
 
-    String extractCodeSample(String indexContent, String exampleName){
+    private String extractCodeSample(String indexContent, String exampleName){
         def startLine = indexContent.split('//START_EXAMPLE:'+exampleName)
         def endLine = startLine[1].split('//END_EXAMPLE:'+exampleName)
         def  code = "<br/><pre class=\"prettyprint\">"+ StringEscapeUtils.escapeHtml4(endLine[0]) + "</pre>"
         return code
     }
-
 
 }
