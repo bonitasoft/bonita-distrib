@@ -101,6 +101,14 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.distrib</groupId>
+                                    <artifactId>bonita-default-theme</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>bonita-default-theme.zip</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.distrib</groupId>
                                     <artifactId>api-extension-example</artifactId>
                                     <version>${project.version}</version>
                                     <type>zip</type>
