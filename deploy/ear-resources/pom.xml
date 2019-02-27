@@ -149,11 +149,11 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.web.pages</groupId>
-                                    <artifactId>page-import-export-organization</artifactId>
+                                    <artifactId>page-install-export-organization</artifactId>
                                     <version>${project.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
-                                    <destFileName>page-import-export-organization.zip</destFileName>
+                                    <destFileName>page-install-export-organization.zip</destFileName>
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
