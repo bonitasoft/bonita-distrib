@@ -11,8 +11,6 @@ Contents of this package:
 |       |   `-- Catalina
 |       |   |   `-- localhost
 |       |   |       `-- bonita.xml                      Datasources configuration
-|       |   |-- bitronix-config.properties
-|       |   |-- bitronix-resources.properties
 |       |   |-- context.xml
 |       |   |-- logging.properties                      Logs configuration
 |       |   `-- server.xml                              Default tomcat conf file
