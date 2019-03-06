@@ -23,6 +23,7 @@
 package org.jboss.narayana.tomcat.jta;
 
 import java.util.Hashtable;
+import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.Name;
 import javax.naming.spi.ObjectFactory;
@@ -36,6 +37,10 @@ import com.arjuna.ats.jta.common.jtaPropertyManager;
  */
 public class UserTransactionFactory implements ObjectFactory {
 
+    private static final Logger LOGGER = Logger.getLogger(UserTransactionFactory.class.getName());
+
+    private static final String USER_TRANSACTION_JNDI_NAME = "java:comp/env/UserTransaction";
+
     /**
      * User internal factory method to instantiate new or reuse existing instance of {@link javax.transaction.UserTransaction}.
      *
@@ -47,6 +52,8 @@ public class UserTransactionFactory implements ObjectFactory {
      */
     @Override
     public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment) {
+        LOGGER.info("Setting userTransaction JNDI Context name to '" + USER_TRANSACTION_JNDI_NAME + "'");
+        jtaPropertyManager.getJTAEnvironmentBean().setUserTransactionJNDIContext(USER_TRANSACTION_JNDI_NAME);
         return jtaPropertyManager.getJTAEnvironmentBean().getUserTransaction();
     }
 
