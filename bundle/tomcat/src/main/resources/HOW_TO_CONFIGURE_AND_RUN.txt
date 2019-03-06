@@ -25,7 +25,6 @@ II. Advanced bundle configuration (can be done before or after first start)
 You must not configure Tomcat files directly anymore.
 If you decide to do it anyway, your custom values will be overwritten by the templates used by Bonita.
 If you need to finely tune the configuration, modify the following template files:
-    - setup/tomcat-templates/bitronix-resources.properties
     - setup/tomcat-templates/bonita.xml
     - setup/tomcat-templates/setenv.sh
     - setup/tomcat-templates/setenv.bat

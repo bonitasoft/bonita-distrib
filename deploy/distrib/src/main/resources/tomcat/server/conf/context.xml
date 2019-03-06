@@ -23,8 +23,13 @@
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
     <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
 
-    <!-- Bitronix UserTransaction factory. Required by Bonita Engine in order to use JTA -->
-    <Transaction factory="bitronix.tm.BitronixUserTransactionObjectFactory" />
+    <!-- Narayana resources -->
+    <Transaction factory="org.jboss.narayana.tomcat.jta.UserTransactionFactory" />
+
+    <Resource factory="org.jboss.narayana.tomcat.jta.TransactionManagerFactory"
+              name="TransactionManager" type="javax.transaction.TransactionManager" />
+    <Resource factory="org.jboss.narayana.tomcat.jta.TransactionSynchronizationRegistryFactory"
+              name="TransactionSynchronizationRegistry" type="javax.transaction.TransactionSynchronizationRegistry" />
 
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--

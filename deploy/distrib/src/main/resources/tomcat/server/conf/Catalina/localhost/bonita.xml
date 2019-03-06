@@ -13,10 +13,19 @@
     <!-- ##################################################### -->
     <!-- Configure Datasource for Bonita standard database -->
     <!-- ##################################################### -->
-    <Resource name="bonitaDS" auth="Container" type="javax.sql.DataSource"
-              factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/bonitaDSXA" />
 
     <!-- H2 Example -->
+    <Resource name="RawBonitaDS"
+              uniqueName="RawBonitaDS"
+              auth="Container"
+              type="org.h2.jdbcx.JdbcDataSource"
+              factory="org.h2.jdbcx.JdbcDataSourceFactory"
+              description="Raw Bonita Datasource"
+              user="sa"
+              password=""
+              loginTimeout="0"
+              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
+
     <Resource name="bonitaSequenceManagerDS"
               auth="Container"
               type="javax.sql.DataSource"
@@ -129,11 +138,39 @@
               url="jdbc:mysql://localhost:3306/bonita?dontTrackOpenResources=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
     -->
 
+    <Resource
+            name="bonitaDS"
+            uniqueName="jdbc/bonitaDSXA"
+            auth="Container"
+            jmxEnabled="true" jmxName="org.bonitasoft:name=bonitaDS"
+            factory="org.jboss.narayana.tomcat.jta.TransactionalDataSourceFactory"
+            transactionManager="TransactionManager"
+            type="javax.sql.XADataSource"
+            xaDataSource="RawBonitaDS" />
+
     <!-- ##################################################### -->
     <!-- Configure Business Data Datasource -->
     <!-- ##################################################### -->
-    <Resource name="BusinessDataDS" auth="Container" type="javax.sql.DataSource"
-              factory="bitronix.tm.resource.ResourceObjectFactory" uniqueName="jdbc/BusinessDataDSXA" />
+
+    <Resource name="RawBusinessDataDS"
+              auth="Container"
+              type="org.h2.jdbcx.JdbcDataSource"
+              factory="org.h2.jdbcx.JdbcDataSourceFactory"
+              description="Raw Bonita Datasource"
+              user="sa"
+              password=""
+              loginTimeout="0"
+              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/business_data.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
+
+    <Resource
+            name="BusinessDataDS"
+            uniqueName="jdbc/bonitaDSXA"
+            auth="Container"
+            jmxEnabled="true" jmxName="org.bonitasoft:name=BusinessDataDS"
+            factory="org.jboss.narayana.tomcat.jta.TransactionalDataSourceFactory"
+            transactionManager="TransactionManager"
+            type="javax.sql.XADataSource"
+            xaDataSource="RawBonitaDS" />
 
     <!-- H2 Example -->
     <Resource name="NotManagedBizDataDS"

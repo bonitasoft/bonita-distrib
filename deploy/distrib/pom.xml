@@ -9,7 +9,7 @@
     <artifactId>deploy-distrib</artifactId>
     <name>deploy distrib</name>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <properties>
         <folderToZip>${project.build.directory}/${distrib.zipname}</folderToZip>
@@ -18,48 +18,34 @@
         <tomcat_server_folder>${tomcat_root_folder}/server</tomcat_server_folder>
         <wildfly_root_folder>${folderToZip}/wildfly-${wildfly.version}</wildfly_root_folder>
         <wildfly_server_folder>${wildfly_root_folder}/server</wildfly_server_folder>
-        <bitronix.version>2.1.3</bitronix.version>
-        <activation.version>1.1.1</activation.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.bonitasoft.platform</groupId>
+                <artifactId>platform-setup</artifactId>
+                <version>${bonita.engine.version}</version>
+                <type>zip</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
-            <groupId>org.bonitasoft.platform</groupId>
-            <artifactId>platform-setup</artifactId>
-            <version>${bonita.engine.version}</version>
-            <type>zip</type>
-        </dependency>
-        <!-- Transaction manager dependencies -->
-        <dependency>
-            <groupId>org.codehaus.btm</groupId>
-            <artifactId>btm</artifactId>
-            <version>${bitronix.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.transaction</groupId>
-            <artifactId>jta</artifactId>
-            <version>1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <groupId>org.bonitasoft.distrib</groupId>
+            <artifactId>tomcat-jta</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.btm</groupId>
-            <artifactId>btm-tomcat55-lifecycle</artifactId>
-            <version>${bitronix.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>${activation.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -112,46 +98,6 @@
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/common-libs</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <!-- retrieve Tomcat transaction libs -->
-                    <execution>
-                        <id>copy-tomcat-transaction-libs</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <!-- http://docs.codehaus.org/display/BTM/Tomcat2x#Tomcat2x-Step1CopytheBTMjars -->
-                                <artifactItem>
-                                    <groupId>org.codehaus.btm</groupId>
-                                    <artifactId>btm</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>javax.transaction</groupId>
-                                    <artifactId>jta</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.slf4j</groupId>
-                                    <artifactId>slf4j-api</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.slf4j</groupId>
-                                    <artifactId>slf4j-jdk14</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.codehaus.btm</groupId>
-                                    <artifactId>btm-tomcat55-lifecycle</artifactId>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>javax.activation</groupId>
-                                    <artifactId>activation</artifactId>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>
-                                ${project.build.directory}/tomcat-transaction-libs
-                            </outputDirectory>
                         </configuration>
                     </execution>
                     <!-- unpack platform-setup -->
@@ -252,6 +198,26 @@
                             <descriptors>
                                 <descriptor>assembly.xml</descriptor>
                             </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-tomcat-libs</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <formats>
+                                <format>dir</format>
+                            </formats>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+                            <finalName>tomcat-transaction-libs</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>deploy-zip-assembly.xml</descriptor>
+                            </descriptors>
+                            <attach>false</attach>
                         </configuration>
                     </execution>
                 </executions>
