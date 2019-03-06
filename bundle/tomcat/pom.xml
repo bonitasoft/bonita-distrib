@@ -99,6 +99,8 @@
                                         <include name="*.jar" />
                                     </fileset>
                                 </move>
+                                <!-- remove tomcat-dbcp because we add a newer version -->
+                                <delete file="${tomcat.lib.dir}/tomcat-dbcp.jar" />
                                 <move overwrite="true" todir="${bundle.dir}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}">
                                         <exclude name="lib/*" />

@@ -19,6 +19,7 @@
         <module>war-ear</module>
         <module>ear-resources</module>
         <module>ear</module>
+        <module>tomcat-jta</module>
         <module>distrib</module>
     </modules>
 </project>
