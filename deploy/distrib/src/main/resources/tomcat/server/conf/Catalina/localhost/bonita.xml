@@ -170,7 +170,7 @@
             factory="org.jboss.narayana.tomcat.jta.TransactionalDataSourceFactory"
             transactionManager="TransactionManager"
             type="javax.sql.XADataSource"
-            xaDataSource="RawBonitaDS" />
+            xaDataSource="RawBusinessDataDS" />
 
     <!-- H2 Example -->
     <Resource name="NotManagedBizDataDS"
