@@ -24,9 +24,7 @@
     <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
 
     <!-- Narayana resources -->
-    <!--<Transaction factory="org.jboss.narayana.tomcat.jta.UserTransactionFactory" />-->
-    <Resource factory="org.jboss.narayana.tomcat.jta.UserTransactionFactory"
-              name="UserTransaction" type="javax.transaction.UserTransaction" />
+    <Transaction factory="org.jboss.narayana.tomcat.jta.UserTransactionFactory" />
 
     <Resource factory="org.jboss.narayana.tomcat.jta.TransactionManagerFactory"
               name="TransactionManager" type="javax.transaction.TransactionManager" />
