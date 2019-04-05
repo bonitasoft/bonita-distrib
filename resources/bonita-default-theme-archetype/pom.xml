@@ -3,19 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.bonitasoft.distrib</groupId>
-		<artifactId>resources</artifactId>
-		<version>7.9.0-SNAPSHOT</version>
-	</parent>
-
-    	<properties>
-        	<deploy_plugin_skip>false</deploy_plugin_skip>
-    	</properties>
-
 	<groupId>org.bonitasoft.web</groupId>
 	<artifactId>bonita-default-theme-archetype</artifactId>
 	<name>Bonita Default Theme Archetype</name>
+	<version>7.9.0-SNAPSHOT</version>
 
 	<build>
 		<pluginManagement>
