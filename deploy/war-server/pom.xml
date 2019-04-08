@@ -234,6 +234,14 @@
                                     <overWrite>true</overWrite>
                                     <destFileName>page-install-export-organization.zip</destFileName>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.web.pages</groupId>
+                                    <artifactId>layout-bonita</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>layout-bonita.zip</destFileName>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/portal/WEB-INF/classes</outputDirectory>
                         </configuration>
