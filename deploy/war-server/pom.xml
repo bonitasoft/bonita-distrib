@@ -32,6 +32,10 @@
                     <groupId>com.h2database</groupId>
                     <artifactId>h2</artifactId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>mssql-jdbc</artifactId>
+                    <groupId>com.microsoft.sqlserver</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
     </dependencies>
