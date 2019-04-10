@@ -6,10 +6,17 @@
 	<includeBaseDirectory>false</includeBaseDirectory>
 	<fileSets>
 		<fileSet>
-			<directory>${project.basedir}/src/main/resources</directory>
-			<outputDirectory/>
+			<directory>${project.basedir}/dist</directory>
+			<outputDirectory>resources</outputDirectory>
 			<includes>
 				<include>**/*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}</directory>
+			<outputDirectory/>
+			<includes>
+				<include>page.properties</include>
 			</includes>
 		</fileSet>
 	</fileSets>

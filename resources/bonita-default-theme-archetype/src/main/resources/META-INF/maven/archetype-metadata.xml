@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archetype-descriptor
     xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
-    name="rest-api-sql-datasource" xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+     xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" 
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fileSets>
     	<fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/resources/resources</directory>
+            <directory>dist</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>src</directory>
             <includes>
                 <include>**/*</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-            <directory>src/main/resources</directory>
+        	<directory/>
             <includes>
                 <include>page.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+        	<directory/>
+            <includes>
+                <include>package.json</include>
             </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
