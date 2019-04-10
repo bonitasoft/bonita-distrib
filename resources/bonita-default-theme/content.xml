@@ -6,17 +6,17 @@
 	<includeBaseDirectory>false</includeBaseDirectory>
 	<fileSets>
 		<fileSet>
-			<directory>${project.basedir}/src/main/groovy</directory>
-			<outputDirectory>/</outputDirectory>
+			<directory>${project.basedir}/dist</directory>
+			<outputDirectory>resources</outputDirectory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<directory>${project.basedir}/src/main/resources</directory>
-			<outputDirectory>/</outputDirectory>
+			<directory>${project.basedir}</directory>
+			<outputDirectory/>
 			<includes>
-				<include>**/*</include>
+				<include>page.properties</include>
 			</includes>
 		</fileSet>
 	</fileSets>

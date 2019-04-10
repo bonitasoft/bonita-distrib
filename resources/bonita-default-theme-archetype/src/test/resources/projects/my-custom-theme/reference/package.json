@@ -1,0 +1,15 @@
+{
+  "name": "my-custom-theme",
+  "version": "0.0.1",
+  "description": "My Custom Theme description",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "node-sass --precision 8 --output-style compressed --omit-source-map-url true --include-path ./node_modules/bootstrap-sass/assets/stylesheets/ src/scss/main.scss target/theme.noprefix.css && postcss target/theme.noprefix.css --no-map --use autoprefixer -b \"last 2 versions\" -o dist/theme.css"
+  },
+  "devDependencies": {
+    "node-sass": "4.11.0",
+    "postcss-cli": "6.1.2",
+    "autoprefixer": "9.5.0",
+    "bootstrap-sass": "3.3.7"
+  }
+}
