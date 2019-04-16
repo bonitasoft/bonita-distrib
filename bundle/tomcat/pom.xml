@@ -14,7 +14,7 @@
         <zipName>BonitaCommunity-${project.version}-Tomcat-${tomcat.version}</zipName>
         <bundle.dir>${project.build.directory}/${zipName}</bundle.dir>
         <platform.setup.folder>${bundle.dir}/setup</platform.setup.folder>
-
+		<deploy_plugin_skip>false</deploy_plugin_skip>
         <tomcat.conf.dir>${tomcat.home.dir}/conf</tomcat.conf.dir>
         <tomcat.home.dir>${bundle.dir}/server</tomcat.home.dir>
         <tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
