@@ -16,7 +16,7 @@ Pre-requisites
 
 Installation
      1. Edit the file setup/database.properties: set the database values to point to your existing database
-     2. If you use Microsoft SQL Server or Oracle database, copy your database drivers in setup/lib folder; else, you're all set
+     2. If you use an Oracle database, copy your database driver in setup/lib folder; else, you're all set
      3. Run start-bonita.sh (Unix) or start-bonita.bat (Windows) to launch the Bonita Community Tomcat bundle
      4. Verify that Bonita is up and running by accessing the login page at (http://localhost:8080/bonita)
 
@@ -35,7 +35,7 @@ Bonita BPM Community Tomcat bundle must be restarted so the new configuration is
 III. Database vendor switch after first start
 This works if you need to switch from any DB vendor (including H2) to any other DB vendor.
      1. Edit the file setup/database.properties: change the database values to suit your needs
-     2. If you switch to Microsoft SQL Server or Oracle database, copy your database drivers in setup/lib folder; else you're all set
+     2. If you switch to an Oracle database, copy your database driver in setup/lib folder; else you're all set
      3. Run start-bonita.sh (Unix) or start-bonita.bat (Windows) to launch the Bonita Community Tomcat bundle
 Note that this switch is not a migration: the new database will be initialized and left empty for a fresh start.
 
@@ -53,10 +53,9 @@ To do so:
 
 
 V. FAQ
-* My Microsoft SQL Server or Oracle database drivers do not seem to be taken into account when I put them in setup/lib folder?
+* My Oracle database driver does not seem to be taken into account when I put it in setup/lib folder?
 => The driver file must respect some naming convention.
-For Microsoft SQL Server, rename it so that the name contains at least the word "sqlserver" or "sqljdbc" (case insensitive)
-For Oracle, rename it so that the name contains at least the word "oracle" or "ojdbc" (case insensitive)
+Rename it so that the name contains at least the word "oracle" or "ojdbc" (case insensitive)
 
 * When I run on H2, why do I get prompted at each start to confirm that I want to use H2?
 => H2 is not recommended for production purposes, but only in development/testing environments.
