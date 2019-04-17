@@ -12,6 +12,7 @@ Contents of this package:
 |       |   |   `-- localhost
 |       |   |       `-- bonita.xml                      Datasources configuration
 |       |   |-- context.xml
+|       |   |-- jbossts-properties.xml                  Narayana Arjuna XA Transaction Manager configuration file
 |       |   |-- logging.properties                      Logs configuration
 |       |   `-- server.xml                              Default tomcat conf file
 |       |-- lib
