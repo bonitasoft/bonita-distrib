@@ -9,10 +9,6 @@
 	<packaging>pom</packaging>
 	<name>bundles parent</name>
 
-	<properties>
-	 	<deploy_plugin_skip>false</deploy_plugin_skip>
-	</properties>
-
 	<modules>
 		<module>tomcat</module>
  		<module>wildfly</module>
