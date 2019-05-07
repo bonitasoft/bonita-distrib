@@ -3,19 +3,4 @@
 
 @import "bootstrap";
 
-.pager {
-  
-  li {
-
-    > a,
-    > span {
-      color: $pager-color;
-    }
-
-    > a:hover,
-    > a:focus {
-      color: $pager-hover-color;
-    }
-  }
-
-}
+@import "bonita_pager";
