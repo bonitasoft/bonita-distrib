@@ -100,10 +100,15 @@ $badge-bg: $brand-primary;
 //Panel
 $panel-border-color: #dddddd;
 $panel-primary-border: $panel-border-color;
+$panel-primary-text: #fff;
 $panel-success-border: $panel-border-color;
+$panel-success-text: $panel-primary-text;
 $panel-info-border: $panel-border-color;
+$panel-info-text: $panel-primary-text;
 $panel-warning-border: $panel-border-color;
+$panel-warning-text: $panel-primary-text;
 $panel-danger-border: $panel-border-color;
+$panel-danger-text: $panel-primary-text;
 
 $panel-success-heading-bg: $brand-success;
 $panel-info-heading-bg: $brand-info;
