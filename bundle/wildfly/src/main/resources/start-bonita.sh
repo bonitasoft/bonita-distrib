@@ -51,6 +51,11 @@ if [ -d "./setup" ]; then
   echo "Initializing and configuring Bonita WildFly bundle"
   echo "------------------------------------------------------"
 
+  echo "------------------------------------------------------"
+  echo "WARNING: The wildfly bundle has been deprecated"
+  echo "For more information check the documentation: http://www.bonitasoft.com/bos_redirect.php?bos_redirect_id=686&bos_redirect_product=bos&bos_redirect_major_version=7.9"
+  echo "------------------------------------------------------"
+
   ./setup/setup.sh init $@
   testReturnCode $?
 
