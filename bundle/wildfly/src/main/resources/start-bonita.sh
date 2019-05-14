@@ -52,8 +52,9 @@ if [ -d "./setup" ]; then
   echo "------------------------------------------------------"
 
   echo "------------------------------------------------------"
-  echo "WARNING: The wildfly bundle has been deprecated"
-  echo "For more information check the documentation: http://www.bonitasoft.com/bos_redirect.php?bos_redirect_id=686&bos_redirect_product=bos&bos_redirect_major_version=7.9"
+  echo "WARNING: Bonita WildFly bundle has been deprecated in Bonita 7.9."
+  echo "We advise you to switch to the Tomcat bundle when migrating to Bonita 7.9."
+  echo "The WildFly bundle was mainly used with the SQL Server database. The Tomcat bundle is now compatible with it, and is the recommended solution."
   echo "------------------------------------------------------"
 
   ./setup/setup.sh init $@
