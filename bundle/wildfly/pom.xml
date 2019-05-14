@@ -13,7 +13,7 @@
     <properties>
         <deploy_plugin_skip>true</deploy_plugin_skip>
 
-        <zipName>BonitaCommunity-${project.version}-wildfly-${wildfly.version}</zipName>
+        <zipName>BonitaCommunity-${project.version}-wildfly</zipName>
         <bundle.dir>${project.build.directory}/${zipName}</bundle.dir>
         <platform.setup.folder>${bundle.dir}/setup</platform.setup.folder>
 
