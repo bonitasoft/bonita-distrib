@@ -61,11 +61,11 @@ echo ------------------------------------------------------
 echo Initializing and configuring Bonita WildFly bundle
 echo ------------------------------------------------------
 
-echo "------------------------------------------------------"
-echo "WARNING: Bonita WildFly bundle has been deprecated in Bonita 7.9."
-echo "We advise you to switch to the Tomcat bundle when migrating to Bonita 7.9."
-echo "The WildFly bundle was mainly used with the SQL Server database. The Tomcat bundle is now compatible with it, and is the recommended solution."
-echo "------------------------------------------------------"
+echo ------------------------------------------------------
+echo WARNING: Bonita WildFly bundle has been deprecated in Bonita 7.9.
+echo We advise you to switch to the Tomcat bundle when migrating to Bonita 7.9.
+echo The WildFly bundle was mainly used with the SQL Server database. The Tomcat bundle is now compatible with it, and is the recommended solution.
+echo ------------------------------------------------------
 shift
 call setup\setup.bat init %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 (
