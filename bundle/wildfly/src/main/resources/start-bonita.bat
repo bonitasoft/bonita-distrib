@@ -60,6 +60,12 @@ IF NOT EXIST setup GOTO NOSETUPDIR
 echo ------------------------------------------------------
 echo Initializing and configuring Bonita WildFly bundle
 echo ------------------------------------------------------
+
+echo "------------------------------------------------------"
+echo "WARNING: The wildfly bundle has been deprecated"
+echo "For more information check the documentation: http://www.bonitasoft.com/bos_redirect.php?bos_redirect_id=686&bos_redirect_product=bos&bos_redirect_major_version=7.9"
+echo "------------------------------------------------------"
+
 shift
 call setup\setup.bat init %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 (
