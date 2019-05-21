@@ -1,0 +1,12 @@
+.btn {
+
+  &.btn-primary {
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      background-color: $btn-primary-disabled-bg;
+      border-color: $btn-primary-disabled-border;
+      color: $btn-primary-disabled-color;
+    }
+  }
+}
