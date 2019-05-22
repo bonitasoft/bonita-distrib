@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.company.theme</groupId>
 	<artifactId>my-custom-theme</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>7.9.0.beta-01</version>
 	<packaging>pom</packaging>
 
 	<name>My Custom Theme</name>
