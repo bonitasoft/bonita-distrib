@@ -352,7 +352,6 @@
             name="bonitaDS"
             uniqueName="jdbc/bonitaDSXA"
             auth="Container"
-            jmxEnabled="true" jmxName="org.bonitasoft:name=bonitaDS"
             factory="org.jboss.narayana.tomcat.jta.TransactionalDataSourceFactory"
             transactionManager="TransactionManager"
             type="javax.sql.XADataSource"
@@ -369,9 +368,8 @@
 
     <Resource
             name="BusinessDataDS"
-            uniqueName="jdbc/bonitaDSXA"
+            uniqueName="jdbc/BusinessDataDSXA"
             auth="Container"
-            jmxEnabled="true" jmxName="org.bonitasoft:name=BusinessDataDS"
             factory="org.jboss.narayana.tomcat.jta.TransactionalDataSourceFactory"
             transactionManager="TransactionManager"
             type="javax.sql.XADataSource"
