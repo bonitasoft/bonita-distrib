@@ -12,11 +12,10 @@ $gray-light: #999999;
 $white: #ffffff;
 
 //Text
-$text-color: #323232;
+$text-color: $brand-primary;
 
 $headings-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $headings-line-height:   1.2;
-$headings-color: $brand-primary;
 
 $state-success-text: #468847;
 $state-info-text: #3a87ad;
@@ -46,6 +45,10 @@ $btn-danger-border: $brand-danger;
 $btn-primary-disabled-bg: #95a5a6;
 $btn-primary-disabled-border: $btn-primary-disabled-bg;
 $btn-primary-disabled-color: #ffffff;
+
+//Links
+$link-color: inherit;
+$link-hover-color: inherit;
 
 //Navbar
 $navbar-default-color: #dddddd;
