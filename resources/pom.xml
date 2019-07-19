@@ -14,7 +14,6 @@
         <module>example</module>
         <module>groovy-example</module>
         <module>html-example</module>
-        <module>home-page</module>
         <module>bonita-theme</module>
         <module>bonita-theme-archetype</module>
         <module>bootstrap-default-theme</module>
