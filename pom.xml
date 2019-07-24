@@ -18,7 +18,7 @@
         <module>resources</module>
         <module>applications</module>
         <module>deploy</module>
-        <module>bundle</module>
+        <module>tomcat</module>
     </modules>
 
     <scm>
@@ -37,7 +37,6 @@
         <ant-contrib.version>1.0b3</ant-contrib.version>
         <tomcat.version.major>8</tomcat.version.major>
         <tomcat.version>${tomcat.version.major}.5.40</tomcat.version>
-        <wildfly.version>10.1.0.Final</wildfly.version>
         <slf4j.version>1.7.25</slf4j.version>
         <ui.designer.version>1.6.7</ui.designer.version>
 
@@ -85,11 +84,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-ear-plugin</artifactId>
-                    <version>2.9.1</version>
-                </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>

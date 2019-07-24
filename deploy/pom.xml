@@ -16,9 +16,6 @@
     <modules>
         <module>all-in-one</module>
         <module>war-server</module>
-        <module>war-ear</module>
-        <module>ear-resources</module>
-        <module>ear</module>
         <module>tomcat-jta</module>
         <module>distrib</module>
     </modules>

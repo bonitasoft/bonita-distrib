@@ -16,8 +16,6 @@
         <platform_setup_folder>${folderToZip}/setup</platform_setup_folder>
         <tomcat_root_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_root_folder>
         <tomcat_server_folder>${tomcat_root_folder}/server</tomcat_server_folder>
-        <wildfly_root_folder>${folderToZip}/wildfly-${wildfly.version}</wildfly_root_folder>
-        <wildfly_server_folder>${wildfly_root_folder}/server</wildfly_server_folder>
     </properties>
 
     <dependencyManagement>
@@ -69,15 +67,6 @@
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/war-with-server</outputDirectory>
                                     <destFileName>bonita.war</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>deploy-ear-all-in-one</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>ear</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/ear-with-server</outputDirectory>
-                                    <destFileName>bonita-all-in-one-${bonita.engine.version}.ear</destFileName>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -157,23 +146,9 @@
                                     <fileset dir="${project.build.directory}/tomcat-transaction-libs" />
                                 </copy>
 
-                                <!-- wildfly -->
-                                <!-- Copy all resources from project to wildfly -->
-                                <copy overwrite="true" todir="${wildfly_root_folder}">
-                                    <fileset dir="${project.basedir}/src/main/resources/wildfly" />
-                                </copy>
-
-                                <!-- Copy ear-->
-                                <copy todir="${wildfly_server_folder}/standalone/deployments" file="${project.build.directory}/ear-with-server/bonita-all-in-one-${bonita.engine.version}.ear" />
-
                                 <!-- Copy resources -->
                                 <copy todir="${folderToZip}/license">
                                     <fileset dir="${project.basedir}/src/main/resources/license" />
-                                </copy>
-                                <copy todir="${folderToZip}" file="${project.basedir}/src/main/resources/README.TXT">
-                                    <filterchain>
-                                        <expandproperties />
-                                    </filterchain>
                                 </copy>
                             </target>
                         </configuration>
