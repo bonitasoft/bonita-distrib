@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>${groupId}</groupId>
 	<artifactId>${artifactId}</artifactId>
-	<version>7.9.3-SNAPSHOT</version>
+	<version>${version}</version>
 	<packaging>pom</packaging>
 
 	<name>${themeDisplayName}</name>
