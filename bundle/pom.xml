@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>bonita-distrib</artifactId>
 		<groupId>org.bonitasoft.distrib</groupId>
-		<version>7.9.3-SNAPSHOT</version>
+		<version>7.9.3</version>
 	</parent>
 	<artifactId>bundle-parent</artifactId>
 	<packaging>pom</packaging>
