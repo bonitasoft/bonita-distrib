@@ -4,11 +4,15 @@
         <displayName>Bonita User Application</displayName>
         <applicationPages>
             <applicationPage customPage="custompage_tasklist" token="taskList"/>
+            <applicationPage customPage="custompage_caselistBonita" token="caseList"/>
             <applicationPage customPage="custompage_processlistBonita" token="processList"/>
         </applicationPages>
         <applicationMenus>
             <applicationMenu applicationPage="taskList">
                 <displayName>Tasks</displayName>
+            </applicationMenu>
+            <applicationMenu applicationPage="caseList">
+                <displayName>Cases</displayName>
             </applicationMenu>
             <applicationMenu applicationPage="processList">
                 <displayName>Processes</displayName>
