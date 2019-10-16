@@ -17,6 +17,8 @@
         <module>all-in-one</module>
         <module>war-server</module>
         <module>tomcat-jta</module>
+        <module>bonita-tomcat-juli</module>
+        <!-- keep at last position as it depends on other modules (that are not always retrieved through direct dependencies so maven is not aware of the dependency order) -->
         <module>distrib</module>
     </modules>
 </project>

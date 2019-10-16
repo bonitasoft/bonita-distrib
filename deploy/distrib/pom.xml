@@ -88,6 +88,25 @@
                             <outputDirectory>${project.build.directory}/common-libs</outputDirectory>
                         </configuration>
                     </execution>
+                    <!-- retrieve juli extension libs -->
+                    <execution>
+                        <id>copy-tomcat-juli-libs</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.distrib</groupId>
+                                    <artifactId>bonita-tomcat-juli</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/tomcat-juli-libs</outputDirectory>
+                        </configuration>
+                    </execution>
                     <!-- unpack platform-setup -->
                     <execution>
                         <id>unpack-platform_setup</id>
@@ -144,6 +163,10 @@
                                 <!-- Tomcat transaction libs -->
                                 <copy todir="${tomcat_server_folder}/lib/bonita">
                                     <fileset dir="${project.build.directory}/tomcat-transaction-libs" />
+                                </copy>
+                                <!-- Tomcat juli libs -->
+                                <copy todir="${tomcat_server_folder}/lib/ext">
+                                    <fileset dir="${project.build.directory}/tomcat-juli-libs" />
                                 </copy>
 
                                 <!-- Copy resources -->
