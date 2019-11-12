@@ -14,7 +14,7 @@
     <properties>
         <folderToZip>${project.build.directory}/${distrib.zipname}</folderToZip>
         <platform_setup_folder>${folderToZip}/setup</platform_setup_folder>
-        <tomcat_root_folder>${folderToZip}/Tomcat-${tomcat.version}</tomcat_root_folder>
+        <tomcat_root_folder>${folderToZip}/tomcat</tomcat_root_folder>
         <tomcat_server_folder>${tomcat_root_folder}/server</tomcat_server_folder>
     </properties>
 
@@ -138,11 +138,11 @@
                                 <!-- Copy webapps-->
                                 <move todir="${tomcat_server_folder}/webapps" file="${project.build.directory}/war-with-server/bonita.war" />
                                 <!-- lib common libs -->
-                                <copy todir="${tomcat_server_folder}/lib">
+                                <copy todir="${tomcat_server_folder}/lib/bonita">
                                     <fileset dir="${project.build.directory}/common-libs" />
                                 </copy>
                                 <!-- Tomcat transaction libs -->
-                                <copy todir="${tomcat_server_folder}/lib">
+                                <copy todir="${tomcat_server_folder}/lib/bonita">
                                     <fileset dir="${project.build.directory}/tomcat-transaction-libs" />
                                 </copy>
 
