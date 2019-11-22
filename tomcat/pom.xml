@@ -94,17 +94,10 @@
                         </goals>
                         <configuration>
                             <target name="Adding Bonita-specific file to Tomcat bundle">
-                                <move overwrite="true" todir="${tomcat.lib.dir}/bonita">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}/server/lib">
-                                        <include name="*.jar" />
-                                    </fileset>
-                                </move>
                                 <!-- remove tomcat-dbcp because we add a newer version -->
                                 <delete file="${tomcat.lib.dir}/tomcat-dbcp.jar" />
                                 <move overwrite="true" todir="${bundle.dir}">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/Tomcat-${tomcat.version}">
-                                        <exclude name="lib/*" />
-                                    </fileset>
+                                    <fileset dir="${project.build.directory}/${distrib.zipname}/tomcat"/>
                                 </move>
                                 <move overwrite="true" todir="${platform.setup.folder}">
                                     <fileset dir="${project.build.directory}/${distrib.zipname}/setup" />

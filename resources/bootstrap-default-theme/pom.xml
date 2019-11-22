@@ -11,7 +11,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<node.version>v10.15.3</node.version>
+		<node.version>v10.16.3</node.version>
 		<npm.version>6.9.0</npm.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
