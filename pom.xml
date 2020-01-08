@@ -16,7 +16,6 @@
 
     <modules>
         <module>resources</module>
-        <module>applications</module>
         <module>deploy</module>
         <module>tomcat</module>
     </modules>
