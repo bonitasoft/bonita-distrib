@@ -84,6 +84,7 @@
                                 <delete dir="${tomcat.home.dir}/webapps/examples" />
                                 <delete dir="${tomcat.home.dir}/webapps/host-manager" />
                                 <delete dir="${tomcat.home.dir}/webapps/manager" />
+                                <delete dir="${tomcat.home.dir}/webapps/ROOT" />
                             </target>
                         </configuration>
                     </execution>
