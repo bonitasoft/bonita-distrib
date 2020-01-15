@@ -1,11 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>bonita-distrib</artifactId>
         <groupId>org.bonitasoft.distrib</groupId>
+        <artifactId>bonita-distrib</artifactId>
         <version>7.11.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>bundle-tomcat</artifactId>
     <name>tomcat bundle</name>
     <packaging>pom</packaging>
@@ -13,12 +12,6 @@
     <properties>
         <zipName>BonitaCommunity-${project.version}</zipName>
         <bundle.dir>${project.build.directory}/${zipName}</bundle.dir>
-        <platform.setup.folder>${bundle.dir}/setup</platform.setup.folder>
-
-        <tomcat.conf.dir>${tomcat.home.dir}/conf</tomcat.conf.dir>
-        <tomcat.home.dir>${bundle.dir}/server</tomcat.home.dir>
-        <tomcat.lib.dir>${tomcat.home.dir}/lib</tomcat.lib.dir>
-        <tomcat.webapps.dir>${tomcat.home.dir}/webapps</tomcat.webapps.dir>
     </properties>
 
     <build>
@@ -28,7 +21,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>unpack-tomcat</id>
+                        <id>unpack-tomcat-distrib-for-bonita</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>unpack</goal>
@@ -36,18 +29,18 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.apache.tomcat</groupId>
-                                    <artifactId>tomcat</artifactId>
-                                    <version>${tomcat.version}</version>
+                                    <groupId>org.bonitasoft.distrib.tomcat</groupId>
+                                    <artifactId>tomcat-distrib-for-bonita</artifactId>
+                                    <version>${project.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
-                                    <outputDirectory>${bundle.dir}</outputDirectory>
+                                    <outputDirectory>${bundle.dir}/server</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>unpack-webapps</id>
+                        <id>unpack-platform_setup</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>unpack</goal>
@@ -55,12 +48,32 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>deploy-distrib</artifactId>
-                                    <version>${project.version}</version>
+                                    <groupId>org.bonitasoft.platform</groupId>
+                                    <artifactId>platform-setup</artifactId>
+                                    <version>${bonita.engine.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${bundle.dir}/setup</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>get-bonita-war</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.distrib</groupId>
+                                    <artifactId>bonita-war</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>bonita.war</destFileName>
+                                    <outputDirectory>${bundle.dir}/server/webapps</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -68,63 +81,26 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>clean-tomcat</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="Moving tomcat package and cleaning up unwanted default built-in webapps">
-                                <move file="${bundle.dir}/apache-tomcat-${tomcat.version}" tofile="${tomcat.home.dir}" />
-                                <delete dir="${tomcat.home.dir}/webapps/docs" />
-                                <delete dir="${tomcat.home.dir}/webapps/examples" />
-                                <delete dir="${tomcat.home.dir}/webapps/host-manager" />
-                                <delete dir="${tomcat.home.dir}/webapps/manager" />
-                                <delete dir="${tomcat.home.dir}/webapps/ROOT" />
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-libs-and-setup</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="Adding Bonita-specific file to Tomcat bundle">
-                                <!-- remove tomcat-dbcp because we add a newer version -->
-                                <delete file="${tomcat.lib.dir}/tomcat-dbcp.jar" />
-                                <move overwrite="true" todir="${bundle.dir}">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/tomcat"/>
-                                </move>
-                                <move overwrite="true" todir="${platform.setup.folder}">
-                                    <fileset dir="${project.build.directory}/${distrib.zipname}/setup" />
-                                </move>
-                                <chmod perm="ugo+x">
-                                    <fileset dir="${tomcat.home.dir}/bin">
-                                        <include name="*.sh" />
-                                    </fileset>
-                                </chmod>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>rename-environment</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="Add bonita-libs to the common classpath entry">
-                                <replace file="${tomcat.conf.dir}/catalina.properties" token="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar" value="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar,$${catalina.home}/lib/bonita,$${catalina.home}/lib/bonita/*.jar" />
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+            <execution>
+                <id>prepare-tomcat-bundle</id>
+                <phase>prepare-package</phase>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+                <configuration>
+                    <target name="Prepare the Tomcat bundle">
+                        <chmod perm="ugo+x">
+                            <fileset dir="${bundle.dir}">
+                                <include name="*.sh" />
+                            </fileset>
+                        </chmod>
+                    </target>
+                </configuration>
+            </execution>
+            </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>

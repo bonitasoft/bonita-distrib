@@ -2,13 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.bonitasoft.distrib</groupId>
-        <artifactId>deploy-parent</artifactId>
+        <groupId>org.bonitasoft.distrib.tomcat</groupId>
+        <artifactId>tomcat-resources</artifactId>
         <version>7.11.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-
     <artifactId>tomcat-jta</artifactId>
 
     <properties>
