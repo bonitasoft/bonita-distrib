@@ -1,42 +1,43 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>deploy-parent</artifactId>
         <groupId>org.bonitasoft.distrib</groupId>
+        <artifactId>bonita-distrib</artifactId>
         <version>7.11.0-SNAPSHOT</version>
     </parent>
-    <artifactId>all-in-one-with-server</artifactId>
-    <name>all in one with server</name>
+    <artifactId>bonita-war</artifactId>
     <packaging>war</packaging>
 
+    <properties>
+        <deploy_plugin_skip>true</deploy_plugin_skip>
+        <folder_frontend_web_resources>${project.build.directory}/bonita-frontend</folder_frontend_web_resources>
+        <folder_frontend_web_config_files>${project.build.directory}/bonita-frontend-config</folder_frontend_web_config_files>
+        <!-- Required to filter the web.xml file -->
+        <enable.engine.http.api.start />
+        <enable.engine.http.api.end />
+        <enable.engine.listener.start />
+        <enable.engine.listener.end />
+        <!-- Required to filter the VERSION file -->
+        <build.year>${maven.build.timestamp}</build.year>
+        <maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
+    </properties>
+
     <dependencies>
+        <!-- TODO review dependency order between console and engine as this could change dependencies resolution -->
+        <dependency>
+            <groupId>org.bonitasoft.console</groupId>
+            <artifactId>console-server</artifactId>
+            <version>${bonita.web.version}</version>
+            <type>jar</type>
+        </dependency>
+
         <dependency>
             <groupId>org.bonitasoft.engine</groupId>
             <artifactId>bonita-server</artifactId>
             <version>${bonita.engine.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>postgresql</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>mysql-connector-java</artifactId>
-                    <groupId>mysql</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.h2database</groupId>
-                    <artifactId>h2</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>mssql-jdbc</artifactId>
-                    <groupId>com.microsoft.sqlserver</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
@@ -46,58 +47,111 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                    <packagingExcludes>.gwt-tmp/**,WEB-INF/deploy/**,WEB-INF/lib/slf4j-api-*.jar</packagingExcludes>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                    <!-- Avoid error because the slf4j log impl is only available in the Tomcat 'root' classloader
+                    java.lang.LinkageError: loader constraint violation: when resolving method "org.slf4j.impl.StaticLoggerBinder.getLoggerFactory()Lorg/slf4j/ILoggerFactory;" the class loader (instance of org/apache/catalina/loader/ParallelWebappClassLoader) of the current class, org/slf4j/LoggerFactory, and the class loader (instance of java/net/URLClassLoader) for the method's defining class, org/slf4j/impl/StaticLoggerBinder, have different Class objects for the type org/slf4j/ILoggerFactory used in the signature
+                        at org.slf4j.LoggerFactory.getILoggerFactory(LoggerFactory.java:418)
+                        at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:357)
+                        at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:383)
+                    -->
+                    <packagingExcludes>WEB-INF/lib/slf4j-api-*.jar</packagingExcludes>
+
+                    <webResources>
+                        <resource>
+                            <filtering>true</filtering>
+                            <targetPath/>
+                            <directory>${folder_frontend_web_config_files}</directory>
+                            <includes>
+                                <include>WEB-INF/web.xml</include>
+                                <include>VERSION</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <filtering>false</filtering>
+                            <targetPath/>
+                            <directory>${folder_frontend_web_resources}</directory>
+                            <excludes>
+                                <exclude>META-INF/**</exclude>
+                            </excludes>
+                        </resource>
+                    </webResources>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-console</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <copy overwrite="true"
-                                      todir="${project.build.directory}/${project.artifactId}-${project.version}">
-                                    <fileset dir="${project.build.directory}/portal/">
-                                        <include name="**/*"/>
-                                    </fileset>
-                                </copy>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>unpack-webapps</id>
-                        <phase>generate-resources</phase>
+                        <id>get-bonita-frontend-resources</id>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>all-in-one</artifactId>
-                                    <version>${project.version}</version>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>console-client</artifactId>
+                                    <version>${bonita.web.version}</version>
                                     <type>war</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${folder_frontend_web_resources}</outputDirectory>
+                                    <excludes>WEB-INF/web.xml,WEB-INF/lib/**</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.web</groupId>
+                                    <artifactId>bonita-portal-js</artifactId>
+                                    <version>${bonita.web.version}</version>
+                                    <classifier>app</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${folder_frontend_web_resources}</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>console-server</artifactId>
+                                    <version>${bonita.web.version}</version>
+                                    <type>war</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${folder_frontend_web_resources}</outputDirectory>
+                                    <excludes>WEB-INF/web.xml,WEB-INF/lib/**</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>i18n</artifactId>
+                                    <version>${bonita.web.version}</version>
+                                    <type>jar</type>
                                     <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/portal/</outputDirectory>
+                                    <outputDirectory>${folder_frontend_web_resources}/WEB-INF/classes/i18n</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-looknfeel</id>
-                        <phase>generate-resources</phase>
+                        <id>get-bonita-frontend-config-files</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>console-server</artifactId>
+                                    <version>${bonita.web.version}</version>
+                                    <type>jar</type>
+                                    <classifier>sources</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${folder_frontend_web_config_files}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>get-bonita-la-resources</id>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>copy</goal>
                         </goals>
@@ -251,11 +305,13 @@
                                     <destFileName>bonita-home-page.zip</destFileName>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}/portal/WEB-INF/classes</outputDirectory>
+                            <outputDirectory>${folder_frontend_web_resources}/WEB-INF/classes</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+
 </project>

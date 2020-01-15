@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.bonitasoft.distrib.tomcat</groupId>
+        <artifactId>tomcat-resources</artifactId>
+        <version>7.11.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>tomcat-distrib-for-bonita</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <tomcat_dir>${project.build.directory}/tomcat</tomcat_dir>
+    </properties>
+
+    <!-- these  go to <tomcat_home>/lib/bonita -->
+    <dependencies>
+        <dependency>
+            <groupId>org.bonitasoft.distrib.tomcat</groupId>
+            <artifactId>tomcat-jta</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- redirect all logs to JUL(I) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+        </dependency>
+        <!-- default db vendor -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <!-- juli extension (go to the lib/ext folder) -->
+        <dependency>
+            <groupId>org.bonitasoft.distrib.tomcat</groupId>
+            <artifactId>bonita-tomcat-juli</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <formats>
+                                <format>zip</format>
+                            </formats>
+                            <descriptors>
+                                <descriptor>src/main/assembly/package.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>get-tomcat-extra-libs</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <formats>
+                                <format>dir</format>
+                            </formats>
+                            <outputDirectory>${tomcat_dir}</outputDirectory>
+                            <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+                            <finalName>lib</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>src/main/assembly/tomcat-extra-libs.xml</descriptor>
+                            </descriptors>
+                            <attach>false</attach>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-tomcat</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.apache.tomcat</groupId>
+                                    <artifactId>tomcat</artifactId>
+                                    <version>${tomcat.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${tomcat_dir}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-libs-and-setup</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="Clean and update tomcat configuration files">
+                                <move file="${tomcat_dir}/apache-tomcat-${tomcat.version}" tofile="${tomcat_dir}" />
+
+                                <!-- Copy all resources from project to Tomcat -->
+                                <copy overwrite="true" todir="${tomcat_dir}">
+                                    <fileset dir="${project.basedir}/src/main/resources/tomcat/server" />
+                                </copy>
+
+                                <delete dir="${tomcat_dir}/webapps/docs" />
+                                <delete dir="${tomcat_dir}/webapps/examples" />
+                                <delete dir="${tomcat_dir}/webapps/host-manager" />
+                                <delete dir="${tomcat_dir}/webapps/manager" />
+                                <delete dir="${tomcat_dir}/webapps/ROOT" />
+                                <!-- remove tomcat-dbcp, see tomcat-jta -->
+                                <delete file="${tomcat_dir}/lib/tomcat-dbcp.jar" />
+                                <chmod perm="ugo+x">
+                                    <fileset dir="${tomcat_dir}/bin">
+                                        <include name="*.sh" />
+                                    </fileset>
+                                </chmod>
+                                <!-- Add bonita-libs to the common classpath entry -->
+                                <replace file="${tomcat_dir}/conf/catalina.properties" token="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar" value="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar,$${catalina.home}/lib/bonita,$${catalina.home}/lib/bonita/*.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

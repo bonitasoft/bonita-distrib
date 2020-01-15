@@ -1,16 +1,25 @@
 <assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
-
-    <id>deploy-zip-libs</id>
+    <id>tomcat-extra-libs</id>
     <includeBaseDirectory>false</includeBaseDirectory>
 
     <dependencySets>
         <dependencySet>
+            <outputDirectory>bonita</outputDirectory>
             <includes>
-                <include>org.bonitasoft.distrib:tomcat-jta</include>
+                <include>org.bonitasoft.distrib.tomcat:tomcat-jta</include>
                 <include>org.slf4j:slf4j-jdk14</include>
                 <include>org.slf4j:slf4j-api</include>
+                <include>com.h2database:h2</include>
+            </includes>
+            <useTransitiveDependencies>true</useTransitiveDependencies>
+            <useTransitiveFiltering>true</useTransitiveFiltering>
+        </dependencySet>
+        <dependencySet>
+            <outputDirectory>ext</outputDirectory>
+            <includes>
+                <include>org.bonitasoft.distrib.tomcat:bonita-tomcat-juli</include>
             </includes>
             <useTransitiveDependencies>true</useTransitiveDependencies>
             <useTransitiveFiltering>true</useTransitiveFiltering>

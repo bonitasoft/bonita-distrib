@@ -5,20 +5,18 @@
         <groupId>org.bonitasoft.distrib</groupId>
         <version>7.11.0-SNAPSHOT</version>
     </parent>
-    <artifactId>deploy-parent</artifactId>
+    <groupId>org.bonitasoft.distrib.tomcat</groupId>
+    <artifactId>tomcat-resources</artifactId>
     <packaging>pom</packaging>
-    <name>deploy parent</name>
 
     <properties>
         <deploy_plugin_skip>true</deploy_plugin_skip>
     </properties>
 
     <modules>
-        <module>all-in-one</module>
-        <module>war-server</module>
         <module>tomcat-jta</module>
         <module>bonita-tomcat-juli</module>
         <!-- keep at last position as it depends on other modules (that are not always retrieved through direct dependencies so maven is not aware of the dependency order) -->
-        <module>distrib</module>
+        <module>tomcat-distrib-for-bonita</module>
     </modules>
 </project>

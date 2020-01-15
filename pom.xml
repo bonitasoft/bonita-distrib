@@ -1,22 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.bonitasoft.console</groupId>
-        <artifactId>bonita-console</artifactId>
-        <version>7.11.0-SNAPSHOT</version>
-        <!-- use an empty value as workaround to ensure that maven resolves the parent pom from a repository -->
-        <relativePath />
-    </parent>
-
     <groupId>org.bonitasoft.distrib</groupId>
     <artifactId>bonita-distrib</artifactId>
     <name>bonita distrib</name>
+    <version>7.11.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>resources</module>
-        <module>deploy</module>
+        <module>bonita-war</module>
+        <module>tomcat-resources</module>
         <module>tomcat</module>
     </modules>
 
@@ -30,13 +24,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <bonita.web.version>${project.version}</bonita.web.version>
+        <bonita.engine.version>${project.version}</bonita.engine.version>
 
-        <distrib.zipname>BonitaCommunity-${project.version}-deploy</distrib.zipname>
-
-        <ant-contrib.version>1.0b3</ant-contrib.version>
         <tomcat.version>8.5.50</tomcat.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <ui.designer.version>1.6.7</ui.designer.version>
 
         <deploy_plugin_skip>false</deploy_plugin_skip>
     </properties>
@@ -44,10 +35,13 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>ant-contrib</groupId>
-                <artifactId>ant-contrib</artifactId>
-                <version>${ant-contrib.version}</version>
+                <groupId>org.bonitasoft.engine</groupId>
+                <artifactId>bonita-engine</artifactId>
+                <version>${bonita.engine.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+            <!-- 3rd parties -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -83,28 +77,73 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.2.1</version>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
                 </plugin>
                 <plugin>
-                    <groupId>net.nicoulaj.maven.plugins</groupId>
-                    <artifactId>checksum-maven-plugin</artifactId>
-                    <version>1.5</version>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.1.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.22.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.2</version>
+                    <version>3.2.3</version>
+                </plugin>
+                <!-- 3rd party plugins -->
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>1.9.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
-                    <skip>true</skip>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>
             <plugin>

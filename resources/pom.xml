@@ -5,9 +5,12 @@
         <artifactId>bonita-distrib</artifactId>
         <version>7.11.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>resources</artifactId>
     <packaging>pom</packaging>
+
+    <properties>
+        <deploy_plugin_skip>true</deploy_plugin_skip>
+    </properties>
 
     <modules>
         <module>looknfeel</module>
@@ -29,6 +32,12 @@
                 <groupId>org.bonitasoft.web</groupId>
                 <artifactId>bonita-web-extensions</artifactId>
                 <version>${project.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>
@@ -69,10 +78,5 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <properties>
-        <jacoco.skip>true</jacoco.skip>
-        <deploy_plugin_skip>true</deploy_plugin_skip>
-    </properties>
 
 </project>
