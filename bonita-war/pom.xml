@@ -26,18 +26,35 @@
     </properties>
 
     <dependencies>
+        <!-- jboss-logging and activation are already present in /lib/bonita (dependency of tomcat-jta) -->
         <!-- TODO review dependency order between console and engine as this could change dependencies resolution -->
         <dependency>
             <groupId>org.bonitasoft.console</groupId>
             <artifactId>console-server</artifactId>
             <version>${bonita.web.version}</version>
             <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <artifactId>activation</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.bonitasoft.engine</groupId>
             <artifactId>bonita-server</artifactId>
             <version>${bonita.engine.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jboss-logging</artifactId>
+                    <groupId>org.jboss.logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>activation</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
