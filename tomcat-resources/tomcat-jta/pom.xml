@@ -11,7 +11,6 @@
     <artifactId>tomcat-jta</artifactId>
 
     <properties>
-        <activation.version>1.1.1</activation.version>
         <version.org.apache.tomcat>9.0.30</version.org.apache.tomcat>
     </properties>
 
@@ -43,11 +42,6 @@
                     <artifactId>tomcat-juli</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>${activation.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.logging</groupId>

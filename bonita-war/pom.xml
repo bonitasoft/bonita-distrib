@@ -38,6 +38,15 @@
                     <artifactId>activation</artifactId>
                     <groupId>javax.activation</groupId>
                 </exclusion>
+                <exclusion>
+                    <!-- replaced by javax.xml.stream:stax-api -->
+                    <artifactId>stax-api</artifactId>
+                    <groupId>stax</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jakarta.activation-api</artifactId>
+                    <groupId>jakarta.activation</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
 
