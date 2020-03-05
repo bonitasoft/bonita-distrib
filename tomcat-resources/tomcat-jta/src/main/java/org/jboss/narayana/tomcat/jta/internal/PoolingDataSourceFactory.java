@@ -16,10 +16,13 @@
 
 package org.jboss.narayana.tomcat.jta.internal;
 
+import static org.jboss.narayana.tomcat.jta.internal.XADataSourceIsSameRMOverride.overrideSameRM;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Logger;
 import javax.sql.ConnectionEvent;
 import javax.sql.ConnectionEventListener;
 import javax.sql.DataSource;
@@ -29,18 +32,15 @@ import javax.transaction.TransactionManager;
 import javax.transaction.TransactionSynchronizationRegistry;
 import javax.transaction.xa.XAResource;
 
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
+import com.arjuna.ats.internal.jta.recovery.arjunacore.XARecoveryModule;
+import com.arjuna.ats.jta.recovery.XAResourceRecoveryHelper;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory;
 import org.apache.tomcat.dbcp.dbcp2.managed.BasicManagedDataSource;
 
-import com.arjuna.ats.internal.jta.recovery.arjunacore.XARecoveryModule;
-import com.arjuna.ats.jta.recovery.XAResourceRecoveryHelper;
-
 public final class PoolingDataSourceFactory {
 
-    private static final Log log = LogFactory.getLog(PoolingDataSourceFactory.class);
+    private static final Logger LOGGER = Logger.getLogger(PoolingDataSourceFactory.class.getName());
 
     private static final String PROP_USERNAME = "username";
     private static final String PROP_PASSWORD = "password";
@@ -83,7 +83,7 @@ public final class PoolingDataSourceFactory {
                     connection.addConnectionEventListener(new ConnectionEventListener() {
                         @Override
                         public void connectionClosed(ConnectionEvent event) {
-                            log.warn("The connection was closed: " + connection);
+                            LOGGER.warning("The connection was closed: " + connection);
                             synchronized (lock) {
                                 connection = null;
                             }
@@ -91,13 +91,13 @@ public final class PoolingDataSourceFactory {
 
                         @Override
                         public void connectionErrorOccurred(ConnectionEvent event) {
-                            log.warn("A connection error occurred: " + connection);
+                            LOGGER.warning("A connection error occurred: " + connection);
                             synchronized (lock) {
                                 try {
                                     connection.close();
                                 } catch (SQLException e) {
                                     // Ignore
-                                    log.warn("Could not close failing connection: " + connection);
+                                    LOGGER.warning("Could not close failing connection: " + connection);
                                 }
                                 connection = null;
                             }
@@ -134,7 +134,13 @@ public final class PoolingDataSourceFactory {
                 }
 
                 mds.setTransactionManager(transactionManager);
-                mds.setXaDataSourceInstance(xaDataSource);
+                if (xaDataSource.getClass().getName().toLowerCase().contains("oracle")) {
+                    LOGGER.finest("using overridden implementation for isSameRM flag (Oracle)");
+                    mds.setXaDataSourceInstance(overrideSameRM(xaDataSource));
+                } else {
+                    LOGGER.finest("using default XA datasource implementation");
+                    mds.setXaDataSourceInstance(xaDataSource);
+                }
                 mds.setTransactionSynchronizationRegistry(tsr);
 
                 if (initialSize != null) {
