@@ -34,7 +34,7 @@
         <distrib.zipname>BonitaCommunity-${project.version}-deploy</distrib.zipname>
 
         <ant-contrib.version>1.0b3</ant-contrib.version>
-        <tomcat.version>8.5.47</tomcat.version>
+        <tomcat.version>8.5.53</tomcat.version>
         <slf4j.version>1.7.25</slf4j.version>
         <ui.designer.version>1.6.7</ui.designer.version>
 
