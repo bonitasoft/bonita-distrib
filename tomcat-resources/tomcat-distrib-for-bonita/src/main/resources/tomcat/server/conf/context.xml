@@ -31,6 +31,9 @@
     <Resource factory="org.jboss.narayana.tomcat.jta.TransactionSynchronizationRegistryFactory"
               name="TransactionSynchronizationRegistry" type="javax.transaction.TransactionSynchronizationRegistry" />
 
+    <!-- default samesite cookies configuration, for CORS set sameSiteCookies to "none" and configure bundle for HTTPS  -->
+    <CookieProcessor sameSiteCookies="lax" />
+
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--
     <Manager pathname="" />
