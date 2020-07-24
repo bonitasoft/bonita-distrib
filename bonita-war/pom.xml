@@ -63,6 +63,10 @@
                     <artifactId>activation</artifactId>
                     <groupId>javax.activation</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>jta</artifactId>
+                    <groupId>javax.transaction</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
     </dependencies>
