@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.bonitasoft.console</groupId>
         <artifactId>bonita-console</artifactId>
-        <version>7.10.6-SNAPSHOT</version>
+        <version>7.10.6</version>
         <!-- use an empty value as workaround to ensure that maven resolves the parent pom from a repository -->
         <relativePath />
     </parent>
