@@ -18,3 +18,5 @@ target/
 # node and npm
 node
 node_modules/
+/docker/files/BonitaCommunity-*.zip
+/docker/bonita_*.tar.gz
