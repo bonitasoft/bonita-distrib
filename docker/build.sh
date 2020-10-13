@@ -86,9 +86,10 @@ if [[ "$BONITA_VERSION" == *"-SNAPSHOT"* ]]; then
 fi
 
 IMAGE_NAME=bonitasoft/bonita
-echo ". Building image <${IMAGE_NAME}:${BONITA_VERSION}>"
+IMAGE_NAME_AND_BONITA_VERSION=${IMAGE_NAME}:${BONITA_VERSION}
+echo ". Building image <${IMAGE_NAME_AND_BONITA_VERSION}>"
 
-build_cmd="docker build ${BUILD_ARGS} -t ${IMAGE_NAME}:${BONITA_VERSION} ."
+build_cmd="docker build ${BUILD_ARGS} -t ${IMAGE_NAME_AND_BONITA_VERSION} ."
 echo "Running command: '$build_cmd'"
 eval "$build_cmd"
 
