@@ -368,43 +368,11 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.web.pages</groupId>
-                                    <artifactId>page-admin-case-visu</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>page-admin-case-visu.zip</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.web.pages</groupId>
-                                    <artifactId>page-admin-license</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>page-admin-license.zip</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.web.pages</groupId>
-                                    <artifactId>page-admin-monitoring</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>page-admin-monitoring.zip</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.web.pages</groupId>
                                     <artifactId>page-admin-process-details</artifactId>
                                     <version>${project.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <destFileName>page-admin-process-details.zip</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.web.pages</groupId>
-                                    <artifactId>page-admin-process-visu</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>page-admin-process-visu.zip</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.web.pages</groupId>
