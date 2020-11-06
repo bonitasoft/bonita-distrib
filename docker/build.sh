@@ -77,12 +77,17 @@ BUILD_ARGS="$BUILD_ARGS $*"
 # Remove any pre-existing zip file:
 rm -f ./files/BonitaCommunity-*.zip
 cp ../tomcat/target/BonitaCommunity-*.zip files/
-BONITA_VERSION=$(head -10 ../pom.xml | grep "<version>" | sed -e 's/.*<version>//g' -e 's/<\/version>.*//g')
-if [[ "$BONITA_VERSION" == *"-SNAPSHOT"* ]]; then
-  echo "SNAPSHOT version detected: sending sha256 and BONITA_URL as extra parameters"
-  BONITA_SHA256=$(sha256sum ./files/BonitaCommunity-*.zip | cut -d' ' -f1)
-  BUILD_ARGS="${BUILD_ARGS} --build-arg BONITA_VERSION=${BONITA_VERSION}"
-  BUILD_ARGS="${BUILD_ARGS} --build-arg BONITA_SHA256=${BONITA_SHA256}"
+if [[ "$BUILD_ARGS" != *"BONITA_VERSION="* ]]; then
+  BONITA_VERSION=$(head -10 ../pom.xml | grep "<version>" | sed -e 's/.*<version>//g' -e 's/<\/version>.*//g')
+  # If version is SNAPSHOT, we use it to build local image:
+  if [[ "$BONITA_VERSION" == *"-SNAPSHOT"* ]]; then
+    echo "SNAPSHOT version detected: sending SHA256 and BONITA_VERSION as extra parameters"
+    BONITA_SHA256=$(sha256sum ./files/BonitaCommunity-*.zip | cut -d' ' -f1)
+    BUILD_ARGS="${BUILD_ARGS} --build-arg BONITA_VERSION=${BONITA_VERSION}"
+    BUILD_ARGS="${BUILD_ARGS} --build-arg BONITA_SHA256=${BONITA_SHA256}"
+  fi
+else
+  echo "BONITA_VERSION is passed in BUILD_ARGS parameters ($BUILD_ARGS), using it"
 fi
 
 IMAGE_NAME=bonitasoft/bonita
