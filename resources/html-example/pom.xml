@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.bonitasoft.distrib</groupId>
         <artifactId>resources</artifactId>
-        <version>7.13.0-SNAPSHOT</version>
+        <version>7.12.0.W46</version>
     </parent>
 
     <artifactId>html-page-example</artifactId>
