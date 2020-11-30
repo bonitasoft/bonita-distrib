@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.bonitasoft.distrib.tomcat</groupId>
         <artifactId>tomcat-resources</artifactId>
-        <version>7.12.0-SNAPSHOT</version>
+        <version>7.12.0.RC-02</version>
     </parent>
     <artifactId>tomcat-distrib-for-bonita</artifactId>
     <packaging>pom</packaging>
