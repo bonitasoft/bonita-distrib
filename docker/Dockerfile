@@ -30,22 +30,24 @@ RUN (gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E36
 
 # use --build-arg key=value in docker build command to override arguments
 ARG BONITA_VERSION
+ARG BRANDING_VERSION
 ARG BONITA_SHA256
 ARG BASE_URL
 ARG BONITA_URL
 
 ENV BONITA_VERSION ${BONITA_VERSION:-7.12.0}
+ENV BRANDING_VERSION ${BRANDING_VERSION:-2021.1}
 ENV BONITA_SHA256  ${BONITA_SHA256:-46e3bd053d9547cbfabd3d16cc1bfacee777f1572b59603400679de89f3a4083}
-ENV ZIP_FILE BonitaCommunity-${BONITA_VERSION}.zip
+ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
 ENV BASE_URL ${BASE_URL:-https://github.com/bonitasoft/bonita-platform-releases/releases/download}
-ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BONITA_VERSION}/BonitaCommunity-${BONITA_VERSION}.zip}
+ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${BRANDING_VERSION}.zip}
 RUN echo "Downloading Bonita from url: ${BONITA_URL}"
 
 RUN mkdir /opt/files
 COPY files /opt/files
 
 # add Bonita archive to the container:
-RUN if [ -f "/opt/files/BonitaCommunity-${BONITA_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BONITA_VERSION}.zip; fi
+RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip; fi
 
 # display downloaded checksum
 RUN sha256sum /opt/files/${ZIP_FILE}

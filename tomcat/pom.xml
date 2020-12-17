@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <zipName>BonitaCommunity-2021.1</zipName>
+        <zipName>BonitaCommunity-${branding.version}</zipName>
         <bundle.dir>${project.build.directory}/${zipName}</bundle.dir>
     </properties>
 
