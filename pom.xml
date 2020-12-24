@@ -20,7 +20,7 @@
     </scm>
 
     <properties>
-        <branding.version>2021.1-SNAPSHOT</branding.version>
+        <branding.version>2021.1</branding.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
