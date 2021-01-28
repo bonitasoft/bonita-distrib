@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.bonitasoft.distrib</groupId>
         <artifactId>bonita-distrib</artifactId>
-        <version>7.11.4</version>
+        <version>7.11.5-SNAPSHOT</version>
     </parent>
     <artifactId>bonita-war</artifactId>
     <packaging>war</packaging>
