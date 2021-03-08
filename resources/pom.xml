@@ -48,7 +48,7 @@
                 <!-- Define groovy compiler as here, when a project requires compilation, this is for rest api extension groovy classes -->
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
+                    <version>3.8.1</version>
                     <configuration>
                         <compilerId>groovy-eclipse-compiler</compilerId>
                     </configuration>
