@@ -57,16 +57,14 @@ for /f "delims=. tokens=1" %%v in ("%JAVAVER%") do (
 if "%VERSION_NUMBER_1ST_DIGIT%" EQU "1" (
   for /f "delims=. tokens=2" %%v in ("%JAVAVER%") do (
       set VERSION_NUMBER=%%v
-      set VERSION_EXPECTED=8
   )
 ) else (
   set VERSION_NUMBER=%VERSION_NUMBER_1ST_DIGIT%
-  set VERSION_EXPECTED=11
 )
 echo Java version: %VERSION_NUMBER%
 
-if "%VERSION_NUMBER%" NEQ "%VERSION_EXPECTED%" (
-    echo Invalid Java version %VERSION_NUMBER% not 8 or 11. Please set JRE_HOME or JAVA_HOME system variable to a JRE / JDK related to one of these versions
+if "%VERSION_NUMBER%" NEQ "11" (
+    echo Invalid Java version %VERSION_NUMBER%. Please set JRE_HOME or JAVA_HOME system variable to a JRE / JDK 11
     goto exit
 )
 echo Java version is compatible
