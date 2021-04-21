@@ -383,7 +383,7 @@
                                     <destFileName>page-admin-user-details.zip</destFileName>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${folder_frontend_web_resources}/WEB-INF/classes</outputDirectory>
+                            <outputDirectory>${folder_frontend_web_resources}/WEB-INF/classes/org/bonitasoft/web/page</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
