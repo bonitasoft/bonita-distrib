@@ -265,6 +265,8 @@
         <url-pattern>/platformloginservice</url-pattern>
         <url-pattern>/platformlogoutservice</url-pattern>
         <url-pattern>/API/system/i18ntranslation</url-pattern>
+        <url-pattern>/API/avatars/*</url-pattern>
+        <url-pattern>/API/applicationIcon/*</url-pattern>
         <!-- War -->
         <url-pattern>/css</url-pattern>
         <url-pattern>/images</url-pattern>
@@ -277,6 +279,8 @@
         <url-pattern>/portal/deferredjs/*</url-pattern>
         <url-pattern>/portal.js/*</url-pattern>
         <url-pattern>/theme/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
     <filter-mapping>
@@ -285,6 +289,8 @@
         <url-pattern>/portal/resource/app/*</url-pattern>
         <url-pattern>/apps/*</url-pattern>
         <url-pattern>/portal/custom-page/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
     <!-- Cache Filter Mapping End -->
@@ -389,6 +395,10 @@
             <param-name>SupportedExtensions</param-name>
             <param-value>png,jpg,gif,jpeg,bmp,wbmp,tga</param-value>
         </init-param>
+        <init-param>
+            <param-name>CheckUploadedImageSize</param-name>
+            <param-value>true</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>apiImageUploadServlet</servlet-name>
@@ -405,11 +415,19 @@
             <param-name>ReturnOriginalFilename</param-name>
             <param-value>true</param-value>
         </init-param>
+        <init-param>
+            <param-name>CheckUploadedImageSize</param-name>
+            <param-value>true</param-value>
+        </init-param>
     </servlet>
 
     <servlet>
-        <servlet-name>iconServlet</servlet-name>
-        <servlet-class>org.bonitasoft.console.common.server.servlet.IconServlet</servlet-class>
+        <servlet-name>organizationIconServlet</servlet-name>
+        <servlet-class>org.bonitasoft.console.common.server.servlet.OrganizationIconServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>applicationIconServlet</servlet-name>
+        <servlet-class>org.bonitasoft.console.common.server.servlet.ApplicationIconServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>loginService</servlet-name>
@@ -538,6 +556,7 @@
         <servlet-name>homepage</servlet-name>
         <servlet-class>org.bonitasoft.console.common.server.servlet.HomepageServlet</servlet-class>
     </servlet>
+    <!-- End theme -->
     <!-- For engine HTTP API -->
 
     <!--<servlet>
@@ -606,9 +625,13 @@
         <url-pattern>/portal/exportActors</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>iconServlet</servlet-name>
+        <servlet-name>organizationIconServlet</servlet-name>
         <url-pattern>/API/avatars/*</url-pattern>
         <url-pattern>/portal/custom-page/API/avatars/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>applicationIconServlet</servlet-name>
+        <url-pattern>/API/applicationIcon/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>deprecatedDocumentDownloadServlet</servlet-name>
