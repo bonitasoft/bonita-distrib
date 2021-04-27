@@ -82,9 +82,9 @@ if [[ "$BUILD_ARGS" != *"BONITA_VERSION="* ]]; then
   BRANDING_VERSION=$(cat ../pom.xml | grep "<branding.version>" | sed -e 's/.*<branding.version>//g' -e 's/<\/branding.version>.*//g')
   echo "Detected in pom file BONITA_VERSION=${BONITA_VERSION}"
   echo "Detected in pom file BRANDING_VERSION=${BRANDING_VERSION}"
-  # If version is SNAPSHOT, we use it to build local image:
-  if [[ "$BONITA_VERSION" == *"-SNAPSHOT"* ]]; then
-    echo "SNAPSHOT version detected: sending SHA256 and BONITA_VERSION as extra parameters"
+  # Check if we build a docker image from a local tomcat build:
+  if ls ../tomcat/target/BonitaCommunity-*.zip 1> /dev/null 2>&1; then
+    echo "Building from local tomcat: sending SHA256 and BONITA_VERSION as extra parameters"
     BONITA_SHA256=$(sha256sum ./files/BonitaCommunity-*.zip | cut -d' ' -f1)
     BUILD_ARGS="${BUILD_ARGS} --build-arg BONITA_VERSION=${BONITA_VERSION}"
     BUILD_ARGS="${BUILD_ARGS} --build-arg BONITA_SHA256=${BONITA_SHA256}"
