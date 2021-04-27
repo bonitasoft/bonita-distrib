@@ -12,8 +12,6 @@ ENSURE_DB_CHECK_AND_CREATION=${ENSURE_DB_CHECK_AND_CREATION:-true}
 JAVA_OPTS=${JAVA_OPTS:--Xms1024m -Xmx1024m}
 # Flag to enable or not dynamic authorization checking on Bonita REST API
 REST_API_DYN_AUTH_CHECKS=${REST_API_DYN_AUTH_CHECKS:-true}
-# Flag to enable or not Bonita HTTP API
-HTTP_API=${HTTP_API:-false}
 
 # retrieve the db parameters from the container linked
 if [ -n "$POSTGRES_PORT_5432_TCP_PORT" ]
@@ -108,12 +106,6 @@ cp ${BONITA_TPL}/database.properties ${BONITA_PATH}/BonitaCommunity-${BRANDING_V
 if [ "$REST_API_DYN_AUTH_CHECKS" = 'true' ]
 then
     sed -i -e 's/^#GET|/GET|/' -e 's/^#POST|/POST|/' -e 's/^#PUT|/PUT|/' -e 's/^#DELETE|/DELETE|/' ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/platform_conf/initial/tenant_template_portal/dynamic-permissions-checks-custom.properties
-fi
-# if required, deactivate HTTP API by updating bonita.war with proper web.xml
-if [ "$HTTP_API" = 'false' ]
-then
-    cd ${BONITA_FILES}/
-    zip ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war WEB-INF/web.xml
 fi
 
 # replace variables
