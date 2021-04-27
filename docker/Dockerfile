@@ -41,6 +41,7 @@ ENV BONITA_SHA256  ${BONITA_SHA256:-5342b18dd7f93bd3b2b64f8587504d0bf324f4f84d42
 ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
 ENV BASE_URL ${BASE_URL:-https://github.com/bonitasoft/bonita-platform-releases/releases/download}
 ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${BRANDING_VERSION}.zip}
+ENV HTTP_API false
 RUN echo "Downloading Bonita from url: ${BONITA_URL}"
 
 RUN mkdir /opt/files
