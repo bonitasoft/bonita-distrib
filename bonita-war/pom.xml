@@ -206,7 +206,7 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.web.page</groupId>
-                                    <artifactId>user-tasks-list</artifactId>
+                                    <artifactId>page-user-task-list</artifactId>
                                     <version>${project.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
@@ -270,7 +270,7 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.web.page</groupId>
-                                    <artifactId>page-process-list</artifactId>
+                                    <artifactId>page-user-process-list</artifactId>
                                     <version>${project.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
