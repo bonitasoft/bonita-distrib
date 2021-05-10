@@ -15,11 +15,6 @@
         <deploy_plugin_skip>true</deploy_plugin_skip>
         <folder_frontend_web_resources>${project.build.directory}/bonita-frontend</folder_frontend_web_resources>
         <folder_frontend_web_config_files>${project.build.directory}/bonita-frontend-config</folder_frontend_web_config_files>
-        <!-- Required to filter the web.xml file -->
-        <enable.engine.http.api.start />
-        <enable.engine.http.api.end />
-        <enable.engine.listener.start />
-        <enable.engine.listener.end />
         <!-- Required to filter the VERSION file -->
         <build.year>${maven.build.timestamp}</build.year>
         <maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
@@ -46,26 +41,6 @@
                 <exclusion>
                     <artifactId>jakarta.activation-api</artifactId>
                     <groupId>jakarta.activation</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bonitasoft.engine</groupId>
-            <artifactId>bonita-server</artifactId>
-            <version>${bonita.engine.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jboss-logging</artifactId>
-                    <groupId>org.jboss.logging</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>activation</artifactId>
-                    <groupId>javax.activation</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jta</artifactId>
-                    <groupId>javax.transaction</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
