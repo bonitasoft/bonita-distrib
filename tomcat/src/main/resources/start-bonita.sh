@@ -1,5 +1,7 @@
 #!/bin/sh
 
+BASEDIR=$(cd $(dirname "$0") && pwd -P)
+
 testReturnCode() {
   COD_RET=$1
   if [ ${COD_RET} -ne 0 ]; then
@@ -35,15 +37,15 @@ if [ "$java_version" != "8" -a "$java_version" != "11" ]; then
 fi
 echo "Java version is compatible"
 
-if [ -d "./setup" ]; then
+if [ -d "${BASEDIR}/setup" ]; then
   echo "------------------------------------------------------"
   echo "Initializing and configuring Bonita Tomcat bundle"
   echo "------------------------------------------------------"
 
-  ./setup/setup.sh init $@
+  ${BASEDIR}/setup/setup.sh init $@
   testReturnCode $?
 
-  ./setup/setup.sh configure $@
+  ${BASEDIR}/setup/setup.sh configure $@
   testReturnCode $?
 
 fi
@@ -51,4 +53,4 @@ fi
 echo "------------------------------------------------------"
 echo "Starting Bonita Tomcat bundle"
 echo "------------------------------------------------------"
-./server/bin/startup.sh
+${BASEDIR}/server/bin/startup.sh
