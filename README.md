@@ -4,7 +4,7 @@ This project generates the Bonita Runtime bundles.
 
 ## Requirements
 
->     Java JDK 1.8 only
+>     Java JDK 11 only
 
 This project bundles the [Maven Wrapper](https://github.com/takari/maven-wrapper), so the `mvnw` script is available at the project root.
 
