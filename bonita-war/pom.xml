@@ -164,22 +164,6 @@
                             <artifactItems>
                                 <!-- Custom pages -->
                                 <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>groovy-page-example</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>bonita-groovy-page-example.zip</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>html-page-example</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>bonita-html-page-example.zip</destFileName>
-                                </artifactItem>
-                                <artifactItem>
                                     <groupId>org.bonitasoft.web.page</groupId>
                                     <artifactId>page-user-task-list</artifactId>
                                     <version>${project.version}</version>
@@ -226,22 +210,6 @@
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <destFileName>bonita-theme.zip</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>api-extension-example</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>api-extension-example.zip</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>api-extension-viewer</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>api-extension-viewer.zip</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.web.page</groupId>
