@@ -8,6 +8,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>bonita-runtime-bom</module>
         <module>resources</module>
         <module>bonita-war</module>
         <module>tomcat-resources</module>
