@@ -1,6 +1,9 @@
 @echo off
 setlocal
 
+set BASEDIR=%~dp0
+echo BASEDIR: %BASEDIR%
+
 :: Test if system variable JRE_HOME is set.
 if "x%JRE_HOME%" == "x" (
     echo JRE_HOME is not set. Trying to use JAVA_HOME instead...
@@ -69,27 +72,27 @@ if "%VERSION_NUMBER%" NEQ "11" (
 )
 echo Java version is compatible
 
-IF NOT EXIST setup GOTO NOSETUPDIR
+IF NOT EXIST %BASEDIR%\setup GOTO NOSETUPDIR
 echo ------------------------------------------------------
 echo Initializing and configuring Bonita Tomcat bundle
 echo ------------------------------------------------------
 shift
-call setup\setup.bat init %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
+call %BASEDIR%\setup\setup.bat init %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 (
    goto exit
 )
-call setup\setup.bat configure %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
+call %BASEDIR%\setup\setup.bat configure %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 (
    goto exit
 )
 
 :NOSETUPDIR
+cd %BASEDIR%
 cd server
 echo "-----------------------------------------------------"
 echo "Starting Bonita Tomcat bundle"
 echo "-----------------------------------------------------"
 call bin\startup.bat
-cd ..
 exit /b 0
 
 :exit
