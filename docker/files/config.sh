@@ -1,5 +1,6 @@
 #!/bin/bash
-set -x
+
+
 # Path to deploy the Tomcat Bundle
 BONITA_PATH=${BONITA_PATH:-/opt/bonita}
 # Templates directory
@@ -70,6 +71,7 @@ fi
 
 if [ "${ENSURE_DB_CHECK_AND_CREATION}" = 'true' ]
 then
+    echo "Creating (if missing) database and users"
 	# load SQL functions
 	. ${BONITA_FILES}/functions.sh
 	case "${DB_VENDOR}" in
@@ -112,10 +114,15 @@ fi
 # if required, deactivate HTTP API by updating bonita.war with proper web.xml
 if [ "$HTTP_API" = 'false' ]
 then
+    echo "Unsecured HTTP API: Activated"
     cd ${BONITA_FILES}/
     zip ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war WEB-INF/web.xml
+else
+    echo "Unsecured HTTP API: NOT Activated"
 fi
 
+echo "Platform administrator username is: ${PLATFORM_LOGIN}"
+echo "Tenant technical username is: ${TENANT_LOGIN}"
 # replace variables
 find ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/platform_conf/initial -name "*.properties" | xargs -n10 sed -i \
     -e 's/^#userName\s*=.*/'"userName=${TENANT_LOGIN}"'/' \
@@ -125,6 +132,7 @@ find ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/platform_conf/init
     -e 's/^#platformAdminUsername\s*=.*/'"platformAdminUsername=${PLATFORM_LOGIN}"'/' \
     -e 's/^#platformAdminPassword\s*=.*/'"platformAdminPassword=${PLATFORM_PASSWORD}"'/'
 
+echo "Using JAVA_OPTS: ${JAVA_OPTS}"
 sed -i -e 's/{{JAVA_OPTS}}/'"${JAVA_OPTS}"'/' ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/tomcat-templates/setenv.sh
 
 if [ -n "$JDBC_DRIVER" ]
@@ -136,6 +144,14 @@ then
         cp ${BONITA_FILES}/${JDBC_DRIVER} ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/lib/
     fi
 fi
+
+echo "Using DB_VENDOR: ${DB_VENDOR}"
+echo "Using DB_USER: ${DB_USER}"
+echo "Using DB_NAME: ${DB_NAME}"
+echo "Using DB_HOST: ${DB_HOST}"
+echo "Using DB_PORT: ${DB_PORT}"
+echo "Using BIZ_DB_USER: ${BIZ_DB_USER}"
+echo "Using BIZ_DB_NAME: ${BIZ_DB_NAME}"
 
 sed -e 's/{{DB_VENDOR}}/'"${DB_VENDOR}"'/' \
     -e 's/{{DB_USER}}/'"${DB_USER}"'/' \
