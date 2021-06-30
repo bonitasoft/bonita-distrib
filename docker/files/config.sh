@@ -114,11 +114,11 @@ fi
 # if required, deactivate HTTP API by updating bonita.war with proper web.xml
 if [ "$HTTP_API" = 'false' ]
 then
-    echo "Unsecured HTTP API: Activated"
+    echo "Unsecured HTTP API: NOT Activated"
     cd ${BONITA_FILES}/
     zip ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war WEB-INF/web.xml
 else
-    echo "Unsecured HTTP API: NOT Activated"
+    echo "Unsecured HTTP API: Activated"
 fi
 
 echo "Platform administrator username is: ${PLATFORM_LOGIN}"
