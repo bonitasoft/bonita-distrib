@@ -121,8 +121,6 @@ else
     echo "Unsecured HTTP API: Activated"
 fi
 
-echo "Platform administrator username is: ${PLATFORM_LOGIN}"
-echo "Tenant technical username is: ${TENANT_LOGIN}"
 # replace variables
 find ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/platform_conf/initial -name "*.properties" | xargs -n10 sed -i \
     -e 's/^#userName\s*=.*/'"userName=${TENANT_LOGIN}"'/' \
@@ -146,11 +144,9 @@ then
 fi
 
 echo "Using DB_VENDOR: ${DB_VENDOR}"
-echo "Using DB_USER: ${DB_USER}"
 echo "Using DB_NAME: ${DB_NAME}"
 echo "Using DB_HOST: ${DB_HOST}"
 echo "Using DB_PORT: ${DB_PORT}"
-echo "Using BIZ_DB_USER: ${BIZ_DB_USER}"
 echo "Using BIZ_DB_NAME: ${BIZ_DB_NAME}"
 
 sed -e 's/{{DB_VENDOR}}/'"${DB_VENDOR}"'/' \
