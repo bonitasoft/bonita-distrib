@@ -1,6 +1,20 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.04  as base
 
-LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
+# use --build-arg key=value in docker build command to override arguments
+ARG BONITA_VERSION
+ARG BRANDING_VERSION
+ARG BONITA_SHA256
+ARG BASE_URL
+ARG BONITA_URL
+
+ENV BONITA_VERSION ${BONITA_VERSION:-7.12.1}
+ENV BRANDING_VERSION ${BRANDING_VERSION:-2021.2}
+ENV BONITA_SHA256  ${BONITA_SHA256:-5342b18dd7f93bd3b2b64f8587504d0bf324f4f84d4259191b7291ee8f9ec693}
+ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
+ENV BASE_URL ${BASE_URL:-https://github.com/bonitasoft/bonita-platform-releases/releases/download}
+ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${BRANDING_VERSION}.zip}
+ENV HTTP_API false
+RUN echo "Downloading Bonita from url: ${BONITA_URL}"
 
 # install packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -19,6 +33,9 @@ RUN mkdir /opt/custom-init.d/
 RUN groupadd -r bonita -g 1000 \
   && useradd -u 1000 -r -g bonita -d /opt/bonita/ -s /sbin/nologin -c "Bonita User" bonita
 
+
+FROM base as builder
+
 # grab gosu
 RUN gpg --keyserver keyserver.ubuntu.com --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
   && curl -fsSL "https://github.com/tianon/gosu/releases/download/1.13/gosu-$(dpkg --print-architecture)" -o /usr/local/bin/gosu \
@@ -27,21 +44,7 @@ RUN gpg --keyserver keyserver.ubuntu.com --recv-keys B42F6819007F00F88E364FD4036
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu
 
-# use --build-arg key=value in docker build command to override arguments
-ARG BONITA_VERSION
-ARG BRANDING_VERSION
-ARG BONITA_SHA256
-ARG BASE_URL
-ARG BONITA_URL
 
-ENV BONITA_VERSION ${BONITA_VERSION:-7.12.1}
-ENV BRANDING_VERSION ${BRANDING_VERSION:-2021.2}
-ENV BONITA_SHA256  ${BONITA_SHA256:-5342b18dd7f93bd3b2b64f8587504d0bf324f4f84d4259191b7291ee8f9ec693}
-ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
-ENV BASE_URL ${BASE_URL:-https://github.com/bonitasoft/bonita-platform-releases/releases/download}
-ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${BRANDING_VERSION}.zip}
-ENV HTTP_API false
-RUN echo "Downloading Bonita from url: ${BONITA_URL}"
 
 RUN mkdir /opt/files
 COPY files /opt/files
@@ -55,13 +58,30 @@ RUN sha256sum /opt/files/${ZIP_FILE}
 # check with expected checksum
 RUN echo "$BONITA_SHA256" /opt/files/${ZIP_FILE} | sha256sum -c -
 
+
+RUN unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
+&& unzip  /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war -d /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita/ \
+&& rm /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war \
+&& rm -f  /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip
+
+FROM base
+
+LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
+
+COPY --from=builder /opt /opt
+
+COPY --from=builder  /usr/local/bin/gosu /usr/local/bin/gosu
 # create Volume to store Bonita files
 VOLUME /opt/bonita
 
 COPY templates /opt/templates
+
+
 
 # expose Tomcat port
 EXPOSE 8080
 
 # command to run when the container starts
 CMD ["/opt/files/startup.sh"]
+
+

@@ -2,11 +2,11 @@
 
 
 # Path to deploy the Tomcat Bundle
-BONITA_PATH=${BONITA_PATH:-/opt/bonita}
+BONITA_PATH=/opt/bonita
 # Templates directory
-BONITA_TPL=${BONITA_TPL:-/opt/templates}
+BONITA_TPL=/opt/templates
 # Files directory
-BONITA_FILES=${BONITA_FILES:-/opt/files}
+BONITA_FILES=/opt/files
 # Flag to allow or not the SQL queries to automatically check and create the databases
 ENSURE_DB_CHECK_AND_CREATION=${ENSURE_DB_CHECK_AND_CREATION:-true}
 # Java OPTS
@@ -62,10 +62,6 @@ PLATFORM_PASSWORD=${PLATFORM_PASSWORD:-platform}
 TENANT_LOGIN=${TENANT_LOGIN:-install}
 TENANT_PASSWORD=${TENANT_PASSWORD:-install}
 
-if [ ! -d ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION} ]
-then
-  unzip -q ${BONITA_FILES}/BonitaCommunity-${BRANDING_VERSION}.zip -d ${BONITA_PATH}
-fi
 
 if [ "${ENSURE_DB_CHECK_AND_CREATION}" = 'true' ]
 then
@@ -155,8 +151,8 @@ mv ${LOGGING_FILE} ${LOGGING_FILE}.original
 awk -f ${BONITA_FILES}/logging.awk ${LOGGING_FILE}.original > ${LOGGING_FILE}
 
 # use the setup tool to initialize and configure Bonita Tomcat bundle
-cd /opt/bonita/BonitaCommunity-${BRANDING_VERSION}
+
 # platform setup tool logging configuration file
 BONITA_SETUP_LOGGING_FILE=${BONITA_SETUP_LOGGING_FILE:-/opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/logback.xml}
-echo y | ./setup/setup.sh init -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
-./setup/setup.sh configure -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
+echo y | ./opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/setup.sh init -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
+./opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/setup.sh configure -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
