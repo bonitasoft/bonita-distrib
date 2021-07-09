@@ -47,18 +47,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- 3rd parties -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-jdk14</artifactId>
-                <version>${slf4j.version}</version>
-                <scope>runtime</scope>
-            </dependency>
 
             <!-- to make sure transitive dependencies do not select a different version: -->
             <dependency>
