@@ -287,7 +287,7 @@
                         <id>get-bonita-ln-resources</id>
                         <phase>prepare-package</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>unpack</goal>
                         </goals>
                         <configuration>
                             <artifactItems>
@@ -295,22 +295,12 @@
                                     <groupId>org.bonitasoft.distrib</groupId>
                                     <artifactId>looknfeel</artifactId>
                                     <version>${project.version}</version>
-                                    <classifier>less</classifier>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>bonita-portal-theme.zip</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>looknfeel</artifactId>
-                                    <version>${project.version}</version>
                                     <classifier>css</classifier>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
-                                    <destFileName>bonita-portal-theme-css.zip</destFileName>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${folder_frontend_web_resources}/WEB-INF/classes</outputDirectory>
+                            <outputDirectory>${folder_frontend_web_resources}/portal-theme</outputDirectory>
                         </configuration>
                     </execution>
                     <execution>
