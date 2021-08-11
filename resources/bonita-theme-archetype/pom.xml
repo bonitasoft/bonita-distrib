@@ -6,7 +6,7 @@
 	<groupId>org.bonitasoft.web</groupId>
 	<artifactId>bonita-theme-archetype</artifactId>
 	<name>Bonita Default Theme Archetype</name>
-	<version>7.12.7-SNAPSHOT</version>
+	<version>7.12.8-SNAPSHOT</version>
 
 	<build>
 		<pluginManagement>
