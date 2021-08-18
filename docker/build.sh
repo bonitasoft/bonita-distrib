@@ -16,6 +16,7 @@ exit_with_usage() {
   echo ""
   echo "Options:"
   echo "  -a docker_build_args_file  file to read docker build arguments from"
+  echo "  -t tag_name                tag the using using this name - by default bonitasoft/bonita:VERSION"
   echo "  -c                         use Docker cache while building image - by default build is performed with '--no-cache=true'"
   echo ""
   echo "Examples:"
@@ -42,6 +43,13 @@ while [ "$#" -gt 0 ]; do
     ;;
   -c)
     no_cache="false"
+    ;;
+  -t)
+    shift
+    TAG_NAME=$1
+    if [ -z "TAG_NAME" ]; then
+      exit_with_usage "Option -t requires an argument."
+    fi
     ;;
   --)
     break
@@ -94,11 +102,16 @@ else
   echo "BONITA_VERSION is passed in BUILD_ARGS parameters ($BUILD_ARGS), using it"
 fi
 
-IMAGE_NAME=bonitasoft/bonita
-IMAGE_NAME_AND_BONITA_VERSION=${IMAGE_NAME}:${BONITA_VERSION}
+if [ -n "$TAG_NAME" ]; then
+  IMAGE_NAME_AND_BONITA_VERSION="$TAG_NAME"
+  ALL_TAGS="-t $TAG_NAME"
+else
+  IMAGE_NAME_AND_BONITA_VERSION="bonitasoft/bonita:${BONITA_VERSION}"
+  ALL_TAGS="-t ${IMAGE_NAME_AND_BONITA_VERSION}"
+fi
 echo ". Building image <${IMAGE_NAME_AND_BONITA_VERSION}>"
 
-build_cmd="docker build ${BUILD_ARGS} -t ${IMAGE_NAME_AND_BONITA_VERSION} ."
+build_cmd="docker build ${BUILD_ARGS} ${ALL_TAGS} ."
 echo "Running command: '$build_cmd'"
 eval "$build_cmd"
 
