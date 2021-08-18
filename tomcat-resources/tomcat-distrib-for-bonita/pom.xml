@@ -137,8 +137,6 @@
                                     <fileset dir="${project.basedir}/src/main/resources/tomcat/server" />
                                 </copy>
 
-                                <!-- remove tomcat-dbcp, see tomcat-jta -->
-                                <delete file="${tomcat_dir}/lib/tomcat-dbcp.jar" />
                                 <chmod perm="ugo+x">
                                     <fileset dir="${tomcat_dir}/bin">
                                         <include name="*.sh" />
