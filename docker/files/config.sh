@@ -154,5 +154,5 @@ awk -f ${BONITA_FILES}/logging.awk ${LOGGING_FILE}.original > ${LOGGING_FILE}
 
 # platform setup tool logging configuration file
 BONITA_SETUP_LOGGING_FILE=${BONITA_SETUP_LOGGING_FILE:-/opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/logback.xml}
-echo y | ./opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/setup.sh init -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
+./opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/setup.sh init -Dh2.noconfirm -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
 ./opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/setup.sh configure -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
