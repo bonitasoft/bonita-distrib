@@ -192,9 +192,6 @@
         }, {
             "value": "Un profil inclut ses associations avec des pages et des éléments de l'organisation. <br/>Avant d'importer un profil, les pages et les éléments de l'organisation qui lui sont associés doivent être préalablement chargés dans le Portal. <br/>Un profil importé écrase un profil existant portant le même nom.",
             "key": "A profile includes the mapping to pages and the organization.<br/>Before you import a profile, the mapped pages and organization must already be loaded in the Portal.<br/>When you import a profile, it overwrites any existing profile with the same name."
-        }, {
-            "value": "Une archive de rapport possède une extension .zip",
-            "key": "A report archive has a .zip extension"
         }, {"value": "Abandonnée", "key": "Aborted"}, {
             "value": "Abandonnée par :",
             "key": "Aborted by:"
@@ -769,9 +766,6 @@
             "value": "Supprimer les processus sélectionnés",
             "key": "Delete selected processes"
         }, {
-            "value": "Supprimer les rapports sélectionnés",
-            "key": "Delete selected reports"
-        }, {
             "value": "Supprimer les rôles sélectionnés",
             "key": "Delete selected roles"
         }, {"value": "Supprimer le menu vide", "key": "Delete the empty menu"}, {
@@ -795,7 +789,7 @@
         }, {"value": "Description", "key": "Description"}, {
             "value": "Description du paramètre de processus",
             "key": "Description of the process parameter"
-        }, {"value": "Description du rapport", "key": "Description of your report"}, {
+        }, {
             "value": "Description:",
             "key": "Description:"
         }, {"value": "Détails", "key": "Details"}, {
@@ -822,9 +816,6 @@
         }, {
             "value": "Afficher un résumé de tous les processus",
             "key": "Display a summary of all processes"
-        }, {
-            "value": "Afficher un récapitulatif de tous les rapports",
-            "key": "Display a summary of all reports"
         }, {"value": "Nom affiché", "key": "Display name"}, {
             "value": "Tâche que j'ai effectuée",
             "key": "Display tasks I have done"
@@ -1188,9 +1179,6 @@
         }, {
             "value": "Consultez la page Configuration > Services BPM.",
             "key": "Go to Configuration > BPM Services."
-        }, {
-            "value": "Consultez la vue détaillée du rapport",
-            "key": "Go to more details report view"
         }, {"value": "Allez à la page %pagenumber%", "key": "Go to page %pagenumber%"}, {
             "value": "Etape précédente",
             "key": "Go to previous step"
@@ -1261,12 +1249,6 @@
             "value": "Installer un processus",
             "key": "Install a process"
         }, {
-            "value": "Installer un rapport",
-            "key": "Install a report"
-        }, {
-            "value": "Installez un rapport créé avec le standard Jasper. L'archive du rapport (fichier .zip) doit contenir le fichier Jasper ; éventuellement, un ou des fichier(s) de propriétés peuvent être ajoutés si le rapport est disponible dans différentes langues. \nSaisissez le nom du rapport à installer. La description et la capture d'écran sont facultatives, mais recommandées pour mieux renseigner l'utilisateur.",
-            "key": "Install a report created using the Jasper standard. The report archive (.zip file) must contain the Jasper file;optionally, properties file(s) can be added if the report is localised in different languages. \n Enter the name of the report to install.The description and the screen shot are optional but are recommended in order to give a context to the user."
-        }, {
             "value": "Installer le Modèle de Données Métier",
             "key": "Install the Business Data Model"
         }, {"value": "Installé par", "key": "Installed by"}, {
@@ -1278,10 +1260,10 @@
         }, {"value": "Item non trouvé", "key": "Item not found"}, {
             "value": "Eléments par page",
             "key": "Items per page"
-        }, {"value": "Janvier", "key": "January"}, {
-            "value": "Archives de Jasper",
-            "key": "Jasper Archive"
-        }, {"value": "Intitulé du poste", "key": "Job title"}, {
+        }, {"value": "Janvier", "key": "January"},{
+            "value": "Intitulé du poste",
+            "key": "Job title"
+        }, {
             "value": "Titre du poste de l'utilisateur",
             "key": "Job title of the user"
         }, {"value": "Json ne peut pas être mappée à", "key": "Json can't be mapped to "}, {
@@ -1417,15 +1399,12 @@
             "value": "Nom de l'utilisateur qui a exécuté cette tâche",
             "key": "Name of the user who executed this task"
         }, {
-            "value": "Nom de l'utilisateur qui a installé ce rapport",
-            "key": "Name of the user who install this report"
-        }, {
             "value": "Nom de l'utilisateur qui a démarré le cas",
             "key": "Name of the user who started this case"
         }, {"value": "Nom de la variable", "key": "Name of the variable"}, {
             "value": "Nom du menu",
             "key": "Name of your menu"
-        }, {"value": "Nom du rapport", "key": "Name of your report"}, {
+        }, {
             "value": "Navigation",
             "key": "Navigation"
         }, {"value": "Éditeur de la barre de navigation", "key": "Navigation bar editor"}, {
@@ -1503,10 +1482,7 @@
         }, {
             "value": "Seul l'attribut valeur peut être mis à jour",
             "key": "Only the value attribute can be updated"
-        }, {"value": "Ouvrir", "key": "Open"}, {
-            "value": "Ouvre une popup pour installer un rapport",
-            "key": "Open a popup to install a report"
-        }, {"value": "Cas démarrés", "key": "Open cases"}, {
+        }, {"value": "Ouvrir", "key": "Open"}, {"value": "Cas démarrés", "key": "Open cases"}, {
             "value": "Ouvre une popup pour créer un groupe",
             "key": "Opens a popup to create a group"
         }, {
@@ -1671,12 +1647,6 @@
         }, {"value": "Rejouer", "key": "Replay"}, {
             "value": "Rejouer la tâche",
             "key": "Replay task"
-        }, {"value": "Archive du rapport", "key": "Report archive"}, {
-            "value": "Capture d'écran du rapport",
-            "key": "Report's screenshot"
-        }, {
-            "value": "Rapports",
-            "key": "Reports"
         }, {
             "value": "La requête doit comporter les paramètres p_date_from et p_date_to.",
             "key": "Request must contain p_date_from and p_date_to parameters."
@@ -1780,9 +1750,6 @@
             "value": "Sélectionner un rôle à ajouter comme Gestionnaire de Processus",
             "key": "Select a role to be added to process manager"
         }, {
-            "value": "Sélectionnez une capture d'écran pour ce rapport",
-            "key": "Select a screen shot for this report"
-        }, {
             "value": "Saisissez l'utilisateur",
             "key": "Select a user"
         }, {
@@ -1884,9 +1851,6 @@
         }, {
             "value": "Afficher plus de détails sur ce profil",
             "key": "Show more details about this profile"
-        }, {
-            "value": "Afficher plus de détails sur ce rapport",
-            "key": "Show more details about this report"
         }, {
             "value": "Afficher plus d'informations sur cette tâche",
             "key": "Show more details about this task"
@@ -2083,9 +2047,6 @@
             "value": "La date à laquelle ce profil a été ajouté",
             "key": "The date when this profile has been added"
         }, {
-            "value": "La date où le rapport a été installé",
-            "key": "The date when this report has been installed"
-        }, {
             "value": "La date, où le cas a été démarré.",
             "key": "The date while the case has been started"
         }, {
@@ -2151,15 +2112,6 @@
         }, {
             "value": "Le processus dont est issue la tâche",
             "key": "The process responsible for the creation of this task"
-        }, {
-            "value": "L'archive de rapport n'est pas celle attendu. L'archive attendue est un fichier .zip contenant un fichier Jasper et les propriétés et les fichiers si le rapport est localisé en différentes langues.",
-            "key": "The report archive is not the one expected. The expected archive is a .zip file containing a jasper file and properties file(s) if the report is localised in different languages."
-        }, {
-            "value": "Le moteur de rapports a rencontré un problème en essayant d'afficher le rapport. Veuillez consulter les logs pour plus de détails.",
-            "key": "The report engine encountered a problem trying to display the report. Please consult the logs for more information."
-        }, {
-            "value": "Ce rapport a déjà été installé",
-            "key": "The report has already been installed"
         }, {
             "value": "Le serveur n'est pas disponible",
             "key": "The server is not available"
@@ -2280,21 +2232,6 @@
         }, {
             "value": "Ce profil sera disponible pour les utilisateurs associés lors de leur prochaine connexion . Si vous vous êtes associé ce profil, rafraîchissez la page de votre navigateur pour le rendre disponible.",
             "key": "This profile will be available on next login to the users who are mapped. If you mapped the profile to yourself, it will be available after you refresh the page in your browser."
-        }, {
-            "value": "Ce rapport affiche le temps moyen nécessaire pour clore un cas. Deux options sont disponibles : la moyenne et la médiane, pour une période donnée et/ou un processus donné.\nVous pouvez accéder au Bonita Portal en cliquant sur un lien dans le tableau ci-dessous.\nL'affichage est limité aux 100 premiers éléments. Pour voir tous les éléments, cliquez sur le bouton EXPORTER en haut à droite de la page.",
-            "key": "This report displays the average time to close a case. Two figures are available: the mean and the median for a given period and/or process.\nYou can access Bonita Portal by clicking on a link in the below table.\nThe display is limited to the first 100 items. To see all items, click on the EXPORT button at the top right of the page."
-        }, {
-            "value": "Ce rapport affiche la liste des cas dans chaque état (ouvert ou archivé) pour une période donnée et/ou un processus donné.\nVous pouvez accéder au Bonita Portal en cliquant sur un lien dans le tableau ci-dessous.\nL'affichage est limité aux 100 premiers éléments. Pour voir tous les éléments, cliquez sur le bouton EXPORTER en haut à droite de la page.",
-            "key": "This report displays the list of cases in each status (open or closed) for a given period and/or process.\nYou can access Bonita Portal by clicking on a link in the below table.\nThe display is limited to the first 100 items. To see all items, click on the EXPORT button at the top right of the page."
-        }, {
-            "value": "Ce rapport affiche la liste des tâches humaines dans chaque état (ouverte, en échec ou faite), pour une période donnée et/ou un processus donné.\nVous pouvez accéder au Bonita Portal en cliquant sur un lien dans le tableau ci-dessous.\nL'affichage est limité aux 100 premiers éléments. Pour voir tous les éléments, cliquez sur le bouton EXPORTER en haut à droite de la page.",
-            "key": "This report displays the list of human tasks in each status (open, failed or closed) for a given period and/or process.\nYou can access Bonita Portal by clicking on a link in the below table.\nThe display is limited to the first 100 items. To see all items, click on the EXPORT button at the top right of the page."
-        }, {
-            "value": "Ce rapport affiche la liste des tâches humaines faites dans un ou plusieurs cas pour une période et/ou un processus donné(s).",
-            "key": "This report displays the list of human tasks performed in one or more cases, for a given period, and/or process."
-        }, {
-            "value": "Ce rapport a déjà été installé.",
-            "key": "This report has already been installed."
         }, {
             "value": "Ce rôle est déjà lié à l'acteur",
             "key": "This role has already been mapped to actor"
@@ -2628,10 +2565,7 @@
         }, {
             "value": "profils n'ont pas été importés car la définition contient une erreur (ces profils ne sont pas supportés par cette édition ou « isDefault » contient \"true\").",
             "key": "profiles have not been imported because the definition contains an error (these profiles are not supported by this edition or 'isDefault' as been set to true)."
-        }, {"value": "Enlever", "key": "remove"}, {"value": "rapport", "key": "report"}, {
-            "value": "rapports",
-            "key": "reports"
-        }, {"value": "rôle", "key": "role"}, {"value": "sec", "key": "sec"}, {
+        }, {"value": "Enlever", "key": "remove"}, {"value": "rôle", "key": "role"}, {"value": "sec", "key": "sec"}, {
             "value": "tri par Date de fin, croissant",
             "key": "sort by End date ascending"
         }, {
