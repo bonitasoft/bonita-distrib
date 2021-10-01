@@ -18,31 +18,41 @@ ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${B
 ENV HTTP_API false
 ENV JATTACH_VERSION v2.0
 
-RUN mkdir /opt/files
-COPY files /opt/files
-COPY templates /opt/templates
 
-RUN mkdir /opt/custom-init.d/ \
-  && apt-get update && apt-get install -y --no-install-recommends \
-  curl \
-  gnupg2 \
-  mysql-client-core-5.7 \
-  openjdk-11-jre-headless \
-  postgresql-client \
-  unzip \
-  zip \
+# Execute RUN instructions less likely to change first
+
+# Install packages
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+      curl \
+      gnupg2 \
+      mysql-client-core-5.7 \
+      openjdk-11-jre-headless \
+      postgresql-client \
+      unzip \
+      zip \
   && rm -rf /var/lib/apt/lists/* \
-  && groupadd -r bonita -g 1000 \
-  && useradd -u 1000 -r -g bonita -d /opt/bonita/ -s /sbin/nologin -c "Bonita User" bonita \
   && gpg --keyserver keyserver.ubuntu.com --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
   && curl -fsSL "https://github.com/tianon/gosu/releases/download/1.13/gosu-$(dpkg --print-architecture)" -o /usr/local/bin/gosu \
   && curl -fsSL "https://github.com/tianon/gosu/releases/download/1.13/gosu-$(dpkg --print-architecture).asc" -o /usr/local/bin/gosu.asc \
   && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu \
-  && curl -fsSL https://github.com/apangin/jattach/releases/download/${JATTACH_VERSION}/jattach -o /usr/bin/jattach \
-  && chmod +x /usr/bin/jattach \
-  && if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip; fi \
+  && groupadd -r bonita -g 1000 \
+  && useradd -u 1000 -r -g bonita -d /opt/bonita/ -s /sbin/nologin -c "Bonita User" bonita \
+  && mkdir /opt/files \
+  && mkdir /opt/custom-init.d/
+
+
+# Install Jattach (depends of ENV JATTACH_VERSION)
+RUN curl -fsSL https://github.com/apangin/jattach/releases/download/${JATTACH_VERSION}/jattach -o /usr/bin/jattach \
+  && chmod +x /usr/bin/jattach
+
+# Must copy files first because the bundle is either taken from url or from local /opt/files if present
+COPY files /opt/files
+
+# Intall bundle (change each version of the image)
+RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip; fi \
   && sha256sum /opt/files/${ZIP_FILE} \
   && echo "$BONITA_SHA256" /opt/files/${ZIP_FILE} | sha256sum -c - \
   && unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
@@ -50,6 +60,8 @@ RUN mkdir /opt/custom-init.d/ \
   && rm /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war \
   && rm -f /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip
 
+
+COPY templates /opt/templates
 
 # create Volume to store Bonita files
 VOLUME /opt/bonita
