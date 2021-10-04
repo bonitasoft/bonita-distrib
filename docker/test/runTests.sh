@@ -13,7 +13,7 @@ fi
 trap 'echo "Stopping postgres container"; docker stop bonita_db' INT TERM EXIT
 
 # start postgres container
-POSTGRES_VERSION=9.3
+POSTGRES_VERSION=12.6
 POSTGRES_PASSWORD=s3crEt
 docker run --rm --name bonita_db -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} -d postgres:${POSTGRES_VERSION}
 
