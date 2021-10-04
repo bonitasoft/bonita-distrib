@@ -62,39 +62,6 @@ PLATFORM_PASSWORD=${PLATFORM_PASSWORD:-platform}
 TENANT_LOGIN=${TENANT_LOGIN:-install}
 TENANT_PASSWORD=${TENANT_PASSWORD:-install}
 
-
-if [ "${ENSURE_DB_CHECK_AND_CREATION}" = 'true' ]
-then
-    echo "Creating (if missing) database and users"
-	# load SQL functions
-	. ${BONITA_FILES}/functions.sh
-	case "${DB_VENDOR}" in
-		mysql)
-			DB_ADMIN_USER=${DB_ADMIN_USER:-root}
-			if [ -z "$DB_ADMIN_PASS" ]
-			then
-				DB_ADMIN_PASS=$MYSQL_ENV_MYSQL_ROOT_PASSWORD
-			fi
-			;;
-		postgres)
-			DB_ADMIN_USER=${DB_ADMIN_USER:-postgres}
-			if [ -z "$DB_ADMIN_PASS" ]
-			then
-				DB_ADMIN_PASS=$POSTGRES_ENV_POSTGRES_PASSWORD
-			fi
-			;;
-	esac
-	if [ "${DB_VENDOR}" != 'h2' ]
-	then
-		# ensure to create bonita db and user
-		create_user_if_not_exists "$DB_VENDOR" "$DB_HOST" "$DB_PORT" "$DB_ADMIN_USER" "$DB_ADMIN_PASS" "$DB_USER" "$DB_PASS"
-		create_database_if_not_exists "$DB_VENDOR" "$DB_HOST" "$DB_PORT" "$DB_ADMIN_USER" "$DB_ADMIN_PASS" "$DB_NAME" "$DB_USER" "$DB_PASS" "$DB_DROP_EXISTING"
-		# ensure to create business db and user if needed
-		create_user_if_not_exists "$DB_VENDOR" "$DB_HOST" "$DB_PORT" "$DB_ADMIN_USER" "$DB_ADMIN_PASS" "$BIZ_DB_USER" "$BIZ_DB_PASS"
-		create_database_if_not_exists "$DB_VENDOR" "$DB_HOST" "$DB_PORT" "$DB_ADMIN_USER" "$DB_ADMIN_PASS" "$BIZ_DB_NAME" "$BIZ_DB_USER" "$BIZ_DB_PASS" "$BIZ_DB_DROP_EXISTING"
-	fi
-fi
-
 # apply conf
 # copy templates
 cp ${BONITA_TPL}/setenv.sh ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/tomcat-templates/setenv.sh

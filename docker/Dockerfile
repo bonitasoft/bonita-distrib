@@ -9,7 +9,7 @@ ARG BONITA_SHA256
 ARG BASE_URL
 ARG BONITA_URL
 
-ENV BONITA_VERSION ${BONITA_VERSION:-7.13.0}
+ENV BONITA_VERSION ${BONITA_VERSION:-7.14.0}
 ENV BRANDING_VERSION ${BRANDING_VERSION:-2022.1-u0}
 ENV BONITA_SHA256  ${BONITA_SHA256:-e4f279765cd729885a4e353d96d1d85c5f69fef63f79183e0ccf3ffaa0cb2417}
 ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
@@ -19,18 +19,12 @@ ENV HTTP_API false
 ENV JATTACH_VERSION v2.0
 
 
-# Execute RUN instructions less likely to change first
-
-# Install packages
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-      curl \
-      gnupg2 \
-      mysql-client-core-5.7 \
-      openjdk-11-jre-headless \
-      postgresql-client \
-      unzip \
-      zip \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  curl \
+  gnupg2 \
+  openjdk-11-jre-headless \
+  unzip \
+  zip \
   && rm -rf /var/lib/apt/lists/* \
   && gpg --keyserver keyserver.ubuntu.com --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
   && curl -fsSL "https://github.com/tianon/gosu/releases/download/1.13/gosu-$(dpkg --print-architecture)" -o /usr/local/bin/gosu \
