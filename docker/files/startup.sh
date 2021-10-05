@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eo pipefail
 # ensure to set the proper owner of data volume
 if [ `stat -c %U /opt/bonita/` != 'bonita' ]
 then
@@ -12,9 +13,11 @@ then
 fi
 if [ -d /opt/custom-init.d/ ]
 then
-	for f in $(ls -v /opt/custom-init.d/*.sh)
+  echo "Custom scripts:"
+  find /opt/custom-init.d -name '*.sh' | sort
+	for f in $(find /opt/custom-init.d -name '*.sh' | sort)
 	do
-		[ -f "$f" ] && . "$f"
+		[ -f "$f" ] && echo "Executing custom script $f" && . "$f"
 	done
 fi
 # launch tomcat
