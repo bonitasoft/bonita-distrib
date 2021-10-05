@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -eo pipefail
 
 # Path to deploy the Tomcat Bundle
 BONITA_PATH=/opt/bonita
