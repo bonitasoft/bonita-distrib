@@ -26,13 +26,8 @@ RUN gpg --keyserver keyserver.ubuntu.com --recv-keys B42F6819007F00F88E364FD4036
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu
 
-# Install Jattach
-ARG JATTACH_VERSION=v2.0
-RUN curl -fsSL https://github.com/apangin/jattach/releases/download/${JATTACH_VERSION}/jattach -o /usr/bin/jattach \
-  && chmod +x /usr/bin/jattach
 
 # Install Bundle
-
 
 ## ARGS and ENV required to download and unzip the toncat bundle
 # use --build-arg key=value in docker build command to override arguments
