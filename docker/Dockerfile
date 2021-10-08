@@ -52,8 +52,10 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "F
   && sha256sum /opt/files/${ZIP_FILE} \
   && echo "$BONITA_SHA256" /opt/files/${ZIP_FILE} | sha256sum -c - \
   && unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
-  && unzip /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war -d /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita/ \
-  && rm /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war \
+  && mv /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/* /opt/bonita \
+  && rmdir /opt/bonita/BonitaCommunity-${BRANDING_VERSION} \
+  && unzip /opt/bonita/server/webapps/bonita.war -d /opt/bonita/server/webapps/bonita/ \
+  && rm /opt/bonita/server/webapps/bonita.war \
   && rm -f /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip
 
 # ENV only required at runtime

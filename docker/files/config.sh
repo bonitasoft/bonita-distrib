@@ -64,17 +64,17 @@ TENANT_PASSWORD=${TENANT_PASSWORD:-install}
 
 # apply conf
 # copy templates
-cp ${BONITA_TPL}/setenv.sh ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/tomcat-templates/setenv.sh
-cp ${BONITA_TPL}/database.properties ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/database.properties
+cp ${BONITA_TPL}/setenv.sh ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
+cp ${BONITA_TPL}/database.properties ${BONITA_PATH}/setup/database.properties
 
 # if required, uncomment dynamic checks on REST API
 if [ "$REST_API_DYN_AUTH_CHECKS" = 'true' ]
 then
-    sed -i -e 's/^#GET|/GET|/' -e 's/^#POST|/POST|/' -e 's/^#PUT|/PUT|/' -e 's/^#DELETE|/DELETE|/' ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/platform_conf/initial/tenant_template_portal/dynamic-permissions-checks-custom.properties
+    sed -i -e 's/^#GET|/GET|/' -e 's/^#POST|/POST|/' -e 's/^#PUT|/PUT|/' -e 's/^#DELETE|/DELETE|/' ${BONITA_PATH}/setup/platform_conf/initial/tenant_template_portal/dynamic-permissions-checks-custom.properties
 fi
 
 # replace variables
-find ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/platform_conf/initial -name "*.properties" | xargs -n10 sed -i \
+find ${BONITA_PATH}/setup/platform_conf/initial -name "*.properties" | xargs -n10 sed -i \
     -e 's/^#userName\s*=.*/'"userName=${TENANT_LOGIN}"'/' \
     -e 's/^#userPassword\s*=.*/'"userPassword=${TENANT_PASSWORD}"'/' \
     -e 's/^platform.tenant.default.username\s*=.*/'"platform.tenant.default.username=${TENANT_LOGIN}"'/' \
@@ -83,15 +83,15 @@ find ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/platform_conf/init
     -e 's/^#platformAdminPassword\s*=.*/'"platformAdminPassword=${PLATFORM_PASSWORD}"'/'
 
 echo "Using JAVA_OPTS: ${JAVA_OPTS}"
-sed -i -e 's/{{JAVA_OPTS}}/'"${JAVA_OPTS}"'/' ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/tomcat-templates/setenv.sh
+sed -i -e 's/{{JAVA_OPTS}}/'"${JAVA_OPTS}"'/' ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
 
 if [ -n "$JDBC_DRIVER" ]
 then
     # if $JDBC_DRIVER is set and the driver is not present, copy the JDBC driver into the Bundle
     file=$(basename $JDBC_DRIVER)
-    if [ ! -e ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/lib/$file ]
+    if [ ! -e ${BONITA_PATH}/setup/lib/$file ]
     then
-        cp ${BONITA_FILES}/${JDBC_DRIVER} ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/lib/
+        cp ${BONITA_FILES}/${JDBC_DRIVER} ${BONITA_PATH}/setup/lib/
     fi
 fi
 
@@ -110,16 +110,16 @@ sed -e 's/{{DB_VENDOR}}/'"${DB_VENDOR}"'/' \
     -e 's/{{BIZ_DB_USER}}/'"${BIZ_DB_USER}"'/' \
     -e 's/{{BIZ_DB_PASS}}/'"${BIZ_DB_PASS}"'/' \
     -e 's/{{BIZ_DB_NAME}}/'"${BIZ_DB_NAME}"'/' \
-    -i ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/setup/database.properties
+    -i ${BONITA_PATH}/setup/database.properties
 
 # apply logging configuration
-LOGGING_FILE=${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/server/conf/logging.properties
+LOGGING_FILE=${BONITA_PATH}/server/conf/logging.properties
 mv ${LOGGING_FILE} ${LOGGING_FILE}.original
 awk -f ${BONITA_FILES}/logging.awk ${LOGGING_FILE}.original > ${LOGGING_FILE}
 
 # use the setup tool to initialize and configure Bonita Tomcat bundle
 
 # platform setup tool logging configuration file
-BONITA_SETUP_LOGGING_FILE=${BONITA_SETUP_LOGGING_FILE:-/opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/logback.xml}
-./opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/setup.sh init -Dh2.noconfirm -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
-./opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup/setup.sh configure -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
+BONITA_SETUP_LOGGING_FILE=${BONITA_SETUP_LOGGING_FILE:-/opt/bonita/setup/logback.xml}
+./opt/bonita/setup/setup.sh init -Dh2.noconfirm -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
+./opt/bonita/setup/setup.sh configure -Dlogging.config=${BONITA_SETUP_LOGGING_FILE}
