@@ -62,28 +62,28 @@ command:
     exit-status: 0
     stdout:
     - /org.apache.catalina.startup.Bootstrap start/
-  ls -1 /opt/bonita/Bonita*/setup/lib/{{getEnv "DB_VENDOR"}}*:
+  ls -1 /opt/bonita/setup/lib/{{getEnv "DB_VENDOR"}}*:
     title: Checking that JDBC driver is present
     exit-status: 0
-  grep 'db.vendor={{getEnv "DB_VENDOR"}}' /opt/bonita/Bonita*/setup/database.properties:
+  grep 'db.vendor={{getEnv "DB_VENDOR"}}' /opt/bonita/setup/database.properties:
     title: Checking database.properties DB_VENDOR
     exit-status: 0
-  grep 'server.name={{getEnv "DB_HOST"}}' /opt/bonita/Bonita*/setup/database.properties:
+  grep 'server.name={{getEnv "DB_HOST"}}' /opt/bonita/setup/database.properties:
     title: Checking database.properties DB_HOST
     exit-status: 0
-  grep 'server.port={{getEnv "DB_PORT"}}' /opt/bonita/Bonita*/setup/database.properties:
+  grep 'server.port={{getEnv "DB_PORT"}}' /opt/bonita/setup/database.properties:
     title: Checking database.properties DB_PORT
     exit-status: 0
-  find /opt/bonita/Bonita*/setup/platform_conf/initial -name *.properties | xargs -n10 grep '^userName={{getEnv "TENANT_LOGIN"}}' | [ $(wc -l) -gt 0 ]:
+  find /opt/bonita/setup/platform_conf/initial -name *.properties | xargs -n10 grep '^userName={{getEnv "TENANT_LOGIN"}}' | [ $(wc -l) -gt 0 ]:
     title: Checking custom TENANT_LOGIN
     exit-status: 0
-  find /opt/bonita/Bonita*/setup/platform_conf/initial -name *.properties | xargs -n10 grep '^userPassword={{getEnv "TENANT_PASSWORD"}}' | [ $(wc -l) -gt 0 ]:
+  find /opt/bonita/setup/platform_conf/initial -name *.properties | xargs -n10 grep '^userPassword={{getEnv "TENANT_PASSWORD"}}' | [ $(wc -l) -gt 0 ]:
     title: Checking custom TENANT_PASSWORD
     exit-status: 0
-  find /opt/bonita/Bonita*/setup/platform_conf/initial -name *.properties | xargs -n10 grep '^platformAdminUsername={{getEnv "PLATFORM_LOGIN"}}' | [ $(wc -l) -gt 0 ]:
+  find /opt/bonita/setup/platform_conf/initial -name *.properties | xargs -n10 grep '^platformAdminUsername={{getEnv "PLATFORM_LOGIN"}}' | [ $(wc -l) -gt 0 ]:
     title: Checking custom PLATFORM_LOGIN
     exit-status: 0
-  find /opt/bonita/Bonita*/setup/platform_conf/initial -name *.properties | xargs -n10 grep '^platformAdminPassword={{getEnv "PLATFORM_PASSWORD"}}' | [ $(wc -l) -gt 0 ]:
+  find /opt/bonita/setup/platform_conf/initial -name *.properties | xargs -n10 grep '^platformAdminPassword={{getEnv "PLATFORM_PASSWORD"}}' | [ $(wc -l) -gt 0 ]:
     title: Checking custom PLATFORM_PASSWORD
     exit-status: 0
 
