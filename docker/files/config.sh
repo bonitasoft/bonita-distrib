@@ -50,11 +50,9 @@ BIZ_DB_VENDOR=$DB_VENDOR
 DB_NAME=${DB_NAME:-bonitadb}
 DB_USER=${DB_USER:-bonitauser}
 DB_PASS=${DB_PASS:-bonitapass}
-DB_DROP_EXISTING=${DB_DROP_EXISTING:-N}
 BIZ_DB_NAME=${BIZ_DB_NAME:-businessdb}
 BIZ_DB_USER=${BIZ_DB_USER:-businessuser}
 BIZ_DB_PASS=${BIZ_DB_PASS:-businesspass}
-BIZ_DB_DROP_EXISTING=${BIZ_DB_DROP_EXISTING:-N}
 
 # if not enforced, set the default credentials
 PLATFORM_LOGIN=${PLATFORM_LOGIN:-platformAdmin}
