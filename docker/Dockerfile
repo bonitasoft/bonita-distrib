@@ -56,7 +56,18 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "F
   && unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
   && unzip /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war -d /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita/ \
   && rm /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war \
-  && rm -f /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip
+  && rm -f /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
+  && chown -R bonita:bonita /opt/bonita \
+  && chmod -R +rX /opt/bonita \
+  && chmod go+w /opt/bonita \
+  && chmod 777 /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/logs \
+  && chmod 777 /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/temp \
+  && chmod 777 /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/work \
+  && chmod -R go+w /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/conf \
+  && chmod -R go+w /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/bin \
+  && chmod -R go+w /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/server/lib/bonita \
+  && chmod -R go+w /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/setup
+  # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
 
 # ENV only required at runtime
 ENV HTTP_API false
@@ -70,6 +81,6 @@ COPY templates /opt/templates
 EXPOSE 8080
 
 # command to run when the container starts
-CMD ["/opt/files/startup.sh"]
+ENTRYPOINT ["/opt/files/startup.sh"]
 
 
