@@ -110,11 +110,6 @@ sed -e 's/{{DB_VENDOR}}/'"${DB_VENDOR}"'/' \
     -e 's/{{BIZ_DB_NAME}}/'"${BIZ_DB_NAME}"'/' \
     -i ${BONITA_PATH}/setup/database.properties
 
-# apply logging configuration
-LOGGING_FILE=${BONITA_PATH}/server/conf/logging.properties
-mv ${LOGGING_FILE} ${LOGGING_FILE}.original
-awk -f ${BONITA_FILES}/logging.awk ${LOGGING_FILE}.original > ${LOGGING_FILE}
-
 # use the setup tool to initialize and configure Bonita Tomcat bundle
 
 # platform setup tool logging configuration file

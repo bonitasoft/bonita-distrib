@@ -19,7 +19,12 @@
         <dependencySet>
             <outputDirectory>ext</outputDirectory>
             <includes>
-                <include>org.bonitasoft.distrib.tomcat:bonita-tomcat-juli</include>
+                <include>org.apache.logging.log4j:log4j-core</include>
+                <include>org.apache.logging.log4j:log4j-api</include>
+                <include>org.apache.logging.log4j:log4j-jul</include>
+                <include>com.fasterxml.jackson.core:jackson-core</include>
+                <include>com.fasterxml.jackson.core:jackson-databind</include>
+                <include>com.fasterxml.jackson.core:jackson-annotations</include>
             </includes>
             <useTransitiveDependencies>true</useTransitiveDependencies>
             <useTransitiveFiltering>true</useTransitiveFiltering>

@@ -47,6 +47,7 @@ ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${B
 ## Must copy files first because the bundle is either taken from url or from local /opt/files if present
 RUN mkdir /opt/files
 COPY files /opt/files
+RUN mkdir -p /bonita/run
 
 RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip; fi \
   && sha256sum /opt/files/${ZIP_FILE} \
@@ -75,6 +76,7 @@ ENV HTTP_API false
 
 # create Volume to store Bonita files
 VOLUME /opt/bonita
+VOLUME /bonita/run/
 
 COPY templates /opt/templates
 # expose Tomcat port

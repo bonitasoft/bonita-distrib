@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="60">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName} | %-5p | [%t|%T] %c{1.} - %m%n</Property>
+        <Property name="baseDir">${sys:catalina.base}/logs/</Property>
+    </Properties>
+    <Appenders>
+        <!-- use json logger if json output is required -->
+        <Console name="Console-JSON" target="SYSTEM_OUT">
+            <JSONLayout compact="true" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd'T'HH:mm:ss.SSSZ}" />
+            </JSONLayout>
+        </Console>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+        <RollingRandomAccessFile fileName="${baseDir}/bonita.log"
+                                 filePattern="${baseDir}/bonita-%d{yyyy-MM-dd}-%i.log.gz"
+                                 name="bonitaLogger">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="250 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20">
+                <Delete basePath="${baseDir}" maxDepth="2">
+                    <!-- Use '*/*.log*' glob pattern in order to clean setup tool logs too. -->
+                    <IfFileName glob="*/*.log*">
+                        <IfLastModified age="10d">
+                            <IfAny>
+                                <IfAccumulatedFileSize exceeds="10 GB" />
+                                <IfAccumulatedFileCount exceeds="100" />
+                            </IfAny>
+                        </IfLastModified>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Root level="WARN">
+        <!-- <AppenderRef ref="Console"/>  -->
+        <AppenderRef ref="bonitaLogger" />
+    </Root>
+
+</Configuration>
