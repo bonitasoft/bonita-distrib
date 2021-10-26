@@ -16,8 +16,10 @@
         </Console>
     </Appenders>
 
-    <Root level="WARN">
-         <AppenderRef ref="Console"/>
-    </Root>
+    <Loggers>
+        <Root level="WARN">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
 
-</Configuration>
+   </Configuration>
