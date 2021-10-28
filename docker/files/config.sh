@@ -64,10 +64,6 @@ PLATFORM_PASSWORD=${PLATFORM_PASSWORD:-platform}
 TENANT_LOGIN=${TENANT_LOGIN:-install}
 TENANT_PASSWORD=${TENANT_PASSWORD:-install}
 
-if [ ! -d ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION} ]
-then
-  unzip -q ${BONITA_FILES}/BonitaCommunity-${BRANDING_VERSION}.zip -d ${BONITA_PATH}
-fi
 
 if [ "${ENSURE_DB_CHECK_AND_CREATION}" = 'true' ]
 then
@@ -115,8 +111,7 @@ fi
 if [ "$HTTP_API" = 'false' ]
 then
     echo "Unsecured HTTP API: NOT Activated"
-    cd ${BONITA_FILES}/
-    zip ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita.war WEB-INF/web.xml
+    cp -f ${BONITA_FILES}/WEB-INF/web.xml ${BONITA_PATH}/BonitaCommunity-${BRANDING_VERSION}/server/webapps/bonita/WEB-INF/
 else
     echo "Unsecured HTTP API: Activated"
 fi
