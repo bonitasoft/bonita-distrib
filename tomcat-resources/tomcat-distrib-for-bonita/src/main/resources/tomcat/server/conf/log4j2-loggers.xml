@@ -13,7 +13,7 @@
         <Logger name="org.hibernate" level="WARN" />
         <!--Remove wrong warnings about ehcache-->
         <Logger name="org.hibernate.orm.cache" level="FATAL" />
-        <Logger name="org.hibernate.SQL_SLOW.level " level="INFO" />
+        <Logger name="org.hibernate.SQL_SLOW.level" level="INFO" />
         <!--Ehcache is used by Bonita and very verbose in the log.  Should stay with WARNING level except when debugging cache issues-->
         <Logger name="net.sf.ehcache" level="WARN" />
         <Logger name="org.jboss.narayana.tomcat.jta" level="INFO" />
