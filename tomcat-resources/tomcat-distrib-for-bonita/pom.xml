@@ -164,6 +164,8 @@
                                 </chmod>
                                 <!-- Add bonita-libs to the common classpath entry -->
                                 <replace file="${tomcat_dir}/conf/catalina.properties" token="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar" value="$${catalina.base}/lib,$${catalina.base}/lib/*.jar,$${catalina.home}/lib,$${catalina.home}/lib/*.jar,$${catalina.home}/lib/bonita,$${catalina.home}/lib/bonita/*.jar" />
+                                <!-- Set default session-timeout to 60 minutes -->
+                                <replace file="${tomcat_dir}/conf/web.xml" token="&lt;session-timeout>30&lt;/session-timeout>" value="&lt;session-timeout>60&lt;/session-timeout>" />
                             </target>
                         </configuration>
                     </execution>
