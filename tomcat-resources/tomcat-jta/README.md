@@ -17,7 +17,7 @@ of the LGPL terms.
 
 ## Changes from the original sources
 
-As of 2019-03-06, the only changes from the original source code is the changes of the file `TransactionLifecycleListener`
+As of 2021-27-10, the changes from the original source code are the changes of the file `TransactionLifecycleListener`
 line 84:
 
 from  
@@ -33,3 +33,6 @@ from
 `private static final Logger LOGGER = Logger.getLogger(TransactionLifecycleListener.class.getSimpleName());`  
 to  
 `private static final Logger LOGGER = Logger.getLogger(TransactionLifecycleListener.class.getName());`
+
+And, the changes to XAResourceRecoveryHelper inside PoolingDataSourceFactory to the method initialiseConnection():
+If the connection is not null, we close the connection, and create a new one (as the code before could never recover a connection that timed out anyway, and would keep trying indefinitely).
