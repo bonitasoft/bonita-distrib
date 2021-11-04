@@ -140,4 +140,10 @@
     -->
     <entry key="RecoveryEnvironmentBean.recoveryListener">NO</entry>
 
+    <!--
+    Period in seconds between 2 recovery attempts, default is 120, set to an higher value to avoid polluting
+    the logs when unrecoverable resources are detected (in case of connection lost) see RUNTIME-45
+    -->
+    <entry key="RecoveryEnvironmentBean.periodicRecoveryPeriod">7200</entry>
+
 </properties>
