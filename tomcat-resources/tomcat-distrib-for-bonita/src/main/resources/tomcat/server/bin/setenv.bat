@@ -7,8 +7,8 @@ rem ############################################################################
 
 rem Set some JVM system properties required by Bonita
 
-set LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager"
-set LOG_CONF_FILE_PATH="-Dlog4j.configurationFile=${CATALINA_BASE}/conf/log4j2-appenders.xml,${CATALINA_BASE}/conf/log4j2-loggers.xml"
+set LOGGING_MANAGER=-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager
+set LOG_CONF_FILE_PATH="-Dlog4j.configurationFile=%CATALINA_BASE%\conf\log4j2-appenders.xml,%CATALINA_BASE%\conf\log4j2-loggers.xml"
 
 set PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=%CATALINA_HOME%\..\setup"
 set H2_DATABASE_DIR="-Dorg.bonitasoft.h2.database.dir=%CATALINA_HOME%\..\h2_database"
