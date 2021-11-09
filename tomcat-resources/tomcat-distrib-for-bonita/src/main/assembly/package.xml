@@ -13,6 +13,7 @@
             </includes>
             <excludes>
                 <exclude>**/*.sh</exclude>
+                <exclude>**/jmxremote.*</exclude>
             </excludes>
         </fileSet>
         <fileSet>
@@ -22,6 +23,14 @@
                 <include>**/*.sh</include>
             </includes>
             <fileMode>0740</fileMode>
+        </fileSet>
+        <fileSet>
+            <outputDirectory/>
+            <directory>${tomcat_dir}</directory>
+            <includes>
+                <include>**/jmxremote.*</include>
+            </includes>
+            <fileMode>0600</fileMode>
         </fileSet>
     </fileSets>
 </assembly>

@@ -43,6 +43,9 @@ ENV BONITA_SHA256  ${BONITA_SHA256:-e4f279765cd729885a4e353d96d1d85c5f69fef63f79
 ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
 ENV BASE_URL ${BASE_URL:-https://github.com/bonitasoft/bonita-platform-releases/releases/download}
 ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${BRANDING_VERSION}.zip}
+ENV MONITORING_USERNAME ${MONITORING_USERNAME:-monitoring}
+ENV MONITORING_PASSWORD ${MONITORING_PASSWORD:-mon1tor1ng_adm1n}
+ENV JMX_REMOTE_ACCESS ${JMX_REMOTE_ACCESS:-false}
 
 ## Must copy files first because the bundle is either taken from url or from local /opt/files if present
 RUN mkdir /opt/files
@@ -82,8 +85,8 @@ ENV HTTP_API false
 VOLUME /opt/bonita
 
 COPY templates /opt/templates
-# expose Tomcat port
-EXPOSE 8080
+# exposed ports (Tomcat, JMX)
+EXPOSE 8080 9000
 
 # command to run when the container starts
 ENTRYPOINT ["/opt/files/startup.sh"]
