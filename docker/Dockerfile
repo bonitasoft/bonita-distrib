@@ -47,7 +47,6 @@ ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${B
 ## Must copy files first because the bundle is either taken from url or from local /opt/files if present
 RUN mkdir /opt/files
 COPY files /opt/files
-RUN mkdir -p /bonita/run
 
 RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip; fi \
   && sha256sum /opt/files/${ZIP_FILE} \
@@ -58,10 +57,15 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "F
   && unzip /opt/bonita/server/webapps/bonita.war -d /opt/bonita/server/webapps/bonita/ \
   && rm /opt/bonita/server/webapps/bonita.war \
   && rm -f /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
+  && mkdir -p /opt/bonita/conf/logs/ \
+  && mkdir -p /opt/bonita/logs/ \
   && chown -R bonita:bonita /opt/bonita \
   && chmod -R +rX /opt/bonita \
   && chmod go+w /opt/bonita \
+  && mv /opt/files/log4j2/log4j2-appenders.xml /opt/bonita/conf/logs/ \
+  && mv /opt/bonita/server/conf/log4j2-loggers.xml /opt/bonita/conf/logs/ \
   && chmod 777 /opt/bonita/server/logs \
+  && chmod 777 /opt/bonita/logs/ \
   && chmod 777 /opt/bonita/server/temp \
   && chmod 777 /opt/bonita/server/work \
   && chmod -R go+w /opt/bonita/server/conf \
@@ -76,7 +80,6 @@ ENV HTTP_API false
 
 # create Volume to store Bonita files
 VOLUME /opt/bonita
-VOLUME /bonita/run/
 
 COPY templates /opt/templates
 # expose Tomcat port
