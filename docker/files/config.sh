@@ -80,6 +80,16 @@ find ${BONITA_PATH}/setup/platform_conf/initial -name "*.properties" | xargs -n1
     -e 's/^#platformAdminUsername\s*=.*/'"platformAdminUsername=${PLATFORM_LOGIN}"'/' \
     -e 's/^#platformAdminPassword\s*=.*/'"platformAdminPassword=${PLATFORM_PASSWORD}"'/'
 
+if [ "$JMX_REMOTE_ACCESS" = 'true' ]
+then
+    sed -e 's/{{MONITORING_USERNAME}}/'"${MONITORING_USERNAME}"'/' \
+      ${BONITA_TPL}/jmxremote.access > ${BONITA_PATH}/server/conf/jmxremote.access
+
+    sed -e 's/{{MONITORING_USERNAME}}/'"${MONITORING_USERNAME}"'/' \
+      -e 's/{{MONITORING_PASSWORD}}/'"${MONITORING_PASSWORD}"'/' \
+      ${BONITA_TPL}/jmxremote.password > ${BONITA_PATH}/server/conf/jmxremote.password
+fi
+
 echo "Using JAVA_OPTS: ${JAVA_OPTS}"
 sed -i -e 's/{{JAVA_OPTS}}/'"${JAVA_OPTS}"'/' ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
 
