@@ -63,7 +63,8 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "F
   && mkdir -p /opt/bonita/conf/logs/ \
   && mkdir -p /opt/bonita/logs/ \
   && chown -R bonita:bonita /opt/bonita \
-  && chmod -R +rX /opt/bonita \
+  && chmod go+w /opt/ \
+  && chmod -R +rX /opt \
   && chmod go+w /opt/bonita \
   && mv /opt/files/log4j2/log4j2-appenders.xml /opt/bonita/conf/logs/ \
   && mv /opt/bonita/server/conf/log4j2-loggers.xml /opt/bonita/conf/logs/ \
@@ -75,14 +76,9 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "F
   && chmod -R go+w /opt/bonita/server/bin \
   && chmod -R go+w /opt/bonita/server/lib/bonita \
   && chmod -R go+w /opt/bonita/setup
-  # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
 
 # ENV only required at runtime
 ENV HTTP_API false
-
-
-# create Volume to store Bonita files
-VOLUME /opt/bonita
 
 COPY templates /opt/templates
 # exposed ports (Tomcat, JMX)
