@@ -13,6 +13,7 @@
             </includes>
             <excludes>
                 <exclude>**/*.sh</exclude>
+                <exclude>conf/logging.properties</exclude> <!-- using log4j2 instead -->
                 <exclude>**/jmxremote.*</exclude>
             </excludes>
         </fileSet>
