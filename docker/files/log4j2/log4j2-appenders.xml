@@ -12,7 +12,7 @@
             </JSONLayout>
         </Console>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="${LOG_PATTERN}" />
+            <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
     </Appenders>
 
@@ -22,4 +22,4 @@
         </Root>
     </Loggers>
 
-   </Configuration>
+</Configuration>
