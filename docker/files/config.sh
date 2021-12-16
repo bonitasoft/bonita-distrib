@@ -11,8 +11,6 @@ BONITA_FILES=/opt/files
 ENSURE_DB_CHECK_AND_CREATION=${ENSURE_DB_CHECK_AND_CREATION:-true}
 # Java OPTS
 JAVA_OPTS=${JAVA_OPTS:--Xms1024m -Xmx1024m}
-# Flag to enable or not dynamic authorization checking on Bonita REST API
-REST_API_DYN_AUTH_CHECKS=${REST_API_DYN_AUTH_CHECKS:-true}
 
 # retrieve the db parameters from the container linked
 if [ -n "$POSTGRES_PORT_5432_TCP_PORT" ]
@@ -64,12 +62,6 @@ TENANT_PASSWORD=${TENANT_PASSWORD:-install}
 # copy templates
 cp ${BONITA_TPL}/setenv.sh ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
 cp ${BONITA_TPL}/database.properties ${BONITA_PATH}/setup/database.properties
-
-# if required, uncomment dynamic checks on REST API
-if [ "$REST_API_DYN_AUTH_CHECKS" = 'true' ]
-then
-    sed -i -e 's/^#GET|/GET|/' -e 's/^#POST|/POST|/' -e 's/^#PUT|/PUT|/' -e 's/^#DELETE|/DELETE|/' ${BONITA_PATH}/setup/platform_conf/initial/tenant_template_portal/dynamic-permissions-checks-custom.properties
-fi
 
 # replace variables
 find ${BONITA_PATH}/setup/platform_conf/initial -name "*.properties" | xargs -n10 sed -i \
