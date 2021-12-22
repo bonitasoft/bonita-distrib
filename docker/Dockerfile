@@ -1,30 +1,18 @@
-FROM ubuntu:18.04
+FROM adoptopenjdk/openjdk11:jre-11.0.11_9-alpine@sha256:faa097729e4904c80b982ef6962803210db032564c9850d70b5b2a52f0a02200
 
 LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 
 # Execute instructions less likely to change first
 
 # Install packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  curl \
-  gnupg2 \
-  openjdk-11-jre-headless \
-  unzip \
-  zip \
+RUN apk add --no-cache --upgrade curl unzip  bash su-exec  jattach --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /opt/custom-init.d/
 
 # create user to launch Bonita as non-root
-RUN groupadd -r bonita -g 1000 \
-  && useradd -u 1000 -r -g bonita -d /opt/bonita/ -s /sbin/nologin -c "Bonita User" bonita
-
-RUN gpg --keyserver keyserver.ubuntu.com --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-  && curl -fsSL "https://github.com/tianon/gosu/releases/download/1.13/gosu-$(dpkg --print-architecture)" -o /usr/local/bin/gosu \
-  && curl -fsSL "https://github.com/tianon/gosu/releases/download/1.13/gosu-$(dpkg --print-architecture).asc" -o /usr/local/bin/gosu.asc \
-  && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
-  && rm /usr/local/bin/gosu.asc \
-  && chmod +x /usr/local/bin/gosu
+RUN addgroup -S -g 1000 bonita \
+ && adduser -u 1000 -S  -G bonita -h /opt/bonita/ -s /sbin/nologin  bonita
 
 
 # Install Bundle
@@ -51,9 +39,8 @@ ENV JMX_REMOTE_ACCESS ${JMX_REMOTE_ACCESS:-false}
 RUN mkdir /opt/files
 COPY files /opt/files
 
-RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip; fi \
-  && sha256sum /opt/files/${ZIP_FILE} \
-  && echo "$BONITA_SHA256" /opt/files/${ZIP_FILE} | sha256sum -c - \
+RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
+  && echo "$BONITA_SHA256 /opt/files/$ZIP_FILE" | sha256sum -c - ; fi \
   && unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
   && mv /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/* /opt/bonita \
   && rmdir /opt/bonita/BonitaCommunity-${BRANDING_VERSION} \

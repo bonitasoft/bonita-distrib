@@ -5,7 +5,7 @@ if [ "$(id -u)" = '0' ]; then
 	chmod -R go-rwx /opt/bonita/
   chown -R bonita:bonita /opt/custom-init.d/
 	chown -R bonita:bonita /opt/files
-	exec gosu bonita "$BASH_SOURCE" "$@"
+	exec su-exec  bonita "$BASH_SOURCE" "$@"
 fi
 
 # ensure to apply the proper configuration
