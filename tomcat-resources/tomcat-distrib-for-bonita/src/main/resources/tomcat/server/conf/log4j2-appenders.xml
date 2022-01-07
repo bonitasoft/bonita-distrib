@@ -29,7 +29,8 @@
 
     <Loggers>
         <Root level="INFO">
-            <AppenderRef ref="Console"/>
+            <!--Activate that appender to log directly to the console-->
+            <!--<AppenderRef ref="Console"/>-->
             <AppenderRef ref="File"/>
         </Root>
     </Loggers>
