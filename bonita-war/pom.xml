@@ -42,6 +42,11 @@
                     <artifactId>jakarta.activation-api</artifactId>
                     <groupId>jakarta.activation</groupId>
                 </exclusion>
+                <!-- already in /lib/bonita (dependency of tomcat-jta) -->
+                <exclusion>
+                    <groupId>jakarta.transaction</groupId>
+                    <artifactId>jakarta.transaction-api</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 
