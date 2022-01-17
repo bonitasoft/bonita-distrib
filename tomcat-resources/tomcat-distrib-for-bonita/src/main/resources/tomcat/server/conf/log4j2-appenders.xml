@@ -5,6 +5,7 @@
         <!--  log format used in version 2021.2 and before -->
         <!-- <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS Z} %level{WARN=WARNING, DEBUG=FINE, ERROR=SEVERE, TRACE=FINER, INFO=INFO} (%t) %c %m%n</Property> -->
         <Property name="baseDir">${sys:catalina.base}/logs/</Property>
+        <Property name="optionalAppender">${sys:bonita.runtime.logger.sysout:-Null}</Property>
     </Properties>
     <Appenders>
         <!-- use json logger if json output is required -->
@@ -16,6 +17,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
+        <Null name="Null" />
         <RollingRandomAccessFile fileName="${baseDir}/bonita.log"
                                  filePattern="${baseDir}/bonita-%d{yyyy-MM-dd}-%i.log.gz"
                                  name="File">
@@ -29,8 +31,8 @@
 
     <Loggers>
         <Root level="INFO">
-            <!--Activate that appender to log directly to the console-->
-            <!--<AppenderRef ref="Console"/>-->
+            <!--Activate console appender using Java system property `bonita.runtime.logger.sysout` set to `Console` or `Console-JSON` in setEnv.sh -->
+            <AppenderRef ref="${optionalAppender}"/>
             <AppenderRef ref="File"/>
         </Root>
     </Loggers>
