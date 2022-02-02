@@ -64,6 +64,11 @@
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
+        <repository>
+            <id>restlet.com</id>
+            <name>restlet.com</name>
+            <url>https://maven.restlet.talend.com</url>
+        </repository>
     </repositories>
 
     <build>
