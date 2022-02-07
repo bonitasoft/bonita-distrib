@@ -54,6 +54,14 @@
         </dependencies>
     </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>restlet.com</id>
+            <name>restlet.com</name>
+            <url>https://maven.restlet.talend.com</url>
+        </repository>
+    </repositories>
+
     <build>
         <pluginManagement>
             <plugins>
