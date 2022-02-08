@@ -72,6 +72,10 @@ find ${BONITA_PATH}/setup/platform_conf/initial -name "*.properties" | xargs -n1
     -e 's/^#platformAdminUsername\s*=.*/'"platformAdminUsername=${PLATFORM_LOGIN}"'/' \
     -e 's/^#platformAdminPassword\s*=.*/'"platformAdminPassword=${PLATFORM_PASSWORD}"'/'
 
+sed -e 's/{{HTTP_API_USERNAME}}/'"${HTTP_API_USERNAME}"'/' \
+      -e 's/{{HTTP_API_PASSWORD}}/'"${HTTP_API_PASSWORD}"'/' \
+      ${BONITA_TPL}/tomcat-users.xml > ${BONITA_PATH}/server/conf/tomcat-users.xml
+
 if [ "$JMX_REMOTE_ACCESS" = 'true' ]
 then
     sed -e 's/{{MONITORING_USERNAME}}/'"${MONITORING_USERNAME}"'/' \
