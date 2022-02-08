@@ -9,6 +9,8 @@ BONITA_TPL=/opt/templates
 BONITA_FILES=/opt/files
 # Flag to allow or not the SQL queries to automatically check and create the databases
 ENSURE_DB_CHECK_AND_CREATION=${ENSURE_DB_CHECK_AND_CREATION:-true}
+# XA transaction timeout:
+BONITA_RUNTIME_TRANSACTION_XATIMEOUT=${BONITA_RUNTIME_TRANSACTION_XATIMEOUT:-180}
 # Java OPTS
 JAVA_OPTS=${JAVA_OPTS:--Xms1024m -Xmx1024m}
 
@@ -85,6 +87,9 @@ then
       -e 's/{{MONITORING_PASSWORD}}/'"${MONITORING_PASSWORD}"'/' \
       ${BONITA_TPL}/jmxremote.password > ${BONITA_PATH}/server/conf/jmxremote.password
 fi
+
+echo "XA transaction timeout: ${BONITA_RUNTIME_TRANSACTION_XATIMEOUT}"
+sed -i -e 's/{{TRANSACTION_XATIMEOUT_OPTS}}/'"${BONITA_RUNTIME_TRANSACTION_XATIMEOUT}"'/' ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
 
 echo "Using JAVA_OPTS: ${JAVA_OPTS}"
 sed -i -e 's/{{JAVA_OPTS}}/'"${JAVA_OPTS}"'/' ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
