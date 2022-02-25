@@ -9,6 +9,7 @@
             <outputDirectory>bonita</outputDirectory>
             <includes>
                 <include>org.bonitasoft.distrib.tomcat:tomcat-jta</include>
+                <include>org.bonitasoft.distrib.tomcat:tomcat-bonita-extensions</include>
                 <include>org.slf4j:slf4j-jdk14</include>
                 <include>org.slf4j:slf4j-api</include>
                 <include>com.h2database:h2</include>

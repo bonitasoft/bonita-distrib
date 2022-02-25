@@ -91,8 +91,6 @@ fi
 echo "XA transaction timeout: ${BONITA_RUNTIME_TRANSACTION_XATIMEOUT}"
 sed -i -e 's/{{TRANSACTION_XATIMEOUT_OPTS}}/'"${BONITA_RUNTIME_TRANSACTION_XATIMEOUT}"'/' ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
 
-echo "Using JAVA_OPTS: ${JAVA_OPTS}"
-sed -i -e 's/{{JAVA_OPTS}}/'"${JAVA_OPTS}"'/' ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
 
 if [ -n "$JDBC_DRIVER" ]
 then

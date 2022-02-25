@@ -16,6 +16,7 @@
 
     <modules>
         <module>tomcat-jta</module>
+        <module>tomcat-bonita-extensions</module>
         <!-- keep at last position as it depends on other modules (that are not always retrieved through direct dependencies so maven is not aware of the dependency order) -->
         <module>tomcat-distrib-for-bonita</module>
     </modules>
