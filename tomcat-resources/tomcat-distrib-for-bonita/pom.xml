@@ -22,6 +22,11 @@
             <artifactId>tomcat-jta</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.bonitasoft.distrib.tomcat</groupId>
+            <artifactId>tomcat-bonita-extensions</artifactId>
+            <version>7.14.0-SNAPSHOT</version>
+        </dependency>
         <!-- redirect all logs to JUL(I) -->
         <dependency>
             <groupId>org.slf4j</groupId>
