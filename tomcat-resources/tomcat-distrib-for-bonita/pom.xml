@@ -25,7 +25,7 @@
         <dependency>
             <groupId>org.bonitasoft.distrib.tomcat</groupId>
             <artifactId>tomcat-bonita-extensions</artifactId>
-            <version>7.14.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <!-- redirect all logs to JUL(I) -->
         <dependency>
