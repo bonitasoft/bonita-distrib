@@ -34,7 +34,7 @@ ENV BASE_URL ${BASE_URL:-https://github.com/bonitasoft/bonita-platform-releases/
 # that particular beta url does not follow classic branding version url. To be fixed in next version.
 ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/2022.1-beta-01/BonitaCommunity-${BRANDING_VERSION}.zip}
 ENV HTTP_API_USERNAME ${HTTP_API_USERNAME:-http-api}
-ENV HTTP_API_PASSWORD ${HTTP_API_PASSWORD:-h11p-@p1}
+ENV HTTP_API_PASSWORD ${HTTP_API_PASSWORD:-""}
 ENV MONITORING_USERNAME ${MONITORING_USERNAME:-monitoring}
 ENV MONITORING_PASSWORD ${MONITORING_PASSWORD:-mon1tor1ng_adm1n}
 ENV JMX_REMOTE_ACCESS ${JMX_REMOTE_ACCESS:-false}

@@ -60,6 +60,12 @@ PLATFORM_PASSWORD=${PLATFORM_PASSWORD:-platform}
 TENANT_LOGIN=${TENANT_LOGIN:-install}
 TENANT_PASSWORD=${TENANT_PASSWORD:-install}
 
+if [ "${HTTP_API}" = "true" -a "${HTTP_API_PASSWORD}" = "" ]
+then
+  echo "Error: HTTP_API is activated: you MUST provide a custom password with '-e HTTP_API_PASSWORD=...'"
+  exit 2
+fi
+
 # apply conf
 # copy templates
 cp ${BONITA_TPL}/setenv.sh ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
