@@ -38,6 +38,19 @@ ENV HTTP_API_PASSWORD ${HTTP_API_PASSWORD:-""}
 ENV MONITORING_USERNAME ${MONITORING_USERNAME:-monitoring}
 ENV MONITORING_PASSWORD ${MONITORING_PASSWORD:-mon1tor1ng_adm1n}
 ENV JMX_REMOTE_ACCESS ${JMX_REMOTE_ACCESS:-false}
+ENV REMOTE_IP_VALVE_ENABLED ${REMOTE_IP_VALVE_ENABLED:-false}
+# Allow to redirect access logs to stdout:
+ENV ACCESSLOGS_STDOUT_ENABLED ${ACCESSLOGS_STDOUT_ENABLED:-false}
+# Allow to redirect access logs to file:
+ENV ACCESSLOGS_FILES_ENABLED ${ACCESSLOGS_FILES_ENABLED:-false}
+# If access log files enabled, where to put the access log files:
+ENV ACCESSLOGS_PATH ${ACCESSLOGS_PATH:-/opt/bonita/logs}
+# access log files enabled, should we append new HOSTNAME directory to full path:
+ENV ACCESSLOGS_PATH_APPEND_HOSTNAME ${ACCESSLOGS_PATH_APPEND_HOSTNAME:-false}
+# max days access log files are conserved:
+ENV ACCESSLOGS_MAX_DAYS ${ACCESSLOGS_MAX_DAYS:-30}
+# max Http threads Tomcat will use to serve HTTP/1.1 requests:
+ENV HTTP_MAX_THREADS ${HTTP_MAX_THREADS:-20}
 
 ## Must copy files first because the bundle is either taken from url or from local /opt/files if present
 RUN mkdir /opt/files
