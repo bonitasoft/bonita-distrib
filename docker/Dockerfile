@@ -25,12 +25,14 @@ ARG BONITA_SHA256
 ARG BASE_URL
 ARG BONITA_URL
 
-ENV BONITA_VERSION ${BONITA_VERSION:-7.14.0}
-ENV BRANDING_VERSION ${BRANDING_VERSION:-2022.1-u0}
-ENV BONITA_SHA256  ${BONITA_SHA256:-e4f279765cd729885a4e353d96d1d85c5f69fef63f79183e0ccf3ffaa0cb2417}
+ENV BONITA_VERSION ${BONITA_VERSION:-7.14.0.beta-01}
+ENV BRANDING_VERSION ${BRANDING_VERSION:-2022.1-b1}
+ENV BONITA_SHA256  ${BONITA_SHA256:-8552aa472964f2271ebabdf160cb3821566399e7e114f11325f24c4648fd66ba}
 ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
 ENV BASE_URL ${BASE_URL:-https://github.com/bonitasoft/bonita-platform-releases/releases/download}
-ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${BRANDING_VERSION}.zip}
+
+# that particular beta url does not follow classic branding version url. To be fixed in next version.
+ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/2022.1-beta-01/BonitaCommunity-${BRANDING_VERSION}.zip}
 ENV HTTP_API_USERNAME ${HTTP_API_USERNAME:-http-api}
 ENV HTTP_API_PASSWORD ${HTTP_API_PASSWORD:-h11p-@p1}
 ENV MONITORING_USERNAME ${MONITORING_USERNAME:-monitoring}
@@ -42,7 +44,8 @@ RUN mkdir /opt/files
 COPY files /opt/files
 
 RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
-  && echo "$BONITA_SHA256 /opt/files/$ZIP_FILE" | sha256sum -c - ; fi \
+## the double space is important inside the sha256sum on that version of busybox
+  && echo "$BONITA_SHA256  /opt/files/$ZIP_FILE" | sha256sum -c - ; fi \
   && unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
   && mv /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/* /opt/bonita \
   && rmdir /opt/bonita/BonitaCommunity-${BRANDING_VERSION} \
