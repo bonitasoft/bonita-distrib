@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11.0.13_8-jre-alpine@sha256:6bb47aba5cebd4cb5ae09b64a54bcaf4fa5903dde0526a664e0b20528336075b
+FROM eclipse-temurin:11-jre-alpine
 
 LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 
