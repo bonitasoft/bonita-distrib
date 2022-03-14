@@ -5,7 +5,7 @@ LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 # Execute instructions less likely to change first
 
 # Install packages
-RUN apk add --no-cache --upgrade curl unzip  bash su-exec  jattach --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
+RUN apk add --no-cache --upgrade curl unzip bash su-exec jattach \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /opt/custom-init.d/
