@@ -11,6 +11,8 @@ BONITA_FILES=/opt/files
 ENSURE_DB_CHECK_AND_CREATION=${ENSURE_DB_CHECK_AND_CREATION:-true}
 # XA transaction timeout:
 BONITA_RUNTIME_TRANSACTION_XATIMEOUT=${BONITA_RUNTIME_TRANSACTION_XATIMEOUT:-180}
+# Tomcat Remote IP Valve (reverse-proxy):
+REMOTE_IP_VALVE_ENABLED=${REMOTE_IP_VALVE_ENABLED=-false}
 # Java OPTS
 JAVA_OPTS=${JAVA_OPTS:--Xms1024m -Xmx1024m}
 
@@ -60,10 +62,17 @@ PLATFORM_PASSWORD=${PLATFORM_PASSWORD:-platform}
 TENANT_LOGIN=${TENANT_LOGIN:-install}
 TENANT_PASSWORD=${TENANT_PASSWORD:-install}
 
+if [ "${HTTP_API}" = "true" -a "${HTTP_API_PASSWORD}" = "" ]
+then
+  echo "Error: HTTP_API is activated: you MUST provide a custom password with '-e HTTP_API_PASSWORD=...'"
+  exit 2
+fi
+
 # apply conf
 # copy templates
 cp ${BONITA_TPL}/setenv.sh ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
 cp ${BONITA_TPL}/database.properties ${BONITA_PATH}/setup/database.properties
+cp ${BONITA_TPL}/server.xml ${BONITA_PATH}/server/conf/server.xml
 
 # replace variables
 find ${BONITA_PATH}/setup/platform_conf/initial -name "*.properties" | xargs -n10 sed -i \
@@ -118,6 +127,32 @@ sed -e 's/{{DB_VENDOR}}/'"${DB_VENDOR}"'/' \
     -e 's/{{BIZ_DB_PASS}}/'"${BIZ_DB_PASS}"'/' \
     -e 's/{{BIZ_DB_NAME}}/'"${BIZ_DB_NAME}"'/' \
     -i ${BONITA_PATH}/setup/database.properties
+
+sed -e "s/{{HTTP_MAX_THREADS}}/${HTTP_MAX_THREADS}/" -i ${BONITA_PATH}/server/conf/server.xml
+
+if [ "${REMOTE_IP_VALVE_ENABLED}" = 'true' ]; then
+  sed -e 's/<!--REMOTE_IP_VALVE//' -e 's/REMOTE_IP_VALVE-->//' \
+      -i ${BONITA_PATH}/server/conf/server.xml
+fi
+
+if [ "${ACCESSLOGS_STDOUT_ENABLED}" = 'true' ]; then
+  sed -e 's/<!--ACCESSLOGS_STDOUT_ENABLED//' -e 's/ACCESSLOGS_STDOUT_ENABLED-->//' -i ${BONITA_PATH}/server/conf/server.xml
+fi
+
+if [ "${ACCESSLOGS_FILES_ENABLED}" = 'true' ]; then
+  sed -e 's/<!--ACCESSLOGS_FILES_ENABLED//' \
+      -e 's/ACCESSLOGS_FILES_ENABLED-->//' \
+      -e "s@{{ACCESSLOGS_PATH}}@${ACCESSLOGS_PATH}@" \
+      -i ${BONITA_PATH}/server/conf/server.xml
+  if [ "${ACCESSLOGS_PATH_APPEND_HOSTNAME}" = 'true' ]; then
+    HOSTNAME_APPEND_VALUE="/$(hostname)"  # append '/' + hostname value
+  else
+    HOSTNAME_APPEND_VALUE=""
+  fi
+  sed -e "s@{{HOSTNAME}}@${HOSTNAME_APPEND_VALUE}@" \
+      -e "s@{{ACCESSLOGS_MAX_DAYS}}@${ACCESSLOGS_MAX_DAYS}@" \
+      -i ${BONITA_PATH}/server/conf/server.xml
+fi
 
 # use the setup tool to initialize and configure Bonita Tomcat bundle
 
