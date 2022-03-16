@@ -89,7 +89,8 @@ COPY templates /opt/templates
 # exposed ports (Tomcat, JMX)
 EXPOSE 8080 9000
 
+# Ensure there is no entrypoint, docker hub require to have CMD be overridable
+ENTRYPOINT []
 # command to run when the container starts
-ENTRYPOINT ["/opt/files/startup.sh"]
-CMD ["/opt/bonita/server/bin/catalina.sh","run"]
+CMD ["/opt/files/startup.sh", "/opt/bonita/server/bin/catalina.sh", "run"]
 
