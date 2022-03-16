@@ -67,12 +67,12 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "F
   && rm -f /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
   && mkdir -p /opt/bonita/conf/logs/ \
   && mkdir -p /opt/bonita/logs/ \
+  && mv /opt/files/log4j2/log4j2-appenders.xml /opt/bonita/conf/logs/ \
+  && mv /opt/bonita/server/conf/log4j2-loggers.xml /opt/bonita/conf/logs/ \
   && chown -R bonita:bonita /opt/bonita \
   && chmod go+w /opt/ \
   && chmod -R +rX /opt \
   && chmod go+w /opt/bonita \
-  && mv /opt/files/log4j2/log4j2-appenders.xml /opt/bonita/conf/logs/ \
-  && mv /opt/bonita/server/conf/log4j2-loggers.xml /opt/bonita/conf/logs/ \
   && chmod 777 /opt/bonita/server/logs \
   && chmod 777 /opt/bonita/logs/ \
   && chmod 777 /opt/bonita/server/temp \
@@ -91,5 +91,5 @@ EXPOSE 8080 9000
 
 # command to run when the container starts
 ENTRYPOINT ["/opt/files/startup.sh"]
-
+CMD ["/opt/bonita/server/bin/catalina.sh","run"]
 
