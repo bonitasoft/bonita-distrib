@@ -25,4 +25,4 @@ then
 fi
 # launch tomcat
 
-exec /opt/bonita/server/bin/catalina.sh run
+exec "$@"
