@@ -1,11 +1,11 @@
-FROM eclipse-temurin:11-jre-alpine
+FROM alpine:3.15
 
 LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 
 # Execute instructions less likely to change first
 
 # Install packages
-RUN apk add --no-cache --upgrade curl unzip bash su-exec jattach \
+RUN apk add --no-cache --upgrade curl unzip bash su-exec jattach openjdk11-jre-headless \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /opt/custom-init.d/
