@@ -61,6 +61,7 @@
 
         <!-- If you want to track Unauthorized static permission checks: -->
         <!-- <Logger name="org.bonitasoft.engine.authorization.PermissionServiceImpl" level="DEBUG" /> -->
+        <!-- <Logger name="com.bonitasoft.engine.authorization.PermissionServiceExt" level="DEBUG"/> -->
 
         <!--  -->
         <!-- Subscription edition specific logging configuration: -->
