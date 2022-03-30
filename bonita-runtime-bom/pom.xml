@@ -8,6 +8,33 @@
     <name>Bonita Runtime BOM (Bill of Materials)</name>
     <packaging>pom</packaging>
 
+    <description>Bill of Materials of the Bonita Runtime component</description>
+    <url>https://community.bonitasoft.com/</url>
+    <organization>
+        <name>Bonitasoft S.A.</name>
+        <url>https://community.bonitasoft.com/</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License Version 2.1</name>
+            <url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>bonita-engine-team</id>
+            <name>The Bonita Engine Development Team</name>
+            <organization>Bonitasoft S.A.</organization>
+            <organizationUrl>http://community.bonitasoft.com/</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:http://github.com/bonitasoft/bonita-distrib.git</connection>
+        <developerConnection>scm:git:git@github.com:bonitasoft/bonita-distrib.git</developerConnection>
+        <url>http://github.com/bonitasoft/bonita-distrib</url>
+    </scm>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
