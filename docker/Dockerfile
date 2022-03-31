@@ -5,8 +5,7 @@ LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 # Execute instructions less likely to change first
 
 # Install packages
-RUN apk add --no-cache --upgrade curl unzip bash su-exec jattach openjdk11-jre-headless \
-  && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache curl unzip bash su-exec jattach openjdk11-jre-headless
 
 RUN mkdir /opt/custom-init.d/
 
@@ -25,40 +24,19 @@ ARG BONITA_SHA256
 ARG BASE_URL
 ARG BONITA_URL
 
-ENV BONITA_VERSION ${BONITA_VERSION:-7.14.0.beta-01}
-ENV BRANDING_VERSION ${BRANDING_VERSION:-2022.1-SNAPSHOT}
-ENV BONITA_SHA256  ${BONITA_SHA256:-8552aa472964f2271ebabdf160cb3821566399e7e114f11325f24c4648fd66ba}
+ENV BONITA_VERSION ${BONITA_VERSION:-7.14.0}
+ENV BRANDING_VERSION ${BRANDING_VERSION:-2022.1-u0}
+ENV BONITA_SHA256  ${BONITA_SHA256:-a88b3f4368bd68dda4eccf4680a71b7e523678811b6b3bcd61cd85e67e9b9aeb}
 ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
 ENV BASE_URL ${BASE_URL:-https://github.com/bonitasoft/bonita-platform-releases/releases/download}
-
-# that particular beta url does not follow classic branding version url. To be fixed in next version.
-ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/2022.1-beta-01/BonitaCommunity-${BRANDING_VERSION}.zip}
-ENV HTTP_API_USERNAME ${HTTP_API_USERNAME:-http-api}
-ENV HTTP_API_PASSWORD ${HTTP_API_PASSWORD:-""}
-ENV MONITORING_USERNAME ${MONITORING_USERNAME:-monitoring}
-ENV MONITORING_PASSWORD ${MONITORING_PASSWORD:-mon1tor1ng_adm1n}
-ENV JMX_REMOTE_ACCESS ${JMX_REMOTE_ACCESS:-false}
-ENV REMOTE_IP_VALVE_ENABLED ${REMOTE_IP_VALVE_ENABLED:-false}
-# Allow to redirect access logs to stdout:
-ENV ACCESSLOGS_STDOUT_ENABLED ${ACCESSLOGS_STDOUT_ENABLED:-false}
-# Allow to redirect access logs to file:
-ENV ACCESSLOGS_FILES_ENABLED ${ACCESSLOGS_FILES_ENABLED:-false}
-# If access log files enabled, where to put the access log files:
-ENV ACCESSLOGS_PATH ${ACCESSLOGS_PATH:-/opt/bonita/logs}
-# access log files enabled, should we append new HOSTNAME directory to full path:
-ENV ACCESSLOGS_PATH_APPEND_HOSTNAME ${ACCESSLOGS_PATH_APPEND_HOSTNAME:-false}
-# max days access log files are conserved:
-ENV ACCESSLOGS_MAX_DAYS ${ACCESSLOGS_MAX_DAYS:-30}
-# max Http threads Tomcat will use to serve HTTP/1.1 requests:
-ENV HTTP_MAX_THREADS ${HTTP_MAX_THREADS:-20}
+ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${BRANDING_VERSION}.zip}
 
 ## Must copy files first because the bundle is either taken from url or from local /opt/files if present
 RUN mkdir /opt/files
 COPY files /opt/files
 
 RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
-## the double space is important inside the sha256sum on that version of busybox
-  && echo "$BONITA_SHA256  /opt/files/$ZIP_FILE" | sha256sum -c - ; fi \
+  && echo "$BONITA_SHA256 */opt/files/$ZIP_FILE" | sha256sum -c - ; fi \
   && unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
   && mv /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/* /opt/bonita \
   && rmdir /opt/bonita/BonitaCommunity-${BRANDING_VERSION} \
@@ -84,13 +62,31 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "F
 
 # ENV only required at runtime
 ENV HTTP_API false
+ENV HTTP_API_USERNAME http-api
+ENV HTTP_API_PASSWORD ""
+ENV MONITORING_USERNAME monitoring
+ENV MONITORING_PASSWORD mon1tor1ng_adm1n
+ENV JMX_REMOTE_ACCESS false
+ENV REMOTE_IP_VALVE_ENABLED false
+# Allow to redirect access logs to stdout:
+ENV ACCESSLOGS_STDOUT_ENABLED false
+# Allow to redirect access logs to file:
+ENV ACCESSLOGS_FILES_ENABLED false
+# If access log files enabled, where to put the access log files:
+ENV ACCESSLOGS_PATH /opt/bonita/logs
+# access log files enabled, should we append new HOSTNAME directory to full path:
+ENV ACCESSLOGS_PATH_APPEND_HOSTNAME false
+# max days access log files are conserved:
+ENV ACCESSLOGS_MAX_DAYS 30
+# max Http threads Tomcat will use to serve HTTP/1.1 requests:
+ENV HTTP_MAX_THREADS 20
+
 
 COPY templates /opt/templates
 # exposed ports (Tomcat, JMX)
 EXPOSE 8080 9000
 
-# Ensure there is no entrypoint, docker hub require to have CMD be overridable
-ENTRYPOINT []
 # command to run when the container starts
-CMD ["/opt/files/startup.sh", "/opt/bonita/server/bin/catalina.sh", "run"]
+ENTRYPOINT ["/opt/files/startup.sh"]
+CMD ["/opt/bonita/server/bin/catalina.sh","run"]
 
