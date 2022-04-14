@@ -100,6 +100,13 @@ if [[ "$BUILD_ARGS" != *"BONITA_VERSION="* ]]; then
   fi
 else
   echo "BONITA_VERSION is passed in BUILD_ARGS parameters ($BUILD_ARGS), using it"
+  regex="BONITA_VERSION=([^ ]+)"
+  if [[ $BUILD_ARGS =~ $regex ]]; then
+    BONITA_VERSION="${BASH_REMATCH[1]}"
+  else
+    echo "Unable to retrieve BONITA_VERSION from build args: $BUILD_ARGS"
+    exit 1
+  fi
 fi
 
 if [ -n "$TAG_NAME" ]; then
