@@ -83,4 +83,3 @@ EXPOSE 8080
 # command to run when the container starts
 ENTRYPOINT ["/opt/files/startup.sh"]
 
-
