@@ -3,7 +3,7 @@
     <parent>
         <artifactId>bonita-distrib</artifactId>
         <groupId>org.bonitasoft.distrib</groupId>
-        <version>7.12.12-SNAPSHOT</version>
+        <version>7.12-SNAPSHOT</version>
     </parent>
     <groupId>org.bonitasoft.distrib.tomcat</groupId>
     <artifactId>tomcat-resources</artifactId>
