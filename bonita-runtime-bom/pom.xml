@@ -54,7 +54,7 @@
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
-                <version>3.0.9</version>
+                <version>3.0.10</version>
                 <type>pom</type>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-bom -->
