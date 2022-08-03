@@ -288,9 +288,9 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.bonitasoft.distrib</groupId>
-                                    <artifactId>looknfeel</artifactId>
-                                    <version>${project.version}</version>
+                                    <groupId>org.bonitasoft.console</groupId>
+                                    <artifactId>bonita-portal-look-and-feel</artifactId>
+                                    <version>${bonita-portal-look-and-feel-version}</version>
                                     <classifier>css</classifier>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
