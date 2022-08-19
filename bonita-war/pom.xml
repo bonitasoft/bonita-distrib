@@ -287,6 +287,14 @@
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bonitasoft.web</groupId>
+                                    <artifactId>bonita-portal-js</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>css</classifier>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${folder_frontend_web_resources}/portal-theme</outputDirectory>
                         </configuration>
