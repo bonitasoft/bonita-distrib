@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info" monitorInterval="60">
     <Properties>
-        <Property name="LOG_PATTERN">%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName} | %-5p | [%t|%T] %c{1.} - %m%n</Property>
+        <Property name="LOG_PATTERN">%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName} | %-5p%notEmpty{[ %marker]} | [%t|%T] %c{1.} - %m%n</Property>
         <!--  log format used in version 2021.2 and before -->
         <!-- <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS Z} %level{WARN=WARNING, DEBUG=FINE, ERROR=SEVERE, TRACE=FINER, INFO=INFO} (%t) %c %m%n</Property> -->
         <Property name="baseDir">${sys:catalina.base}/logs/</Property>
@@ -27,6 +27,16 @@
                 <SizeBasedTriggeringPolicy size="250 MB"/>
             </Policies>
         </RollingRandomAccessFile>
+        <RollingRandomAccessFile fileName="${sys:org.bonitasoft.engine.incident.folder}/incidents.log" filePattern="${sys:org.bonitasoft.engine.incident.folder}/incidents-%d{yyyy-MM-dd}-%i.log.gz" name="Incident-File">
+            <Filters>
+                <MarkerFilter marker="INCIDENT" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
     </Appenders>
 
     <Loggers>
@@ -34,6 +44,7 @@
             <!--Activate console appender using Java system property `bonita.runtime.logger.sysout` set to `Console` or `Console-JSON` in setEnv.sh -->
             <AppenderRef ref="${optionalAppender}"/>
             <AppenderRef ref="File"/>
+            <AppenderRef ref="Incident-File"/>
         </Root>
     </Loggers>
 
