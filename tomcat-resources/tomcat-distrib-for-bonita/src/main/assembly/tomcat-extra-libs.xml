@@ -10,8 +10,6 @@
             <includes>
                 <include>org.bonitasoft.distrib.tomcat:tomcat-jta</include>
                 <include>org.bonitasoft.distrib.tomcat:tomcat-bonita-extensions</include>
-                <include>org.slf4j:slf4j-jdk14</include>
-                <include>org.slf4j:slf4j-api</include>
                 <include>com.h2database:h2</include>
             </includes>
             <useTransitiveDependencies>true</useTransitiveDependencies>
@@ -23,6 +21,9 @@
                 <include>org.apache.logging.log4j:log4j-core</include>
                 <include>org.apache.logging.log4j:log4j-api</include>
                 <include>org.apache.logging.log4j:log4j-jul</include>
+                <include>org.apache.logging.log4j:log4j-slf4j-impl</include>
+                <include>org.slf4j:slf4j-jdk14</include>
+                <include>org.slf4j:slf4j-api</include>
                 <include>com.fasterxml.jackson.core:jackson-core</include>
                 <include>com.fasterxml.jackson.core:jackson-databind</include>
                 <include>com.fasterxml.jackson.core:jackson-annotations</include>
