@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info" monitorInterval="60">
     <Properties>
-        <Property name="LOG_PATTERN">%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName}  | %-5p%notEmpty{ [%marker]} | [%t|%T] %c{1.} - %m%n</Property>
+        <Property name="LOG_PATTERN">%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName} | %-5p%notEmpty{[%marker]} | [%t|%T] %c{1.} - %m%n</Property>
         <Property name="baseDir">/opt/bonita/logs/</Property>
     </Properties>
     <Appenders>
