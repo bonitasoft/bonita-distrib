@@ -350,7 +350,7 @@
                                     <fileMappers>
                                         <org.codehaus.plexus.components.io.filemappers.FlattenFileMapper />
                                     </fileMappers>
-                                    <outputDirectory>${folder_frontend_web_resources}/WEB-INF/classes/org/bonitasoft/web/page</outputDirectory>
+                                    <outputDirectory>${folder_frontend_web_resources}/WEB-INF/classes/org/bonitasoft/web/page/final</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
