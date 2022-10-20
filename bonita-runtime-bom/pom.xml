@@ -45,13 +45,6 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.bonitasoft.console</groupId>
-                <artifactId>bonita-web-bom</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
                 <version>3.0.10</version>

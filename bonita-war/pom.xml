@@ -15,37 +15,65 @@
         <deploy_plugin_skip>true</deploy_plugin_skip>
         <folder_frontend_web_resources>${project.build.directory}/bonita-frontend</folder_frontend_web_resources>
         <folder_frontend_web_config_files>${project.build.directory}/bonita-frontend-config</folder_frontend_web_config_files>
-        <!-- Required to filter the VERSION file -->
-        <build.year>${maven.build.timestamp}</build.year>
-        <maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
     </properties>
 
     <dependencies>
-        <!-- jboss-logging and activation are already present in /lib/bonita (dependency of tomcat-jta) -->
         <!-- TODO review dependency order between console and engine as this could change dependencies resolution -->
         <dependency>
             <groupId>org.bonitasoft.console</groupId>
-            <artifactId>console-server</artifactId>
+            <artifactId>bonita-web-server</artifactId>
             <version>${bonita.web.version}</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
-                    <artifactId>activation</artifactId>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
                     <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
                 </exclusion>
                 <exclusion>
                     <!-- replaced by javax.xml.stream:stax-api -->
-                    <artifactId>stax-api</artifactId>
                     <groupId>stax</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jakarta.activation-api</artifactId>
-                    <groupId>jakarta.activation</groupId>
+                    <artifactId>stax-api</artifactId>
                 </exclusion>
                 <!-- already in /lib/bonita (dependency of tomcat-jta) -->
                 <exclusion>
                     <groupId>jakarta.transaction</groupId>
                     <artifactId>jakarta.transaction-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.bonitasoft.engine</groupId>
+            <artifactId>bonita-server</artifactId>
+            <version>${bonita.engine.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                </exclusion>
+                <!-- already in /lib/bonita (dependency of tomcat-jta) -->
+                <exclusion>
+                    <groupId>jakarta.transaction</groupId>
+                    <artifactId>jakarta.transaction-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.logging</groupId>
+                    <artifactId>jboss-logging</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -94,11 +122,10 @@
 
                     <webResources>
                         <resource>
-                            <filtering>true</filtering>
+                            <filtering>false</filtering>
                             <targetPath />
                             <directory>${folder_frontend_web_config_files}</directory>
                             <includes>
-                                <include>WEB-INF/web.xml</include>
                                 <include>VERSION</include>
                             </includes>
                         </resource>
@@ -136,12 +163,11 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.console</groupId>
-                                    <artifactId>console-server</artifactId>
+                                    <artifactId>bonita-web-server</artifactId>
                                     <version>${bonita.web.version}</version>
-                                    <type>war</type>
+                                    <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${folder_frontend_web_resources}</outputDirectory>
-                                    <excludes>WEB-INF/web.xml,WEB-INF/lib/**</excludes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -154,14 +180,15 @@
                         </goals>
                         <configuration>
                             <artifactItems>
+                                <!-- add the VERSION file at root folder of the WAR: -->
                                 <artifactItem>
                                     <groupId>org.bonitasoft.console</groupId>
-                                    <artifactId>console-server</artifactId>
+                                    <artifactId>bonita-web-server</artifactId>
                                     <version>${bonita.web.version}</version>
                                     <type>jar</type>
-                                    <classifier>sources</classifier>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${folder_frontend_web_config_files}</outputDirectory>
+                                    <includes>VERSION</includes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
