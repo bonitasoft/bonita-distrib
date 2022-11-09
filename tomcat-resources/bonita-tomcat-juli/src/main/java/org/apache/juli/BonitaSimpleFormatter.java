@@ -89,11 +89,12 @@ public class BonitaSimpleFormatter extends Formatter {
     }
 
     // Highly inspired from tomcat-juli OneLineFormatter
-    // See https://github.com/apache/tomcat/blob/669d640ef2fc5120c9283c23cdbca5b3f3823bf3/java/org/apache/juli/OneLineFormatter.java
+    // See https://github.com/apache/tomcat/blob/cc7c12993bb43bafbdcc209d145e65e32025e3ab/java/org/apache/juli/OneLineFormatter.java#L137
     private static String threadInfo(LogRecord record) {
         // If using the async handler can't get the thread name from the current thread.
-        if (!(Thread.currentThread() instanceof AsyncFileHandler.LoggerThread)) {
-            return Thread.currentThread().getName();
+        final String threadName = Thread.currentThread().getName();
+        if (threadName != null && !threadName.startsWith(AsyncFileHandler.THREAD_PREFIX)) {
+            return threadName;
         }
 
         final int threadID = record.getThreadID();
