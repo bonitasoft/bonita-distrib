@@ -4,7 +4,7 @@
     <groupId>org.bonitasoft.distrib</groupId>
     <artifactId>bonita-distrib</artifactId>
     <name>bonita distrib</name>
-    <version>7.16-SNAPSHOT</version>
+    <version>7.16.0.W46</version>
     <packaging>pom</packaging>
 
     <modules>
