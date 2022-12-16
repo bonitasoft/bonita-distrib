@@ -7,6 +7,7 @@ if [[ "$1" == "/opt/bonita/server/bin/catalina.sh" ]]
   # if we are root user, we restrict access to files to the user 'bonita'
   if [ "$(id -u)" = '0' ]; then
     chmod -R go-rwx /opt/bonita/
+    chown -R bonita:bonita /opt/bonita/conf/logs/
     chown -R bonita:bonita /opt/custom-init.d/
     chown -R bonita:bonita /opt/files
     exec su-exec  bonita "$BASH_SOURCE" "$@"
