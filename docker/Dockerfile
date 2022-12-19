@@ -83,6 +83,7 @@ ENV HTTP_MAX_THREADS 20
 
 
 COPY templates /opt/templates
+VOLUME ["/opt/bonita/conf/logs"]
 # exposed ports (Tomcat, JMX)
 EXPOSE 8080 9000
 
