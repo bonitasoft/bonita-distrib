@@ -128,6 +128,50 @@ sed -e 's/{{DB_VENDOR}}/'"${DB_VENDOR}"'/' \
     -e 's/{{BIZ_DB_NAME}}/'"${BIZ_DB_NAME}"'/' \
     -i ${BONITA_PATH}/setup/database.properties
 
+# Bonita Datasource connection pool configuration 
+
+if [ -n "${BONITA_DS_CONNECTION_POOL_INITIAL_SIZE}" ]; then
+  echo "Bonita datasource connection pool initial size set to: ${BONITA_DS_CONNECTION_POOL_INITIAL_SIZE}"
+  echo "connection-pool.initialSize=${BONITA_DS_CONNECTION_POOL_INITIAL_SIZE}" >> ${BONITA_PATH}/setup/database.properties
+fi
+
+if [ -n "${BONITA_DS_CONNECTION_POOL_MAX_TOTAL}" ]; then
+  echo "Bonita datasource connection pool max total set to: ${BONITA_DS_CONNECTION_POOL_MAX_TOTAL}"
+  echo "connection-pool.maxTotal=${BONITA_DS_CONNECTION_POOL_MAX_TOTAL}" >> ${BONITA_PATH}/setup/database.properties
+fi
+
+if [ -n "${BONITA_DS_CONNECTION_POOL_MIN_IDLE}" ]; then
+  echo "Bonita datasource connection pool min idle set to: ${BONITA_DS_CONNECTION_POOL_MIN_IDLE}"
+  echo "connection-pool.minIdle=${BONITA_DS_CONNECTION_POOL_MIN_IDLE}" >> ${BONITA_PATH}/setup/database.properties
+fi
+
+if [ -n "${BONITA_DS_CONNECTION_POOL_MAX_IDLE}" ]; then
+  echo "Bonita datasource connection pool max idle set to: ${BONITA_DS_CONNECTION_POOL_MAX_IDLE}"
+  echo "connection-pool.maxIdle=${BONITA_DS_CONNECTION_POOL_MAX_IDLE}" >> ${BONITA_PATH}/setup/database.properties
+fi
+
+# BDM Datasource connection pool configuration 
+
+if [ -n "${BDM_DS_CONNECTION_POOL_INITIAL_SIZE}" ]; then
+  echo "BDM datasource connection pool initial size set to: ${BDM_DS_CONNECTION_POOL_INITIAL_SIZE}"
+  echo "bdm.connection-pool.initialSize=${BDM_DS_CONNECTION_POOL_INITIAL_SIZE}" >> ${BONITA_PATH}/setup/database.properties
+fi
+
+if [ -n "${BDM_DS_CONNECTION_POOL_MAX_TOTAL}" ]; then
+  echo "BDM datasource connection pool max total set to: ${BDM_DS_CONNECTION_POOL_MAX_TOTAL}"
+  echo "bdm.connection-pool.maxTotal=${BDM_DS_CONNECTION_POOL_MAX_TOTAL}" >> ${BONITA_PATH}/setup/database.properties
+fi
+
+if [ -n "${BDM_DS_CONNECTION_POOL_MIN_IDLE}" ]; then
+  echo "BDM datasource connection pool min idle set to: ${BDM_DS_CONNECTION_POOL_MIN_IDLE}"
+  echo "bdm.connection-pool.minIdle=${BDM_DS_CONNECTION_POOL_MIN_IDLE}" >> ${BONITA_PATH}/setup/database.properties
+fi
+
+if [ -n "${BDM_DS_CONNECTION_POOL_MAX_IDLE}" ]; then
+  echo "BDM datasource connection pool max idle set to: ${BDM_DS_CONNECTION_POOL_MAX_IDLE}"
+  echo "bdm.connection-pool.maxIdle=${BDM_DS_CONNECTION_POOL_MAX_IDLE}" >> ${BONITA_PATH}/setup/database.properties
+fi
+
 sed -e "s/{{HTTP_MAX_THREADS}}/${HTTP_MAX_THREADS}/" -i ${BONITA_PATH}/server/conf/server.xml
 
 if [ "${REMOTE_IP_VALVE_ENABLED}" = 'true' ]; then
