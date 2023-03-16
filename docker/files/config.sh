@@ -91,7 +91,8 @@ find ${BONITA_PATH}/setup/platform_conf/initial -name "*.properties" | xargs -n1
     -e 's/^platform.tenant.default.username\s*=.*/'"platform.tenant.default.username=${TENANT_LOGIN}"'/' \
     -e 's/^platform.tenant.default.password\s*=.*/'"platform.tenant.default.password=${TENANT_PASSWORD}"'/' \
     -e 's/^#platformAdminUsername\s*=.*/'"platformAdminUsername=${PLATFORM_LOGIN}"'/' \
-    -e 's/^#platformAdminPassword\s*=.*/'"platformAdminPassword=${PLATFORM_PASSWORD}"'/'
+    -e 's/^#platformAdminPassword\s*=.*/'"platformAdminPassword=${PLATFORM_PASSWORD}"'/' \
+    -e 's/^#bonita.runtime.custom-application.install-provided-pages\s*=.*/'"bonita.runtime.custom-application.install-provided-pages=${INSTALL_PROVIDED_PAGES}"'/'
 
 sed -e 's/{{HTTP_API_USERNAME}}/'"${HTTP_API_USERNAME}"'/' \
       -e 's/{{HTTP_API_PASSWORD}}/'"${HTTP_API_PASSWORD}"'/' \

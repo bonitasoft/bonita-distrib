@@ -68,6 +68,7 @@ ENV MONITORING_USERNAME monitoring
 ENV MONITORING_PASSWORD mon1tor1ng_adm1n
 ENV JMX_REMOTE_ACCESS false
 ENV REMOTE_IP_VALVE_ENABLED false
+
 # Allow to redirect access logs to stdout:
 ENV ACCESSLOGS_STDOUT_ENABLED false
 # Allow to redirect access logs to file:
@@ -80,7 +81,8 @@ ENV ACCESSLOGS_PATH_APPEND_HOSTNAME false
 ENV ACCESSLOGS_MAX_DAYS 30
 # max Http threads Tomcat will use to serve HTTP/1.1 requests:
 ENV HTTP_MAX_THREADS 20
-
+#install provided default page, even if a custom app is detected.
+ENV INSTALL_PROVIDED_PAGES false
 
 COPY templates /opt/templates
 VOLUME ["/opt/bonita/conf/logs"]
