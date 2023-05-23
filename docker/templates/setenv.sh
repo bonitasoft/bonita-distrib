@@ -8,7 +8,7 @@ LOG_CONF_FILE_PATH="-Dlog4j.configurationFile=${BONITA_SERVER_LOGGING_FILE:-/opt
 PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=${CATALINA_HOME}/../setup"
 H2_DATABASE_DIR="-Dorg.bonitasoft.h2.database.dir=${CATALINA_HOME}/../h2_database"
 INCIDENT_LOG_OPTS="-Dorg.bonitasoft.engine.incident.folder=${INCIDENT_LOG_DIR_PATH:-$CATALINA_HOME/logs}"
-HEAPDUMP_OPTS="-XX:HeapDumpPath=${HEAPDUMP_PATH:-$CATALINA_HOME/logs}"
+HEAPDUMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${HEAPDUMP_PATH:-$CATALINA_HOME/logs}"
 
 # Define the RDMBS vendor use by Bonita Engine to store data. Valid values are: h2, postgres, sqlserver, oracle, mysql.
 DB_OPTS="-Dsysprop.bonita.db.vendor=h2"
@@ -32,7 +32,7 @@ if [ "$JMX_REMOTE_ACCESS" = 'true' ]; then
 fi
 
 # Pass the JVM system properties to Tomcat JVM using CATALINA_OPTS variable
-CATALINA_OPTS="${CATALINA_OPTS} ${LOG_CONF_FILE_PATH} ${PLATFORM_SETUP} ${TRANSACTION_XATIMEOUT_OPTS} ${H2_DATABASE_DIR} ${DB_OPTS} ${BDM_DB_OPTS} ${ARJUNA_OPTS} ${INCIDENT_LOG_OPTS} ${JMX_REMOTE_ACCESS_OPTS} -Dfile.encoding=UTF-8 -Xshare:auto -XX:+HeapDumpOnOutOfMemoryError ${HEAPDUMP_OPTS} -Djava.security.egd=file:/dev/./urandom -Dlog4j2.formatMsgNoLookups=true"
+CATALINA_OPTS="${CATALINA_OPTS} ${LOG_CONF_FILE_PATH} ${PLATFORM_SETUP} ${TRANSACTION_XATIMEOUT_OPTS} ${H2_DATABASE_DIR} ${DB_OPTS} ${BDM_DB_OPTS} ${ARJUNA_OPTS} ${INCIDENT_LOG_OPTS} ${JMX_REMOTE_ACCESS_OPTS} -Dfile.encoding=UTF-8 -Xshare:auto ${HEAPDUMP_OPTS} -Djava.security.egd=file:/dev/./urandom -Dlog4j2.formatMsgNoLookups=true"
 export CATALINA_OPTS
 
 # Only set CATALINA_PID if not already set (check for empty value) by startup script (usually done by /etc/init.d/tomcat8 but not by startup.sh nor catalina.sh)
