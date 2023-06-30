@@ -28,7 +28,7 @@
         <bonita.web.version>${project.version}</bonita.web.version>
         <bonita.engine.version>${project.version}</bonita.engine.version>
 
-        <tomcat.version>9.0.72</tomcat.version>
+        <tomcat.version>9.0.76</tomcat.version>
 
         <deploy_plugin_skip>false</deploy_plugin_skip>
 
