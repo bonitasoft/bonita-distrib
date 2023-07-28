@@ -5,7 +5,7 @@ LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 # Execute instructions less likely to change first
 
 # Install packages
-RUN apk add --no-cache curl unzip bash su-exec jattach openjdk11-jre
+RUN apk add --no-cache tzdata curl unzip bash su-exec jattach openjdk11-jre
 
 RUN mkdir /opt/custom-init.d/
 
