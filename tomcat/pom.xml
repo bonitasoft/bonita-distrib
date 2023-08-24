@@ -64,7 +64,7 @@
                         <id>get-bonita-war</id>
                         <phase>generate-resources</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>unpack</goal>
                         </goals>
                         <configuration>
                             <artifactItems>
@@ -74,8 +74,7 @@
                                     <version>${project.version}</version>
                                     <type>war</type>
                                     <overWrite>true</overWrite>
-                                    <destFileName>bonita.war</destFileName>
-                                    <outputDirectory>${bundle.dir}/server/webapps</outputDirectory>
+                                    <outputDirectory>${bundle.dir}/server/webapps/bonita</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
