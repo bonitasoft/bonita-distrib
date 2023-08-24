@@ -10,6 +10,8 @@
     </parent>
     <artifactId>bonita-war</artifactId>
     <packaging>war</packaging>
+    <name>Bonita Community WAR</name>
+    <description>This module generates the Bonita Runtime WAR for the Community edition.</description>
 
     <properties>
         <deploy_plugin_skip>true</deploy_plugin_skip>

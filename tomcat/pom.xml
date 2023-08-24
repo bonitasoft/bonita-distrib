@@ -6,8 +6,10 @@
         <version>9.0-SNAPSHOT</version>
     </parent>
     <artifactId>bundle-tomcat</artifactId>
-    <name>tomcat bundle</name>
     <packaging>pom</packaging>
+    <name>Bonita Community Tomcat Bundle</name>
+    <description>Archive that contains the Apache Tomcat application server
+        prepackaged along with the Bonita Community edition.</description>
 
     <properties>
         <zipName>BonitaCommunity-${branding.version}</zipName>

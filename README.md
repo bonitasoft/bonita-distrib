@@ -18,7 +18,7 @@ The [Bonita Community build script](https://github.com/Bonitasoft-Community/Buil
 
 ## Contribution
 
-I you want to contribute, ask questions about the project, report bug, see the [contributing guide](https://github.com/bonitasoft/bonita-developer-resources/blob/master/CONTRIBUTING.MD).
+If you want to contribute, ask questions about the project, report bug, see the [contributing guide](https://github.com/bonitasoft/bonita-developer-resources/blob/master/CONTRIBUTING.MD).
 
 
 

@@ -1,11 +1,30 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+         child.project.url.inherit.append.path="false">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.bonitasoft.distrib</groupId>
     <artifactId>bonita-distrib</artifactId>
-    <name>bonita distrib</name>
     <version>9.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <name>Bonita Community Distrib</name>
+    <description>This project generates the Bonita Runtime bundles for the Community edition.</description>
+    <url>https://www.bonitasoft.com</url>
+    <licenses>
+        <license>
+            <name>LGPL-v2.1</name>
+            <url>http://www.gnu.org/licenses/lgpl-2.1.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>bonitasoft</id>
+            <name>Bonitasoft</name>
+            <email>rd.user@bonitasoft.com</email>
+            <organization>Bonitasoft</organization>
+            <organizationUrl>https://www.bonitasoft.com</organizationUrl>
+        </developer>
+    </developers>
 
     <modules>
         <module>bonita-runtime-bom</module>
@@ -14,9 +33,10 @@
         <module>tomcat</module>
     </modules>
 
-    <scm>
-        <connection>scm:git:git@github.com:bonitasoft/bonita-distrib.git</connection>
-        <url>scm:git:git@github.com:bonitasoft/bonita-distrib.git</url>
+    <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
+        <connection>scm:git:git://github.com/bonitasoft/bonita-distrib.git</connection>
+        <developerConnection>scm:git:ssh://github.com:bonitasoft/bonita-distrib.git</developerConnection>
+        <url>https://github.com/bonitasoft/bonita-distrib</url>
     </scm>
 
     <properties>
@@ -32,6 +52,8 @@
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+
+        <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -131,6 +153,11 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.2.3</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>${flatten-maven-plugin.version}</version>
+                </plugin>
                 <!-- 3rd party plugins -->
                 <plugin>
                     <groupId>com.github.eirslett</groupId>
@@ -158,6 +185,31 @@
                     <deployAtEnd>true</deployAtEnd>
                     <skip>${deploy_plugin_skip}</skip>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <executions>
+                    <!-- enable flattening -->
+                    <execution>
+                        <id>flatten</id>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <flattenMode>oss</flattenMode>
+                        </configuration>
+                    </execution>
+                    <!-- ensure proper cleanup -->
+                    <execution>
+                        <id>flatten.clean</id>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <phase>clean</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
