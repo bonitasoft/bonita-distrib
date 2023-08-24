@@ -9,6 +9,7 @@
 
 # Maven
 target/
+.flattened-pom.xml
 
 # Temp files
 *.orig
