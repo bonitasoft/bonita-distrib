@@ -9,7 +9,7 @@
 
     <fileSets>
         <fileSet>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory/>
             <directory>${bundle.dir}</directory>
             <excludes>
                 <exclude>server/bin/*.sh</exclude>
@@ -18,7 +18,7 @@
             </excludes>
         </fileSet>
         <fileSet>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory/>
             <directory>${bundle.dir}</directory>
             <includes>
                 <include>server/bin/*.sh</include>
