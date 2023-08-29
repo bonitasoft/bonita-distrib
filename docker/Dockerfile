@@ -5,13 +5,22 @@ LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 # Execute instructions less likely to change first
 
 # Install packages
-RUN apk add --no-cache tzdata curl unzip bash su-exec jattach openjdk11-jre
+RUN apk add --no-cache tzdata curl unzip bash su-exec jattach openjdk11-jre gnupg
 
 RUN mkdir /opt/custom-init.d/
 
 # create user to launch Bonita as non-root
 RUN addgroup -S -g 1000 bonita \
  && adduser -u 1000 -S  -G bonita -h /opt/bonita/ -s /sbin/nologin  bonita
+
+RUN mkdir ~/.gnupg && echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
+
+RUN gpg --keyserver keyserver.ubuntu.com --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+  && curl -fsSL "https://github.com/tianon/gosu/releases/download/1.13/gosu-$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/)" -o /usr/local/bin/gosu \
+  && curl -fsSL "https://github.com/tianon/gosu/releases/download/1.13/gosu-$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/).asc" -o /usr/local/bin/gosu.asc \
+  && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+  && rm /usr/local/bin/gosu.asc \
+  && chmod +x /usr/local/bin/gosu
 
 
 # Install Bundle
