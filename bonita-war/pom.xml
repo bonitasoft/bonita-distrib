@@ -79,30 +79,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!-- Applications used to retrieve theirs pages-->
-        <dependency>
-            <groupId>org.bonitasoft.web.application</groupId>
-            <artifactId>bonita-application-directory</artifactId>
-            <version>${bonita.web.version}</version>
-            <type>zip</type>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.bonitasoft.web.application</groupId>
-            <artifactId>bonita-admin-application</artifactId>
-            <version>${bonita.web.version}</version>
-            <type>zip</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.bonitasoft.web.application</groupId>
-            <artifactId>bonita-user-application</artifactId>
-            <version>${bonita.web.version}</version>
-            <type>zip</type>
-            <scope>provided</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -208,15 +184,18 @@
                                     <groupId>org.bonitasoft.web.application</groupId>
                                     <artifactId>bonita-application-directory</artifactId>
                                     <version>${bonita.web.version}</version>
+                                    <classifier>descriptor</classifier>
                                     <type>zip</type>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.web.application</groupId>
                                     <artifactId>bonita-super-admin-application</artifactId>
                                     <version>${bonita.web.version}</version>
+                                    <classifier>descriptor</classifier>
                                     <type>zip</type>
                                 </artifactItem>
                             </artifactItems>
+                            <stripClassifier>true</stripClassifier>
                             <outputDirectory>${folder_frontend_web_resources}/WEB-INF/classes/org/bonitasoft/web/application/final</outputDirectory>
                         </configuration>
                     </execution>
@@ -233,15 +212,18 @@
                                     <groupId>org.bonitasoft.web.application</groupId>
                                     <artifactId>bonita-admin-application</artifactId>
                                     <version>${bonita.web.version}</version>
+                                    <classifier>descriptor</classifier>
                                     <type>zip</type>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.bonitasoft.web.application</groupId>
                                     <artifactId>bonita-user-application</artifactId>
                                     <version>${bonita.web.version}</version>
+                                    <classifier>descriptor</classifier>
                                     <type>zip</type>
                                 </artifactItem>
                             </artifactItems>
+                            <stripClassifier>true</stripClassifier>
                             <outputDirectory>${folder_frontend_web_resources}/WEB-INF/classes/org/bonitasoft/web/application</outputDirectory>
                         </configuration>
                     </execution>
@@ -341,7 +323,7 @@
                                     <artifactId>bonita-super-admin-application</artifactId>
                                     <version>${bonita.web.version}</version>
                                     <type>zip</type>
-                                    <classifier>with-resources</classifier>
+                                    <classifier>application</classifier>
                                     <includes>pages/*</includes>
                                     <fileMappers>
                                         <org.codehaus.plexus.components.io.filemappers.FlattenFileMapper />
@@ -354,7 +336,7 @@
                                     <artifactId>bonita-application-directory</artifactId>
                                     <version>${bonita.web.version}</version>
                                     <type>zip</type>
-                                    <classifier>with-resources</classifier>
+                                    <classifier>application</classifier>
                                     <includes>pages/*</includes>
                                     <fileMappers>
                                         <org.codehaus.plexus.components.io.filemappers.FlattenFileMapper />
@@ -367,7 +349,7 @@
                                     <artifactId>bonita-user-application</artifactId>
                                     <version>${bonita.web.version}</version>
                                     <type>zip</type>
-                                    <classifier>with-resources</classifier>
+                                    <classifier>application</classifier>
                                     <includes>pages/*</includes>
                                     <fileMappers>
                                         <org.codehaus.plexus.components.io.filemappers.FlattenFileMapper />
@@ -379,7 +361,7 @@
                                     <artifactId>bonita-admin-application</artifactId>
                                     <version>${bonita.web.version}</version>
                                     <type>zip</type>
-                                    <classifier>with-resources</classifier>
+                                    <classifier>application</classifier>
                                     <includes>pages/*</includes>
                                     <fileMappers>
                                         <org.codehaus.plexus.components.io.filemappers.FlattenFileMapper />
