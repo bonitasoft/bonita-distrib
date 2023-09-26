@@ -88,8 +88,6 @@ ENV ACCESSLOGS_PATH_APPEND_HOSTNAME false
 ENV ACCESSLOGS_MAX_DAYS 30
 # max Http threads Tomcat will use to serve HTTP/1.1 requests:
 ENV HTTP_MAX_THREADS 20
-#install provided default page, even if a custom app is detected.
-ENV INSTALL_PROVIDED_PAGES false
 
 COPY templates /opt/templates
 VOLUME ["/opt/bonita/conf/logs"]
