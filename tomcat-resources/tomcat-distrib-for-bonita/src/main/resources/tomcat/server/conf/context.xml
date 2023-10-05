@@ -39,6 +39,8 @@
     <Manager pathname="" />
     -->
 
+    <!-- Disable full JRE scanning when scanning for WebServlets or WebFilters-->
+    <JarScanner scanClassPath="false" />
 
 </Context>
 
