@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info" monitorInterval="60">
     <Properties>
-        <Property name="LOG_PATTERN">%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName} | %-5p%notEmpty{[%marker]} | [%t|%T] %c{1.} - %m%n</Property>
+        <Property name="LOG_PATTERN">%highlight{%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName} | %-5p%notEmpty{[%marker]} | [%t|%T] %c{1.} - %m%n}{FATAL=Bright red, ERROR=red, WARN=yellow bold, INFO=Normal, DEBUG=green bold, TRACE=blue}</Property>
         <!--  log format used in version 2021.2 and before -->
         <!-- <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS Z} %level{WARN=WARNING, DEBUG=FINE, ERROR=SEVERE, TRACE=FINER, INFO=INFO} (%t) %c %m%n</Property> -->
         <Property name="baseDir">${sys:catalina.base}/logs/</Property>
@@ -15,13 +15,13 @@
             </JSONLayout>
         </Console>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <PatternLayout pattern="${LOG_PATTERN}" disableAnsi="false"/>
         </Console>
         <Null name="Null" />
         <RollingRandomAccessFile fileName="${baseDir}/bonita.log"
                                  filePattern="${baseDir}/bonita-%d{yyyy-MM-dd}-%i.log.gz"
                                  name="File">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <PatternLayout pattern="${LOG_PATTERN}" disableAnsi="true"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="250 MB"/>
@@ -31,7 +31,7 @@
             <Filters>
                 <MarkerFilter marker="INCIDENT" onMatch="ACCEPT" onMismatch="DENY" />
             </Filters>
-            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <PatternLayout pattern="${LOG_PATTERN}" disableAnsi="true"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="250 MB"/>
