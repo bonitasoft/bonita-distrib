@@ -47,7 +47,9 @@
         <bonita.web.version>${project.version}</bonita.web.version>
         <bonita.engine.version>${project.version}</bonita.engine.version>
         <bonita-portal-look-and-feel-version>1.0.5</bonita-portal-look-and-feel-version>
-        <tomcat.version>9.0.76</tomcat.version>
+
+        <tomcat.version>9.0.81</tomcat.version>
+
         <deploy_plugin_skip>false</deploy_plugin_skip>
 
         <maven.compiler.source>11</maven.compiler.source>
