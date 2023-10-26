@@ -56,11 +56,28 @@ BIZ_DB_NAME=${BIZ_DB_NAME:-businessdb}
 BIZ_DB_USER=${BIZ_DB_USER:-businessuser}
 BIZ_DB_PASS=${BIZ_DB_PASS:-businesspass}
 
+# Warn on deprecated variables usage
+if [ -z ${TENANT_LOGIN+x} ]
+then
+  :
+else
+  echo -e "\e[33mWarning: TENANT_LOGIN is deprecated: use BONITA_RUNTIME_ADMIN_USERNAME instead.\e[0m"
+fi
+
+if [ -z ${TENANT_PASSWORD+x} ]
+then
+  :
+else
+  echo -e "\e[33mWarning: TENANT_PASSWORD is deprecated: use BONITA_RUNTIME_ADMIN_PASSWORD instead.\e[0m"
+fi
+
 # if not enforced, set the default credentials
 PLATFORM_LOGIN=${PLATFORM_LOGIN:-platformAdmin}
 PLATFORM_PASSWORD=${PLATFORM_PASSWORD:-platform}
 TENANT_LOGIN=${TENANT_LOGIN:-install}
 TENANT_PASSWORD=${TENANT_PASSWORD:-install}
+TECH_USER_USERNAME=${BONITA_RUNTIME_ADMIN_USERNAME:-${TENANT_LOGIN}}
+TECH_USER_PASSWORD=${BONITA_RUNTIME_ADMIN_PASSWORD:-${TENANT_PASSWORD}}
 
 # if not enforced, set the default connection pool sizes
 BONITA_DS_CONNECTION_POOL_INITIAL_SIZE=${BONITA_DS_CONNECTION_POOL_INITIAL_SIZE:-}
@@ -86,10 +103,10 @@ cp ${BONITA_TPL}/server.xml ${BONITA_PATH}/server/conf/server.xml
 
 # replace variables
 find ${BONITA_PATH}/setup/platform_conf/initial -name "*.properties" | xargs -n10 sed -i \
-    -e 's/^#userName\s*=.*/'"userName=${TENANT_LOGIN}"'/' \
-    -e 's/^#userPassword\s*=.*/'"userPassword=${TENANT_PASSWORD}"'/' \
-    -e 's/^platform.tenant.default.username\s*=.*/'"platform.tenant.default.username=${TENANT_LOGIN}"'/' \
-    -e 's/^platform.tenant.default.password\s*=.*/'"platform.tenant.default.password=${TENANT_PASSWORD}"'/' \
+    -e 's/^#bonita.runtime.admin.username\s*=.*/'"bonita.runtime.admin.username=${TECH_USER_USERNAME}"'/' \
+    -e 's/^#bonita.runtime.admin.password\s*=.*/'"bonita.runtime.admin.password=${TECH_USER_PASSWORD}"'/' \
+    -e 's/^platform.tenant.default.username\s*=.*/'"platform.tenant.default.username=${TECH_USER_USERNAME}"'/' \
+    -e 's/^platform.tenant.default.password\s*=.*/'"platform.tenant.default.password=${TECH_USER_PASSWORD}"'/' \
     -e 's/^#platformAdminUsername\s*=.*/'"platformAdminUsername=${PLATFORM_LOGIN}"'/' \
     -e 's/^#platformAdminPassword\s*=.*/'"platformAdminPassword=${PLATFORM_PASSWORD}"'/'
 
