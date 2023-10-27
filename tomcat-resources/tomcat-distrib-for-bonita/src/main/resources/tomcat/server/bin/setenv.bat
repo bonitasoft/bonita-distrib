@@ -5,6 +5,16 @@ rem #   Instead, edit the  setenv.bat template located in the folder setup/tomca
 rem #   During start-bonita script execution, the template will overwrite this file.                                   #
 rem ####################################################################################################################
 
+rem Add the JAVA 9 specific start-up parameters required by Hazelcast
+set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-modules=java.se"
+set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED"
+set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/java.lang=ALL-UNNAMED"
+set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/java.lang=ALL-UNNAMED"
+set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/java.nio=ALL-UNNAMED"
+set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
+set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.management/sun.management=ALL-UNNAMED"
+set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED"
+
 rem Set some JVM system properties required by Bonita
 
 rem This variable is automatically taken into account by catalina.bat:
