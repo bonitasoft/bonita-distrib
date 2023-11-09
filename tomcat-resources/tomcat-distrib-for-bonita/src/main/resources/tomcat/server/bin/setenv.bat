@@ -8,8 +8,6 @@ rem ############################################################################
 rem Add the JAVA 9 specific start-up parameters required by Hazelcast
 set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-modules=java.se"
 set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED"
-set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/java.lang=ALL-UNNAMED"
-set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/java.lang=ALL-UNNAMED"
 set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/java.nio=ALL-UNNAMED"
 set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
 set "JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.management/sun.management=ALL-UNNAMED"
