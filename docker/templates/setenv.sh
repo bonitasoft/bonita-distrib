@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Add the JAVA 9 specific start-up parameters required by Hazelcast
+# Add the JAVA 9 specific start-up parameters required by Hazelcast:
+# (JVM logs those options twice, due to this bug: https://github.com/adoptium/adoptium-support/issues/303)
 JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-modules=java.se"
 JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED"
 JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-opens=java.base/java.nio=ALL-UNNAMED"
