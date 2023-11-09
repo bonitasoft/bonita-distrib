@@ -3,8 +3,6 @@
 # Add the JAVA 9 specific start-up parameters required by Hazelcast
 JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-modules=java.se"
 JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED"
-JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-opens=java.base/java.lang=ALL-UNNAMED"
-JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-opens=java.base/java.lang=ALL-UNNAMED"
 JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-opens=java.base/java.nio=ALL-UNNAMED"
 JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
 JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-opens=java.management/sun.management=ALL-UNNAMED"
