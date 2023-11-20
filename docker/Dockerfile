@@ -33,12 +33,12 @@ ARG BONITA_SHA256
 ARG BASE_URL
 ARG BONITA_URL
 
-ENV BONITA_VERSION ${BONITA_VERSION:-8.0.0}
-ENV BRANDING_VERSION ${BRANDING_VERSION:-2023.1-u0}
-ENV BONITA_SHA256  ${BONITA_SHA256:-2141b33d5835a0205e6da06580f75f44fd79c798552d4d1c3b304e6fa1b69a60}
+ENV BONITA_VERSION ${BONITA_VERSION:-9.0.0}
+ENV BRANDING_VERSION ${BRANDING_VERSION:-2023.2-u0}
+ENV BONITA_SHA256 ${BONITA_SHA256:-c37be3ca64a07810609c97f75c47acb7fea2d29bafff181b447987514b53d140}
 ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
-ENV BASE_URL ${BASE_URL:-https://github.com/bonitasoft/bonita-platform-releases/releases/download}
-ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BRANDING_VERSION}/BonitaCommunity-${BRANDING_VERSION}.zip}
+ENV BASE_URL ${BASE_URL:-https://search.maven.org/remotecontent?filepath=org/bonitasoft/distrib/bundle-tomcat}
+ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BONITA_VERSION}/bundle-tomcat-${BONITA_VERSION}.zip}
 
 ## Must copy files first because the bundle is either taken from url or from local /opt/files if present
 RUN mkdir /opt/files
