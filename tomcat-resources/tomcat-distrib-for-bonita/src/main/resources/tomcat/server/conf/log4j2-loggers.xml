@@ -38,20 +38,25 @@
         <!-- Hibernate is used by Bonita and very verbose in the log. Should stay with WARN level except when debugging database access issues -->
         <Logger name="org.hibernate" level="WARN"/>
 
-        <!-- Remove wrong warnings about ehcache: -->
-        <Logger name="org.hibernate.orm.cache" level="ERROR"/>
+
+        <!-- Set AbstractReadWriteAccess level to INFO to have only cache expiry messages, DEBUG to have all cache read / write / hit / miss messages -->
+        <!-- <Logger name="org.hibernate.cache.spi.support.AbstractReadWriteAccess" level="INFO"/> -->
+        <!-- Uncomment to get more info about cache: -->
+        <!-- <Logger name="org.hibernate.cache" level="DEBUG"/>-->
+        <!-- <Logger name="org.hibernate.cache.internal" level="INFO"/>-->
+        <!-- <Logger name="org.bonitasoft.engine.persistence" level="DEBUG"/>-->
+
 
         <!-- enable tracking of slow execution queries: -->
         <Logger name="org.hibernate.SQL_SLOW" level="INFO"/>
 
-        <!-- Ehcache is used by Bonita and very verbose in the log.  Should stay with WARN level except when debugging cache issues -->
+        <!-- Ehcache is used by Bonita and very verbose in the log. Should stay with WARN level except when debugging cache issues -->
         <Logger name="net.sf.ehcache" level="WARN"/>
 
         <!-- Deactivate annoying false warning: -->
         <Logger name="org.hibernate.type.TypeFactory" level="ERROR"/>
 
         <Logger name="org.springframework" level="WARN"/>
-        <Logger name="org.bonitasoft.engine.service.impl.BonitaSpringContext" level="WARN"/>
 
         <!-- tuckey -->
         <Logger name="org.tuckey" level="WARN"/>
@@ -68,6 +73,12 @@
         <!--  -->
 
         <Logger name="com.bonitasoft" level="INFO"/>
+
+        <!-- Uncomment to get more info about cluster and Hazelcast configuration: -->
+        <!-- <Logger name="com.bonitasoft.engine.config" level="DEBUG"/> -->
+        <!-- <Logger name="com.bonitasoft.engine.cluster.config" level="DEBUG"/>-->
+        <!-- <Logger name="com.hazelcast" level="DEBUG"/>-->
+        <!-- <Logger name="com.hazelcast.internal" level="INFO"/>-->
 
         <!-- If you want to have logs on execution time performance for BDM filtering, you can activate the following line: -->
         <!-- <Logger name="com.bonitasoft.engine.business.data.impl" level="TRACE" /> -->
