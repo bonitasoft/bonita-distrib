@@ -3,6 +3,7 @@
 
 set -eo pipefail
 
+# Duplication from eclipse-temurin parent image entrypoint script
 # Opt-in is only activated if the environment variable is set
 if [ -n "$USE_SYSTEM_CA_CERTS" ] && [ "$(id -u)" = '0' ]; then
 
@@ -14,11 +15,6 @@ if [ -n "$USE_SYSTEM_CA_CERTS" ] && [ "$(id -u)" = '0' ]; then
     fi
 
     CACERT=$JAVA_HOME/lib/security/cacerts
-
-    # JDK8 puts its JRE in a subdirectory
-    if [ -f "$JAVA_HOME/jre/lib/security/cacerts" ]; then
-        CACERT=$JAVA_HOME/jre/lib/security/cacerts
-    fi
 
     # OpenJDK images used to create a hook for `update-ca-certificates`. Since we are using an entrypoint anyway, we
     # might as well just generate the truststore and skip the hooks.
