@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>bonita-distrib</artifactId>
+        <groupId>org.bonitasoft.distrib</groupId>
+        <version>10.0-SNAPSHOT</version>
+    </parent>
+    <groupId>org.bonitasoft.distrib.tomcat</groupId>
+    <artifactId>tomcat-resources</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <deploy_plugin_skip>true</deploy_plugin_skip>
+    </properties>
+
+    <modules>
+        <module>tomcat-jta</module>
+        <module>tomcat-bonita-extensions</module>
+        <!-- keep at last position as it depends on other modules (that are not always retrieved through direct dependencies so maven is not aware of the dependency order) -->
+        <module>tomcat-distrib-for-bonita</module>
+    </modules>
+</project>
