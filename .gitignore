@@ -1,0 +1,23 @@
+# Eclipse
+.project
+.settings
+.classpath
+
+# IntelliJ
+*.iml
+.idea
+
+# Maven
+target/
+.flattened-pom.xml
+
+# Temp files
+*.orig
+*.tmp
+**/*.swp
+
+# node and npm
+node
+node_modules/
+/docker/files/BonitaCommunity-*.zip
+/docker/bonita_*.tar.gz
