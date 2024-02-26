@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="60">
+    <Properties>
+        <Property name="LOG_PATTERN">%highlight{%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName} | %-5p%notEmpty{[%marker]} | [%t|%T] %c{1.} - %m%n}{FATAL=Bright red, ERROR=red, WARN=yellow bold, INFO=Normal, DEBUG=green bold, TRACE=blue}</Property>
+        <Property name="baseDir">/opt/bonita/logs/</Property>
+    </Properties>
+    <Appenders>
+        <!-- use json logger if json output is required -->
+        <Console name="Console-JSON" target="SYSTEM_OUT">
+            <JSONLayout compact="true" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd'T'HH:mm:ss.SSSZ}"/>
+            </JSONLayout>
+        </Console>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}" disableAnsi="false"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

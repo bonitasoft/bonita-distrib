@@ -1,0 +1,2 @@
+gossfile:
+  {{getEnv "GOSSFILE"}}: {}

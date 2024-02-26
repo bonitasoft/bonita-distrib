@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.bonitasoft.runtime</groupId>
+    <artifactId>bonita-runtime-bom</artifactId>
+    <version>10.1-SNAPSHOT</version>
+
+    <name>Bonita Runtime BOM (Bill of Materials)</name>
+    <packaging>pom</packaging>
+
+    <description>Bill of Materials of the Bonita Runtime component</description>
+    <url>https://community.bonitasoft.com/</url>
+    <organization>
+        <name>Bonitasoft S.A.</name>
+        <url>https://community.bonitasoft.com/</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License Version 2.1</name>
+            <url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>bonita-engine-team</id>
+            <name>The Bonita Engine Development Team</name>
+            <organization>Bonitasoft S.A.</organization>
+            <organizationUrl>http://community.bonitasoft.com/</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:http://github.com/bonitasoft/bonita-distrib.git</connection>
+        <developerConnection>scm:git:git@github.com:bonitasoft/bonita-distrib.git</developerConnection>
+        <url>http://github.com/bonitasoft/bonita-distrib</url>
+    </scm>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.bonitasoft.engine</groupId>
+                <artifactId>bonita-engine</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-bom -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-bom</artifactId>
+                <version>2.22.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.1.1</version>
+                    <configuration>
+                        <deployAtEnd>true</deployAtEnd>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
