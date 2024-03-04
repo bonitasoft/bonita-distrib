@@ -37,7 +37,7 @@ TRANSACTION_XATIMEOUT_OPTS="-Dbonita.runtime.transaction.xa-timeout={{TRANSACTIO
 # Optional JMX remote access Configuration. Used to enable remote JMX agent in tomcat to monitor Heap Memory, Threads, CPU Usage, Classes, and configure various MBeans.
 if [ "$JMX_REMOTE_ACCESS" = 'true' ]; then
   host=$(echo $(hostname -i) | cut -f1 -d ' ' | xargs)
-  JMX_REMOTE_ACCESS_OPTS="-Dcom.sun.management.jmxremote -Djava.rmi.server.hostname=${host} -Dcom.sun.management.jmxremote.port=9000 -Dcom.sun.management.jmxremote.rmi.port=9000 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.password.file=${CATALINA_HOME}/conf/jmxremote.password -Dcom.sun.management.jmxremote.access.file=${CATALINA_HOME}/conf/jmxremote.access"
+  JMX_REMOTE_ACCESS_OPTS="-Djava.rmi.server.hostname=${host} -Dcom.sun.management.jmxremote.port=9000 -Dcom.sun.management.jmxremote.rmi.port=9000 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.password.file=${CATALINA_HOME}/conf/jmxremote.password -Dcom.sun.management.jmxremote.access.file=${CATALINA_HOME}/conf/jmxremote.access"
 fi
 
 # Pass the JVM system properties to Tomcat JVM using CATALINA_OPTS variable
