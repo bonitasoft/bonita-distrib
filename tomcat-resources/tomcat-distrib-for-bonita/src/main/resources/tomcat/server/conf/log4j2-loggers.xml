@@ -80,6 +80,9 @@
         <!-- <Logger name="com.hazelcast" level="DEBUG"/>-->
         <!-- <Logger name="com.hazelcast.internal" level="INFO"/>-->
 
+        <!-- To deactivate verbose Hazelcast cache configuration at startup: -->
+        <Logger name="com.hazelcast.cache" level="WARN"/>
+
         <!-- If you want to have logs on execution time performance for BDM filtering, you can activate the following line: -->
         <!-- <Logger name="com.bonitasoft.engine.business.data.impl" level="TRACE" /> -->
 
