@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="10">
+    <Loggers>
+
+        <Logger name="org.bonitasoft" level="INFO"/>
+
+        <Logger name="com.arjuna" level="INFO"/>
+        <Logger name="org.jboss.narayana.tomcat.jta" level="INFO"/>
+
+        <!-- At platform initial setup, activate INFO messages to have details on what is happening: -->
+        <Logger name="org.bonitasoft.platform" level="INFO"/>
+
+        <Logger name="org.bonitasoft.engine.EngineInitializer" level="INFO"/>
+
+        <!-- If you want to have more log on connectors execution only, you can activate and modify the following lines -->
+        <!-- <Logger name="org.bonitasoft.engine.core.connector" level="DEBUG" /> -->
+        <!-- <Logger name="org.bonitasoft.engine.connector" level="DEBUG" /> -->
+
+        <!-- If you want to have more log on expressions only, you can activate and modify the following lines -->
+        <!-- <Logger name="org.bonitasoft.engine.expression" level="DEBUG" /> -->
+
+        <!-- If you want to have more log on input/output of API calls, you can activate and modify the following line -->
+        <!-- <Logger name="org.bonitasoft.engine.api" level="TRACE" /> -->
+
+        <!-- If you want to have more log on Asynchronous executions (Work/Job), you can activate and modify the following lines -->
+        <!-- <Logger name="org.bonitasoft.engine.work" level="DEBUG" /> -->
+        <!-- <Logger name="org.bonitasoft.engine.execution.work" level="DEBUG" /> -->
+        <!-- <Logger name="org.bonitasoft.engine.job" level="DEBUG" /> -->
+        <!-- <Logger name="org.bonitasoft.engine.jobs" level="DEBUG" /> -->
+        <!-- <Logger name="org.bonitasoft.engine.scheduler" level="DEBUG" /> -->
+        <!-- Specific logger for auditing work execution -->
+        <Logger name="BONITA_WORK_AUDIT.EXECUTION" level="INFO"/>
+
+        <!-- If you want to deactivate warnings on wrong handling of transient data -->
+        <!-- <Logger name="org.bonitasoft.engine.operation.TransientDataLeftOperandHandler" level="ERROR" /> -->
+        <!-- <Logger name="org.bonitasoft.engine.core.data.instance.impl" level="ERROR" /> -->
+
+        <!-- Hibernate is used by Bonita and very verbose in the log. Should stay with WARN level except when debugging database access issues -->
+        <Logger name="org.hibernate" level="WARN"/>
+
+
+        <!-- Set AbstractReadWriteAccess level to INFO to have only cache expiry messages, DEBUG to have all cache read / write / hit / miss messages -->
+        <!-- <Logger name="org.hibernate.cache.spi.support.AbstractReadWriteAccess" level="INFO"/> -->
+        <!-- Uncomment to get more info about cache: -->
+        <!-- <Logger name="org.hibernate.cache" level="DEBUG"/>-->
+        <!-- <Logger name="org.hibernate.cache.internal" level="INFO"/>-->
+        <!-- <Logger name="org.bonitasoft.engine.persistence" level="DEBUG"/>-->
+
+
+        <!-- enable tracking of slow execution queries: -->
+        <Logger name="org.hibernate.SQL_SLOW" level="INFO"/>
+
+        <!-- Ehcache is used by Bonita and very verbose in the log. Should stay with WARN level except when debugging cache issues -->
+        <Logger name="net.sf.ehcache" level="WARN"/>
+
+        <!-- Deactivate annoying false warning: -->
+        <Logger name="org.hibernate.type.TypeFactory" level="ERROR"/>
+
+        <Logger name="org.springframework" level="WARN"/>
+
+        <!-- tuckey -->
+        <Logger name="org.tuckey" level="WARN"/>
+
+        <!-- If you want to have more log on rest api extension provided logger, you can activate and modify the following lines -->
+        <!-- <Logger name="org.bonitasoft.api.extension" level="DEBUG" /> -->
+
+        <!-- If you want to track Unauthorized static permission checks: -->
+        <!-- <Logger name="org.bonitasoft.engine.authorization.PermissionServiceImpl" level="DEBUG" /> -->
+        <!-- <Logger name="com.bonitasoft.engine.authorization.PermissionServiceExt" level="DEBUG"/> -->
+
+        <!--  -->
+        <!-- Subscription edition specific logging configuration: -->
+        <!--  -->
+
+        <Logger name="com.bonitasoft" level="INFO"/>
+
+        <!-- Uncomment to get more info about cluster and Hazelcast configuration: -->
+        <!-- <Logger name="com.bonitasoft.engine.config" level="DEBUG"/> -->
+        <!-- <Logger name="com.bonitasoft.engine.cluster.config" level="DEBUG"/>-->
+        <!-- <Logger name="com.hazelcast" level="DEBUG"/>-->
+        <!-- <Logger name="com.hazelcast.internal" level="INFO"/>-->
+
+        <!-- To deactivate verbose Hazelcast cache configuration at startup: -->
+        <Logger name="com.hazelcast.cache" level="WARN"/>
+
+        <!-- If you want to have logs on execution time performance for BDM filtering, you can activate the following line: -->
+        <!-- <Logger name="com.bonitasoft.engine.business.data.impl" level="TRACE" /> -->
+
+        <!-- If you want to have more log on input/output of API calls, you can activate and modify the following line -->
+        <!-- <Logger name="com.bonitasoft.engine.api" level="TRACE" /> -->
+
+        <!-- Display monitoring information when property 'org.bonitasoft.engine.monitoring.publisher.logging.enable' is set to true in configuration file 'bonita-platform-sp-custom.properties' -->
+        <Logger name="com.bonitasoft.engine.monitoring.LoggingMeterRegistry" level="INFO"/>
+
+        <!-- If you want to have more log on SSO authentication, you can activate and modify the following lines -->
+        <!-- <Logger name="org.bonitasoft.console.common.server.auth" level="DEBUG" /> -->
+        <!-- <Logger name="org.bonitasoft.engine.core.login" level="DEBUG" /> -->
+        <!-- <Logger name="com.bonitasoft.engine.authentication" level="DEBUG" /> -->
+
+        <!-- keycloak -->
+        <!-- <Logger name="org.keycloak" level="ALL" /> -->
+        <!-- <Logger name="class org.keycloak" level="ALL" /> -->
+
+    </Loggers>
+</Configuration>
