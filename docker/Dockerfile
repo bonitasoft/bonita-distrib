@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17.0.10_7-jre-alpine
+FROM eclipse-temurin:17-jre-alpine
 
 LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 
@@ -85,6 +85,6 @@ COPY templates /opt/templates
 EXPOSE 8080 9000
 
 # command to run when the container starts
-ENTRYPOINT ["/opt/files/startup.sh"]
+ENTRYPOINT ["/__cacert_entrypoint.sh", "/opt/files/startup.sh"]
 CMD ["/opt/bonita/server/bin/catalina.sh","run"]
 
