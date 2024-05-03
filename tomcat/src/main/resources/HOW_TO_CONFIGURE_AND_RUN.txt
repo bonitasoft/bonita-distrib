@@ -28,7 +28,7 @@ If you need to finely tune the configuration, modify the following template file
     - setup/tomcat-templates/setenv.sh
     - setup/tomcat-templates/setenv.bat
 They are used as a basis for Tomcat configuration and will overwrite Tomcat provided files.
-Bonita BPM Community Tomcat bundle must be restarted so the new configuration is taken into account.
+Bonita Community Tomcat bundle must be restarted so the new configuration is taken into account.
 
 
 III. Database vendor switch after first start
@@ -38,7 +38,7 @@ This works if you need to switch from any DB vendor (including H2) to any other 
 Note that this switch is not a migration: the new database will be initialized and left empty for a fresh start.
 
 IV. Bonita internal configuration update
-You may need to change the configuration of Bonita platform, like the Technical user's credentials on your tenant.
+You may need to change the configuration of Bonita platform, like the Technical user's credentials.
 To do so:
      1. Stop Bonita Community Tomcat bundle
      2. In setup/ folder, run `setup(.sh|.bat) pull` to retrieve your current configuration from database
