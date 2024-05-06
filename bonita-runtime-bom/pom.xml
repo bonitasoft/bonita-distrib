@@ -3,7 +3,7 @@
 
     <groupId>org.bonitasoft.runtime</groupId>
     <artifactId>bonita-runtime-bom</artifactId>
-    <version>10.1-SNAPSHOT</version>
+    <version>10.2-SNAPSHOT</version>
 
     <name>Bonita Runtime BOM (Bill of Materials)</name>
     <packaging>pom</packaging>
