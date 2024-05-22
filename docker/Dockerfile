@@ -39,7 +39,7 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "F
   && unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
   && mv /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/* /opt/bonita \
   && rmdir /opt/bonita/BonitaCommunity-${BRANDING_VERSION} \
-  && unzip /opt/bonita/server/webapps/bonita.war -d /opt/bonita/server/webapps/bonita/ \
+  && unzip -q /opt/bonita/server/webapps/bonita.war -d /opt/bonita/server/webapps/bonita/ \
   && rm /opt/bonita/server/webapps/bonita.war \
   && rm -f /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
   && mkdir -p /opt/bonita/conf/logs/ \
