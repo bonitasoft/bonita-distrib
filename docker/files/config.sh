@@ -101,6 +101,10 @@ cp ${BONITA_TPL}/setenv.sh ${BONITA_PATH}/setup/tomcat-templates/setenv.sh
 cp ${BONITA_TPL}/database.properties ${BONITA_PATH}/setup/database.properties
 cp ${BONITA_TPL}/server.xml ${BONITA_PATH}/server/conf/server.xml
 
+echo "Remote JMX Access is : ${JMX_REMOTE_ACCESS}"
+echo "Remote IP valve : ${REMOTE_IP_VALVE_ENABLED}"
+echo "Tomcat Max thread value : ${HTTP_MAX_THREADS}"
+
 # replace variables
 find ${BONITA_PATH}/setup/platform_conf/initial -name "*.properties" | xargs -n10 sed -i \
     -e 's/^#bonita.runtime.admin.username\s*=.*/'"bonita.runtime.admin.username=${TECH_USER_USERNAME}"'/' \
