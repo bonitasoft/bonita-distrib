@@ -23,7 +23,7 @@
               user="sa"
               password=""
               loginTimeout="0"
-              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
+              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/bonita_journal.db;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
 
     <Resource name="bonitaSequenceManagerDS"
               auth="Container"
@@ -44,7 +44,7 @@
               username="sa"
               password=""
               driverClassName="org.h2.Driver"
-              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/bonita_journal.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
+              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/bonita_journal.db;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
 
     <!-- Postgresql Example -->
     <!--
@@ -202,7 +202,7 @@
               user="sa"
               password=""
               loginTimeout="0"
-              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/business_data.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
+              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/business_data.db;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
 
     <Resource name="NotManagedBizDataDS"
               auth="Container"
@@ -223,7 +223,7 @@
               username="sa"
               password=""
               driverClassName="org.h2.Driver"
-              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/business_data.db;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
+              url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/business_data.db;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
 
     <!-- Postgresql Example -->
     <!--
