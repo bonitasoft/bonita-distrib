@@ -4,7 +4,7 @@
     <parent>
         <artifactId>bonita-distrib</artifactId>
         <groupId>org.bonitasoft.distrib</groupId>
-        <version>10.2-SNAPSHOT</version>
+        <version>10.2.0.W25</version>
     </parent>
     <groupId>org.bonitasoft.distrib.tomcat</groupId>
     <artifactId>tomcat-resources</artifactId>
