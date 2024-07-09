@@ -10,15 +10,10 @@
     </parent>
     <artifactId>tomcat-bonita-extensions</artifactId>
 
-    <properties>
-        <version.org.apache.tomcat>${tomcat.version}</version.org.apache.tomcat>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>${tomcat.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

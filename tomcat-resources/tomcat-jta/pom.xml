@@ -10,10 +10,6 @@
     </parent>
     <artifactId>tomcat-jta</artifactId>
 
-    <properties>
-        <version.org.apache.tomcat>${tomcat.version}</version.org.apache.tomcat>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.jboss.narayana.jta</groupId>
@@ -22,7 +18,6 @@
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
-            <version>${version.org.apache.tomcat}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -34,7 +29,6 @@
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
-            <version>${version.org.apache.tomcat}</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
