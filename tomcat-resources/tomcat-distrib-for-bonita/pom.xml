@@ -124,9 +124,14 @@
                                 <artifactItem>
                                     <groupId>org.apache.tomcat</groupId>
                                     <artifactId>tomcat</artifactId>
-                                    <version>${tomcat.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
+                                    <fileMappers>
+                                        <org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
+                                            <pattern>^[^/]+/(.*)$</pattern>
+                                            <replacement>$1</replacement>
+                                        </org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
+                                    </fileMappers>
                                     <outputDirectory>${tomcat_dir}</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
@@ -146,8 +151,7 @@
                         </goals>
                         <configuration>
                             <target name="Clean and update tomcat configuration files">
-                                <move file="${tomcat_dir}/apache-tomcat-${tomcat.version}" tofile="${tomcat_dir}" />
-                                
+
                                 <delete dir="${tomcat_dir}/webapps/docs" />
                                 <delete dir="${tomcat_dir}/webapps/examples" />
                                 <delete dir="${tomcat_dir}/webapps/host-manager" />
