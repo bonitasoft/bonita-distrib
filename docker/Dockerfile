@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.20
 
 LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 
@@ -11,7 +11,7 @@ RUN mkdir /opt/custom-init.d/
 
 # create user to launch Bonita as non-root
 RUN addgroup -S -g 1000 bonita \
- && adduser -u 1000 -S  -G bonita -h /opt/bonita/ -s /sbin/nologin  bonita
+ && adduser -u 1000 -S -G bonita -h /opt/bonita/ -s /sbin/nologin bonita
 
 # Install Bundle
 
@@ -23,12 +23,12 @@ ARG BONITA_SHA256
 ARG BASE_URL
 ARG BONITA_URL
 
-ENV BONITA_VERSION ${BONITA_VERSION:-9.0.0}
-ENV BRANDING_VERSION ${BRANDING_VERSION:-2023.2-u0}
-ENV BONITA_SHA256 ${BONITA_SHA256:-c37be3ca64a07810609c97f75c47acb7fea2d29bafff181b447987514b53d140}
-ENV ZIP_FILE BonitaCommunity-${BRANDING_VERSION}.zip
-ENV BASE_URL ${BASE_URL:-https://search.maven.org/remotecontent?filepath=org/bonitasoft/distrib/bundle-tomcat}
-ENV BONITA_URL ${BONITA_URL:-${BASE_URL}/${BONITA_VERSION}/bundle-tomcat-${BONITA_VERSION}.zip}
+ENV BONITA_VERSION=${BONITA_VERSION:-9.0.0}
+ENV BRANDING_VERSION=${BRANDING_VERSION:-2023.2-u0}
+ENV BONITA_SHA256=${BONITA_SHA256:-c37be3ca64a07810609c97f75c47acb7fea2d29bafff181b447987514b53d140}
+ENV ZIP_FILE=BonitaCommunity-${BRANDING_VERSION}.zip
+ENV BASE_URL=${BASE_URL:-https://search.maven.org/remotecontent?filepath=org/bonitasoft/distrib/bundle-tomcat}
+ENV BONITA_URL=${BONITA_URL:-${BASE_URL}/${BONITA_VERSION}/bundle-tomcat-${BONITA_VERSION}.zip}
 
 ## Must copy files first because the bundle is either taken from url or from local /opt/files if present
 RUN mkdir /opt/files
@@ -58,26 +58,26 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "F
   && chmod -R go+w /opt/bonita/setup
 
 # ENV only required at runtime
-ENV HTTP_API false
-ENV HTTP_API_USERNAME http-api
-ENV HTTP_API_PASSWORD ""
-ENV MONITORING_USERNAME monitoring
-ENV MONITORING_PASSWORD mon1tor1ng_adm1n
-ENV JMX_REMOTE_ACCESS false
-ENV REMOTE_IP_VALVE_ENABLED false
+ENV HTTP_API=false
+ENV HTTP_API_USERNAME=http-api
+ENV HTTP_API_PASSWORD=""
+ENV MONITORING_USERNAME=monitoring
+ENV MONITORING_PASSWORD=mon1tor1ng_adm1n
+ENV JMX_REMOTE_ACCESS=false
+ENV REMOTE_IP_VALVE_ENABLED=false
 
 # Allow to redirect access logs to stdout:
-ENV ACCESSLOGS_STDOUT_ENABLED false
+ENV ACCESSLOGS_STDOUT_ENABLED=false
 # Allow to redirect access logs to file:
-ENV ACCESSLOGS_FILES_ENABLED false
+ENV ACCESSLOGS_FILES_ENABLED=false
 # If access log files enabled, where to put the access log files:
-ENV ACCESSLOGS_PATH /opt/bonita/logs
+ENV ACCESSLOGS_PATH=/opt/bonita/logs
 # access log files enabled, should we append new HOSTNAME directory to full path:
-ENV ACCESSLOGS_PATH_APPEND_HOSTNAME false
+ENV ACCESSLOGS_PATH_APPEND_HOSTNAME=false
 # max days access log files are conserved:
-ENV ACCESSLOGS_MAX_DAYS 30
+ENV ACCESSLOGS_MAX_DAYS=30
 # max Http threads Tomcat will use to serve HTTP/1.1 requests:
-ENV HTTP_MAX_THREADS 20
+ENV HTTP_MAX_THREADS=20
 
 COPY templates /opt/templates
 
