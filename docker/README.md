@@ -1,6 +1,11 @@
 Bonitasoft docker images
 =========================
 
+## Requirement
+
+Before building the docker image, you should run the `./mvnw package` like explain in the [README](../README.md)
+
+
 ## Build SNAPSHOT version
 
 ```
