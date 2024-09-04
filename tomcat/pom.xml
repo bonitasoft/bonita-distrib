@@ -119,6 +119,7 @@
                                     <directory>src/main/resources</directory>
                                 </resource>
                             </resources>
+                            <overwrite>true</overwrite>
                         </configuration>
                     </execution>
                 </executions>
