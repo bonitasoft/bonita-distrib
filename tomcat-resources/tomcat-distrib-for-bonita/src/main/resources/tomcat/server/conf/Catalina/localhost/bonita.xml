@@ -46,7 +46,7 @@
               driverClassName="org.h2.Driver"
               url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/bonita_journal.db;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
 
-    <!-- Postgresql Example -->
+    <!-- Postgresql Example, available in Bonita Community and Subscription editions -->
     <!--
     <Resource name="RawBonitaDS"
               auth="Container"
@@ -83,7 +83,7 @@
               url="jdbc:postgresql://localhost:5432/bonita"/>
     -->
 
-    <!-- Oracle Example -->
+    <!-- Oracle Example, available in Bonita Subscription editions only -->
     <!--
     <Resource name="RawBonitaDS"
               auth="Container"
@@ -117,7 +117,7 @@
               url="jdbc:oracle:thin:@localhost:1521:XE"/>
     -->
 
-    <!-- SQL Server Example -->
+    <!-- SQL Server Example, available in Bonita Subscription editions only -->
     <!--
     <Resource name="RawBonitaDS"
               auth="Container"
@@ -151,7 +151,7 @@
               url="jdbc:sqlserver://localhost:1433;database=journal"/>
     -->
 
-    <!-- MySQL Example -->
+    <!-- MySQL Example, available in Bonita Subscription editions only -->
     <!--
     <Resource name="RawBonitaDS"
               auth="Container"
@@ -225,7 +225,7 @@
               driverClassName="org.h2.Driver"
               url="jdbc:h2:file:${org.bonitasoft.h2.database.dir}/business_data.db;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;" />
 
-    <!-- Postgresql Example -->
+    <!-- Postgresql Example, available in Bonita Community and Subscription editions  -->
     <!--
     <Resource name="RawBusinessDataDS"
               auth="Container"
@@ -261,7 +261,7 @@
               url="jdbc:postgresql://localhost:5432/business_data"/>
     -->
 
-    <!-- Oracle Example -->
+    <!-- Oracle Example, available in Bonita Subscription editions only -->
     <!--
     <Resource name="RawBusinessDataDS"
               auth="Container"
@@ -295,7 +295,7 @@
               url="jdbc:oracle:thin:@localhost:1521:XE"/>
     -->
 
-    <!-- SQL Server Example -->
+    <!-- SQL Server Example, available in Bonita Subscription editions only -->
     <!--
 
     <Resource name="RawBusinessDataDS"
@@ -330,7 +330,7 @@
               url="jdbc:sqlserver://localhost:1433;database=business_data"/>
     -->
 
-    <!-- MySQL Example -->
+    <!-- MySQL Example, available in Bonita Subscription editions only -->
     <!--
     <Resource name="RawBusinessDataDS"
               auth="Container"
