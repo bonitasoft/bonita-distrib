@@ -31,10 +31,10 @@ H2_DATABASE_DIR="-Dorg.bonitasoft.h2.database.dir=${CATALINA_HOME}/../h2_databas
 INCIDENT_LOG_OPTS="-Dorg.bonitasoft.engine.incident.folder=${INCIDENT_LOG_DIR_PATH:-$CATALINA_HOME/logs}"
 HEAPDUMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${HEAPDUMP_PATH:-$CATALINA_HOME/logs}"
 
-# Define the RDMBS vendor use by Bonita Engine to store data. Valid values are: h2, postgres, sqlserver, oracle, mysql.
+# Define the RDMBS vendor use by Bonita Engine to store data. Valid values are: h2, postgres
 DB_OPTS="-Dsysprop.bonita.db.vendor=h2"
 
-# Define the RDMBS vendor use by Bonita Engine to store Business Data. Valid values are: h2, postgres, sqlserver, oracle, mysql.
+# Define the RDMBS vendor use by Bonita Engine to store Business Data. Valid values are: h2, postgres
 # If you use different DB engines by tenants, please update directly bonita-tenant-community-custom.properties
 BDM_DB_OPTS="-Dsysprop.bonita.bdm.db.vendor=h2"
 
