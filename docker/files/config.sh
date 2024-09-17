@@ -22,11 +22,6 @@ then
 	DB_VENDOR='postgres'
 	DB_HOST=$POSTGRES_PORT_5432_TCP_ADDR
 	DB_PORT=$POSTGRES_PORT_5432_TCP_PORT
-elif [ -n "$MYSQL_PORT_3306_TCP_PORT" ]
-then
-	DB_VENDOR='mysql'
-	DB_HOST=$MYSQL_PORT_3306_TCP_ADDR
-	DB_PORT=$MYSQL_PORT_3306_TCP_PORT
 else
 	DB_VENDOR=${DB_VENDOR:-h2}
 fi
@@ -38,9 +33,6 @@ case $DB_VENDOR in
 		;;
 	"postgres")
 		DB_PORT=${DB_PORT:-5432}
-		;;
-	"mysql")
-		DB_PORT=${DB_PORT:-3306}
 		;;
 	*)
 		;;

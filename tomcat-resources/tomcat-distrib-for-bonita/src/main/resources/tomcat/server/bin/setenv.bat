@@ -36,11 +36,10 @@ set PLATFORM_SETUP="-Dorg.bonitasoft.platform.setup.folder=%CATALINA_HOME%\..\se
 set H2_DATABASE_DIR="-Dorg.bonitasoft.h2.database.dir=%CATALINA_HOME%\..\h2_database"
 set INCIDENT_LOG_DIR="-Dorg.bonitasoft.engine.incident.folder=%CATALINA_HOME%\logs"
 
-rem Define the RDMBS vendor use by Bonita Engine to store data. Valid values are: h2, postgres, sqlserver, oracle, mysql.
+rem Define the RDMBS vendor use by Bonita Engine to store data. Valid values are: h2, postgres in Community edition, and also sqlserver, oracle, mysql in Subscription editions.
 set DB_OPTS="-Dsysprop.bonita.db.vendor=h2"
 
-rem Define the RDMBS vendor use by Bonita Engine to store Business Data. Valid values are: h2, postgres, sqlserver, oracle, mysql.
-rem If you use different DB engines by tenants, please update directly bonita-tenant-community-custom.properties
+rem Define the RDMBS vendor use by Bonita Engine to store Business Data. Valid values are: h2, postgres in Community edition, and also sqlserver, oracle, mysql in Subscription editions.
 set BDM_DB_OPTS="-Dsysprop.bonita.bdm.db.vendor=h2"
 
 rem Arjuna (JTA service added to Tomcat and required by Bonita Engine for transaction management)
