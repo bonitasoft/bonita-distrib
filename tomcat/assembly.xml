@@ -7,23 +7,20 @@
     </formats>
     <includeBaseDirectory>true</includeBaseDirectory>
 
+    <!-- Set right permissions to all sh files -->
     <fileSets>
         <fileSet>
             <outputDirectory/>
             <directory>${bundle.dir}</directory>
             <excludes>
-                <exclude>server/bin/*.sh</exclude>
-                <exclude>setup/*.sh</exclude>
-                <exclude>*.sh</exclude>
+                <exclude>**/*.sh</exclude>
             </excludes>
         </fileSet>
         <fileSet>
             <outputDirectory/>
             <directory>${bundle.dir}</directory>
             <includes>
-                <include>server/bin/*.sh</include>
-                <include>setup/*.sh</include>
-                <include>*.sh</include>
+                <include>**/*.sh</include>
             </includes>
             <fileMode>0740</fileMode>
         </fileSet>
