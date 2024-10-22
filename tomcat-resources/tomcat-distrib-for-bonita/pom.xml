@@ -127,9 +127,12 @@
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <fileMappers>
+                                        <!-- Extract the content of the tomcat jar without the root directory 'apache-tomcat-<version>' -->
+                                        <!-- The tomcat <version> can be a combination of letters, digits, '.' and '-' -->
+                                        <!-- for example: 9.0.96, 10.0.0-M1, 10.1.0-M17 -->
                                         <org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
-                                            <pattern>^[^/]+/(.*)$</pattern>
-                                            <replacement>$1</replacement>
+                                            <pattern>apache-tomcat-[\w.-]+/</pattern>
+                                            <replacement>./</replacement>
                                         </org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
                                     </fileMappers>
                                     <outputDirectory>${tomcat_dir}</outputDirectory>
