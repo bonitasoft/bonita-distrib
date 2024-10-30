@@ -31,8 +31,8 @@ if [ "x$java_version" = "x" ]; then
   exit 12
 fi
 
-if [ "$java_version" != "17" ]; then
-  echo "Invalid Java version ${java_version}. Please set JRE_HOME or JAVA_HOME system variable to a JRE / JDK 17, or add the 'java' version 17 to your PATH"
+if [ "$java_version" -lt "17" ]; then
+  echo "Invalid Java version ${java_version}. Please set JRE_HOME or JAVA_HOME system variable to a JRE / JDK, or add the 'java' executable to your PATH (Minimum supported Java version is 17)"
   exit 18
 fi
 echo "Java version is compatible"
