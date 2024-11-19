@@ -66,8 +66,8 @@ if "%VERSION_NUMBER_1ST_DIGIT%" EQU "1" (
 )
 echo Java version: %VERSION_NUMBER%
 
-if "%VERSION_NUMBER%" NEQ "17" (
-    echo Invalid Java version %VERSION_NUMBER%. Please set JRE_HOME or JAVA_HOME system variable to a JRE / JDK 17
+if "%VERSION_NUMBER%" LSS "17" (
+    echo Invalid Java version %VERSION_NUMBER%. Please set JRE_HOME or JAVA_HOME system variable to a JRE / JDK ^(Minimum supported Java version is 17^)
     goto exit
 )
 echo Java version is compatible

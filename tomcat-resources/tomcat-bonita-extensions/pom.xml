@@ -6,19 +6,14 @@
     <parent>
         <groupId>org.bonitasoft.distrib.tomcat</groupId>
         <artifactId>tomcat-resources</artifactId>
-        <version>10.2-SNAPSHOT</version>
+        <version>10.3-SNAPSHOT</version>
     </parent>
     <artifactId>tomcat-bonita-extensions</artifactId>
-
-    <properties>
-        <version.org.apache.tomcat>${tomcat.version}</version.org.apache.tomcat>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>${tomcat.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
