@@ -171,7 +171,7 @@ REMOTE_IP_VALVE-->
 <!--ACCESSLOGS_STDOUT_ENABLED
         <Valve className="org.bonitasoft.runtime.tomcat.StdoutAccessLogValve"
                requestAttributesEnabled="true"
-               pattern="{&quot;http&quot;:{&quot;url&quot;:&quot;%U&quot;,&quot;status_code&quot;:&quot;%s&quot;,&quot;method&quot;:&quot;%m&quot;,&quot;referer&quot;:&quot;%{Referer}i&quot;,&quot;useragent&quot;:&quot;%{User-Agent}i&quot;},&quot;network&quot;:{&quot;client&quot;:{&quot;ip&quot;:&quot;%a&quot;},&quot;destination&quot;:{&quot;ip&quot;:&quot;%A&quot;,&quot;port&quot;:&quot;%{local}p&quot;},&quot;bytes_written&quot;:&quot;%b&quot;},&quot;x_forwarded_for&quot;:&quot;%{X-Forwarded-For}i&quot;,&quot;x_forwarded_host&quot;:&quot;%{X-Forwarded-Host}i&quot;,&quot;x_forwarded_proto&quot;:&quot;%{X-Forwarded-Proto}i&quot;,&quot;remote_user&quot;:&quot;%u&quot;,&quot;request&quot;:&quot;%r&quot;,&quot;request_body_length&quot;:&quot;%{requestBodyLength}r&quot;,&quot;process_millis&quot;:&quot;%D&quot;,&quot;session_tracker&quot;:&quot;%{sessionTracker}s&quot;,&quot;session_user&quot;:&quot;%{username}s&quot;,&quot;thread_name&quot;:&quot;%I&quot;,&quot;time&quot;:&quot;%{yyyy-MM-dd'T'HH:mm:ss.SSS Z}t&quot;}" />
+               pattern="{&quot;http&quot;:{&quot;url&quot;:&quot;%U&quot;,&quot;status_code&quot;:&quot;%s&quot;,&quot;method&quot;:&quot;%m&quot;,&quot;referer&quot;:&quot;%{Referer}i&quot;,&quot;useragent&quot;:&quot;%{User-Agent}i&quot;},&quot;network&quot;:{&quot;client&quot;:{&quot;ip&quot;:&quot;%a&quot;},&quot;destination&quot;:{&quot;ip&quot;:&quot;%A&quot;,&quot;port&quot;:&quot;%{local}p&quot;},&quot;bytes_written&quot;:&quot;%b&quot;},&quot;x_forwarded_for&quot;:&quot;%{X-Forwarded-For}i&quot;,&quot;x_forwarded_host&quot;:&quot;%{X-Forwarded-Host}i&quot;,&quot;x_forwarded_proto&quot;:&quot;%{X-Forwarded-Proto}i&quot;,&quot;remote_user&quot;:&quot;%u&quot;,&quot;request&quot;:&quot;%r&quot;,&quot;request_body_length&quot;:&quot;%{requestBodyLength}r&quot;,&quot;process_millis&quot;:&quot;%D&quot;,&quot;commit_resp_millis&quot;:&quot;%F&quot;,&quot;session_tracker&quot;:&quot;%{sessionTracker}s&quot;,&quot;session_user&quot;:&quot;%{username}s&quot;,&quot;thread_name&quot;:&quot;%I&quot;,&quot;time&quot;:&quot;%{yyyy-MM-dd'T'HH:mm:ss.SSS Z}t&quot;}" />
 ACCESSLOGS_STDOUT_ENABLED-->
 
 <!--ACCESSLOGS_FILES_ENABLED
@@ -181,7 +181,7 @@ ACCESSLOGS_STDOUT_ENABLED-->
                prefix="access-"
                fileDateFormat="yyyy-MM-dd"
                suffix=".log"
-               pattern="%h %l %u %{yyyy-MM-dd'T'HH:mm:ss.SSS Z}t &quot;%r&quot; %s %b %{Referer}i %{User-Agent}i %a %A %{local}p %{username}s %I %{X-Forwarded-For}i %{X-Forwarded-Host}i %{X-Forwarded-Proto}i"
+               pattern="%h %l %u %{yyyy-MM-dd'T'HH:mm:ss.SSS Z}t %D:%F &quot;%r&quot; %s %b %{Referer}i %{User-Agent}i %a %A %{local}p %{username}s %I %{X-Forwarded-For}i %{X-Forwarded-Host}i %{X-Forwarded-Proto}i"
                maxDays="{{ACCESSLOGS_MAX_DAYS}}" />
 ACCESSLOGS_FILES_ENABLED-->
 
