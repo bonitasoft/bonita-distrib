@@ -45,7 +45,7 @@ To do so:
      3. Edit any configuration file in setup/platform_conf/current folder. 
         Example of frequently customized files are:
         - setup/platform_conf/current/platform_engine/bonita-platform-community-custom.properties
-        - setup/platform_conf/current/tenants/1/tenant_engine/bonita-tenant-community-custom.properties
+        - setup/platform_conf/current/tenant_engine/bonita-tenant-community-custom.properties
     4. Run `setup(.sh|.bat) push` to push the new configuration to the database
     5. Restart the Bonita Community Tomcat bundle so the new configuration is taken into account
 
