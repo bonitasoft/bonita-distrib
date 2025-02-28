@@ -35,7 +35,6 @@ HEAPDUMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${HEAPDUMP_PATH:
 DB_OPTS="-Dsysprop.bonita.db.vendor=h2"
 
 # Define the RDMBS vendor use by Bonita Engine to store Business Data. Valid values are: h2, postgres
-# If you use different DB engines by tenants, please update directly bonita-tenant-community-custom.properties
 BDM_DB_OPTS="-Dsysprop.bonita.bdm.db.vendor=h2"
 
 # Arjuna (JTA service added to Tomcat and required by Bonita Engine for transaction management)
