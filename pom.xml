@@ -90,14 +90,15 @@
             <url>https://repo.terracotta.org/maven2/</url>
         </repository>
         <repository>
-            <id>ossrh-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+            <id>central-portal-snapshots</id>
+            <name>Central Portal Snapshots</name>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
@@ -210,7 +211,7 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <flattenMode>ossrh</flattenMode>
+                            <flattenMode>oss</flattenMode>
                             <updatePomFile>true</updatePomFile>
                         </configuration>
                     </execution>
