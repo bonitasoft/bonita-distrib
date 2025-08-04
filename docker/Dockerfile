@@ -1,4 +1,6 @@
-FROM eclipse-temurin:21-jre-alpine
+ARG ALPINE_VERSION=3.21
+
+FROM eclipse-temurin:21-jre-alpine-${ALPINE_VERSION}
 
 LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 
@@ -23,9 +25,9 @@ ARG BONITA_SHA256
 ARG BASE_URL
 ARG BONITA_URL
 
-ENV BONITA_VERSION=${BONITA_VERSION:-9.0.0}
-ENV BRANDING_VERSION=${BRANDING_VERSION:-2023.2-u0}
-ENV BONITA_SHA256=${BONITA_SHA256:-c37be3ca64a07810609c97f75c47acb7fea2d29bafff181b447987514b53d140}
+ENV BONITA_VERSION=${BONITA_VERSION:-10.3.0}
+ENV BRANDING_VERSION=${BRANDING_VERSION:-2025.1-u0}
+ENV BONITA_SHA256=${BONITA_SHA256:-TO_UPDATE}
 ENV ZIP_FILE=BonitaCommunity-${BRANDING_VERSION}.zip
 ENV BASE_URL=${BASE_URL:-https://search.maven.org/remotecontent?filepath=org/bonitasoft/distrib/bundle-tomcat}
 ENV BONITA_URL=${BONITA_URL:-${BASE_URL}/${BONITA_VERSION}/bundle-tomcat-${BONITA_VERSION}.zip}
@@ -34,8 +36,12 @@ ENV BONITA_URL=${BONITA_URL:-${BASE_URL}/${BONITA_VERSION}/bundle-tomcat-${BONIT
 RUN mkdir /opt/files
 COPY files /opt/files
 
-RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
-  && echo "$BONITA_SHA256 */opt/files/$ZIP_FILE" | sha256sum -c - ; fi \
+RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then \
+      echo "File already present in /opt/files"; \
+    else \
+      curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
+      && echo "$BONITA_SHA256 */opt/files/$ZIP_FILE" | sha256sum -c -; \
+    fi \
   && unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
   && mv /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/* /opt/bonita \
   && rmdir /opt/bonita/BonitaCommunity-${BRANDING_VERSION} \
