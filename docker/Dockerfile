@@ -1,4 +1,6 @@
-FROM alpine:3.20
+ARG ALPINE_VERSION=3.20
+
+FROM alpine:${ALPINE_VERSION}
 
 LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 
@@ -34,8 +36,12 @@ ENV BONITA_URL=${BONITA_URL:-${BASE_URL}/${BONITA_VERSION}/bundle-tomcat-${BONIT
 RUN mkdir /opt/files
 COPY files /opt/files
 
-RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then echo "File already present in /opt/files"; else curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
-  && echo "$BONITA_SHA256 */opt/files/$ZIP_FILE" | sha256sum -c - ; fi \
+RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then \
+      echo "File already present in /opt/files"; \
+    else \
+      curl -fsSL ${BONITA_URL} -o /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip \
+      && echo "$BONITA_SHA256 */opt/files/$ZIP_FILE" | sha256sum -c -; \
+    fi \
   && unzip -q /opt/files/BonitaCommunity-${BRANDING_VERSION}.zip -d /opt/bonita/ \
   && mv /opt/bonita/BonitaCommunity-${BRANDING_VERSION}/* /opt/bonita \
   && rmdir /opt/bonita/BonitaCommunity-${BRANDING_VERSION} \
