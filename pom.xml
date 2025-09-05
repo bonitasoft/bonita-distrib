@@ -78,27 +78,41 @@
     </dependencyManagement>
 
     <repositories>
+        <!-- Check Maven Central first -->
         <repository>
-            <id>restlet.com</id>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <!-- Then if not available, check in those repositories -->
+        <repository>
+            <id>restlet</id>
             <name>restlet.com</name>
             <url>https://maven.restlet.talend.com</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
         <!--related to ehcache-core 2.x - must be challenged when upgrading to ehcache 3.x
         needed to get org.terracotta.internal:statistics:1.0.5 (required by ehcache-core jar)-->
         <repository>
-            <id>terracotta.org</id>
+            <id>terracotta</id>
             <name>terracotta.org</name>
             <url>https://repo.terracotta.org/maven2/</url>
-        </repository>
-        <repository>
-            <id>central-portal-snapshots</id>
-            <name>Central Portal Snapshots</name>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>
