@@ -1,6 +1,4 @@
-ARG ALPINE_VERSION=3.21
-
-FROM eclipse-temurin:21-jre-alpine-${ALPINE_VERSION}
+FROM eclipse-temurin:21-jre-alpine-3.21
 
 LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 
