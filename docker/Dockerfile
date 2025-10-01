@@ -1,6 +1,4 @@
-ARG ALPINE_VERSION=3.21
-
-FROM eclipse-temurin:21-jre-alpine-${ALPINE_VERSION}
+FROM eclipse-temurin:21-jre-alpine-3.21
 
 LABEL maintainer="Bonitasoft Runtime team <rd.engine@bonitasoft.com>"
 
@@ -27,7 +25,7 @@ ARG BONITA_URL
 
 ENV BONITA_VERSION=${BONITA_VERSION:-10.3.0}
 ENV BRANDING_VERSION=${BRANDING_VERSION:-2025.1-u0}
-ENV BONITA_SHA256=${BONITA_SHA256:-TO_UPDATE}
+ENV BONITA_SHA256=${BONITA_SHA256:-44c078fad0ffeec0afac2bf512040be16af4b722369039fe3daef1c091594637}
 ENV ZIP_FILE=BonitaCommunity-${BRANDING_VERSION}.zip
 ENV BASE_URL=${BASE_URL:-https://search.maven.org/remotecontent?filepath=org/bonitasoft/distrib/bundle-tomcat}
 ENV BONITA_URL=${BONITA_URL:-${BASE_URL}/${BONITA_VERSION}/bundle-tomcat-${BONITA_VERSION}.zip}
