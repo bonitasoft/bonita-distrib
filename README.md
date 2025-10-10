@@ -1,10 +1,10 @@
-# Bonita Distrib #
+# Bonita Distrib
 
 This project generates the Bonita Runtime bundles.
 
 ## Requirements
 
->   Java JDK 17 is the minimum required version to build the project.
+> Java JDK 17 is the minimum required version to build the project.
 
 This project bundles the [Maven Wrapper](https://github.com/takari/maven-wrapper), so the `mvnw` script is available at the project root.
 
@@ -19,9 +19,14 @@ The [Bonita Community build script](https://github.com/Bonitasoft-Community/Buil
 If you want to contribute, ask questions about the project, report bug, see the [contributing guide](https://github.com/bonitasoft/bonita-developer-resources/blob/master/CONTRIBUTING.MD).
 
 
-## Build the project ##
+## Build the project
 
-`./mvnw package`
+```./mvnw package```
 
 **_Note_**: You need to run this command before building the docker command explain in the dedicated [README](./docker/README.md)
 
+You can speed up the build by using:
+* `-DskipTests=true` option to skip unit tests
+* `-Dskip.bundle.tests=true` option to skip bundle end-to-end smoke tests
+
+```./mvnw package -DskipTests=true -Dskip.bundle.tests=true```
