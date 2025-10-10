@@ -8,14 +8,14 @@ Before building the docker image, you should run the `./mvnw package` like expla
 
 ## Build SNAPSHOT version
 
-```
+```shell
 ./build.sh --
 ```
 
 ## Build TAG version
 
-```
-docker build -t bonitasoft/bonita:<VERSION> .
+```shell
+./build.sh -t bonitasoft/bonita:<VERSION> --
 ```
 
 
@@ -25,6 +25,6 @@ Tests uses [goss](https://github.com/aelsabbahy/goss). It needs to be installed 
 
 **_Note_**: No need to build image prior to running tests
 
-```
+```shell
 cd test && ./runTests.sh
 ```
