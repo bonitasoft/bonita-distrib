@@ -127,7 +127,7 @@
               closeMethod="close"
               user="bonita"
               password="bpm"
-              url="jdbc:sqlserver://localhost:1433;database=journal" />
+              dataSourceURL="jdbc:sqlserver://localhost:1433;database=journal" />
 
     <Resource name="bonitaSequenceManagerDS"
               auth="Container"
@@ -306,7 +306,7 @@
               closeMethod="close"
               user="bonita"
               password="bpm"
-              url="jdbc:sqlserver://localhost:1433;database=business_data" />
+              dataSourceURL="jdbc:sqlserver://localhost:1433;database=business_data" />
 
     <Resource name="NotManagedBizDataDS"
               auth="Container"
