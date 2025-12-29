@@ -37,6 +37,21 @@
                 <SizeBasedTriggeringPolicy size="250 MB"/>
             </Policies>
         </RollingRandomAccessFile>
+        <!-- Access log appenders for cluster mode (used by AccessLogFilter instead of Tomcat valves) -->
+        <Console name="AccessLog-Console" target="SYSTEM_OUT">
+            <!-- Message already formatted by AccessLogFormatter -->
+            <PatternLayout pattern="%msg%n"/>
+        </Console>
+        <RollingFile name="AccessLog-File"
+            filePattern="${baseDir}/access-%d{yyyy-MM-dd}.log">
+            <!-- Message already formatted by AccessLogFormatter -->
+            <PatternLayout pattern="%msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <!-- DirectWriteRolloverStrategy writes directly to dated files (like Tomcat AccessLogValve) -->
+            <DirectWriteRolloverStrategy maxFiles="30"/>
+        </RollingFile>
     </Appenders>
 
     <Loggers>
