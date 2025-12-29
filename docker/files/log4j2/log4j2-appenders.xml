@@ -14,6 +14,21 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}" disableAnsi="false"/>
         </Console>
+        <!--ACCESSLOGS_STDOUT_ENABLED_LOG4J
+        <Console name="AccessLog-Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%msg%n"/>
+        </Console>
+        ACCESSLOGS_STDOUT_ENABLED_LOG4J-->
+        <!--ACCESSLOGS_FILES_ENABLED_LOG4J
+        <RollingFile name="AccessLog-File"
+            filePattern="{{ACCESSLOGS_PATH}}{{HOSTNAME}}/access-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DirectWriteRolloverStrategy maxFiles="{{ACCESSLOGS_MAX_DAYS}}"/>
+        </RollingFile>
+        ACCESSLOGS_FILES_ENABLED_LOG4J-->
     </Appenders>
 
     <Loggers>
