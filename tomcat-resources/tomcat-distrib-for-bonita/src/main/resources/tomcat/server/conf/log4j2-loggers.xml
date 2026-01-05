@@ -87,5 +87,11 @@
         <!-- <Logger name="org.keycloak" level="ALL" /> -->
         <!-- <Logger name="class org.keycloak" level="ALL" /> -->
 
+        <!-- Suppress harmless ProGrade + Tomcat JSP security initialization error (GitHub issue pro-grade/pro-grade#29) -->
+        <!-- This error occurs because ProGrade returns read-only permission collections, but it doesn't affect functionality -->
+        <Logger name="org.apache.catalina.core.ContainerBase" level="ERROR">
+            <RegexFilter regex=".*Security initialization failed for context.*" onMatch="DENY" onMismatch="NEUTRAL"/>
+        </Logger>
+
     </Loggers>
 </Configuration>
