@@ -22,6 +22,8 @@ ARG BRANDING_VERSION
 ARG BONITA_SHA256
 ARG BASE_URL
 ARG BONITA_URL
+ARG PROGRADE_VERSION=1.1.1
+ARG PROGRADE_JAR_SHA1="300d7ee29d79cc0ad8aad8e7abe17588ad3d33c5"
 
 ENV BONITA_VERSION=${BONITA_VERSION:-10.3.0}
 ENV BRANDING_VERSION=${BRANDING_VERSION:-2025.1-u0}
@@ -48,6 +50,11 @@ RUN if [ -f "/opt/files/BonitaCommunity-${BRANDING_VERSION}.zip" ]; then \
   && mkdir -p /opt/bonita/logs/ \
   && mv /opt/files/log4j2/log4j2-appenders.xml /opt/bonita/conf/logs/ \
   && mv /opt/bonita/server/conf/log4j2-loggers.xml /opt/bonita/conf/logs/ \
+  && mkdir -p /opt/bonita/conf/prograde \
+  && mv /opt/files/prograde.policy /opt/bonita/conf/prograde/ \
+  && wget -nv -O pro-grade.jar https://repo1.maven.org/maven2/net/sourceforge/pro-grade/pro-grade/${PROGRADE_VERSION}/pro-grade-${PROGRADE_VERSION}.jar \
+  && echo "${PROGRADE_JAR_SHA1}  pro-grade.jar" | sha1sum -c - \
+  && mv pro-grade.jar /opt/bonita/server/lib/ext/pro-grade.jar \
   && chown -R bonita:bonita /opt/bonita \
   && chmod go+w /opt/ \
   && chmod -R +rX /opt \
@@ -69,6 +76,8 @@ ENV MONITORING_USERNAME=monitoring
 ENV MONITORING_PASSWORD=mon1tor1ng_adm1n
 ENV JMX_REMOTE_ACCESS=false
 ENV REMOTE_IP_VALVE_ENABLED=false
+ENV PRO_GRADE=true
+ENV PRO_GRADE_POLICY_PATH=/opt/bonita/conf/prograde
 
 # Allow to redirect access logs to stdout:
 ENV ACCESSLOGS_STDOUT_ENABLED=false
