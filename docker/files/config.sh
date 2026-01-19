@@ -15,6 +15,8 @@ BONITA_RUNTIME_TRANSACTION_XATIMEOUT=${BONITA_RUNTIME_TRANSACTION_XATIMEOUT:-180
 REMOTE_IP_VALVE_ENABLED=${REMOTE_IP_VALVE_ENABLED=-false}
 # Java OPTS
 JAVA_OPTS=${JAVA_OPTS:--Xms1024m -Xmx1024m}
+# DNS cache TTL for ProGrade security
+DNS_CACHE_TTL=${DNS_CACHE_TTL:-30}
 
 # retrieve the db parameters from the container linked
 if [ -n "$POSTGRES_PORT_5432_TCP_PORT" ]
@@ -118,6 +120,16 @@ then
     sed -e 's/{{MONITORING_USERNAME}}/'"${MONITORING_USERNAME}"'/' \
       -e 's/{{MONITORING_PASSWORD}}/'"${MONITORING_PASSWORD}"'/' \
       ${BONITA_TPL}/jmxremote.password > ${BONITA_PATH}/server/conf/jmxremote.password
+fi
+
+echo "Using PRO_GRADE: ${PRO_GRADE}"
+if [ "$PRO_GRADE" = 'true' ]
+then
+  cp ${BONITA_FILES}/java.policy ${BONITA_PATH}/.java.policy
+  # Configure java.security-custom for DNS cache TTL
+  cp ${BONITA_FILES}/java.security-custom ${BONITA_PATH}/.java.security-custom
+  sed -e 's/{{DNS_CACHE_TTL}}/'"${DNS_CACHE_TTL}"'/' \
+      -i ${BONITA_PATH}/.java.security-custom
 fi
 
 echo "XA transaction timeout: ${BONITA_RUNTIME_TRANSACTION_XATIMEOUT}"

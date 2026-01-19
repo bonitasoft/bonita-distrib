@@ -61,8 +61,13 @@ if [ "$JMX_REMOTE_ACCESS" = 'true' ]; then
   JMX_REMOTE_ACCESS_OPTS="-Djava.rmi.server.hostname=${host} -Dcom.sun.management.jmxremote.port=9000 -Dcom.sun.management.jmxremote.rmi.port=9000 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.password.file=${CATALINA_HOME}/conf/jmxremote.password -Dcom.sun.management.jmxremote.access.file=${CATALINA_HOME}/conf/jmxremote.access"
 fi
 
+# Optional ProGrade Security Manager Configuration
+if [ "$PRO_GRADE" = 'true' ]; then
+  PRO_GRADE_OPTS="-Djava.security.manager=net.sourceforge.prograde.sm.ProGradeJSM -Djava.security.policy=${PRO_GRADE_POLICY_PATH}/prograde.policy -Djava.security.properties=/opt/bonita/.java.security-custom"
+fi
+
 # Pass the JVM system properties to Tomcat JVM using CATALINA_OPTS variable
-CATALINA_OPTS="${CATALINA_OPTS} ${LOG_CONF_FILE_PATH} ${PLATFORM_SETUP} ${TRANSACTION_XATIMEOUT_OPTS} ${H2_DATABASE_DIR} ${DB_OPTS} ${BDM_DB_OPTS} ${ARJUNA_OPTS} ${INCIDENT_LOG_OPTS} ${JMX_REMOTE_ACCESS_OPTS} -Dfile.encoding=UTF-8 -Xshare:auto ${HEAPDUMP_OPTS} -Djava.security.egd=file:/dev/./urandom -Dlog4j2.formatMsgNoLookups=true"
+CATALINA_OPTS="${CATALINA_OPTS} ${LOG_CONF_FILE_PATH} ${PLATFORM_SETUP} ${TRANSACTION_XATIMEOUT_OPTS} ${H2_DATABASE_DIR} ${DB_OPTS} ${BDM_DB_OPTS} ${ARJUNA_OPTS} ${INCIDENT_LOG_OPTS} ${JMX_REMOTE_ACCESS_OPTS} ${PRO_GRADE_OPTS} -Dfile.encoding=UTF-8 -Xshare:auto ${HEAPDUMP_OPTS} -Djava.security.egd=file:/dev/./urandom -Dlog4j2.formatMsgNoLookups=true"
 export CATALINA_OPTS
 
 # Only set CATALINA_PID if not already set (check for empty value) by startup script (usually done by /etc/init.d/tomcat8 but not by startup.sh nor catalina.sh)
