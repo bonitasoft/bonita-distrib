@@ -25,7 +25,7 @@ done
 >&2 echo "Postgres is up!"
 
 # start bonita container tests
-: ${BONITA_VERSION:=$(grep -oP "^ENV BONITA_VERSION \K.*" "../Dockerfile" | sed 's/.*:-\(.*\)}$/\1/' | tail -1)}
+: ${BONITA_VERSION:=$(grep -oP "^ENV BONITA_VERSION=\K.*" "../Dockerfile" | sed 's/.*:-\(.*\)}$/\1/' | tail -1)}
 
 DGOSS_CMD="dgoss run --rm --name bonita_${BONITA_VERSION} --link bonita_db \
 -e DB_VENDOR=postgres -e DB_HOST=bonita_db -e DB_PORT=5432 -e DB_ADMIN_PASS=${POSTGRES_PASSWORD} \
