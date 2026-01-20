@@ -46,6 +46,12 @@ file:
     exists: true
     # optional attributes
     filetype: directory # file, symlink, directory
+  /goss/docker_output.log:
+    title: Checking that custom-init.d script is executed
+    # required attributes
+    exists: true
+    contains:
+    - 'GOSS: custom-init.d script /opt/custom-init.d/init-hello.sh!'
 
 command:
   # not using port command here to support both tcp and tcp6
@@ -86,16 +92,6 @@ command:
   find /opt/bonita/setup/platform_conf/initial -name *.properties | xargs -n10 grep '^platformAdminPassword={{getEnv "PLATFORM_PASSWORD"}}' | [ $(wc -l) -gt 0 ]:
     title: Checking custom PLATFORM_PASSWORD
     exit-status: 0
-
-file:
-  /goss/docker_output.log:
-    title: Checking that custom-init.d script is executed
-    # required attributes
-    exists: true
-    contains:
-    - 'GOSS: custom-init.d script /opt/custom-init.d/init-hello.sh!'
-
-command:
   cat /goss/docker_output.log | tr -d '\n' | grep -c "init-1.sh.*init-2.sh.*init-13.sh.*init-hello.sh.*_init-0.sh":
     title: Checking that custom-init.d scripts are executed in order
     exit-status: 0
