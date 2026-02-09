@@ -27,6 +27,9 @@ deny {
 grant {
   permission java.io.FilePermission "${java.io.tmpdir}/-", "read,write";
   permission java.lang.RuntimePermission "getenv.SOURCE_DATE_EPOCH";
+  // Grant all socket permissions to avoid reverse DNS lookups in SocketPermission.implies()
+  // See JDK bug JDK-4975882: when host is "*", implies() returns true immediately without DNS
+  permission java.net.SocketPermission "*", "accept,connect,listen,resolve";
 }
 
 // ============================================
