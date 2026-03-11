@@ -7,6 +7,9 @@
 *.iml
 .idea
 
+# VSCode
+.vscode
+
 # Maven
 target/
 .flattened-pom.xml
@@ -16,8 +19,10 @@ target/
 *.tmp
 **/*.swp
 
-# node and npm
+# Node and web resources
 node
 node_modules/
-/docker/files/BonitaCommunity-*.zip
+
+# Docker build files
 /docker/bonita_*.tar.gz
+/docker/files/BonitaCommunity-*.zip
