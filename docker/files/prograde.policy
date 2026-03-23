@@ -33,14 +33,13 @@ grant {
 }
 
 // ============================================
-// TEMP DIRECTORY CODE (compiled Groovy scripts)
+// TEMP DIRECTORY CODE (Java and compiled Groovy scripts)
 // ============================================
 grant codeBase "file:${java.io.tmpdir}/-" {
   permission java.io.FilePermission "/opt/bonita_run/logs/-", "read,write";
 }
 
 deny codeBase "file:${java.io.tmpdir}/-" {
-  permission java.lang.RuntimePermission "getenv.*";
   permission java.lang.RuntimePermission "exitVM.*";
   permission java.io.FilePermission "/-", "write";
   permission java.io.FilePermission "${catalina.home}/conf/-", "read";
