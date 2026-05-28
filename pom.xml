@@ -46,7 +46,7 @@
 
         <bonita.web.version>${project.version}</bonita.web.version>
         <bonita.engine.version>${project.version}</bonita.engine.version>
-        <bonita-portal-look-and-feel-version>1.0.5</bonita-portal-look-and-feel-version>
+        <bonita-portal-look-and-feel-version>1.1.0</bonita-portal-look-and-feel-version>
 
         <deploy_plugin_skip>false</deploy_plugin_skip>
 
