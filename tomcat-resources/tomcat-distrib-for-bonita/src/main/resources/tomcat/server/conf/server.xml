@@ -69,9 +69,12 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
+        <!-- maxParameterCount is set explicitly so that the effective limit does not
+             change with the Tomcat default (10000 before Tomcat 9.0.84/10.1.17, 1000 since) -->
         <Connector port="8080" protocol="HTTP/1.1"
                    connectionTimeout="20000"
                    maxThreads="20"
+                   maxParameterCount="1000"
                    redirectPort="8443"
                    maxPostSize="-1"
                    URIEncoding="UTF-8" />

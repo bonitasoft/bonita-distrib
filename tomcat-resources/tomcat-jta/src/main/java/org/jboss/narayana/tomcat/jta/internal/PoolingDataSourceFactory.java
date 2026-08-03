@@ -25,8 +25,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.*;
-import javax.transaction.TransactionManager;
-import javax.transaction.TransactionSynchronizationRegistry;
+import jakarta.transaction.TransactionManager;
+import jakarta.transaction.TransactionSynchronizationRegistry;
 import javax.transaction.xa.XAResource;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;

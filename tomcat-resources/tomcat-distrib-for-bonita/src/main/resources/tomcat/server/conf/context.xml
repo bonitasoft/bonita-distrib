@@ -27,9 +27,9 @@
     <Transaction factory="org.jboss.narayana.tomcat.jta.UserTransactionFactory" />
 
     <Resource factory="org.jboss.narayana.tomcat.jta.TransactionManagerFactory"
-              name="TransactionManager" type="javax.transaction.TransactionManager" />
+              name="TransactionManager" type="jakarta.transaction.TransactionManager" />
     <Resource factory="org.jboss.narayana.tomcat.jta.TransactionSynchronizationRegistryFactory"
-              name="TransactionSynchronizationRegistry" type="javax.transaction.TransactionSynchronizationRegistry" />
+              name="TransactionSynchronizationRegistry" type="jakarta.transaction.TransactionSynchronizationRegistry" />
 
     <!-- default samesite cookies configuration, for CORS set sameSiteCookies to "none" and configure bundle for HTTPS  -->
     <CookieProcessor sameSiteCookies="lax" />

@@ -32,7 +32,7 @@ import com.arjuna.ats.jta.common.JTAEnvironmentBean;
 import com.arjuna.ats.jta.common.jtaPropertyManager;
 
 /**
- * Object factory to create instances of {@link javax.transaction.UserTransaction}.
+ * Object factory to create instances of {@link jakarta.transaction.UserTransaction}.
  *
  * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>
  */
@@ -41,13 +41,13 @@ public class UserTransactionFactory implements ObjectFactory {
     private static final Logger LOGGER = Logger.getLogger(UserTransactionFactory.class.getName());
 
     /**
-     * User internal factory method to instantiate new or reuse existing instance of {@link javax.transaction.UserTransaction}.
+     * User internal factory method to instantiate new or reuse existing instance of {@link jakarta.transaction.UserTransaction}.
      *
      * @param obj
      * @param name
      * @param nameCtx
      * @param environment
-     * @return instance of {@link javax.transaction.UserTransaction} or {@code null} if instantiation has failed.
+     * @return instance of {@link jakarta.transaction.UserTransaction} or {@code null} if instantiation has failed.
      */
     @Override
     public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment) {

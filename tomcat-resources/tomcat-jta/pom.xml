@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>org.jboss.narayana.jta</groupId>
-            <artifactId>narayana-jta</artifactId>
+            <artifactId>narayana-jta-jakarta</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
@@ -44,7 +44,7 @@
         </dependency>
         <dependency>
             <groupId>org.jboss</groupId>
-            <artifactId>jboss-transaction-spi</artifactId>
+            <artifactId>jboss-transaction-spi-jakarta</artifactId>
             <version>7.6.1.Final</version>
             <exclusions>
                 <exclusion>
