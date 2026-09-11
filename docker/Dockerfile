@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.21
+ARG ALPINE_VERSION=3.24
 
 FROM eclipse-temurin:17-jre-alpine-${ALPINE_VERSION}
 
