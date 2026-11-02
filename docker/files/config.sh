@@ -233,6 +233,46 @@ if [ "${ACCESSLOGS_FILES_ENABLED}" = 'true' ]; then
       -i ${BONITA_PATH}/server/conf/server.xml
 fi
 
+# Authentication audit log: when AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED (default true) or
+# AUTHENTICATION_AUDIT_LOG_FILES_ENABLED (default false) is set, they switch the console and file appenders of the audit
+# logger on or off in log4j2-appenders.xml. When none is set, the file is used as it is (the default one writes the
+# events on stdout), so that a mounted file keeps its own configuration
+if [ -n "${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED}${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED}" ]; then
+  AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED=${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED:-true}
+  AUTHENTICATION_AUDIT_LOG_FILES_ENABLED=${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED:-false}
+  # a mistyped value must not switch the audit log off
+  for AUDIT_LOG_VARIABLE in AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED AUTHENTICATION_AUDIT_LOG_FILES_ENABLED; do
+    if [ "${!AUDIT_LOG_VARIABLE}" != 'true' ] && [ "${!AUDIT_LOG_VARIABLE}" != 'false' ]; then
+      echo "Error: ${AUDIT_LOG_VARIABLE} must be true or false, not '${!AUDIT_LOG_VARIABLE}'"
+      exit 1
+    fi
+  done
+  AUDIT_STDOUT_LEVEL=OFF
+  AUDIT_FILE_LEVEL=OFF
+  AUDIT_LOGGER_LEVEL=OFF
+  if [ "${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED}" = 'true' ]; then
+    AUDIT_STDOUT_LEVEL=INFO
+    AUDIT_LOGGER_LEVEL=INFO
+  fi
+  if [ "${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED}" = 'true' ]; then
+    AUDIT_FILE_LEVEL=INFO
+    AUDIT_LOGGER_LEVEL=INFO
+  fi
+  if [ "${AUTHENTICATION_AUDIT_LOG_APPEND_HOSTNAME}" = 'true' ]; then
+    AUDIT_LOG_HOSTNAME_FOLDER="$(hostname)/"
+  else
+    AUDIT_LOG_HOSTNAME_FOLDER=""
+  fi
+  echo "Authentication audit log: stdout ${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED}, files ${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED}"
+  # replaces: the level of the audit logger, the levels of its references to the console and file appenders, and the
+  # folder between ${baseDir} and the authentication-audit file names
+  sed -e '/name="org\.bonitasoft\.runtime\.audit\.authentication"/s/level="[A-Za-z]*"/level="'"${AUDIT_LOGGER_LEVEL}"'"/' \
+      -e '/ref="AuthenticationAudit-Console"/s/level="[A-Za-z]*"/level="'"${AUDIT_STDOUT_LEVEL}"'"/' \
+      -e '/ref="AuthenticationAudit-File"/s/level="[A-Za-z]*"/level="'"${AUDIT_FILE_LEVEL}"'"/' \
+      -e 's@\${baseDir}[^"]*authentication-audit@${baseDir}'"${AUDIT_LOG_HOSTNAME_FOLDER}"'authentication-audit@g' \
+      -i ${BONITA_PATH}/conf/logs/log4j2-appenders.xml
+fi
+
 # use the setup tool to initialize and configure Bonita Tomcat bundle
 
 # platform setup tool logging configuration file
