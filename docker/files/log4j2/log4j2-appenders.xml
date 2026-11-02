@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info" monitorInterval="60">
     <Properties>
-        <Property name="LOG_PATTERN">%highlight{%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName} | %-5p%notEmpty{[%marker]} | [%t|%T] %c{1.} - %m%notEmpty{ - %X}%n}{FATAL=Bright red, ERROR=red, WARN=yellow bold, INFO=Normal, DEBUG=green bold, TRACE=blue}</Property>
+        <!-- %n is outside %highlight so that the color reset ends the line instead of starting the next one -->
+        <Property name="LOG_PATTERN">%highlight{%d{ISO8601_OFFSET_DATE_TIME_HHMM} | ${hostName} | %-5p%notEmpty{[%marker]} | [%t|%T] %c{1.} - %m%notEmpty{ - %X}}{FATAL=Bright red, ERROR=red, WARN=yellow bold, INFO=Normal, DEBUG=green bold, TRACE=blue}%n</Property>
         <Property name="baseDir">/opt/bonita/logs/</Property>
     </Properties>
     <Appenders>
@@ -29,12 +30,39 @@
             <DirectWriteRolloverStrategy maxFiles="{{ACCESSLOGS_MAX_DAYS}}"/>
         </RollingFile>
         ACCESSLOGS_FILES_ENABLED_LOG4J-->
+        <!-- Authentication audit log: one JSON event per login, failed login and logout -->
+        <!-- The message is already a JSON event: the layouts write it alone, one event per line -->
+        <Console name="AuthenticationAudit-Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%m%n"/>
+        </Console>
+        <!-- Used with AUTHENTICATION_AUDIT_LOG_FILES_ENABLED=true, the file is only created by the first event. With
+             AUTHENTICATION_AUDIT_LOG_APPEND_HOSTNAME=true, config.sh adds a folder named after the host to the path,
+             so that the nodes of a cluster sharing the logs folder do not write the same file. Old files are not
+             deleted, as for the Tomcat bundle -->
+        <RollingFile name="AuthenticationAudit-File" createOnDemand="true"
+                     fileName="${baseDir}authentication-audit.log"
+                     filePattern="${baseDir}authentication-audit-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+        </RollingFile>
     </Appenders>
 
     <Loggers>
         <Root level="INFO">
             <AppenderRef ref="Console"/>
         </Root>
+        <!-- Authentication audit log, written alone on the console. The level of each AppenderRef switches its
+             appender on (INFO) or off (OFF). When AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED or
+             AUTHENTICATION_AUDIT_LOG_FILES_ENABLED is set, config.sh sets these levels, and the level of the logger
+             to OFF when both appenders are off. config.sh rewrites them line by line: keep each level attribute on
+             the line of its name or ref attribute -->
+        <Logger name="org.bonitasoft.runtime.audit.authentication" level="INFO" additivity="false">
+            <AppenderRef ref="AuthenticationAudit-Console" level="INFO"/>
+            <AppenderRef ref="AuthenticationAudit-File" level="OFF"/>
+        </Logger>
     </Loggers>
 
 </Configuration>
