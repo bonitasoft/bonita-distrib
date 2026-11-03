@@ -225,7 +225,7 @@ fi
 # AUTHENTICATION_AUDIT_LOG_FILES_ENABLED (default false) is set, they switch the console and file appenders of the audit
 # logger on or off in log4j2-appenders.xml. When none is set, the file is used as it is (the default one writes the
 # events on stdout), so that a mounted file keeps its own configuration
-if [ -n "${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED}${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED}" ]; then
+if [ -n "${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED:-}${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED:-}" ]; then
   AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED=${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED:-true}
   AUTHENTICATION_AUDIT_LOG_FILES_ENABLED=${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED:-false}
   # a mistyped value must not switch the audit log off
