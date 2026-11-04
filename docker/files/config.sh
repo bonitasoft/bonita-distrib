@@ -233,43 +233,49 @@ if [ "${ACCESSLOGS_FILES_ENABLED}" = 'true' ]; then
       -i ${BONITA_PATH}/server/conf/server.xml
 fi
 
-# Authentication audit log: when AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED (default true) or
-# AUTHENTICATION_AUDIT_LOG_FILES_ENABLED (default false) is set, they switch the console and file appenders of the audit
-# logger on or off in log4j2-appenders.xml. When none is set, the file is used as it is (the default one writes the
-# events on stdout), so that a mounted file keeps its own configuration
-if [ -n "${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED:-}${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED:-}" ]; then
-  AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED=${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED:-true}
-  AUTHENTICATION_AUDIT_LOG_FILES_ENABLED=${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED:-false}
+# Audit log: when AUDIT_LOG_STDOUT_ENABLED (default true) or AUDIT_LOG_FILES_ENABLED (default false) is set, they
+# switch the console and file appenders of the audit logger on or off in log4j2-appenders.xml. When none is set, the
+# file is used as it is (the default one writes the events on stdout), so that a mounted file keeps its own
+# configuration
+if [ -n "${AUDIT_LOG_STDOUT_ENABLED:-}${AUDIT_LOG_FILES_ENABLED:-}" ]; then
+  AUDIT_LOG_STDOUT_ENABLED=${AUDIT_LOG_STDOUT_ENABLED:-true}
+  AUDIT_LOG_FILES_ENABLED=${AUDIT_LOG_FILES_ENABLED:-false}
   # a mistyped value must not switch the audit log off
-  for AUDIT_LOG_VARIABLE in AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED AUTHENTICATION_AUDIT_LOG_FILES_ENABLED; do
-    if [ "${!AUDIT_LOG_VARIABLE}" != 'true' ] && [ "${!AUDIT_LOG_VARIABLE}" != 'false' ]; then
-      echo "Error: ${AUDIT_LOG_VARIABLE} must be true or false, not '${!AUDIT_LOG_VARIABLE}'"
+  for AUDIT_VARIABLE in AUDIT_LOG_STDOUT_ENABLED AUDIT_LOG_FILES_ENABLED; do
+    if [ "${!AUDIT_VARIABLE}" != 'true' ] && [ "${!AUDIT_VARIABLE}" != 'false' ]; then
+      echo "Error: ${AUDIT_VARIABLE} must be true or false, not '${!AUDIT_VARIABLE}'"
       exit 1
     fi
   done
   AUDIT_STDOUT_LEVEL=OFF
   AUDIT_FILE_LEVEL=OFF
   AUDIT_LOGGER_LEVEL=OFF
-  if [ "${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED}" = 'true' ]; then
+  if [ "${AUDIT_LOG_STDOUT_ENABLED}" = 'true' ]; then
     AUDIT_STDOUT_LEVEL=INFO
     AUDIT_LOGGER_LEVEL=INFO
   fi
-  if [ "${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED}" = 'true' ]; then
+  if [ "${AUDIT_LOG_FILES_ENABLED}" = 'true' ]; then
     AUDIT_FILE_LEVEL=INFO
     AUDIT_LOGGER_LEVEL=INFO
   fi
-  if [ "${AUTHENTICATION_AUDIT_LOG_APPEND_HOSTNAME}" = 'true' ]; then
-    AUDIT_LOG_HOSTNAME_FOLDER="$(hostname)/"
+  if [ "${AUDIT_LOG_APPEND_HOSTNAME}" = 'true' ]; then
+    AUDIT_HOSTNAME_FOLDER="$(hostname)/"
   else
-    AUDIT_LOG_HOSTNAME_FOLDER=""
+    AUDIT_HOSTNAME_FOLDER=""
   fi
-  echo "Authentication audit log: stdout ${AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED}, files ${AUTHENTICATION_AUDIT_LOG_FILES_ENABLED}"
+  echo "Audit log: stdout ${AUDIT_LOG_STDOUT_ENABLED}, files ${AUDIT_LOG_FILES_ENABLED}"
   # replaces: the level of the audit logger, the levels of its references to the console and file appenders, and the
-  # folder between ${baseDir} and the authentication-audit file names
-  sed -e '/name="org\.bonitasoft\.runtime\.audit\.authentication"/s/level="[A-Za-z]*"/level="'"${AUDIT_LOGGER_LEVEL}"'"/' \
-      -e '/ref="AuthenticationAudit-Console"/s/level="[A-Za-z]*"/level="'"${AUDIT_STDOUT_LEVEL}"'"/' \
-      -e '/ref="AuthenticationAudit-File"/s/level="[A-Za-z]*"/level="'"${AUDIT_FILE_LEVEL}"'"/' \
-      -e 's@\${baseDir}[^"]*authentication-audit@${baseDir}'"${AUDIT_LOG_HOSTNAME_FOLDER}"'authentication-audit@g' \
+  # host folder between ${baseDir} and the audit file names. The closing quote of the logger name leaves the loggers of
+  # the event categories (such as org.bonitasoft.runtime.audit.authentication) of a mounted file unchanged, and only
+  # the audit.log and audit-%d{...} file names get the host folder, not other files with "audit" in their name. A
+  # single folder in front of these names is taken for the host folder of a previous configuration, and replaced or
+  # removed, while a deeper path is left unchanged: a mounted file that writes the audit log to a folder of its own must
+  # be used with AUDIT_LOG_STDOUT_ENABLED and AUDIT_LOG_FILES_ENABLED unset
+  sed -e '/name="org\.bonitasoft\.runtime\.audit"/s/level="[A-Za-z]*"/level="'"${AUDIT_LOGGER_LEVEL}"'"/' \
+      -e '/ref="Audit-Console"/s/level="[A-Za-z]*"/level="'"${AUDIT_STDOUT_LEVEL}"'"/' \
+      -e '/ref="Audit-File"/s/level="[A-Za-z]*"/level="'"${AUDIT_FILE_LEVEL}"'"/' \
+      -e 's@\${baseDir}\([^"/]*/\)\{0,1\}audit\.log"@${baseDir}'"${AUDIT_HOSTNAME_FOLDER}"'audit.log"@g' \
+      -e 's@\${baseDir}\([^"/]*/\)\{0,1\}audit-%d{@${baseDir}'"${AUDIT_HOSTNAME_FOLDER}"'audit-%d{@g' \
       -i ${BONITA_PATH}/conf/logs/log4j2-appenders.xml
 fi
 

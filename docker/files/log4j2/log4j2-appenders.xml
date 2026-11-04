@@ -30,18 +30,20 @@
             <DirectWriteRolloverStrategy maxFiles="{{ACCESSLOGS_MAX_DAYS}}"/>
         </RollingFile>
         ACCESSLOGS_FILES_ENABLED_LOG4J-->
-        <!-- Authentication audit log: one JSON event per login, failed login and logout -->
+        <!-- Audit log: one JSON event per audited action, such as a login, a failed login or a logout -->
         <!-- The message is already a JSON event: the layouts write it alone, one event per line -->
-        <Console name="AuthenticationAudit-Console" target="SYSTEM_OUT">
+        <Console name="Audit-Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%m%n"/>
         </Console>
-        <!-- Used with AUTHENTICATION_AUDIT_LOG_FILES_ENABLED=true, the file is only created by the first event. With
-             AUTHENTICATION_AUDIT_LOG_APPEND_HOSTNAME=true, config.sh adds a folder named after the host to the path,
-             so that the nodes of a cluster sharing the logs folder do not write the same file. Old files are not
-             deleted, as for the Tomcat bundle -->
-        <RollingFile name="AuthenticationAudit-File" createOnDemand="true"
-                     fileName="${baseDir}authentication-audit.log"
-                     filePattern="${baseDir}authentication-audit-%d{yyyy-MM-dd}-%i.log.gz">
+        <!-- Used with AUDIT_LOG_FILES_ENABLED=true, the file is only created by the first event. With
+             AUDIT_LOG_APPEND_HOSTNAME=true, config.sh adds a folder named after the host to the path,
+             so that the nodes of a cluster sharing the logs folder do not write the same file. When
+             AUDIT_LOG_STDOUT_ENABLED or AUDIT_LOG_FILES_ENABLED is set, config.sh replaces a single folder in front
+             of the file names, or removes it: to write to a folder of your own, mount this file and leave both
+             variables unset. Old files are not deleted, as for the Tomcat bundle -->
+        <RollingFile name="Audit-File" createOnDemand="true"
+                     fileName="${baseDir}audit.log"
+                     filePattern="${baseDir}audit-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout pattern="%m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
@@ -54,14 +56,15 @@
         <Root level="INFO">
             <AppenderRef ref="Console"/>
         </Root>
-        <!-- Authentication audit log, written alone on the console. The level of each AppenderRef switches its
-             appender on (INFO) or off (OFF). When AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED or
-             AUTHENTICATION_AUDIT_LOG_FILES_ENABLED is set, config.sh sets these levels, and the level of the logger
-             to OFF when both appenders are off. config.sh rewrites them line by line: keep each level attribute on
-             the line of its name or ref attribute -->
-        <Logger name="org.bonitasoft.runtime.audit.authentication" level="INFO" additivity="false">
-            <AppenderRef ref="AuthenticationAudit-Console" level="INFO"/>
-            <AppenderRef ref="AuthenticationAudit-File" level="OFF"/>
+        <!-- Audit log, written apart from the other logs: on the console, to audit.log, or both. Each category of
+             events has its own child logger, such as org.bonitasoft.runtime.audit.authentication for the logins and
+             logouts: add it with level="OFF" to leave out its events. The level of each AppenderRef switches its
+             appender on (INFO) or off (OFF). When AUDIT_LOG_STDOUT_ENABLED or AUDIT_LOG_FILES_ENABLED is set,
+             config.sh sets these levels, and the level of the logger to OFF when both appenders are off. config.sh
+             rewrites them line by line: keep each level attribute on the line of its name or ref attribute -->
+        <Logger name="org.bonitasoft.runtime.audit" level="INFO" additivity="false">
+            <AppenderRef ref="Audit-Console" level="INFO"/>
+            <AppenderRef ref="Audit-File" level="OFF"/>
         </Logger>
     </Loggers>
 
