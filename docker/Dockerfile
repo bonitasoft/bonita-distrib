@@ -80,12 +80,11 @@ ENV ACCESSLOGS_PATH=/opt/bonita/logs
 ENV ACCESSLOGS_PATH_APPEND_HOSTNAME=false
 # max days access log files are conserved:
 ENV ACCESSLOGS_MAX_DAYS=30
-# AUTHENTICATION_AUDIT_LOG_STDOUT_ENABLED and AUTHENTICATION_AUDIT_LOG_FILES_ENABLED, not set by default: write the
-# authentication audit log (one JSON event per line) to standard output (default true) and to
-# /opt/bonita/logs/authentication-audit.log (default false). When none is set, log4j2-appenders.xml is used as it is,
-# and the default one writes the events on stdout.
-# authentication audit log files enabled, should we append new HOSTNAME directory to their path:
-ENV AUTHENTICATION_AUDIT_LOG_APPEND_HOSTNAME=false
+# AUDIT_LOG_STDOUT_ENABLED and AUDIT_LOG_FILES_ENABLED, not set by default: write the audit log (one JSON event per
+# line) to standard output (default true) and to /opt/bonita/logs/audit.log (default false). When none is set,
+# log4j2-appenders.xml is used as it is, and the default one writes the events on stdout.
+# audit log files enabled, should we append new HOSTNAME directory to their path:
+ENV AUDIT_LOG_APPEND_HOSTNAME=false
 # max Http threads Tomcat will use to serve HTTP/1.1 requests:
 ENV HTTP_MAX_THREADS=20
 
