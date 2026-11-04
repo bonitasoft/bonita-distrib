@@ -52,11 +52,11 @@
             <!-- DirectWriteRolloverStrategy writes directly to dated files (like Tomcat AccessLogValve) -->
             <DirectWriteRolloverStrategy maxFiles="30"/>
         </RollingFile>
-        <!-- Authentication audit log: one JSON event per login, failed login and logout -->
+        <!-- Audit log: one JSON event per audited action, such as a login, a failed login or a logout -->
         <!-- Old files are not deleted: add a DefaultRolloverStrategy with a Delete action to apply the retention of your audit policy -->
-        <RollingRandomAccessFile fileName="${baseDir}/authentication-audit.log"
-                                 filePattern="${baseDir}/authentication-audit-%d{yyyy-MM-dd}-%i.log.gz"
-                                 name="AuthenticationAudit-File">
+        <RollingRandomAccessFile fileName="${baseDir}/audit.log"
+                                 filePattern="${baseDir}/audit-%d{yyyy-MM-dd}-%i.log.gz"
+                                 name="Audit-File">
             <!-- The message is already a JSON event: one event per line -->
             <PatternLayout pattern="%m%n"/>
             <Policies>
@@ -73,10 +73,12 @@
             <AppenderRef ref="File"/>
             <AppenderRef ref="Incident-File"/>
         </Root>
-        <!-- Authentication audit log, written to authentication-audit.log only. Remove additivity="false" to also write
-             the events with the other logs (bonita.log and console), set level="OFF" to switch the audit log off -->
-        <Logger name="org.bonitasoft.runtime.audit.authentication" level="INFO" additivity="false">
-            <AppenderRef ref="AuthenticationAudit-File"/>
+        <!-- Audit log, written to audit.log only. Remove additivity="false" to also write the events with the other
+             logs (bonita.log and console), set level="OFF" to switch the audit log off. Each category of events has
+             its own child logger, such as org.bonitasoft.runtime.audit.authentication for the logins and logouts: add
+             it with level="OFF" to leave out its events -->
+        <Logger name="org.bonitasoft.runtime.audit" level="INFO" additivity="false">
+            <AppenderRef ref="Audit-File"/>
         </Logger>
     </Loggers>
 
